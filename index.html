@@ -3,61 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon Portfolio Tech</title>
+    <title>Christopher Gilleron | Data Engineer Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         body { background-color: #0f172a; color: #f8fafc; }
+        .gradient-text {
+            background: linear-gradient(to right, #60a5fa, #34d399);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
     </style>
 </head>
 <body class="font-sans antialiased">
 
     <header class="max-w-4xl mx-auto py-20 px-6 text-center">
-        <h1 class="text-5xl font-extrabold bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent mb-4">
-            Prénom Nom
+        <h1 class="text-6xl font-extrabold mb-4 gradient-text">
+            Christopher Gilleron
         </h1>
-        <p class="text-xl text-slate-400 mb-8">Data Engineer | Expert RAG & Auto-hébergement</p>
+        <p class="text-xl text-slate-300 font-semibold mb-4">Data Scientist & Engineer</p>
+        
+        <div class="max-w-2xl mx-auto text-slate-400 text-md leading-relaxed mb-8">
+            <p>
+                Actuellement en formation <span class="text-emerald-400">Data Scientist (Lead) en alternance chez Jedha Bootcamp</span>, 
+                je développe une expertise hybride alliant la conception de modèles de Machine Learning avancés 
+                et la mise en place d'architectures data robustes (MLOps, Cloud, Pipelines ETL).
+            </p>
+        </div>
+
         <div class="flex justify-center gap-4">
-            <span class="px-3 py-1 bg-slate-800 rounded-full text-sm border border-slate-700">Python</span>
-            <span class="px-3 py-1 bg-slate-800 rounded-full text-sm border border-slate-700">Docker</span>
-            <span class="px-3 py-1 bg-slate-800 rounded-full text-sm border border-slate-700">LLM</span>
+            <span class="px-4 py-1.5 bg-slate-800/50 rounded-full text-xs font-mono border border-slate-700">Python / SQL</span>
+            <span class="px-4 py-1.5 bg-slate-800/50 rounded-full text-xs font-mono border border-slate-700">Docker / NAS</span>
+            <span class="px-4 py-1.5 bg-slate-800/50 rounded-full text-xs font-mono border border-slate-700">RAG / LLM</span>
         </div>
     </header>
 
-    <main class="max-w-5xl mx-auto px-6 pb-20">
-        <h2 class="text-2xl font-bold mb-10 border-b border-slate-800 pb-2 text-blue-400">Mes Projets Réalisés</h2>
+    <main class="max-w-6xl mx-auto px-6 pb-20">
         
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             
-            <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700 hover:border-blue-500 transition-all group">
-                <div class="text-xs text-blue-400 font-mono mb-2">PROJET ÉCOLE</div>
-                <h3 class="text-xl font-bold mb-3 group-hover:text-blue-300">Assistant Documentaire RAG</h3>
-                <p class="text-slate-400 text-sm mb-4">
-                    Mise en place d'un système de recherche sémantique sur 500+ documents PDF avec LangChain et ChromaDB.
+            <div class="bg-slate-800/40 p-8 rounded-3xl border border-slate-700 hover:border-blue-500 transition-all group relative overflow-hidden">
+                <i data-lucide="database" class="text-blue-400 mb-4 w-8 h-8"></i>
+                <h3 class="text-2xl font-bold mb-4 group-hover:text-blue-300 text-slate-100">Architecture RAG</h3>
+                <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                    Conception d'un assistant documentaire intelligent utilisant la technique du <b>Retrieval Augmented Generation</b>. Intégration de LangChain et bases de données vectorielles pour permettre l'interrogation de documents métier complexes.
                 </p>
-                <div class="flex flex-wrap gap-2 text-xs opacity-70">
-                    <span class="bg-slate-900 px-2 py-1 rounded">Gemini API</span>
-                    <span class="bg-slate-900 px-2 py-1 rounded">Vector DB</span>
+                <div class="flex flex-wrap gap-2 text-[10px] uppercase tracking-wider">
+                    <span class="bg-blue-500/10 text-blue-400 border border-blue-500/20 px-2 py-1 rounded">ChromaDB</span>
+                    <span class="bg-blue-500/10 text-blue-400 border border-blue-500/20 px-2 py-1 rounded">LangChain</span>
+                    <span class="bg-blue-500/10 text-blue-400 border border-blue-500/20 px-2 py-1 rounded">LLM API</span>
                 </div>
             </div>
 
-            <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700 hover:border-emerald-500 transition-all group">
-                <div class="text-xs text-emerald-400 font-mono mb-2">INFRASTRUCTURE</div>
-                <h3 class="text-xl font-bold mb-3 group-hover:text-emerald-300">Gestion Cloud Privé (NAS Syno)</h3>
-                <p class="text-slate-400 text-sm mb-4">
-                    Déploiement d'une stack Docker complète (Immich, Nextcloud) sécurisée via un tunnel Cloudflare Zero Trust.
+            <div class="bg-slate-800/40 p-8 rounded-3xl border border-slate-700 hover:border-emerald-500 transition-all group">
+                <i data-lucide="server" class="text-emerald-400 mb-4 w-8 h-8"></i>
+                <h3 class="text-2xl font-bold mb-4 group-hover:text-emerald-300 text-slate-100">Immich & Self-Hosting</h3>
+                <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                    Déploiement et maintenance d'une instance <b>Immich</b> sur infrastructure privée. Gestion du stockage froid, optimisation des ressources Docker et mise en place de tunnels sécurisés pour l'accès distant sécurisé.
                 </p>
-                <div class="flex flex-wrap gap-2 text-xs opacity-70">
-                    <span class="bg-slate-900 px-2 py-1 rounded">Docker Compose</span>
-                    <span class="bg-slate-900 px-2 py-1 rounded">CyberSec</span>
+                <div class="flex flex-wrap gap-2 text-[10px] uppercase tracking-wider">
+                    <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-1 rounded">Docker Compose</span>
+                    <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-1 rounded">Cloudflare</span>
+                    <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-1 rounded">Synology</span>
+                </div>
+            </div>
+
+            <div class="bg-slate-800/40 p-8 rounded-3xl border border-slate-700 hover:border-amber-500 transition-all group">
+                <i data-lucide="refresh-cw" class="text-amber-400 mb-4 w-8 h-8"></i>
+                <h3 class="text-2xl font-bold mb-4 group-hover:text-amber-300 text-slate-100">Transferts Intermags</h3>
+                <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                    Optimisation des flux logistiques pour <b>Grain de Malice</b>. Analyse des stocks et automatisation des transferts entre points de vente pour équilibrer l'offre et réduire les ruptures de stock.
+                </p>
+                <div class="flex flex-wrap gap-2 text-[10px] uppercase tracking-wider">
+                    <span class="bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2 py-1 rounded">Data Analysis</span>
+                    <span class="bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2 py-1 rounded">Supply Chain</span>
+                    <span class="bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2 py-1 rounded">Automation</span>
                 </div>
             </div>
 
         </div>
+
+        <div class="mt-20 flex justify-center gap-6">
+            <a href="#" class="flex items-center gap-2 text-slate-400 hover:text-white transition-colors">
+                <i data-lucide="linkedin" class="w-5 h-5"></i> LinkedIn
+            </a>
+            <a href="#" class="flex items-center gap-2 text-slate-400 hover:text-white transition-colors">
+                <i data-lucide="github" class="w-5 h-5"></i> GitHub
+            </a>
+            <a href="mailto:votre@email.com" class="flex items-center gap-2 text-slate-400 hover:text-white transition-colors">
+                <i data-lucide="mail" class="w-5 h-5"></i> Contact
+            </a>
+        </div>
     </main>
 
-    <footer class="text-center py-10 border-t border-slate-800 text-slate-500 text-sm">
-        Hébergé fièrement sur mon NAS Synology personnel.
+    <footer class="text-center py-12 border-t border-slate-800/50 bg-slate-900/30">
+        <div class="flex flex-col items-center gap-3">
+            <div class="flex items-center gap-2 text-emerald-400 text-sm">
+                <span class="relative flex h-3 w-3">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+                </span>
+                Site en ligne
+            </div>
+            <p class="text-slate-500 text-sm max-w-md">
+                Ce portfolio est auto-hébergé sur mon <span class="text-slate-300 font-medium">serveur NAS Synology personnel</span>, 
+                déployé via <span class="text-slate-300 font-medium">Docker</span> et sécurisé par un tunnel <span class="text-slate-300 font-medium">Cloudflare Zero Trust</span>.
+            </p>
+        </div>
     </footer>
 
+    <script>
+        // Initialisation des icônes
+        lucide.createIcons();
+    </script>
 </body>
 </html>
