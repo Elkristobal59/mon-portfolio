@@ -1,21 +1,27 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon Portfolio Tech</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background-color: #0f172a; color: #f8fafc; }
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
     </style>
 </head>
+
 <body class="font-sans antialiased">
 
     <header class="max-w-4xl mx-auto py-20 px-6 text-center">
-        <h1 class="text-5xl font-extrabold bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent mb-4">
-            Prénom Nom
+        <h1
+            class="text-5xl font-extrabold bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent mb-4">
+            Christopher Gilleron
         </h1>
-        <p class="text-xl text-slate-400 mb-8">Data Engineer | Expert RAG & Auto-hébergement</p>
+        <p class="text-xl text-slate-400 mb-8">Data Scientist | Architect IA</p>
         <div class="flex justify-center gap-4">
             <span class="px-3 py-1 bg-slate-800 rounded-full text-sm border border-slate-700">Python</span>
             <span class="px-3 py-1 bg-slate-800 rounded-full text-sm border border-slate-700">Docker</span>
@@ -25,14 +31,16 @@
 
     <main class="max-w-5xl mx-auto px-6 pb-20">
         <h2 class="text-2xl font-bold mb-10 border-b border-slate-800 pb-2 text-blue-400">Mes Projets Réalisés</h2>
-        
+
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            
-            <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700 hover:border-blue-500 transition-all group">
+
+            <div
+                class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700 hover:border-blue-500 transition-all group">
                 <div class="text-xs text-blue-400 font-mono mb-2">PROJET ÉCOLE</div>
                 <h3 class="text-xl font-bold mb-3 group-hover:text-blue-300">Assistant Documentaire RAG</h3>
                 <p class="text-slate-400 text-sm mb-4">
-                    Mise en place d'un système de recherche sémantique sur 500+ documents PDF avec LangChain et ChromaDB.
+                    Mise en place d'un système de recherche sémantique sur 500+ documents PDF avec LangChain et
+                    ChromaDB.
                 </p>
                 <div class="flex flex-wrap gap-2 text-xs opacity-70">
                     <span class="bg-slate-900 px-2 py-1 rounded">Gemini API</span>
@@ -40,11 +48,13 @@
                 </div>
             </div>
 
-            <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700 hover:border-emerald-500 transition-all group">
+            <div
+                class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700 hover:border-emerald-500 transition-all group">
                 <div class="text-xs text-emerald-400 font-mono mb-2">INFRASTRUCTURE</div>
                 <h3 class="text-xl font-bold mb-3 group-hover:text-emerald-300">Gestion Cloud Privé (NAS Syno)</h3>
                 <p class="text-slate-400 text-sm mb-4">
-                    Déploiement d'une stack Docker complète (Immich, Nextcloud) sécurisée via un tunnel Cloudflare Zero Trust.
+                    Déploiement d'une stack Docker complète (Immich, Nextcloud) sécurisée via un tunnel Cloudflare Zero
+                    Trust.
                 </p>
                 <div class="flex flex-wrap gap-2 text-xs opacity-70">
                     <span class="bg-slate-900 px-2 py-1 rounded">Docker Compose</span>
@@ -56,8 +66,9 @@
     </main>
 
     <footer class="text-center py-10 border-t border-slate-800 text-slate-500 text-sm">
-        Hébergé fièrement sur Vercel.
+        Hébergé sur Vercel.
     </footer>
 
 </body>
+
 </html>
