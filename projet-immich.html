@@ -5,21 +5,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cloud Privé Immich — Christopher Gilleron</title>
-    <meta name="description" content="Projet infrastructure : déploiement d'un cloud privé avec Immich, Nextcloud, Docker et Cloudflare Zero Trust sur NAS Synology.">
+    <meta name="description"
+        content="Projet infrastructure : déploiement d'un cloud privé avec Immich, Nextcloud, Docker et Tailscale VPN sur NAS Synology.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { background-color: #0a0f1e; color: #f8fafc; font-family: 'Inter', sans-serif; }
-        .nav-blur { backdrop-filter: blur(16px); background: rgba(10,15,30,0.85); border-bottom: 1px solid rgba(255,255,255,0.06); }
-        .avatar { width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#60a5fa,#34d399);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.95rem;color:#0a0f1e;flex-shrink:0; }
-        .nav-link { color:#94a3b8;transition:color 0.2s;font-size:.875rem;font-weight:500; }
-        .nav-link:hover { color:#f8fafc; }
-        .tag { background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:6px;padding:3px 10px;font-size:.72rem;color:#94a3b8; }
-        .service-card { background: rgba(16,24,48,0.6); border: 1px solid rgba(255,255,255,0.07); border-radius: 16px; padding: 20px; transition: border-color 0.2s; }
-        .service-card:hover { border-color: rgba(52,211,153,0.3); }
+        body {
+            background-color: #0a0f1e;
+            color: #f8fafc;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .nav-blur {
+            backdrop-filter: blur(16px);
+            background: rgba(10, 15, 30, 0.85);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #60a5fa, #34d399);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: .95rem;
+            color: #0a0f1e;
+            flex-shrink: 0;
+        }
+
+        .nav-link {
+            color: #94a3b8;
+            transition: color 0.2s;
+            font-size: .875rem;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            color: #f8fafc;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            padding: 3px 10px;
+            font-size: .72rem;
+            color: #94a3b8;
+        }
+
+        .service-card {
+            background: rgba(16, 24, 48, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 16px;
+            padding: 20px;
+            transition: border-color 0.2s;
+        }
+
+        .service-card:hover {
+            border-color: rgba(52, 211, 153, 0.3);
+        }
+
         /* Archi diagram */
-        .arch-box { border-radius: 10px; padding: 10px 16px; font-size: 0.78rem; font-weight: 600; text-align: center; border: 1px solid; }
-        .arch-arrow { color: #4b5563; font-size: 1.2rem; }
+        .arch-box {
+            border-radius: 10px;
+            padding: 10px 16px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-align: center;
+            border: 1px solid;
+        }
+
+        .arch-arrow {
+            color: #4b5563;
+            font-size: 1.2rem;
+        }
     </style>
 </head>
 
@@ -35,33 +97,42 @@
                 <a href="projet-rag.html" class="nav-link">RAG</a>
                 <a href="projet-immich.html" class="nav-link text-emerald-400">Immich</a>
                 <a href="projet-getaround.html" class="nav-link">GetAround</a>
-                <a href="https://github.com/Elkristobal59" target="_blank" class="px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-sm font-medium hover:bg-blue-500/20 transition-all">GitHub</a>
+                <a href="https://www.linkedin.com/in/christophergilleron/" target="_blank"
+                    class="px-4 py-1.5 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-sm font-medium hover:bg-sky-500/20 transition-all">LinkedIn</a>
+                <a href="https://github.com/Elkristobal59" target="_blank"
+                    class="px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-sm font-medium hover:bg-blue-500/20 transition-all">GitHub</a>
             </div>
         </div>
     </nav>
 
     <div class="max-w-3xl mx-auto px-6 pt-32 pb-28">
 
-        <a href="index.html" class="inline-flex items-center gap-2 text-slate-500 text-sm hover:text-slate-300 transition-colors mb-10 no-underline">
+        <a href="index.html"
+            class="inline-flex items-center gap-2 text-slate-500 text-sm hover:text-slate-300 transition-colors mb-10 no-underline">
             ← Retour au portfolio
         </a>
 
         <!-- Header -->
         <div class="mb-12">
-            <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-3xl mb-6">🖥️</div>
+            <div
+                class="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-3xl mb-6">
+                🖥️</div>
             <div class="text-xs text-emerald-400 font-mono mb-3 tracking-widest">INFRASTRUCTURE — HOMELAB</div>
-            <h1 class="text-4xl font-extrabold text-white mb-4 leading-tight">Cloud Privé sur NAS Synology</h1>
+            <h1 class="text-4xl font-extrabold text-white mb-4 leading-tight">Cloud Photo Privé — Immich</h1>
             <p class="text-slate-400 text-lg leading-relaxed">
-                Déploiement d'une stack Docker auto-hébergée (Immich, Nextcloud) sur NAS Synology, accessible depuis Internet via un tunnel Cloudflare Zero Trust — sans ouvrir un seul port sur le routeur.
+                Déploiement d'une stack Docker sur laptop MSI (GPU Nvidia) avec stockage distant sur un NAS Synology
+                DS218 Play, accessible depuis n'importe où via le réseau privé Tailscale (WireGuard). Sauvegarde
+                automatique de 2 iPhones — sans ouvrir un seul port.
             </p>
             <div class="flex flex-wrap gap-2 mt-6">
                 <span class="tag">Docker Compose</span>
                 <span class="tag">Synology NAS</span>
                 <span class="tag">Immich</span>
-                <span class="tag">Nextcloud</span>
-                <span class="tag">Cloudflare Tunnel</span>
-                <span class="tag">Zero Trust</span>
-                <span class="tag">HTTPS</span>
+                <span class="tag">PostgreSQL (pgvecto-rs)</span>
+                <span class="tag">Redis cache</span>
+                <span class="tag">Nvidia CUDA</span>
+                <span class="tag">Tailscale VPN</span>
+                <span class="tag">WireGuard</span>
             </div>
         </div>
 
@@ -71,7 +142,9 @@
         <section class="mb-12">
             <h2 class="text-xl font-bold text-white mb-4">🎯 Pourquoi ce projet ?</h2>
             <p class="text-slate-400 leading-relaxed">
-                Après avoir utilisé Google Photos et iCloud, j'ai voulu reprendre le contrôle de mes données personnelles. L'objectif était de construire une solution de cloud privé complète, sécurisée, et accessible depuis n'importe où dans le monde — sans abonnement mensuel et sans compromettre la sécurité.
+                Après avoir utilisé Google Photos et iCloud, j'ai voulu reprendre le contrôle de mes données
+                personnelles. L'objectif était de construire une solution de cloud privé complète, sécurisée, et
+                accessible depuis n'importe où dans le monde — sans abonnement mensuel et sans compromettre la sécurité.
             </p>
         </section>
 
@@ -82,21 +155,30 @@
             <!-- Visual Architecture Diagram -->
             <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-6 mb-6">
                 <div class="flex flex-col items-center gap-3 text-center">
-                    <div class="arch-box bg-blue-500/10 border-blue-500/30 text-blue-300 w-48">🌐 Internet (Client)</div>
+                    <div class="arch-box bg-purple-500/10 border-purple-500/30 text-purple-300 w-48">📱 2×
+                        iPhone<br><span class="font-normal opacity-70">Sauvegarde auto</span></div>
                     <div class="arch-arrow">↕</div>
-                    <div class="arch-box bg-orange-500/10 border-orange-500/30 text-orange-300 w-48">☁️ Cloudflare<br><span class="font-normal opacity-70">Tunnel Zero Trust</span></div>
+                    <div class="arch-box bg-orange-500/10 border-orange-500/30 text-orange-300 w-48">🔐
+                        Tailscale<br><span class="font-normal opacity-70">VPN Mesh (WireGuard)</span></div>
                     <div class="arch-arrow">↕</div>
-                    <div class="bg-slate-800/60 border border-slate-700 rounded-xl p-4 w-full max-w-sm">
-                        <div class="text-xs text-slate-500 font-mono mb-3">NAS SYNOLOGY (réseau local)</div>
-                        <div class="grid grid-cols-2 gap-3">
-                            <div class="arch-box bg-emerald-500/10 border-emerald-500/30 text-emerald-300 text-xs">📸 Immich<br>:2283</div>
-                            <div class="arch-box bg-sky-500/10 border-sky-500/30 text-sky-300 text-xs">☁️ Nextcloud<br>:8080</div>
+                    <div class="bg-slate-800/60 border border-slate-700 rounded-xl p-4 w-full max-w-md">
+                        <div class="text-xs text-slate-500 font-mono mb-3">LAPTOP MSI (Docker + GPU Nvidia)</div>
+                        <div class="mb-3">
+                            <div class="arch-box bg-emerald-500/10 border-emerald-500/30 text-emerald-300 text-xs">📸
+                                Immich API & Machine Learning (CUDA)</div>
                         </div>
-                        <div class="arch-box bg-slate-700/50 border-slate-600 text-slate-400 text-xs mt-3">🐋 Docker Engine</div>
+                        <div class="arch-box bg-indigo-500/10 border-indigo-500/30 text-indigo-300 text-xs mb-3">🗄️
+                            PostgreSQL (pgvecto-rs) & Redis</div>
+                        <div class="arch-box bg-slate-700/50 border-slate-600 text-slate-400 text-xs mt-3">🐋 Docker
+                            Engine</div>
                     </div>
+                    <div class="arch-arrow">↕ CIFS/SMB</div>
+                    <div class="arch-box bg-yellow-500/10 border-yellow-500/30 text-yellow-300 w-48">📁 NAS Synology
+                        DS218 Play<br><span class="font-normal opacity-70">Stockage photos (300 Go+)</span></div>
                 </div>
             </div>
-            <p class="text-slate-500 text-xs text-center">Le NAS n'expose aucun port à Internet — tout transite via le tunnel chiffré Cloudflare.</p>
+            <p class="text-slate-500 text-xs text-center">Les iPhones synchronisent leurs photos via Tailscale vers le
+                serveur Immich (laptop MSI), qui stocke la bibliothèque sur le NAS via CIFS.</p>
         </section>
 
         <!-- Services -->
@@ -106,26 +188,33 @@
                 <div class="service-card">
                     <div class="flex items-center gap-3 mb-2">
                         <span class="text-xl">📸</span>
-                        <div class="font-bold text-white">Immich</div>
-                        <span class="tag ml-auto">Photo & Vidéo</span>
+                        <div class="font-bold text-white">Immich & Machine Learning</div>
+                        <span class="tag ml-auto">Photo, Vidéo & IA</span>
                     </div>
-                    <p class="text-slate-400 text-sm">Alternative open-source à Google Photos. Reconnaissance faciale, albums, synchronisation mobile auto. Héberge + 50 000 photos.</p>
+                    <p class="text-slate-400 text-sm">Alternative open-source à Google Photos. Reconnaissance faciale et
+                        d'objets propulsée par l'intelligence artificielle (accélérée par un conteneur dédié exploitant
+                        Nvidia CUDA), synchronisation mobile automatique. Héberge + 50 000 photos.</p>
                 </div>
                 <div class="service-card">
                     <div class="flex items-center gap-3 mb-2">
-                        <span class="text-xl">☁️</span>
-                        <div class="font-bold text-white">Nextcloud</div>
-                        <span class="tag ml-auto">Fichiers & Collab</span>
+                        <span class="text-xl">🗄️</span>
+                        <div class="font-bold text-white">PostgreSQL & Redis</div>
+                        <span class="tag ml-auto">Base de données & Cache</span>
                     </div>
-                    <p class="text-slate-400 text-sm">Alternative à Google Drive. Partage de fichiers, agenda, contacts, client desktop synchronisé sur tous les appareils.</p>
+                    <p class="text-slate-400 text-sm">Base de données robuste avec l'extension <code>pgvecto-rs</code>
+                        pour gérer efficacement la recherche vectorielle (embeddings des photos), épaulée par un broker
+                        Redis pour le système de file d'attente (traitement vidéo intensif, ML).</p>
                 </div>
+
                 <div class="service-card">
                     <div class="flex items-center gap-3 mb-2">
-                        <span class="text-xl">🔒</span>
-                        <div class="font-bold text-white">Cloudflare Zero Trust</div>
-                        <span class="tag ml-auto">Sécurité</span>
+                        <span class="text-xl">🔐</span>
+                        <div class="font-bold text-white">Tailscale (WireGuard)</div>
+                        <span class="tag ml-auto">VPN Mesh</span>
                     </div>
-                    <p class="text-slate-400 text-sm">Tunnel chiffré TLS sans exposition de ports. Authentification via email/OTP avant tout accès. HTTPS automatique avec certificat Cloudflare.</p>
+                    <p class="text-slate-400 text-sm">Réseau privé mesh basé sur WireGuard. Chaque appareil rejoint le
+                        réseau Tailscale et accède directement au NAS sans ouvrir de port, avec chiffrement de bout en
+                        bout et MagicDNS.</p>
                 </div>
             </div>
         </section>
@@ -134,10 +223,20 @@
         <section class="mb-12">
             <h2 class="text-xl font-bold text-white mb-4">💡 Apprentissages Clés</h2>
             <ul class="space-y-3 text-slate-400 text-sm">
-                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> Les tunnels Cloudflare permettent une sécurité réseau de niveau entreprise sans configuration firewall complexe.</li>
-                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> Docker Compose simplifie drastiquement la gestion des dépendances multi-services (bases de données, cache Redis, workers...).</li>
-                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> La gestion des volumes Docker pour la persistance des données est critique — une mauvaise config = perte de données.</li>
-                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> Immich nécessite un GPU ou un bon CPU pour l'inférence des modèles de reconnaissance faciale (CLIP).</li>
+                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> Tailscale (basé sur WireGuard)
+                    offre un VPN mesh plug-and-play qui sécurise l'accès distant sans aucune configuration firewall.
+                </li>
+                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> Docker Compose simplifie
+                    drastiquement la gestion des dépendances multi-services (bases de données, cache Redis, workers...).
+                </li>
+                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> La gestion des volumes Docker pour
+                    la persistance des données est critique — une mauvaise config = perte de données.</li>
+                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> Immich nécessite un GPU pour
+                    l'inférence des modèles de reconnaissance (CLIP). Mettre en place le pass-through d'une carte
+                    graphique Nvidia (CUDA) vers un conteneur Docker est redoutablement efficace.</li>
+                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> Les architectures orientées
+                    micro-services pour l'IA nécessitent un stockage optimisé pour les vecteurs (extensions comme
+                    pgvecto-rs).</li>
             </ul>
         </section>
 
@@ -147,4 +246,5 @@
         Christopher Gilleron · Hébergé sur Vercel
     </footer>
 </body>
+
 </html>

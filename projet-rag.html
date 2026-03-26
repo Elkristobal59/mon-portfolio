@@ -33,6 +33,7 @@
                 <a href="projet-rag.html" class="nav-link text-blue-400">RAG</a>
                 <a href="projet-immich.html" class="nav-link">Immich</a>
                 <a href="projet-getaround.html" class="nav-link">GetAround</a>
+                <a href="https://www.linkedin.com/in/christophergilleron/" target="_blank" class="px-4 py-1.5 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-sm font-medium hover:bg-sky-500/20 transition-all">LinkedIn</a>
                 <a href="https://github.com/Elkristobal59" target="_blank" class="px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-sm font-medium hover:bg-blue-500/20 transition-all">GitHub</a>
             </div>
         </div>
@@ -49,17 +50,18 @@
         <div class="mb-12">
             <div class="w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-3xl mb-6">🤖</div>
             <div class="text-xs text-blue-400 font-mono mb-3 tracking-widest">PROJET ÉCOLE — IA GÉNÉRATIVE</div>
-            <h1 class="text-4xl font-extrabold text-white mb-4 leading-tight">Assistant Documentaire RAG</h1>
+            <h1 class="text-4xl font-extrabold text-white mb-4 leading-tight">Système RAG 100% Local (Heisenberg)</h1>
             <p class="text-slate-400 text-lg leading-relaxed">
-                Un système de question-réponse sur corpus documentaire, capable d'interroger 500+ documents PDF avec une précision sémantique grâce à LangChain, ChromaDB et l'API Gemini.
+                Un outil "Formule 1" de question-réponse sur corpus de documents volumineux avec une précision chirurgicale, entièrement hébergé en local. Propulsé par LangChain, ChromaDB, le LLM Mistral (Ollama) et des stratégies d'IA avancées.
             </p>
             <div class="flex flex-wrap gap-2 mt-6">
                 <span class="tag">Python</span>
                 <span class="tag">LangChain</span>
                 <span class="tag">ChromaDB</span>
-                <span class="tag">Gemini API</span>
-                <span class="tag">Vector DB</span>
-                <span class="tag">RAG</span>
+                <span class="tag">Ollama (Mistral)</span>
+                <span class="tag">Gradio</span>
+                <span class="tag">Contextual Retrieval & HyDE</span>
+                <span class="tag">CrossEncoder Reranker</span>
             </div>
         </div>
 
@@ -75,30 +77,36 @@
 
         <!-- Architecture -->
         <section class="mb-12">
-            <h2 class="text-xl font-bold text-white mb-6">🏗️ Architecture du Pipeline RAG</h2>
+            <h2 class="text-xl font-bold text-white mb-6">🏗️ Pipeline RAG Avancé</h2>
             <ol class="steps space-y-4">
                 <li class="step flex items-start bg-slate-900/50 border border-slate-800 rounded-xl p-4">
                     <div class="flex-1">
-                        <div class="font-semibold text-white mb-1">Ingestion & Chunking</div>
-                        <p class="text-slate-400 text-sm">Chaque PDF est découpé en chunks de 512 tokens avec chevauchement de 64 tokens pour conserver le contexte entre blocs.</p>
+                        <div class="font-semibold text-white mb-1">Ingestion & Contextual Retrieval</div>
+                        <p class="text-slate-400 text-sm">Les PDF et fichiers Word sont ingérés automatiquement (Watchdog) avec un parsing sophistiqué (PyMuPDF). Chaque chunk subit un prétraitement LLM contextuel (méthode de type Anthropic) pour ne jamais perdre le sens global lors de la recherche.</p>
                     </div>
                 </li>
                 <li class="step flex items-start bg-slate-900/50 border border-slate-800 rounded-xl p-4">
                     <div class="flex-1">
-                        <div class="font-semibold text-white mb-1">Vectorisation (Embeddings)</div>
-                        <p class="text-slate-400 text-sm">Chaque chunk est transformé en vecteur dense via le modèle d'embeddings de Gemini. Les vecteurs sont stockés dans ChromaDB.</p>
+                        <div class="font-semibold text-white mb-1">Vectorisation (BGE-m3)</div>
+                        <p class="text-slate-400 text-sm">Chaque chunk est transformé en embeddings via le modèle state-of-the-art <code>BAAI/bge-m3</code> sur GPU, puis stocké sur disque avec ChromaDB incluant ses métadonnées extraites (année, mois, type de doc).</p>
                     </div>
                 </li>
                 <li class="step flex items-start bg-slate-900/50 border border-slate-800 rounded-xl p-4">
                     <div class="flex-1">
-                        <div class="font-semibold text-white mb-1">Recherche Sémantique</div>
-                        <p class="text-slate-400 text-sm">À la question de l'utilisateur, on calcule son vecteur et on retrouve les k chunks les plus proches par similarité cosinus.</p>
+                        <div class="font-semibold text-white mb-1">HyDE & Recherche Sémantique Filtrée</div>
+                        <p class="text-slate-400 text-sm">La question utilisateur est transformée en "réponse hypothétique" (HyDE) pour maximiser la similarité lors de la recherche. Les filtres par métadonnées s'activent intelligemment (fallback progressif si aucun résultat).</p>
                     </div>
                 </li>
                 <li class="step flex items-start bg-slate-900/50 border border-slate-800 rounded-xl p-4">
                     <div class="flex-1">
-                        <div class="font-semibold text-white mb-1">Génération Augmentée (LLM)</div>
-                        <p class="text-slate-400 text-sm">Les chunks sélectionnés servent de contexte au prompt envoyé à Gemini, qui génère une réponse ancrée dans les sources.</p>
+                        <div class="font-semibold text-white mb-1">Cross-Encoder Reranking</div>
+                        <p class="text-slate-400 text-sm">Les 20+ candidats initiaux sont réévalués en profondeur par un <code>CrossEncoder (BGE-Reranker-v2)</code> particulièrement fin pour extraire les 5 extraits les plus pertinents.</p>
+                    </div>
+                </li>
+                <li class="step flex items-start bg-slate-900/50 border border-slate-800 rounded-xl p-4">
+                    <div class="flex-1">
+                        <div class="font-semibold text-white mb-1">Génération (Mistral Local)</div>
+                        <p class="text-slate-400 text-sm">Le LLM local <b>Mistral</b> (tournant sur Ollama) synthétise la réponse finale de manière stricte (anti-hallucination) en citant systématiquement la source exacte du document en surbrillance dans l'interface.</p>
                     </div>
                 </li>
             </ol>
@@ -109,24 +117,24 @@
             <h2 class="text-xl font-bold text-white mb-6">🛠️ Stack Technique</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4">
-                    <div class="text-blue-400 text-sm font-mono mb-1">Orchestration</div>
-                    <div class="text-white font-semibold">LangChain</div>
-                    <p class="text-slate-500 text-xs mt-1">Chaîne RAG, prompt templates, memory</p>
+                    <div class="text-blue-400 text-sm font-mono mb-1">Orchestration & Modèles</div>
+                    <div class="text-white font-semibold">LangChain & HuggingFace</div>
+                    <p class="text-slate-500 text-xs mt-1">Pipeline RAG complexe, Embeddings multi-lingues et modèle de Reranking CrossEncoder.</p>
                 </div>
                 <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4">
                     <div class="text-blue-400 text-sm font-mono mb-1">Stockage vectoriel</div>
                     <div class="text-white font-semibold">ChromaDB</div>
-                    <p class="text-slate-500 text-xs mt-1">Base vectorielle locale, persistance sur disque</p>
+                    <p class="text-slate-500 text-xs mt-1">Base vectorielle filtrée en temps réel par les métadonnées extraites dynamiquement.</p>
                 </div>
                 <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4">
-                    <div class="text-blue-400 text-sm font-mono mb-1">Modèle de langage</div>
-                    <div class="text-white font-semibold">Gemini API</div>
-                    <p class="text-slate-500 text-xs mt-1">Embeddings + génération de réponses</p>
+                    <div class="text-blue-400 text-sm font-mono mb-1">Modèle de langage (LLM)</div>
+                    <div class="text-white font-semibold">Ollama (Mistral v0.3)</div>
+                    <p class="text-slate-500 text-xs mt-1">Modèle open-weights tournant à 100% en local pour une confidentialité totale et aucune API tierce.</p>
                 </div>
                 <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4">
-                    <div class="text-blue-400 text-sm font-mono mb-1">Interface</div>
-                    <div class="text-white font-semibold">Streamlit</div>
-                    <p class="text-slate-500 text-xs mt-1">Interface de chat avec affichage des sources</p>
+                    <div class="text-blue-400 text-sm font-mono mb-1">Interface Utilisateur</div>
+                    <div class="text-white font-semibold">Gradio</div>
+                    <p class="text-slate-500 text-xs mt-1">Console d'audit élégante avec historique de conversation fluide et sources des documents interactives.</p>
                 </div>
             </div>
         </section>
@@ -136,8 +144,9 @@
             <h2 class="text-xl font-bold text-white mb-4">💡 Apprentissages Clés</h2>
             <ul class="space-y-3 text-slate-400 text-sm">
                 <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> La taille des chunks est un paramètre critique : trop petits → perte de contexte, trop grands → bruit dans le prompt.</li>
-                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> Le reranking des chunks avant injection améliore significativement la qualité des réponses.</li>
-                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> Afficher les sources dans l'UI est essentiel pour établir la confiance utilisateur (éviter les hallucinations silencieuses).</li>
+                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> Le reranking des chunks avant injection via un modèle Cross-Encoder améliore drastiquement la qualité des réponses.</li>
+                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> Afficher les sources dans l'UI est essentiel pour établir la confiance utilisateur.</li>
+                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> Appliquer le <i>Contextual Retrieval</i> (pré-résumé par LLM de chaque extrait avant ingestion) combat très efficacement la perte de contexte inhérente au découpage de PDF complexes.</li>
             </ul>
         </section>
 
