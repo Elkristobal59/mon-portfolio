@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assistant RAG — Christopher Gilleron</title>
+    <meta name="description" content="Projet Assistant Documentaire RAG : recherche sémantique sur 500+ documents PDF avec LangChain, ChromaDB et Gemini API.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { background-color: #0a0f1e; color: #f8fafc; font-family: 'Inter', sans-serif; }
+        .nav-blur { backdrop-filter: blur(16px); background: rgba(10,15,30,0.85); border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .avatar { width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#60a5fa,#34d399);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.95rem;color:#0a0f1e;flex-shrink:0; }
+        .nav-link { color:#94a3b8;transition:color 0.2s;font-size:.875rem;font-weight:500; }
+        .nav-link:hover { color:#f8fafc; }
+        .tag { background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:6px;padding:3px 10px;font-size:.72rem;color:#94a3b8; }
+        .step { counter-increment: step-counter; }
+        .step::before { content: counter(step-counter); display: inline-flex; width: 28px; height: 28px; border-radius: 50%; background: rgba(96,165,250,0.15); border: 1px solid rgba(96,165,250,0.3); color: #60a5fa; font-weight: 700; font-size: 0.8rem; align-items: center; justify-content: center; margin-right: 12px; flex-shrink: 0; }
+        .steps { counter-reset: step-counter; }
+    </style>
+</head>
+
+<body>
+    <nav class="nav-blur fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3 no-underline">
+                <div class="avatar">CG</div>
+                <span class="font-bold text-white hidden sm:block">Christopher Gilleron</span>
+            </a>
+            <div class="flex items-center gap-6">
+                <a href="index.html" class="nav-link">Accueil</a>
+                <a href="projet-rag.html" class="nav-link text-blue-400">RAG</a>
+                <a href="projet-immich.html" class="nav-link">Immich</a>
+                <a href="projet-getaround.html" class="nav-link">GetAround</a>
+                <a href="https://github.com/Elkristobal59" target="_blank" class="px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-sm font-medium hover:bg-blue-500/20 transition-all">GitHub</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-3xl mx-auto px-6 pt-32 pb-28">
+
+        <!-- Back -->
+        <a href="index.html" class="inline-flex items-center gap-2 text-slate-500 text-sm hover:text-slate-300 transition-colors mb-10 no-underline">
+            ← Retour au portfolio
+        </a>
+
+        <!-- Header -->
+        <div class="mb-12">
+            <div class="w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-3xl mb-6">🤖</div>
+            <div class="text-xs text-blue-400 font-mono mb-3 tracking-widest">PROJET ÉCOLE — IA GÉNÉRATIVE</div>
+            <h1 class="text-4xl font-extrabold text-white mb-4 leading-tight">Assistant Documentaire RAG</h1>
+            <p class="text-slate-400 text-lg leading-relaxed">
+                Un système de question-réponse sur corpus documentaire, capable d'interroger 500+ documents PDF avec une précision sémantique grâce à LangChain, ChromaDB et l'API Gemini.
+            </p>
+            <div class="flex flex-wrap gap-2 mt-6">
+                <span class="tag">Python</span>
+                <span class="tag">LangChain</span>
+                <span class="tag">ChromaDB</span>
+                <span class="tag">Gemini API</span>
+                <span class="tag">Vector DB</span>
+                <span class="tag">RAG</span>
+            </div>
+        </div>
+
+        <hr class="border-slate-800 mb-12">
+
+        <!-- Contexte -->
+        <section class="mb-12">
+            <h2 class="text-xl font-bold text-white mb-4">🎯 Contexte & Objectif</h2>
+            <p class="text-slate-400 leading-relaxed">
+                Dans le cadre de ma formation Data Science à Jedha, j'ai conçu un assistant documentaire intelligent capable de répondre à des questions en langage naturel sur un corpus de documents internes. Le défi : rendre un volume important de PDF "interrogeables" sans hallucinations, en s'appuyant sur les passages réellement présents dans les documents.
+            </p>
+        </section>
+
+        <!-- Architecture -->
+        <section class="mb-12">
+            <h2 class="text-xl font-bold text-white mb-6">🏗️ Architecture du Pipeline RAG</h2>
+            <ol class="steps space-y-4">
+                <li class="step flex items-start bg-slate-900/50 border border-slate-800 rounded-xl p-4">
+                    <div class="flex-1">
+                        <div class="font-semibold text-white mb-1">Ingestion & Chunking</div>
+                        <p class="text-slate-400 text-sm">Chaque PDF est découpé en chunks de 512 tokens avec chevauchement de 64 tokens pour conserver le contexte entre blocs.</p>
+                    </div>
+                </li>
+                <li class="step flex items-start bg-slate-900/50 border border-slate-800 rounded-xl p-4">
+                    <div class="flex-1">
+                        <div class="font-semibold text-white mb-1">Vectorisation (Embeddings)</div>
+                        <p class="text-slate-400 text-sm">Chaque chunk est transformé en vecteur dense via le modèle d'embeddings de Gemini. Les vecteurs sont stockés dans ChromaDB.</p>
+                    </div>
+                </li>
+                <li class="step flex items-start bg-slate-900/50 border border-slate-800 rounded-xl p-4">
+                    <div class="flex-1">
+                        <div class="font-semibold text-white mb-1">Recherche Sémantique</div>
+                        <p class="text-slate-400 text-sm">À la question de l'utilisateur, on calcule son vecteur et on retrouve les k chunks les plus proches par similarité cosinus.</p>
+                    </div>
+                </li>
+                <li class="step flex items-start bg-slate-900/50 border border-slate-800 rounded-xl p-4">
+                    <div class="flex-1">
+                        <div class="font-semibold text-white mb-1">Génération Augmentée (LLM)</div>
+                        <p class="text-slate-400 text-sm">Les chunks sélectionnés servent de contexte au prompt envoyé à Gemini, qui génère une réponse ancrée dans les sources.</p>
+                    </div>
+                </li>
+            </ol>
+        </section>
+
+        <!-- Stack -->
+        <section class="mb-12">
+            <h2 class="text-xl font-bold text-white mb-6">🛠️ Stack Technique</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4">
+                    <div class="text-blue-400 text-sm font-mono mb-1">Orchestration</div>
+                    <div class="text-white font-semibold">LangChain</div>
+                    <p class="text-slate-500 text-xs mt-1">Chaîne RAG, prompt templates, memory</p>
+                </div>
+                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4">
+                    <div class="text-blue-400 text-sm font-mono mb-1">Stockage vectoriel</div>
+                    <div class="text-white font-semibold">ChromaDB</div>
+                    <p class="text-slate-500 text-xs mt-1">Base vectorielle locale, persistance sur disque</p>
+                </div>
+                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4">
+                    <div class="text-blue-400 text-sm font-mono mb-1">Modèle de langage</div>
+                    <div class="text-white font-semibold">Gemini API</div>
+                    <p class="text-slate-500 text-xs mt-1">Embeddings + génération de réponses</p>
+                </div>
+                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4">
+                    <div class="text-blue-400 text-sm font-mono mb-1">Interface</div>
+                    <div class="text-white font-semibold">Streamlit</div>
+                    <p class="text-slate-500 text-xs mt-1">Interface de chat avec affichage des sources</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Apprentissages -->
+        <section class="mb-12">
+            <h2 class="text-xl font-bold text-white mb-4">💡 Apprentissages Clés</h2>
+            <ul class="space-y-3 text-slate-400 text-sm">
+                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> La taille des chunks est un paramètre critique : trop petits → perte de contexte, trop grands → bruit dans le prompt.</li>
+                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> Le reranking des chunks avant injection améliore significativement la qualité des réponses.</li>
+                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> Afficher les sources dans l'UI est essentiel pour établir la confiance utilisateur (éviter les hallucinations silencieuses).</li>
+            </ul>
+        </section>
+
+    </div>
+
+    <footer class="text-center py-10 border-t border-slate-800/60 text-slate-600 text-sm">
+        Christopher Gilleron · Hébergé sur Vercel
+    </footer>
+</body>
+</html>

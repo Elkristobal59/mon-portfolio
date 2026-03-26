@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GetAround Analysis — Christopher Gilleron</title>
+    <meta name="description" content="Dashboard interactif d'analyse tarifaire GetAround : prédiction de prix de location de véhicules avec Streamlit et Machine Learning.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { background-color: #0a0f1e; color: #f8fafc; font-family: 'Inter', sans-serif; }
+        .nav-blur { backdrop-filter: blur(16px); background: rgba(10,15,30,0.85); border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .avatar { width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#60a5fa,#34d399);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.95rem;color:#0a0f1e;flex-shrink:0; }
+        .nav-link { color:#94a3b8;transition:color 0.2s;font-size:.875rem;font-weight:500; }
+        .nav-link:hover { color:#f8fafc; }
+        .tag { background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:6px;padding:3px 10px;font-size:.72rem;color:#94a3b8; }
+        .iframe-container {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            box-shadow: 0 0 60px rgba(139, 92, 246, 0.1);
+        }
+        .iframe-container iframe {
+            display: block;
+            width: 100%;
+            height: 700px;
+            border: none;
+            background: #1e1b2e;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="nav-blur fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3 no-underline">
+                <div class="avatar">CG</div>
+                <span class="font-bold text-white hidden sm:block">Christopher Gilleron</span>
+            </a>
+            <div class="flex items-center gap-6">
+                <a href="index.html" class="nav-link">Accueil</a>
+                <a href="projet-rag.html" class="nav-link">RAG</a>
+                <a href="projet-immich.html" class="nav-link">Immich</a>
+                <a href="projet-getaround.html" class="nav-link text-violet-400">GetAround</a>
+                <a href="https://github.com/Elkristobal59" target="_blank" class="px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-sm font-medium hover:bg-blue-500/20 transition-all">GitHub</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-4xl mx-auto px-6 pt-32 pb-28">
+
+        <a href="index.html" class="inline-flex items-center gap-2 text-slate-500 text-sm hover:text-slate-300 transition-colors mb-10 no-underline">
+            ← Retour au portfolio
+        </a>
+
+        <!-- Header -->
+        <div class="mb-12">
+            <div class="w-14 h-14 rounded-2xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center text-3xl mb-6">🚗</div>
+            <div class="text-xs text-violet-400 font-mono mb-3 tracking-widest">PROJET ÉCOLE — DATA SCIENCE</div>
+            <h1 class="text-4xl font-extrabold text-white mb-4 leading-tight">GetAround — Analyse & Prédiction de Prix</h1>
+            <p class="text-slate-400 text-lg leading-relaxed">
+                Dashboard interactif d'analyse tarifaire sur la plateforme de location de voitures GetAround. Exploration des données, identification des facteurs de prix et modèle de prédiction de loyer journalier.
+            </p>
+            <div class="flex flex-wrap gap-2 mt-6">
+                <span class="tag">Python</span>
+                <span class="tag">Streamlit</span>
+                <span class="tag">Pandas</span>
+                <span class="tag">Scikit-learn</span>
+                <span class="tag">Plotly</span>
+                <span class="tag">Machine Learning</span>
+                <span class="tag">Hugging Face Spaces</span>
+            </div>
+        </div>
+
+        <hr class="border-slate-800 mb-12">
+
+        <!-- Contexte -->
+        <section class="mb-12">
+            <h2 class="text-xl font-bold text-white mb-4">🎯 Contexte & Objectif</h2>
+            <p class="text-slate-400 leading-relaxed mb-4">
+                GetAround est la version européenne d'Airbnb pour les voitures. Le projet avait pour but d'analyser les facteurs influençant le prix de location journalier des véhicules, puis de construire un modèle de Machine Learning permettant de recommander un prix optimal à un propriétaire.
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4 text-center">
+                    <div class="text-2xl font-extrabold text-violet-400 mb-1">+10k</div>
+                    <div class="text-slate-500 text-xs">Locations analysées</div>
+                </div>
+                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4 text-center">
+                    <div class="text-2xl font-extrabold text-violet-400 mb-1">15+</div>
+                    <div class="text-slate-500 text-xs">Variables explorées</div>
+                </div>
+                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4 text-center">
+                    <div class="text-2xl font-extrabold text-violet-400 mb-1">R²</div>
+                    <div class="text-slate-500 text-xs">Score de régression ML</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard -->
+        <section class="mb-12">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-xl font-bold text-white">📊 Dashboard Interactif</h2>
+                <a href="https://elkristobal59-getaround-analysis-dashboard.hf.space/" target="_blank"
+                   class="text-xs text-violet-400 border border-violet-500/30 px-3 py-1.5 rounded-full hover:bg-violet-500/10 transition-all no-underline">
+                    ↗ Ouvrir en plein écran
+                </a>
+            </div>
+            <div class="iframe-container">
+                <iframe
+                    src="https://elkristobal59-getaround-analysis-dashboard.hf.space/"
+                    title="GetAround Analysis Dashboard"
+                    loading="lazy"
+                    allow="fullscreen">
+                </iframe>
+            </div>
+            <p class="text-slate-600 text-xs text-center mt-3">
+                Dashboard hébergé sur Hugging Face Spaces — chargement possible sous quelques secondes
+            </p>
+        </section>
+
+        <!-- Stack -->
+        <section class="mb-12">
+            <h2 class="text-xl font-bold text-white mb-6">🛠️ Méthodologie</h2>
+            <div class="space-y-3 text-slate-400 text-sm">
+                <div class="flex gap-3 bg-slate-900/50 border border-slate-800 rounded-xl p-4">
+                    <span class="text-violet-400 font-bold text-lg leading-none">1.</span>
+                    <div><span class="text-white font-semibold">Exploration & nettoyage</span> — Analyse des distributions, gestion des valeurs manquantes, outliers sur le prix journalier.</div>
+                </div>
+                <div class="flex gap-3 bg-slate-900/50 border border-slate-800 rounded-xl p-4">
+                    <span class="text-violet-400 font-bold text-lg leading-none">2.</span>
+                    <div><span class="text-white font-semibold">Feature Engineering</span> — Encodage des variables catégorielles (marque, modèle, carburant), normalisation.</div>
+                </div>
+                <div class="flex gap-3 bg-slate-900/50 border border-slate-800 rounded-xl p-4">
+                    <span class="text-violet-400 font-bold text-lg leading-none">3.</span>
+                    <div><span class="text-white font-semibold">Modélisation</span> — Comparaison LinearRegression, Ridge, RandomForest. Sélection par validation croisée.</div>
+                </div>
+                <div class="flex gap-3 bg-slate-900/50 border border-slate-800 rounded-xl p-4">
+                    <span class="text-violet-400 font-bold text-lg leading-none">4.</span>
+                    <div><span class="text-white font-semibold">Dashboard Streamlit</span> — Visualisations interactives Plotly + UI de prédiction de prix à la demande.</div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer class="text-center py-10 border-t border-slate-800/60 text-slate-600 text-sm">
+        Christopher Gilleron · Hébergé sur Vercel
+    </footer>
+</body>
+</html>
