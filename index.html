@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Christopher Gilleron — Portfolio</title>
-    <meta name="description" content="Portfolio de Christopher Gilleron, Data Scientist et Architecte IA. Projets RAG, infrastructure cloud, analyse de données.">
+    <meta name="description"
+        content="Portfolio de Christopher Gilleron, Data Scientist et Architecte IA. Projets RAG, infrastructure cloud, analyse de données.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -15,35 +16,42 @@
             color: #f8fafc;
             font-family: 'Inter', sans-serif;
         }
+
         .nav-blur {
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             background: rgba(10, 15, 30, 0.85);
-            border-bottom: 1px solid rgba(255,255,255,0.06);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
         }
+
         .card-hover {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
         .card-hover:hover {
             transform: translateY(-6px);
         }
+
         .gradient-text {
             background: linear-gradient(135deg, #60a5fa, #34d399);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
+
         .hero-glow {
-            background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(96,165,250,0.15), transparent);
+            background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(96, 165, 250, 0.15), transparent);
         }
+
         .tag {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 6px;
             padding: 3px 10px;
             font-size: 0.72rem;
             color: #94a3b8;
         }
+
         .avatar {
             width: 42px;
             height: 42px;
@@ -57,13 +65,17 @@
             color: #0a0f1e;
             flex-shrink: 0;
         }
+
         .nav-link {
             color: #94a3b8;
             transition: color 0.2s;
             font-size: 0.875rem;
             font-weight: 500;
         }
-        .nav-link:hover { color: #f8fafc; }
+
+        .nav-link:hover {
+            color: #f8fafc;
+        }
     </style>
 </head>
 
@@ -81,8 +93,12 @@
                 <a href="projet-rag.html" class="nav-link">RAG</a>
                 <a href="projet-immich.html" class="nav-link">Immich</a>
                 <a href="projet-getaround.html" class="nav-link">GetAround</a>
+                <a href="https://www.linkedin.com/in/christophergilleron/" target="_blank"
+                    class="px-4 py-1.5 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-sm font-medium hover:bg-sky-500/20 transition-all">
+                    LinkedIn
+                </a>
                 <a href="https://github.com/Elkristobal59" target="_blank"
-                   class="px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-sm font-medium hover:bg-blue-500/20 transition-all">
+                    class="px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-sm font-medium hover:bg-blue-500/20 transition-all">
                     GitHub
                 </a>
             </div>
@@ -92,7 +108,8 @@
     <!-- ===== HERO ===== -->
     <header class="hero-glow pt-36 pb-20 px-6 text-center">
         <div class="max-w-4xl mx-auto">
-            <div class="inline-block px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono mb-6 tracking-wide">
+            <div
+                class="inline-block px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono mb-6 tracking-wide">
                 DATA SCIENTIST · ARCHITECTE IA
             </div>
             <h1 class="text-5xl sm:text-6xl font-extrabold gradient-text mb-5 leading-tight">
@@ -120,10 +137,14 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
             <!-- Card RAG -->
-            <a href="projet-rag.html" class="card-hover block bg-slate-900/60 border border-slate-800 rounded-2xl p-6 hover:border-blue-500/50 group no-underline">
-                <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-xl mb-5">🤖</div>
+            <a href="projet-rag.html"
+                class="card-hover block bg-slate-900/60 border border-slate-800 rounded-2xl p-6 hover:border-blue-500/50 group no-underline">
+                <div
+                    class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-xl mb-5">
+                    🤖</div>
                 <div class="text-xs text-blue-400 font-mono mb-2 tracking-wide">PROJET ÉCOLE — IA</div>
-                <h3 class="text-lg font-bold text-white mb-3 group-hover:text-blue-300 transition-colors">Assistant Documentaire RAG</h3>
+                <h3 class="text-lg font-bold text-white mb-3 group-hover:text-blue-300 transition-colors">Assistant
+                    Documentaire RAG</h3>
                 <p class="text-slate-400 text-sm mb-5 leading-relaxed">
                     Recherche sémantique sur 500+ documents PDF via LangChain, ChromaDB et l'API Gemini.
                 </p>
@@ -132,16 +153,21 @@
                     <span class="tag">LangChain</span>
                     <span class="tag">Vector DB</span>
                 </div>
-                <div class="mt-5 text-blue-400 text-sm font-medium group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+                <div
+                    class="mt-5 text-blue-400 text-sm font-medium group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
                     Voir le projet →
                 </div>
             </a>
 
             <!-- Card Immich -->
-            <a href="projet-immich.html" class="card-hover block bg-slate-900/60 border border-slate-800 rounded-2xl p-6 hover:border-emerald-500/50 group no-underline">
-                <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-xl mb-5">🖥️</div>
+            <a href="projet-immich.html"
+                class="card-hover block bg-slate-900/60 border border-slate-800 rounded-2xl p-6 hover:border-emerald-500/50 group no-underline">
+                <div
+                    class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-xl mb-5">
+                    🖥️</div>
                 <div class="text-xs text-emerald-400 font-mono mb-2 tracking-wide">INFRASTRUCTURE — CLOUD</div>
-                <h3 class="text-lg font-bold text-white mb-3 group-hover:text-emerald-300 transition-colors">Cloud Privé (NAS Syno + Immich)</h3>
+                <h3 class="text-lg font-bold text-white mb-3 group-hover:text-emerald-300 transition-colors">Cloud Privé
+                    (NAS Syno + Immich)</h3>
                 <p class="text-slate-400 text-sm mb-5 leading-relaxed">
                     Stack Docker complète (Immich, Nextcloud) sécurisée via un tunnel Cloudflare Zero Trust.
                 </p>
@@ -150,16 +176,21 @@
                     <span class="tag">Cloudflare</span>
                     <span class="tag">NAS</span>
                 </div>
-                <div class="mt-5 text-emerald-400 text-sm font-medium group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+                <div
+                    class="mt-5 text-emerald-400 text-sm font-medium group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
                     Voir le projet →
                 </div>
             </a>
 
             <!-- Card GetAround -->
-            <a href="projet-getaround.html" class="card-hover block bg-slate-900/60 border border-slate-800 rounded-2xl p-6 hover:border-violet-500/50 group no-underline">
-                <div class="w-10 h-10 rounded-xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center text-xl mb-5">🚗</div>
+            <a href="projet-getaround.html"
+                class="card-hover block bg-slate-900/60 border border-slate-800 rounded-2xl p-6 hover:border-violet-500/50 group no-underline">
+                <div
+                    class="w-10 h-10 rounded-xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center text-xl mb-5">
+                    🚗</div>
                 <div class="text-xs text-violet-400 font-mono mb-2 tracking-wide">PROJET ÉCOLE — DATA</div>
-                <h3 class="text-lg font-bold text-white mb-3 group-hover:text-violet-300 transition-colors">GetAround — Analyse de Prix</h3>
+                <h3 class="text-lg font-bold text-white mb-3 group-hover:text-violet-300 transition-colors">GetAround —
+                    Analyse de Prix</h3>
                 <p class="text-slate-400 text-sm mb-5 leading-relaxed">
                     Dashboard interactif d'analyse tarifaire et de prédiction de prix de location de véhicules.
                 </p>
@@ -168,7 +199,8 @@
                     <span class="tag">ML</span>
                     <span class="tag">Pandas</span>
                 </div>
-                <div class="mt-5 text-violet-400 text-sm font-medium group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+                <div
+                    class="mt-5 text-violet-400 text-sm font-medium group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
                     Voir le projet →
                 </div>
             </a>
@@ -182,4 +214,5 @@
     </footer>
 
 </body>
+
 </html>
