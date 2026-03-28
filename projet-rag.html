@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Assistant RAG — Christopher Gilleron</title>
-    <meta name="description" content="Projet Assistant Documentaire RAG : recherche sémantique sur 500+ documents PDF avec LangChain, ChromaDB et Gemini API.">
+    <meta name="description" content="Projet Assistant Documentaire RAG 100% local : pipeline avancée avec LLM Mistral (Ollama), embeddings BGE-M3 GPU, reranking neural et indexation temps réel.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -18,6 +18,7 @@
         .step { counter-increment: step-counter; }
         .step::before { content: counter(step-counter); display: inline-flex; width: 28px; height: 28px; border-radius: 50%; background: rgba(96,165,250,0.15); border: 1px solid rgba(96,165,250,0.3); color: #60a5fa; font-weight: 700; font-size: 0.8rem; align-items: center; justify-content: center; margin-right: 12px; flex-shrink: 0; }
         .steps { counter-reset: step-counter; }
+        .infra-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
     </style>
 </head>
 
@@ -49,19 +50,21 @@
         <!-- Header -->
         <div class="mb-12">
             <div class="w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-3xl mb-6">🤖</div>
-            <div class="text-xs text-blue-400 font-mono mb-3 tracking-widest">PROJET ÉCOLE — IA GÉNÉRATIVE</div>
+            <div class="text-xs text-blue-400 font-mono mb-3 tracking-widest">PROJET PERSO — IA GÉNÉRATIVE</div>
             <h1 class="text-4xl font-extrabold text-white mb-4 leading-tight">Système RAG 100% Local (Heisenberg)</h1>
             <p class="text-slate-400 text-lg leading-relaxed">
-                Un outil "Formule 1" de question-réponse sur corpus de documents volumineux avec une précision chirurgicale, entièrement hébergé en local. Propulsé par LangChain, ChromaDB, le LLM Mistral (Ollama) et des stratégies d'IA avancées.
+                Un outil « Formule 1 » de question-réponse sur mes documents PDF et Word, entièrement hébergé en local sur GPU. La base vectorielle s'auto-alimente en temps réel : chaque nouveau document déposé sur le NAS est automatiquement ingéré et indexé. Aucune API cloud, aucune donnée qui sort du réseau. Propulsé par LangChain, ChromaDB, le LLM Mistral via Ollama et des stratégies d'IA avancées (HyDE, Contextual Retrieval, Reranking neural).
             </p>
             <div class="flex flex-wrap gap-2 mt-6">
                 <span class="tag">Python</span>
                 <span class="tag">LangChain</span>
                 <span class="tag">ChromaDB</span>
                 <span class="tag">Ollama (Mistral)</span>
+                <span class="tag">HuggingFace BGE-M3</span>
                 <span class="tag">Gradio</span>
                 <span class="tag">Contextual Retrieval & HyDE</span>
                 <span class="tag">CrossEncoder Reranker</span>
+                <span class="tag">CUDA GPU</span>
             </div>
         </div>
 
@@ -71,9 +74,53 @@
         <section class="mb-12">
             <h2 class="text-xl font-bold text-white mb-4">🎯 Contexte & Objectif</h2>
             <p class="text-slate-400 leading-relaxed">
-                Dans le cadre de ma formation Data Science à Jedha, j'ai conçu un assistant documentaire intelligent capable de répondre à des questions en langage naturel sur un corpus de documents internes. Le défi : rendre un volume important de PDF "interrogeables" sans hallucinations, en s'appuyant sur les passages réellement présents dans les documents.
+                J'ai conçu un assistant documentaire intelligent capable de répondre à des questions en langage naturel sur un corpus de documents personnels (bulletins de paie, avis d'imposition, baux, quittances, contrats d'assurance…). Le défi : rendre des centaines de PDF et fichiers Word « interrogeables » sans hallucinations, en s'appuyant uniquement sur les passages réellement présents dans les documents — le tout en 100% local, sans aucune API cloud, pour garantir la confidentialité totale des données.
             </p>
         </section>
+
+        <!-- Infrastructure -->
+        <section class="mb-12">
+            <h2 class="text-xl font-bold text-white mb-6">🖥️ Infrastructure Complète</h2>
+            <div class="space-y-4">
+                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-5 flex gap-4">
+                    <div class="infra-icon bg-amber-500/10 border border-amber-500/20">📁</div>
+                    <div class="flex-1">
+                        <div class="font-semibold text-white mb-1">Source documentaire — NAS Synology</div>
+                        <p class="text-slate-400 text-sm">Les documents sont stockés sur un NAS Synology en réseau local (SMB). Le système accède au partage réseau <code class="text-blue-300">\\192.168.1.40\homes\...\Graph_Project</code> pour scanner les dossiers et sous-dossiers automatiquement.</p>
+                    </div>
+                </div>
+                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-5 flex gap-4">
+                    <div class="infra-icon bg-green-500/10 border border-green-500/20">⚡</div>
+                    <div class="flex-1">
+                        <div class="font-semibold text-white mb-1">GPU CUDA — Accélération matérielle</div>
+                        <p class="text-slate-400 text-sm">Les embeddings <code class="text-blue-300">BAAI/bge-m3</code> et le reranker <code class="text-blue-300">BAAI/bge-reranker-v2-m3</code> tournent sur GPU CUDA pour des temps de réponse optimaux. Le LLM Mistral s'exécute lui aussi en local via Ollama.</p>
+                    </div>
+                </div>
+                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-5 flex gap-4">
+                    <div class="infra-icon bg-purple-500/10 border border-purple-500/20">👁️</div>
+                    <div class="flex-1">
+                        <div class="font-semibold text-white mb-1">Watchdog — Indexation temps réel</div>
+                        <p class="text-slate-400 text-sm">Un observateur de fichiers (<code class="text-blue-300">watchdog</code>) surveille en permanence le dossier source. Tout nouveau document déposé ou modifié est automatiquement ingéré et indexé sans intervention manuelle.</p>
+                    </div>
+                </div>
+                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-5 flex gap-4">
+                    <div class="infra-icon bg-cyan-500/10 border border-cyan-500/20">🔒</div>
+                    <div class="flex-1">
+                        <div class="font-semibold text-white mb-1">Hashing MD5 — Indexation incrémentale</div>
+                        <p class="text-slate-400 text-sm">Chaque fichier est hashé (MD5). Seuls les fichiers nouveaux ou modifiés sont réindexés, évitant tout traitement superflu. L'ancienne version d'un document est automatiquement purgée de ChromaDB avant réindexation.</p>
+                    </div>
+                </div>
+                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-5 flex gap-4">
+                    <div class="infra-icon bg-rose-500/10 border border-rose-500/20">🏠</div>
+                    <div class="flex-1">
+                        <div class="font-semibold text-white mb-1">100% Local — Zéro cloud</div>
+                        <p class="text-slate-400 text-sm">Aucune donnée ne quitte le réseau local. Pas de Gemini API, pas d'OpenAI, pas de service tiers. Le LLM (Mistral via Ollama), les embeddings et le reranker tournent intégralement sur la machine locale.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="border-slate-800 mb-12">
 
         <!-- Architecture -->
         <section class="mb-12">
@@ -82,71 +129,130 @@
                 <li class="step flex items-start bg-slate-900/50 border border-slate-800 rounded-xl p-4">
                     <div class="flex-1">
                         <div class="font-semibold text-white mb-1">Ingestion & Contextual Retrieval</div>
-                        <p class="text-slate-400 text-sm">Les PDF et fichiers Word sont ingérés automatiquement (Watchdog) avec un parsing sophistiqué (PyMuPDF). Chaque chunk subit un prétraitement LLM contextuel (méthode de type Anthropic) pour ne jamais perdre le sens global lors de la recherche.</p>
+                        <p class="text-slate-400 text-sm">Les PDF sont parsés via <code class="text-blue-300">PyMuPDFLoader</code> (préservation du layout spatial des tableaux), les fichiers Word via <code class="text-blue-300">UnstructuredWordDocumentLoader</code>. Chaque chunk est découpé avec <code class="text-blue-300">RecursiveCharacterTextSplitter</code> (600 tokens, 200 overlap). Pour les documents financiers critiques (salaires, impôts), un pré-résumé LLM contextuel est ajouté à chaque chunk (méthode inspirée du <i>Contextual Retrieval</i> d'Anthropic).</p>
                     </div>
                 </li>
                 <li class="step flex items-start bg-slate-900/50 border border-slate-800 rounded-xl p-4">
                     <div class="flex-1">
-                        <div class="font-semibold text-white mb-1">Vectorisation (BGE-m3)</div>
-                        <p class="text-slate-400 text-sm">Chaque chunk est transformé en embeddings via le modèle state-of-the-art <code>BAAI/bge-m3</code> sur GPU, puis stocké sur disque avec ChromaDB incluant ses métadonnées extraites (année, mois, type de doc).</p>
+                        <div class="font-semibold text-white mb-1">Extraction de métadonnées intelligente</div>
+                        <p class="text-slate-400 text-sm">Les métadonnées sont extraites automatiquement par regex depuis le chemin et le nom de fichier : <b>année</b>, <b>mois</b> (noms FR ou format numérique), <b>type de document</b> (salary, tax, real_estate, insurance) et <b>catégorie</b> (dossier parent). Ces métadonnées sont attachées à chaque chunk pour le filtrage à la recherche.</p>
                     </div>
                 </li>
                 <li class="step flex items-start bg-slate-900/50 border border-slate-800 rounded-xl p-4">
                     <div class="flex-1">
-                        <div class="font-semibold text-white mb-1">HyDE & Recherche Sémantique Filtrée</div>
-                        <p class="text-slate-400 text-sm">La question utilisateur est transformée en "réponse hypothétique" (HyDE) pour maximiser la similarité lors de la recherche. Les filtres par métadonnées s'activent intelligemment (fallback progressif si aucun résultat).</p>
+                        <div class="font-semibold text-white mb-1">Vectorisation GPU (BGE-M3)</div>
+                        <p class="text-slate-400 text-sm">Chaque chunk enrichi est transformé en embeddings via le modèle state-of-the-art multilingue <code class="text-blue-300">BAAI/bge-m3</code> sur GPU CUDA, puis stocké dans ChromaDB avec ses métadonnées pour un filtrage granulaire à la recherche.</p>
                     </div>
                 </li>
                 <li class="step flex items-start bg-slate-900/50 border border-slate-800 rounded-xl p-4">
                     <div class="flex-1">
-                        <div class="font-semibold text-white mb-1">Cross-Encoder Reranking</div>
-                        <p class="text-slate-400 text-sm">Les 20+ candidats initiaux sont réévalués en profondeur par un <code>CrossEncoder (BGE-Reranker-v2)</code> particulièrement fin pour extraire les 5 extraits les plus pertinents.</p>
+                        <div class="font-semibold text-white mb-1">HyDE & Recherche Sémantique à Fallback Progressif</div>
+                        <p class="text-slate-400 text-sm">La question utilisateur est transformée en « réponse hypothétique » par le LLM (<b>HyDE</b>) pour maximiser la similarité vectorielle. La recherche ChromaDB applique des filtres par métadonnées (année, mois, type, catégorie) avec un <b>fallback progressif</b> à 3 niveaux : filtre complet → relâchement du mois → relâchement de l'année → recherche globale.</p>
                     </div>
                 </li>
                 <li class="step flex items-start bg-slate-900/50 border border-slate-800 rounded-xl p-4">
                     <div class="flex-1">
-                        <div class="font-semibold text-white mb-1">Génération (Mistral Local)</div>
-                        <p class="text-slate-400 text-sm">Le LLM local <b>Mistral</b> (tournant sur Ollama) synthétise la réponse finale de manière stricte (anti-hallucination) en citant systématiquement la source exacte du document en surbrillance dans l'interface.</p>
+                        <div class="font-semibold text-white mb-1">Cross-Encoder Reranking Neural</div>
+                        <p class="text-slate-400 text-sm">Les 20+ candidats initiaux sont réévalués en profondeur par le modèle <code class="text-blue-300">BAAI/bge-reranker-v2-m3</code> (CrossEncoder multilingue sur GPU). Les 5 extraits les mieux scorés sont injectés dans le prompt final.</p>
+                    </div>
+                </li>
+                <li class="step flex items-start bg-slate-900/50 border border-slate-800 rounded-xl p-4">
+                    <div class="flex-1">
+                        <div class="font-semibold text-white mb-1">Génération Anti-Hallucination (Mistral Local)</div>
+                        <p class="text-slate-400 text-sm">Le LLM <b>Mistral</b> (Ollama, température 0) génère la réponse avec un prompt engineering strict : directives par type de document (salaires → « NET A PAYER EN EUROS » uniquement, impôts → « Revenu Fiscal de Référence »), règles de validation anti-hallucination, et citation systématique des sources.</p>
+                    </div>
+                </li>
+                <li class="step flex items-start bg-slate-900/50 border border-slate-800 rounded-xl p-4">
+                    <div class="flex-1">
+                        <div class="font-semibold text-white mb-1">Mémoire conversationnelle</div>
+                        <p class="text-slate-400 text-sm">L'interface conserve les 3 derniers échanges dans le contexte du prompt, permettant des questions de suivi naturelles (« Et pour le mois suivant ? », « Compare avec 2023 »).</p>
                     </div>
                 </li>
             </ol>
         </section>
 
-        <!-- Stack -->
+        <hr class="border-slate-800 mb-12">
+
+        <!-- Stack Technique -->
         <section class="mb-12">
             <h2 class="text-xl font-bold text-white mb-6">🛠️ Stack Technique</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4">
-                    <div class="text-blue-400 text-sm font-mono mb-1">Orchestration & Modèles</div>
-                    <div class="text-white font-semibold">LangChain & HuggingFace</div>
-                    <p class="text-slate-500 text-xs mt-1">Pipeline RAG complexe, Embeddings multi-lingues et modèle de Reranking CrossEncoder.</p>
+                    <div class="text-blue-400 text-sm font-mono mb-1">LLM Local</div>
+                    <div class="text-white font-semibold">Ollama — Mistral</div>
+                    <p class="text-slate-500 text-xs mt-1">Modèle open-weights 7B tournant à 100% en local. Température 0 pour une extraction factuelle maximale. Aucune API tierce.</p>
+                </div>
+                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4">
+                    <div class="text-blue-400 text-sm font-mono mb-1">Embeddings</div>
+                    <div class="text-white font-semibold">BAAI/bge-m3 (GPU CUDA)</div>
+                    <p class="text-slate-500 text-xs mt-1">Modèle d'embeddings multilingue state-of-the-art, accéléré GPU via HuggingFace + sentence-transformers.</p>
+                </div>
+                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4">
+                    <div class="text-blue-400 text-sm font-mono mb-1">Reranker</div>
+                    <div class="text-white font-semibold">BAAI/bge-reranker-v2-m3</div>
+                    <p class="text-slate-500 text-xs mt-1">CrossEncoder multilingue sur GPU pour un scoring fin des résultats (passage de 20+ candidats à top-5).</p>
+                </div>
+                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4">
+                    <div class="text-blue-400 text-sm font-mono mb-1">Orchestration</div>
+                    <div class="text-white font-semibold">LangChain</div>
+                    <p class="text-slate-500 text-xs mt-1">Pipeline RAG complète : loaders (PyMuPDF, Unstructured), text splitters, integration Chroma, Ollama et HuggingFace.</p>
                 </div>
                 <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4">
                     <div class="text-blue-400 text-sm font-mono mb-1">Stockage vectoriel</div>
                     <div class="text-white font-semibold">ChromaDB</div>
-                    <p class="text-slate-500 text-xs mt-1">Base vectorielle filtrée en temps réel par les métadonnées extraites dynamiquement.</p>
+                    <p class="text-slate-500 text-xs mt-1">Base vectorielle persistante sur disque, avec filtrage par métadonnées (année, mois, type, catégorie) en temps réel.</p>
                 </div>
                 <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4">
-                    <div class="text-blue-400 text-sm font-mono mb-1">Modèle de langage (LLM)</div>
-                    <div class="text-white font-semibold">Ollama (Mistral v0.3)</div>
-                    <p class="text-slate-500 text-xs mt-1">Modèle open-weights tournant à 100% en local pour une confidentialité totale et aucune API tierce.</p>
+                    <div class="text-blue-400 text-sm font-mono mb-1">Parsing documents</div>
+                    <div class="text-white font-semibold">PyMuPDF & Unstructured</div>
+                    <p class="text-slate-500 text-xs mt-1">PyMuPDFLoader pour les PDF (préservation du layout spatial des tableaux), UnstructuredWordDocumentLoader pour les .docx.</p>
                 </div>
                 <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4">
-                    <div class="text-blue-400 text-sm font-mono mb-1">Interface Utilisateur</div>
-                    <div class="text-white font-semibold">Gradio</div>
-                    <p class="text-slate-500 text-xs mt-1">Console d'audit élégante avec historique de conversation fluide et sources des documents interactives.</p>
+                    <div class="text-blue-400 text-sm font-mono mb-1">Monitoring fichiers</div>
+                    <div class="text-white font-semibold">Watchdog</div>
+                    <p class="text-slate-500 text-xs mt-1">Surveillance en temps réel du dossier source (NAS Synology). Ingestion automatique à chaque ajout ou modification de fichier.</p>
+                </div>
+                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4">
+                    <div class="text-blue-400 text-sm font-mono mb-1">Interface utilisateur</div>
+                    <div class="text-white font-semibold">Gradio 5</div>
+                    <p class="text-slate-500 text-xs mt-1">Console d'audit conversationnelle avec chatbot, filtre par catégorie, historique et affichage des sources documentaires.</p>
                 </div>
             </div>
         </section>
+
+        <hr class="border-slate-800 mb-12">
+
+        <!-- Techniques IA avancées -->
+        <section class="mb-12">
+            <h2 class="text-xl font-bold text-white mb-6">🧠 Techniques IA Avancées</h2>
+            <div class="space-y-4">
+                <div class="bg-gradient-to-r from-blue-500/5 to-transparent border border-blue-500/20 rounded-xl p-5">
+                    <div class="font-semibold text-blue-300 mb-2">HyDE (Hypothetical Document Embeddings)</div>
+                    <p class="text-slate-400 text-sm">Avant la recherche vectorielle, la question utilisateur est transformée par le LLM en une « réponse hypothétique » — un extrait de document fictif qui ressemblerait à la réponse idéale. L'embedding de ce document hypothétique est beaucoup plus proche des vrais résultats pertinents dans l'espace vectoriel que la question brute.</p>
+                </div>
+                <div class="bg-gradient-to-r from-emerald-500/5 to-transparent border border-emerald-500/20 rounded-xl p-5">
+                    <div class="font-semibold text-emerald-300 mb-2">Contextual Retrieval (inspiré Anthropic)</div>
+                    <p class="text-slate-400 text-sm">Pour les documents financiers critiques (bulletins de paie, avis d'imposition), chaque chunk est enrichi d'un mini-résumé contextuel généré par le LLM avant l'ingestion. Cela combat la perte de contexte inhérente au découpage, permettant au moteur de recherche de comprendre « ce chunk parle du salaire de mars 2024 » même si le chunk brut ne contient que des chiffres.</p>
+                </div>
+                <div class="bg-gradient-to-r from-violet-500/5 to-transparent border border-violet-500/20 rounded-xl p-5">
+                    <div class="font-semibold text-violet-300 mb-2">Prompt Engineering Anti-Hallucination</div>
+                    <p class="text-slate-400 text-sm">Le prompt système contient des directives métier par type de document : pour les salaires, seul le « NET A PAYER EN EUROS » (post prélèvement à la source) est retourné, jamais le net avant impôt ni le coût employeur. Si l'information exacte n'est pas explicitement présente dans le contexte, le système refuse de répondre plutôt que de deviner.</p>
+                </div>
+            </div>
+        </section>
+
+        <hr class="border-slate-800 mb-12">
 
         <!-- Apprentissages -->
         <section class="mb-12">
             <h2 class="text-xl font-bold text-white mb-4">💡 Apprentissages Clés</h2>
             <ul class="space-y-3 text-slate-400 text-sm">
-                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> La taille des chunks est un paramètre critique : trop petits → perte de contexte, trop grands → bruit dans le prompt.</li>
-                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> Le reranking des chunks avant injection via un modèle Cross-Encoder améliore drastiquement la qualité des réponses.</li>
-                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> Afficher les sources dans l'UI est essentiel pour établir la confiance utilisateur.</li>
-                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> Appliquer le <i>Contextual Retrieval</i> (pré-résumé par LLM de chaque extrait avant ingestion) combat très efficacement la perte de contexte inhérente au découpage de PDF complexes.</li>
+                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> La taille des chunks est un paramètre critique : 600 tokens avec 200 d'overlap offrent le meilleur compromis entre contexte et précision sur des documents financiers français.</li>
+                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> PyMuPDFLoader préserve le layout spatial des tableaux bien mieux que UnstructuredPDFLoader, qui casse les montants en éléments isolés incompréhensibles.</li>
+                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> Le reranking CrossEncoder après la recherche vectorielle améliore drastiquement la pertinence — les embeddings seuls ne suffisent pas pour des requêtes financières précises.</li>
+                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> Le Contextual Retrieval LLM est très efficace mais coûteux en temps : le limiter aux documents courts et critiques (≤ 20 chunks, types salary/tax) permet un bon compromis performance/qualité.</li>
+                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> Le fallback progressif sur les filtres de métadonnées est indispensable : un filtre trop strict retourne zéro résultat, un filtre absent noie la réponse dans du bruit.</li>
+                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> Afficher les sources dans l'UI est essentiel pour établir la confiance utilisateur et permettre la vérification humaine.</li>
             </ul>
         </section>
 
