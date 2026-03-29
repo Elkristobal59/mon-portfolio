@@ -202,7 +202,10 @@
         <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
             <a href="index.html" class="flex items-center gap-3 no-underline">
                 <div class="avatar">CG</div>
-                <span class="font-bold text-white hidden sm:block">Christopher Gilleron</span>
+                <div class="flex flex-col">
+                    <span class="font-bold text-white hidden sm:block">Christopher Gilleron</span>
+                    <span id="greeting" class="text-[10px] text-slate-500 hidden sm:block">Chargement...</span>
+                </div>
             </a>
             <div class="flex items-center gap-6">
                 <a href="index.html" class="nav-link">Accueil</a>
@@ -265,12 +268,17 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
 
                 <!-- Colonne Expérience Professionnelle -->
-                <div
-                    class="bg-slate-900/40 border border-slate-800 rounded-2xl p-8 relative overflow-hidden group hover:border-blue-500/30 transition-colors">
+                <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-8 relative overflow-hidden group hover:border-blue-500/30 transition-colors">
+                    <!-- Logo Grain de Malice en fond -->
+                    <div class="absolute inset-0 z-0 pointer-events-none opacity-[0.12] grayscale invert group-hover:opacity-[0.2] transition-opacity" 
+                         style="background-image: url('images/Monogramme-logo_Vertical_Noir.webp'); background-size: contain; background-repeat: no-repeat; background-position: center;">
+                    </div>
+                    
                     <div class="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 rounded-full blur-3xl -mr-10 -mt-10">
                     </div>
-
-                    <div class="flex items-center gap-4 mb-6">
+                    
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-4 mb-6">
                         <div
                             class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-2xl">
                             🏢</div>
@@ -383,16 +391,22 @@
                                 remboursements de cartes cadeaux ou le traitement des commandes tablettes bloquées.
                             </p>
                         </div>
-                    </div>
-                </div>
+                        </div> <!-- Fin space-y-4 -->
+                    </div> <!-- Fin relative z-10 -->
+                </div> <!-- Fin Colonne Expérience -->
 
                 <!-- Colonne Formation -->
-                <div
-                    class="bg-slate-900/40 border border-slate-800 rounded-2xl p-8 relative overflow-hidden group hover:border-emerald-500/30 transition-colors">
+                <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-8 relative overflow-hidden group hover:border-emerald-500/30 transition-colors">
+                    <!-- Logo JEDHA en fond -->
+                    <div class="absolute inset-0 z-0 pointer-events-none opacity-[0.2] transition-opacity group-hover:opacity-[0.3]" 
+                         style="background-image: url('images/68c2e5378ea7ebd20bb86d79_logo-jedha.webp'); background-size: contain; background-repeat: no-repeat; background-position: center;">
+                    </div>
+                    
                     <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-full blur-3xl -mr-10 -mt-10">
                     </div>
 
-                    <div class="flex items-center gap-4 mb-6">
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-4 mb-6">
                         <div
                             class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-2xl">
                             🎓</div>
@@ -484,8 +498,8 @@
                         </ul>
                     </div>
 
-                </div>
-
+                    </div> <!-- Fin relative z-10 -->
+                </div> <!-- Fin Colonne Formation -->
             </div>
         </section>
 
@@ -680,10 +694,19 @@
             });
         }
 
+        // --- 5. Greeting Dynamique ---
+        function updateGreeting() {
+            const hour = new Date().getHours();
+            const greeting = hour >= 5 && hour < 18 ? "Bonjour" : "Bonsoir";
+            const el = document.getElementById('greeting');
+            if (el) el.innerText = `${greeting} Christopher 👋`;
+        }
+
         // --- Initialisation ---
         document.addEventListener('DOMContentLoaded', () => {
             updateViewCount();
             initProjectFilter();
+            updateGreeting();
             
             // Observer pour les sections reveal
             document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));

@@ -82,10 +82,23 @@
             color: #4b5563;
             font-size: 1.2rem;
         }
+
+        /* --- Progress Bar --- */
+        #progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(to right, #60a5fa, #34d399); z-index: 100; width: 0%; transition: width 0.1s ease-out; }
+
+        /* --- Back to Top --- */
+        #back-to-top { position: fixed; bottom: 30px; right: 30px; width: 44px; height: 44px; background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(8px); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #f8fafc; cursor: pointer; z-index: 40; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
+        #back-to-top.show { opacity: 1; visibility: visible; }
+        #back-to-top:hover { transform: translateY(-5px); border-color: #60a5fa; color: #60a5fa; }
+
+        /* --- Reveal Animations --- */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 
-<body>
+<body class="relative">
+    <div id="progress-bar"></div>
     <nav class="nav-blur fixed top-0 left-0 right-0 z-50">
         <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
             <a href="index.html" class="flex items-center gap-3 no-underline">
@@ -139,7 +152,7 @@
         <hr class="border-slate-800 mb-12">
 
         <!-- Contexte -->
-        <section class="mb-12">
+        <section class="mb-12 reveal">
             <h2 class="text-xl font-bold text-white mb-4">🎯 Pourquoi ce projet ?</h2>
             <p class="text-slate-400 leading-relaxed">
                 Après avoir utilisé Google Photos et iCloud, j'ai voulu reprendre le contrôle de mes données
@@ -149,7 +162,7 @@
         </section>
 
         <!-- Architecture -->
-        <section class="mb-12">
+        <section class="mb-12 reveal">
             <h2 class="text-xl font-bold text-white mb-6">🏗️ Architecture</h2>
 
             <!-- Visual Architecture Diagram -->
@@ -182,7 +195,7 @@
         </section>
 
         <!-- Services -->
-        <section class="mb-12">
+        <section class="mb-12 reveal">
             <h2 class="text-xl font-bold text-white mb-6">📦 Services Déployés</h2>
             <div class="space-y-4">
                 <div class="service-card">
@@ -220,7 +233,7 @@
         </section>
 
         <!-- Apprentissages -->
-        <section class="mb-12">
+        <section class="mb-12 reveal">
             <h2 class="text-xl font-bold text-white mb-4">💡 Apprentissages Clés</h2>
             <ul class="space-y-3 text-slate-400 text-sm">
                 <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> Tailscale (basé sur WireGuard)
@@ -245,6 +258,45 @@
     <footer class="text-center py-10 border-t border-slate-800/60 text-slate-600 text-sm">
         Christopher Gilleron · Hébergé sur Vercel
     </footer>
+
+    <!-- ===== BOUTON RETOUR EN HAUT ===== -->
+    <div id="back-to-top" title="Retour en haut">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+    </div>
+
+    <script>
+        function handleScroll() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("progress-bar").style.width = scrolled + "%";
+
+            const btt = document.getElementById("back-to-top");
+            if (winScroll > 400) { btt.classList.add("show"); } else { btt.classList.remove("show"); }
+        }
+
+        const revealCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        };
+
+        const revealObserver = new IntersectionObserver(revealCallback, { threshold: 0.1 });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+            document.getElementById("back-to-top").addEventListener("click", () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+
+        window.onscroll = handleScroll;
+    </script>
 </body>
 
 </html>
