@@ -604,7 +604,9 @@
     </main>
 
     <!-- ===== FOOTER ===== -->
-        <p class="text-[10px] text-slate-600">Développé avec passion à Lille · Hébergé sur Vercel · 
+    <footer class="text-center py-12 border-t border-slate-800/60 mt-20 bg-slate-900/20">
+        <p class="text-[10px] text-slate-600 mb-2">© 2026 Christopher Gilleron · Tous droits réservés</p>
+        <p class="text-[10px] text-slate-500">Développé avec passion à Lille · Hébergé sur Vercel · 
             <span class="inline-flex items-center gap-1.5">
                 <span class="w-1 h-1 rounded-full bg-emerald-500/80 animate-pulse"></span>
                 <span id="view-count" class="font-medium text-slate-400">...</span> vues
@@ -697,9 +699,9 @@
         // --- 5. Greeting Dynamique ---
         function updateGreeting() {
             const hour = new Date().getHours();
-            const greeting = hour >= 5 && hour < 18 ? "Bonjour" : "Bonsoir";
+            const greeting = hour >= 5 && hour < 18 ? "Bonjour et bienvenue 👋" : "Bonsoir et bienvenue 👋";
             const el = document.getElementById('greeting');
-            if (el) el.innerText = `${greeting} Christopher 👋`;
+            if (el) el.innerText = greeting;
         }
 
         // --- Initialisation ---
