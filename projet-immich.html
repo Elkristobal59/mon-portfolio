@@ -14,6 +14,16 @@
             background-color: #0a0f1e;
             color: #f8fafc;
             font-family: 'Inter', sans-serif;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        body.loaded {
+            opacity: 1;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         .nav-blur {
@@ -94,6 +104,10 @@
         /* --- Reveal Animations --- */
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* --- Micro-animations boutons --- */
+        .btn-hover { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .btn-hover:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); }
     </style>
 </head>
 
@@ -111,9 +125,9 @@
                 <a href="projet-immich.html" class="nav-link text-emerald-400">Immich</a>
                 <a href="projet-getaround.html" class="nav-link">GetAround</a>
                 <a href="https://www.linkedin.com/in/christophergilleron/" target="_blank"
-                    class="px-4 py-1.5 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-sm font-medium hover:bg-sky-500/20 transition-all">LinkedIn</a>
+                    class="btn-hover px-4 py-1.5 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-sm font-medium hover:bg-sky-500/20 transition-all">LinkedIn</a>
                 <a href="https://github.com/Elkristobal59" target="_blank"
-                    class="px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-sm font-medium hover:bg-blue-500/20 transition-all">GitHub</a>
+                    class="btn-hover px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-sm font-medium hover:bg-blue-500/20 transition-all">GitHub</a>
             </div>
         </div>
     </nav>
@@ -289,6 +303,7 @@
         const revealObserver = new IntersectionObserver(revealCallback, { threshold: 0.1 });
 
         document.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.add('loaded'); // Activation du fondu au chargement
             document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
             document.getElementById("back-to-top").addEventListener("click", () => {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
