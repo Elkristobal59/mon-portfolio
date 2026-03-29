@@ -105,10 +105,97 @@
         .nav-link:hover {
             color: #f8fafc;
         }
+
+        /* --- Progress Bar --- */
+        #progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(to right, #60a5fa, #34d399);
+            z-index: 100;
+            width: 0%;
+            transition: width 0.1s ease-out;
+        }
+
+        /* --- Back to Top --- */
+        #back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 44px;
+            height: 44px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #f8fafc;
+            cursor: pointer;
+            z-index: 40;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        #back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #back-to-top:hover {
+            transform: translateY(-5px);
+            border-color: #60a5fa;
+            color: #60a5fa;
+        }
+
+        /* --- Reveal Animations --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Project Filtering --- */
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #94a3b8;
+            padding: 6px 16px;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .filter-btn.active {
+            background: rgba(96, 165, 250, 0.1);
+            border-color: #60a5fa;
+            color: #60a5fa;
+        }
+
+        .project-card {
+            transition: all 0.4s ease;
+        }
+
+        .project-card.hidden {
+            display: none;
+            opacity: 0;
+            transform: scale(0.95);
+        }
     </style>
 </head>
 
-<body>
+<body class="relative">
+    <div id="progress-bar"></div>
 
     <!-- ===== NAVBAR ===== -->
     <nav class="nav-blur fixed top-0 left-0 right-0 z-50">
@@ -172,7 +259,7 @@
     <main class="max-w-5xl mx-auto px-6 pb-28">
 
         <!-- ===== À PROPOS ===== -->
-        <section class="mb-24">
+        <section class="mb-24 reveal">
             <h2 class="text-sm font-mono text-slate-500 uppercase tracking-widest mb-8">// Mon Parcours & Mon Rôle</h2>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -403,14 +490,22 @@
         </section>
 
         <!-- ===== PROJETS ===== -->
-        <section>
-            <h2 class="text-sm font-mono text-slate-500 uppercase tracking-widest mb-10">// Mes Projets</h2>
+        <section class="reveal">
+            <h2 class="text-sm font-mono text-slate-500 uppercase tracking-widest mb-6">// Mes Projets</h2>
+
+            <!-- Barre de filtrage -->
+            <div class="flex flex-wrap gap-2 mb-10">
+                <button class="filter-btn active" data-filter="all">Tous</button>
+                <button class="filter-btn" data-filter="ia">IA Générative</button>
+                <button class="filter-btn" data-filter="ml">Data & ML</button>
+                <button class="filter-btn" data-filter="infra">Infrastructures</button>
+            </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
                 <!-- Card RAG -->
-                <a href="projet-rag.html"
-                    class="card-hover flex flex-col bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden hover:border-blue-500/50 group no-underline">
+                <a href="projet-rag.html" data-category="ia"
+                    class="project-card card-hover flex flex-col bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden hover:border-blue-500/50 group no-underline">
                     <div class="h-40 w-full relative">
                         <img src="images/cover_rag.png" alt="RAG System Architecture" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity drop-shadow-lg">
                         <div class="absolute inset-0 bg-gradient-to-t from-[#0a0f1e] via-transparent to-transparent"></div>
@@ -438,8 +533,8 @@
                 </a>
 
                 <!-- Card Immich -->
-                <a href="projet-immich.html"
-                    class="card-hover flex flex-col bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden hover:border-emerald-500/50 group no-underline">
+                <a href="projet-immich.html" data-category="infra"
+                    class="project-card card-hover flex flex-col bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden hover:border-emerald-500/50 group no-underline">
                     <div class="h-40 w-full relative">
                         <img src="images/cover_immich.png" alt="Private Cloud Storage" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity drop-shadow-lg">
                         <div class="absolute inset-0 bg-gradient-to-t from-[#0a0f1e] via-transparent to-transparent"></div>
@@ -466,8 +561,8 @@
                 </a>
 
                 <!-- Card GetAround -->
-                <a href="projet-getaround.html"
-                    class="card-hover flex flex-col bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden hover:border-violet-500/50 group no-underline">
+                <a href="projet-getaround.html" data-category="ml"
+                    class="project-card card-hover flex flex-col bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden hover:border-violet-500/50 group no-underline">
                     <div class="h-40 w-full relative">
                         <img src="images/cover_getaround.png" alt="GetAround Analytics" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity drop-shadow-lg">
                         <div class="absolute inset-0 bg-gradient-to-t from-[#0a0f1e] via-transparent to-transparent"></div>
@@ -495,15 +590,7 @@
     </main>
 
     <!-- ===== FOOTER ===== -->
-    <footer class="text-center py-10 border-t border-slate-800/60 text-slate-500">
-        <div class="flex justify-center items-center gap-6 mb-4 text-sm">
-            <a href="https://www.linkedin.com/in/christophergilleron/" target="_blank" class="hover:text-sky-400 transition-colors">LinkedIn</a>
-            <span class="text-slate-700">•</span>
-            <a href="https://github.com/Elkristobal59" target="_blank" class="hover:text-blue-400 transition-colors">GitHub</a>
-        </div>
-        <p class="text-xs mb-1">&copy; 2026 Christopher Gilleron. Tous droits réservés.</p>
-        <p class="text-[10px] text-slate-600">
-            Développé avec passion à Lille · Hébergé sur Vercel · 
+        <p class="text-[10px] text-slate-600">Développé avec passion à Lille · Hébergé sur Vercel · 
             <span class="inline-flex items-center gap-1.5">
                 <span class="w-1 h-1 rounded-full bg-emerald-500/80 animate-pulse"></span>
                 <span id="view-count" class="font-medium text-slate-400">...</span> vues
@@ -511,26 +598,103 @@
         </p>
     </footer>
 
+    <!-- ===== BOUTON RETOUR EN HAUT ===== -->
+    <div id="back-to-top" title="Retour en haut">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+    </div>
+
     <script>
+        // --- 1. Compteur de vues ---
         async function updateViewCount() {
-            const counterId = 'christopher-gilleron-portfolio'; // Identifiant unique pour votre compteur
+            const counterId = 'christopher-gilleron-portfolio';
             const apiUrl = `https://api.counterapi.dev/v1/${counterId}/index/up`;
 
             try {
                 const response = await fetch(apiUrl);
                 const data = await response.json();
                 if (data && data.count) {
-                    // Formate le nombre avec des espaces pour les milliers (ex: 1 234)
                     const formattedCount = new Intl.NumberFormat('fr-FR').format(data.count);
                     document.getElementById('view-count').innerText = formattedCount;
                 }
             } catch (error) {
-                console.error('Erreur lors de la récupération des vues:', error);
+                console.error('Erreur vues:', error);
                 document.getElementById('view-count').innerText = '--';
             }
         }
-        // Appeler la fonction au chargement de la page
-        document.addEventListener('DOMContentLoaded', updateViewCount);
+
+        // --- 2. Barre de progression & Retour en haut ---
+        function handleScroll() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("progress-bar").style.width = scrolled + "%";
+
+            // Affichage bouton retour en haut
+            const btt = document.getElementById("back-to-top");
+            if (winScroll > 500) {
+                btt.classList.add("show");
+            } else {
+                btt.classList.remove("show");
+            }
+        }
+
+        // --- 3. Scroll Reveal (Intersection Observer) ---
+        const revealCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // Une seule fois
+                }
+            });
+        };
+
+        const revealObserver = new IntersectionObserver(revealCallback, {
+            threshold: 0.1
+        });
+
+        // --- 4. Filtrage des projets ---
+        function initProjectFilter() {
+            const buttons = document.querySelectorAll('.filter-btn');
+            const projects = document.querySelectorAll('.project-card');
+
+            buttons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const filter = btn.getAttribute('data-filter');
+
+                    // Update buttons UI
+                    buttons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    // Filter projects
+                    projects.forEach(project => {
+                        const cat = project.getAttribute('data-category');
+                        if (filter === 'all' || cat === filter) {
+                            project.classList.remove('hidden');
+                        } else {
+                            project.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+        }
+
+        // --- Initialisation ---
+        document.addEventListener('DOMContentLoaded', () => {
+            updateViewCount();
+            initProjectFilter();
+            
+            // Observer pour les sections reveal
+            document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+            
+            // Retour en haut click
+            document.getElementById("back-to-top").addEventListener("click", () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+
+        window.onscroll = handleScroll;
     </script>
 </body>
 
