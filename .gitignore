@@ -1,0 +1,9 @@
+# Fichiers et dossiers à ignorer
+cv/
+CV/
+.DS_Store
+Thumbs.db
+node_modules/
+.vscode/
+.gemini/
+.env

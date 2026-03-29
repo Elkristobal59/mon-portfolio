@@ -502,9 +502,36 @@
             <a href="https://github.com/Elkristobal59" target="_blank" class="hover:text-blue-400 transition-colors">GitHub</a>
         </div>
         <p class="text-xs mb-1">&copy; 2026 Christopher Gilleron. Tous droits réservés.</p>
-        <p class="text-[10px] text-slate-600">Développé avec passion à Lille · Hébergé sur Vercel</p>
+        <p class="text-[10px] text-slate-600">
+            Développé avec passion à Lille · Hébergé sur Vercel · 
+            <span class="inline-flex items-center gap-1.5">
+                <span class="w-1 h-1 rounded-full bg-emerald-500/80 animate-pulse"></span>
+                <span id="view-count" class="font-medium text-slate-400">...</span> vues
+            </span>
+        </p>
     </footer>
 
+    <script>
+        async function updateViewCount() {
+            const counterId = 'christopher-gilleron-portfolio'; // Identifiant unique pour votre compteur
+            const apiUrl = `https://api.counterapi.dev/v1/${counterId}/index/up`;
+
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                if (data && data.count) {
+                    // Formate le nombre avec des espaces pour les milliers (ex: 1 234)
+                    const formattedCount = new Intl.NumberFormat('fr-FR').format(data.count);
+                    document.getElementById('view-count').innerText = formattedCount;
+                }
+            } catch (error) {
+                console.error('Erreur lors de la récupération des vues:', error);
+                document.getElementById('view-count').innerText = '--';
+            }
+        }
+        // Appeler la fonction au chargement de la page
+        document.addEventListener('DOMContentLoaded', updateViewCount);
+    </script>
 </body>
 
 </html>
