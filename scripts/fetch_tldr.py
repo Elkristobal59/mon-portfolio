@@ -3,22 +3,19 @@ import json
 import requests
 from datetime import datetime, timedelta
 from bs4 import BeautifulSoup
-from google import genai # Nouveau client SDK Gemini 3.0
-from google.genai import types # Ajoute cet import en haut du fichier
+from google import genai
 
-# Configuration du nouveau client
+# Configuration du client
 API_KEY = os.environ.get("GEMINI_API_KEY")
 if not API_KEY:
     print("Erreur: La variable d'environnement GEMINI_API_KEY est manquante.")
     exit(1)
 
-# Initialisation du client moderne
-client = genai.Client(
-    api_key=API_KEY,
-    http_options={'api_version': 'v1'} # Force la version stable
-)
+# Initialisation simple (on laisse le SDK choisir la meilleure version d'API)
+client = genai.Client(api_key=API_KEY)
 
-MODEL_ID = "gemini-1.5-flash"
+# Retour au modèle 2.0 puisque tu as un nouveau quota !
+MODEL_ID = "gemini-2.0-flash"
 
 def get_latest_newsletter_html():
     """Tente de récupérer la dernière newsletter."""
@@ -49,7 +46,7 @@ def extract_content(html):
     return soup.get_text(separator="\n", strip=True)
 
 def process_with_ai(text_content, date_str):
-    """Utilise une approche simplifiée pour éviter l'erreur 400 du SDK."""
+    """Utilise une approche simplifiée, sans config complexe."""
     
     prompt = f"""
     Voici la newsletter 'TLDR Data' du {date_str}. 
@@ -75,13 +72,13 @@ def process_with_ai(text_content, date_str):
     print(f"Envoi à {MODEL_ID}...")
     
     try:
-        # On supprime le bloc 'config' qui cause l'erreur 400
+        # Envoi pur, sans options problématiques
         response = client.models.generate_content(
             model=MODEL_ID,
             contents=prompt
         )
         
-        # Nettoyage au cas où l'IA ajoute des balises ```json
+        # Nettoyage sécurisé du Markdown
         result = response.text.strip()
         if result.startswith("```json"):
             result = result.replace("```json", "", 1)
