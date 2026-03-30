@@ -2,9 +2,9 @@ name: Update TLDR Data News
 
 on:
   schedule:
-    # Tourne tous les jours de la semaine (Lundi au Vendredi) à 10h UTC (11h/12h en France)
+    # Tourne du lundi au vendredi à 10h UTC
     - cron: '0 10 * * 1-5'
-  # Permet de lancer l'action manuellement depuis l'interface GitHub
+  # Permet de lancer l'action manuellement
   workflow_dispatch:
 
 permissions:
@@ -13,9 +13,19 @@ permissions:
 jobs:
   fetch_and_translate:
     runs-on: ubuntu-latest
+    
+    # On place les variables d'environnement ici pour tout le job
+    env:
+      GEMINI_API_KEY: ${{ secrets.TLDR_PORTFOLIO }}
+      # Cette ligne supprime les messages d'avertissement sur Node.js 20
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true 
+
     steps:
       - name: Récupération du code (Checkout)
         uses: actions/checkout@v4
+        with:
+          # On s'assure d'avoir l'historique pour le commit auto
+          fetch-depth: 0
 
       - name: Configuration de Python
         uses: actions/setup-python@v5
@@ -23,12 +33,11 @@ jobs:
           python-version: '3.11'
           
       - name: Installation des dépendances
-        run: pip install -r requirements.txt
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
       - name: Extraction et Traduction (Script Python)
-        env:
-          # On récupère la clé secrète stockée dans les paramètres de GitHub sous le nom TLDR_PORTFOLIO
-          GEMINI_API_KEY: ${{ secrets.TLDR_PORTFOLIO }}
         run: python scripts/fetch_tldr.py
 
       - name: Sauvegarde et Mise en ligne (Commit & Push)
@@ -36,3 +45,5 @@ jobs:
         with:
           commit_message: "🤖 [Bot] Mise à jour automatisée de la veille TLDR Data"
           file_pattern: "data/tldr.json"
+          # Sécurité : n'échoue pas si aucune modification n'est détectée
+          skip_dirty_check: false
