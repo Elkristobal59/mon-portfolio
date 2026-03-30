@@ -4,6 +4,7 @@ import requests
 from datetime import datetime, timedelta
 from bs4 import BeautifulSoup
 from google import genai # Nouveau client SDK Gemini 3.0
+from google.genai import types # Ajoute cet import en haut du fichier
 
 # Configuration du nouveau client
 API_KEY = os.environ.get("GEMINI_API_KEY")
@@ -48,35 +49,15 @@ def extract_content(html):
     return soup.get_text(separator="\n", strip=True)
 
 def process_with_ai(text_content, date_str):
-    """Utilise le nouveau SDK avec le support natif du format JSON."""
-    prompt = f"""
-    Voici la newsletter 'TLDR Data' du {date_str}. 
-    Extrait les articles de fond (News, tutoriels, outils).
-    Ignore les sponsors et les jobs.
-    
-    Format de réponse attendu (JSON uniquement) :
-    [
-        {{
-            "titre": "Traduction française du titre",
-            "resume": "Résumé concis en français",
-            "lien": "URL source",
-            "categorie": "News|Tutoriel|Tool|Deep Dive"
-        }}
-    ]
-    
-    Contenu :
-    {text_content}
-    """
-    
     print(f"Envoi à {MODEL_ID}...")
     
-    # Utilisation de generate_content avec configuration de réponse JSON
+    # Utilisation de la structure de config correcte pour le SDK 3.0
     response = client.models.generate_content(
         model=MODEL_ID,
         contents=prompt,
-        config={
-            'response_mime_type': 'application/json'
-        }
+        config=types.GenerateContentConfig(
+            response_mime_type='application/json',
+        )
     )
     
     return response.text
