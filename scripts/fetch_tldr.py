@@ -49,14 +49,16 @@ def extract_content(html):
     return soup.get_text(separator="\n", strip=True)
 
 def process_with_ai(text_content, date_str):
-    """Utilise le nouveau SDK avec une syntaxe simplifiée pour éviter le bug 400."""
+    """Utilise une approche simplifiée pour éviter l'erreur 400 du SDK."""
     
     prompt = f"""
     Voici la newsletter 'TLDR Data' du {date_str}. 
     Extrait les articles de fond (News, tutoriels, outils).
     Ignore les sponsors et les jobs.
     
-    Format de réponse attendu (JSON uniquement) :
+    IMPORTANT : Ta réponse doit être uniquement un tableau JSON valide.
+    
+    Format attendu :
     [
         {{
             "titre": "Traduction française du titre",
@@ -73,24 +75,24 @@ def process_with_ai(text_content, date_str):
     print(f"Envoi à {MODEL_ID}...")
     
     try:
-        # On passe la config en dictionnaire simple, plus robuste face aux bugs du SDK
-        response = client.models.generate_content(
-            model=MODEL_ID,
-            contents=prompt,
-            config={
-                'response_mime_type': 'application/json'
-            }
-        )
-        return response.text
-    except Exception as e:
-        print(f"Erreur lors de la génération : {e}")
-        # Si le JSON force pose toujours problème, on essaie sans (plan B)
-        print("Tentative sans forcer le MIME type...")
+        # On supprime le bloc 'config' qui cause l'erreur 400
         response = client.models.generate_content(
             model=MODEL_ID,
             contents=prompt
         )
-        return response.text
+        
+        # Nettoyage au cas où l'IA ajoute des balises ```json
+        result = response.text.strip()
+        if result.startswith("```json"):
+            result = result.replace("```json", "", 1)
+        if result.endswith("```"):
+            result = result[::-1].replace("```", "", 1)[::-1]
+            
+        return result.strip()
+        
+    except Exception as e:
+        print(f"Erreur lors de la génération : {e}")
+        raise e
 
 def main():
     html, date_str = get_latest_newsletter_html()
