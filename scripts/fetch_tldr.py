@@ -49,9 +49,8 @@ def extract_content(html):
     return soup.get_text(separator="\n", strip=True)
 
 def process_with_ai(text_content, date_str):
-    """Utilise le nouveau SDK avec le support natif du format JSON."""
+    """Utilise le nouveau SDK avec une syntaxe simplifiée pour éviter le bug 400."""
     
-    # LE PROMPT EST TOUJOURS LÀ (C'est le cerveau de l'opération)
     prompt = f"""
     Voici la newsletter 'TLDR Data' du {date_str}. 
     Extrait les articles de fond (News, tutoriels, outils).
@@ -73,20 +72,25 @@ def process_with_ai(text_content, date_str):
     
     print(f"Envoi à {MODEL_ID}...")
     
-    # La correction est ici : on utilise types.GenerateContentConfig
     try:
+        # On passe la config en dictionnaire simple, plus robuste face aux bugs du SDK
         response = client.models.generate_content(
             model=MODEL_ID,
             contents=prompt,
-            config=types.GenerateContentConfig(
-                response_mime_type='application/json',
-            )
+            config={
+                'response_mime_type': 'application/json'
+            }
         )
         return response.text
     except Exception as e:
-        # Petite sécurité pour le C2RT : on gère l'erreur proprement
         print(f"Erreur lors de la génération : {e}")
-        raise e
+        # Si le JSON force pose toujours problème, on essaie sans (plan B)
+        print("Tentative sans forcer le MIME type...")
+        response = client.models.generate_content(
+            model=MODEL_ID,
+            contents=prompt
+        )
+        return response.text
 
 def main():
     html, date_str = get_latest_newsletter_html()
