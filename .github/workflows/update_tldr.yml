@@ -1,0 +1,38 @@
+name: Update TLDR Data News
+
+on:
+  schedule:
+    # Tourne tous les jours de la semaine (Lundi au Vendredi) à 10h UTC (11h/12h en France)
+    - cron: '0 10 * * 1-5'
+  # Permet de lancer l'action manuellement depuis l'interface GitHub
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch_and_translate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupération du code (Checkout)
+        uses: actions/checkout@v4
+
+      - name: Configuration de Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          
+      - name: Installation des dépendances
+        run: pip install -r requirements.txt
+
+      - name: Extraction et Traduction (Script Python)
+        env:
+          # On récupère la clé secrète stockée dans les paramètres de GitHub sous le nom TLDR_PORTFOLIO
+          GEMINI_API_KEY: ${{ secrets.TLDR_PORTFOLIO }}
+        run: python scripts/fetch_tldr.py
+
+      - name: Sauvegarde et Mise en ligne (Commit & Push)
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "🤖 [Bot] Mise à jour automatisée de la veille TLDR Data"
+          file_pattern: "data/tldr.json"

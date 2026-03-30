@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veille Technologique | Data, IA & MLOps</title>
+    <meta name="description" content="Veille technologique hebdomadaire de Christopher Gilleron sur la Data, l'IA et le MLOps. Résumés traduits automatiquement de la newsletter TLDR Data.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        html { scroll-behavior: smooth; }
+        body { background-color: #0a0f1e; color: #f8fafc; font-family: 'Inter', sans-serif; opacity: 0; transition: opacity 0.8s ease-in-out; }
+        body.loaded { opacity: 1; }
+
+        .nav-blur {
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            background: rgba(10, 15, 30, 0.85);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #60a5fa, #34d399);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #60a5fa, #34d399);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.95rem;
+            color: #0a0f1e;
+            flex-shrink: 0;
+        }
+
+        .hero-glow {
+            background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(52, 211, 153, 0.15), transparent);
+        }
+
+        .news-card {
+            background: rgba(15, 23, 42, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .news-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(52, 211, 153, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            background: rgba(15, 23, 42, 0.8);
+        }
+
+        .btn-hover { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .btn-hover:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); }
+        
+        /* Shimmer loading effect */
+        .skeleton {
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.03) 25%, rgba(255, 255, 255, 0.08) 50%, rgba(255, 255, 255, 0.03) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+    </style>
+</head>
+
+<body class="relative min-h-screen flex flex-col">
+    <!-- ===== NAVBAR ===== -->
+    <nav class="nav-blur fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3 no-underline">
+                <div class="avatar">CG</div>
+                <div class="flex flex-col">
+                    <span class="font-bold text-white hidden sm:block">Christopher Gilleron</span>
+                    <span class="text-[10px] text-slate-500 hidden sm:block">Data Scientist</span>
+                </div>
+            </a>
+            <div class="flex items-center gap-6">
+                <a href="index.html" class="text-sm font-medium text-slate-400 hover:text-white transition-colors">Retour à l'accueil</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== HEADER ===== -->
+    <header class="hero-glow pt-36 pb-12 px-6 text-center">
+        <div class="max-w-3xl mx-auto">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono mb-6">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                VEILLE AUTOMATISÉE
+            </div>
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-white mb-5 leading-tight">
+                Data, IA & MLOps
+            </h1>
+            <p class="text-slate-400 mb-2 leading-relaxed text-sm sm:text-base">
+                Chaque semaine, cette page est mise à jour de manière **100% automatisée** : un robot (GitHub Actions + script Python) extrait les meilleures actualités anglophones de <i>TLDR Data</i>, puis l'IA de Google (Gemini) les traduit et les catégorise ici pour vous.
+            </p>
+        </div>
+    </header>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="max-w-4xl mx-auto px-6 flex-grow w-full pb-20">
+        
+        <div class="flex items-center justify-between mb-8 pb-4 border-b border-slate-800">
+            <h2 class="text-lg font-semibold text-white flex items-center gap-2">
+                <span>📰</span> À la Une
+            </h2>
+            <div id="date-badge" class="text-xs font-mono text-slate-500 bg-slate-800/50 px-3 py-1.5 rounded border border-slate-700">
+                Date : Chargement...
+            </div>
+        </div>
+
+        <!-- Conteneur pour les articles -->
+        <div id="news-container" class="space-y-6">
+            <!-- Skeletons (état de chargement) -->
+            <div class="news-card rounded-2xl p-6">
+                <div class="skeleton h-4 w-24 rounded mb-4"></div>
+                <div class="skeleton h-6 w-3/4 rounded mb-3"></div>
+                <div class="skeleton h-4 w-full rounded mb-2"></div>
+                <div class="skeleton h-4 w-5/6 rounded mb-5"></div>
+                <div class="skeleton h-4 w-32 rounded"></div>
+            </div>
+            <div class="news-card rounded-2xl p-6">
+                <div class="skeleton h-4 w-24 rounded mb-4"></div>
+                <div class="skeleton h-6 w-2/3 rounded mb-3"></div>
+                <div class="skeleton h-4 w-full rounded mb-2"></div>
+                <div class="skeleton h-4 w-4/6 rounded mb-5"></div>
+            </div>
+        </div>
+        
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="text-center py-8 border-t border-slate-800/60 mt-auto bg-slate-900/20">
+        <p class="text-[10px] text-slate-500">
+            Généré automatiquement via <b>Gemini AI</b> & <b>GitHub Actions</b>
+        </p>
+    </footer>
+
+    <script>>
+        // Fonction pour déterminer la couleur du badge de catégorie
+        function getCategoryColor(category) {
+            const cat = category.toLowerCase();
+            if (cat.includes('deep dive') || cat.includes('article')) return 'blue';
+            if (cat.includes('tutoriel') || cat.includes('guide')) return 'purple';
+            if (cat.includes('outil') || cat.includes('tool')) return 'emerald';
+            if (cat.includes('news') || cat.includes('actu')) return 'orange';
+            return 'slate'; // Défaut
+        }
+
+        // Chargement du JSON
+        async function loadNews() {
+            const container = document.getElementById('news-container');
+            const dateBadge = document.getElementById('date-badge');
+            
+            try {
+                // Pour éviter le cache violent du navigateur sur un fichier statique
+                const response = await fetch('data/tldr.json?t=' + new Date().getTime());
+                
+                if (!response.ok) {
+                    throw new Error('Fichier JSON introuvable.');
+                }
+                
+                const data = await response.json();
+                
+                // Mettre à jour la date
+                const dateObj = new Date(data.date);
+                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                dateBadge.innerText = 'Édition du : ' + dateObj.toLocaleDateString('fr-FR', options);
+                
+                // Vider le conteneur des skeletons
+                container.innerHTML = '';
+                
+                // S'il n'y a pas d'articles
+                if (!data.articles || data.articles.length === 0) {
+                    container.innerHTML = '<div class="text-center py-10 text-slate-500">Aucune actualité trouvée pour cette date.</div>';
+                    return;
+                }
+                
+                // Générer les cartes d'articles
+                data.articles.forEach(article => {
+                    const color = getCategoryColor(article.categorie);
+                    
+                    const card = document.createElement('div');
+                    card.className = 'news-card rounded-2xl p-6 group relative';
+                    
+                    // Lien cliquable sur toute la carte si un lien existe
+                    const wrapperStart = article.lien ? `<a href="${article.lien}" target="_blank" class="block outline-none cursor-pointer no-underline">` : `<div>`;
+                    const wrapperEnd = article.lien ? `</a>` : `</div>`;
+                    
+                    const arrowIcon = article.lien ? `<span class="opacity-0 group-hover:opacity-100 transition-opacity text-${color}-400 absolute top-6 right-6">↗</span>` : '';
+                    
+                    card.innerHTML = `
+                        ${wrapperStart}
+                            <div class="inline-block px-2.5 py-1 rounded bg-${color}-500/10 border border-${color}-500/20 text-${color}-400 text-[10px] font-mono uppercase tracking-wider mb-4">
+                                ${article.categorie}
+                            </div>
+                            ${arrowIcon}
+                            <h3 class="text-xl font-bold text-white mb-3 group-hover:text-${color}-300 transition-colors pr-8">
+                                ${article.titre}
+                            </h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                                ${article.resume}
+                            </p>
+                            ${article.lien ? `
+                            <div class="text-${color}-400/80 text-xs font-medium flex items-center gap-1.5 group-hover:text-${color}-400">
+                                Lire la source d'origine <svg class="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                            </div>
+                            ` : ''}
+                        ${wrapperEnd}
+                    `;
+                    
+                    container.appendChild(card);
+                });
+                
+            } catch (error) {
+                console.error("Erreur de chargement:", error);
+                
+                container.innerHTML = `
+                    <div class="bg-red-500/10 border border-red-500/20 rounded-xl p-6 text-center">
+                        <div class="text-red-400 text-3xl mb-2">⚠️</div>
+                        <h3 class="text-red-400 font-medium mb-1">Impossible de charger les actualités</h3>
+                        <p class="text-red-400/70 text-sm text-center">Assurez-vous que le fichier data/tldr.json a bien été généré.</p>
+                    </div>
+                `;
+                dateBadge.innerText = 'Édition hors-ligne';
+            }
+        }
+
+        // Au chargement
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.add('loaded'); // Fondu CSS
+            
+            // Simuler un très léger temps de chargement pour montrer le "Shimmer effect" (très pro sur un portfolio)
+            setTimeout(loadNews, 800);
+        });
+    </script>
+</body>
+</html>

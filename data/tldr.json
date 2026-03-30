@@ -1,0 +1,23 @@
+{
+    "date": "2024-03-15",
+    "articles": [
+        {
+            "titre": "Comprendre l'architecture RAG",
+            "resume": "Une plongée approfondie dans le fonctionnement des systèmes Retrieval-Augmented Generation, et comment ils améliorent les LLMs avec des données privées.",
+            "lien": "https://example.com/rag-deepdive",
+            "categorie": "Deep Dive"
+        },
+        {
+            "titre": "Nouvelle version de Pandas 2.2",
+            "resume": "La célèbre bibliothèque de manipulation de données Python sort sa version 2.2 avec des améliorations de performance significatives grâce au backend PyArrow.",
+            "lien": "https://pandas.pydata.org",
+            "categorie": "News"
+        },
+        {
+            "titre": "Tutoriel : Déployer un modèle ML sur AWS Lambda",
+            "resume": "Apprenez étape par étape comment packager un modèle Scikit-Learn et l'héberger de manière serverless sur AWS Lambda pour une scalabilité infinie et un coût minimal.",
+            "lien": "https://example.com/aws-ml-tutorial",
+            "categorie": "Tutoriel"
+        }
+    ]
+}
