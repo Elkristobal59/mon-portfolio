@@ -13,7 +13,7 @@ if not API_KEY:
 
 # Initialisation du client moderne
 client = genai.Client(api_key=API_KEY)
-MODEL_ID = "gemini-2.0-flash" # On utilise la version 2.0, plus stable et rapide en 2026
+MODEL_ID = "gemini-1.5-flash"
 
 def get_latest_newsletter_html():
     """Tente de récupérer la dernière newsletter."""
