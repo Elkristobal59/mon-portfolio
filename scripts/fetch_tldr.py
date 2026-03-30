@@ -12,7 +12,11 @@ if not API_KEY:
     exit(1)
 
 # Initialisation du client moderne
-client = genai.Client(api_key=API_KEY)
+client = genai.Client(
+    api_key=API_KEY,
+    http_options={'api_version': 'v1'} # Force la version stable
+)
+
 MODEL_ID = "gemini-1.5-flash"
 
 def get_latest_newsletter_html():
