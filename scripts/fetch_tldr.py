@@ -49,18 +49,22 @@ def get_latest_newsletter_html():
         try:
             response = requests.get(url, timeout=10)
             if response.status_code == 200:
-                print(f"Newsletter trouvée pour le {date_str} !")
-                return response.text, date_str
+                # Vérification : une vraie newsletter contient des balises <article>
+                # Les pages de garde/landing pages n'en ont pas
+                if "<article" in response.text:
+                    print(f"✅ Newsletter valide trouvée pour le {date_str} !")
+                    return response.text, date_str
+                else:
+                    print(f"⚠️ Page trouvée pour le {date_str} mais c'est une page d'attente. Essai du jour précédent...")
         except requests.RequestException as e:
             print(f"Erreur lors de la requête : {e}")
             
-    print("Aucune nouvelle newsletter trouvée.")
+    print("❌ Aucune nouvelle newsletter valide trouvée sur les 7 derniers jours.")
     return None, None
 
 def extract_articles(html):
     """Extrait les articles proprement (Titre, Lien, Résumé EN) et ignore les sponsors."""
     soup = BeautifulSoup(html, 'html.parser')
-    # Les articles chez TLDR sont souvent dans des <article class="mt-3"> ou simplement des sections avec des liens gras
     articles_raw = soup.find_all('article', class_='mt-3')
     
     extracted = []
@@ -88,7 +92,7 @@ def extract_articles(html):
                 "summary_en": summary
             })
         
-        # Limite raisonnable pour l'affichage et le quota
+        # Limite raisonnable
         if len(extracted) >= 15:
             break
             
@@ -99,7 +103,7 @@ def process_with_ai(articles, date_str):
     if not articles:
         return "[]"
 
-    # On prépare un bloc de texte structuré et minimal pour économiser des tokens
+    # Formatage compact pour économiser des tokens
     compact_content = ""
     for i, art in enumerate(articles):
         compact_content += f"ID:{i+1}\nT:{art['title_en']}\nS:{art['summary_en']}\nL:{art['link']}\n\n"
@@ -125,7 +129,7 @@ def process_with_ai(articles, date_str):
     {compact_content}
     """
     
-    print(f"🚀 Envoi de {len(articles)} articles à Gemini pour traduction...")
+    print(f"🚀 Traduction de {len(articles)} articles via {MODEL_ID}...")
     
     try:
         response = client.models.generate_content(
@@ -133,7 +137,6 @@ def process_with_ai(articles, date_str):
             contents=prompt
         )
         
-        # Nettoyage Markdown
         result = response.text.strip()
         if result.startswith("```json"):
             result = result.replace("```json", "", 1)
@@ -144,7 +147,7 @@ def process_with_ai(articles, date_str):
         
     except Exception as e:
         if "429" in str(e) or "RESOURCE_EXHAUSTED" in str(e):
-            print("\n⚠️ QUOTA ÉPUISÉ : Gemini ne répond plus aujourd'hui. On s'arrête proprement.")
+            print("\n⚠️ QUOTA ÉPUISÉ : Gemini ne répond plus. On s'arrête proprement.")
             exit(0)
         print(f"❌ Erreur Gemini : {e}")
         raise e
@@ -156,7 +159,7 @@ def main():
         
     articles_list = extract_articles(html)
     if not articles_list:
-        print("Aucun article exploitable trouvé. La structure de la page a peut-être changé.")
+        print("❌ Aucun article exploitable trouvé. La structure a peut-être changé.")
         exit(0)
 
     json_data = process_with_ai(articles_list, date_str)
@@ -175,7 +178,7 @@ def main():
         with open(out_path, 'w', encoding='utf-8') as f:
             json.dump(final_output, f, indent=4, ensure_ascii=False)
             
-        print(f"✅ Mise à jour réussie : {len(articles)} articles pour le {date_str}")
+        print(f"✅ Succès ! {len(articles)} articles sauvegardés pour le {date_str}")
         
     except json.JSONDecodeError:
         print("❌ Erreur : L'IA n'a pas renvoyé un JSON valide.")
