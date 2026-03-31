@@ -1,22 +1,76 @@
 {
-    "date": "2024-03-15",
+    "date": "2026-03-30",
     "articles": [
         {
-            "titre": "Comprendre l'architecture RAG",
-            "resume": "Une plongée approfondie dans le fonctionnement des systèmes Retrieval-Augmented Generation, et comment ils améliorent les LLMs avec des données privées.",
-            "lien": "https://example.com/rag-deepdive",
+            "titre": "Comment Notion a mis à l'échelle son IA Q&A pour des millions d'espaces de travail",
+            "resume": "Retour sur l'évolution de l'architecture de recherche vectorielle de Notion, utilisant le serverless et turbopuffer pour réduire les coûts d'infrastructure de 90% tout en améliorant la latence.",
+            "lien": "https://www.datatinkerer.io/p/how-notion-scaled-ai-q-and-a-to-millions-of-workspaces?utm_source=tldrdata",
             "categorie": "Deep Dive"
         },
         {
-            "titre": "Nouvelle version de Pandas 2.2",
-            "resume": "La célèbre bibliothèque de manipulation de données Python sort sa version 2.2 avec des améliorations de performance significatives grâce au backend PyArrow.",
-            "lien": "https://pandas.pydata.org",
+            "titre": "Analyser la latence des requêtes en boucle complète",
+            "resume": "Datadog explore la décomposition de la latence totale des requêtes pour identifier les goulots d'étranglement cachés, tels que la contention des pools de connexion et les pics réseau.",
+            "lien": "https://www.datadoghq.com/blog/analyzing-roundtrip-query-latency/?utm_source=tldrdata",
+            "categorie": "Deep Dive"
+        },
+        {
+            "titre": "Bâtir des workflows d'IA traçables avec visibilité sur les tentatives et les DLQ",
+            "resume": "Méthode pour implémenter un traçage précis par nœud dans les pipelines d'extraction LLM, permettant un débogage déterministe et une réexécution efficace des étapes.",
+            "lien": "https://www.craftedbydaniel.com/blog/tracing-an-extraction-pipeline-like-a-ledger-trace-nodes-dlq-boundaries-and-replayable-failures?utm_source=tldrdata",
+            "categorie": "Deep Dive"
+        },
+        {
+            "titre": "Les fondations — Ce que fait réellement une infrastructure d'A/B testing",
+            "resume": "Analyse de l'évolution de l'architecture de routage d'EloElo, passant de Redis HashMaps à des BitFields pour optimiser l'assignation persistante des utilisateurs aux variantes.",
+            "lien": "https://tech-blogs.eloelo.in/what-even-is-a-b-infrastructure-1d4d06a48736?utm_source=tldrdata",
+            "categorie": "Deep Dive"
+        },
+        {
+            "titre": "L'IA est là, mais les problèmes complexes n'ont pas changé",
+            "resume": "Malgré l'adoption massive de l'IA, les défis fondamentaux persistent : systèmes hérités, manque de leadership, mauvaise modélisation des données et dette technique croissante.",
+            "lien": "https://joereis.substack.com/p/ai-is-here-but-the-hard-parts-havent?utm_source=tldrdata",
             "categorie": "News"
         },
         {
-            "titre": "Tutoriel : Déployer un modèle ML sur AWS Lambda",
-            "resume": "Apprenez étape par étape comment packager un modèle Scikit-Learn et l'héberger de manière serverless sur AWS Lambda pour une scalabilité infinie et un coût minimal.",
-            "lien": "https://example.com/aws-ml-tutorial",
+            "titre": "Gouvernance architecturale à l'ère de l'IA",
+            "resume": "Proposition d'une architecture déclarative et de garde-fous automatisés pour gérer l'accélération de la production de code généré par l'IA sans compromettre la cohérence du système.",
+            "lien": "https://www.infoq.com/articles/architectural-governance-ai-speed/?utm_source=tldrdata",
+            "categorie": "Deep Dive"
+        },
+        {
+            "titre": "Surveiller votre serveur de fonctionnalités Feast avec Prometheus et Grafana",
+            "resume": "Guide sur l'utilisation de Prometheus et OpenTelemetry pour observer la latence, le débit et la santé des serveurs de features Feast en production.",
+            "lien": "https://feast.dev/blog/feast-feature-server-monitoring/?utm_source=tldrdata",
+            "categorie": "Tutoriel"
+        },
+        {
+            "titre": "Fivetran fait don de son framework SQLMesh à la Linux Foundation",
+            "resume": "Fivetran cède SQLMesh à la Linux Foundation pour encourager une gouvernance neutre et standardiser les workflows de transformation de données basés sur SQL.",
+            "lien": "https://thenewstack.io/fivetran-donates-sqlmesh-lf/?utm_source=tldrdata",
+            "categorie": "News"
+        },
+        {
+            "titre": "Datahike (Dépôt GitHub)",
+            "resume": "Une base de données immuable basée sur Datalog offrant des capacités de voyage dans le temps, de branching et d'audit, avec un stockage pluggable (S3, JDBC).",
+            "lien": "https://github.com/replikativ/datahike?utm_source=tldrdata",
+            "categorie": "Tool"
+        },
+        {
+            "titre": "L'IA aide à construire une meilleure IA : accélérer l'expérimentation de modèles",
+            "resume": "LinkedIn utilise des agents IA pour automatiser l'optimisation des LLM et la migration de modèles complexes, en utilisant des vérificateurs automatisés pour garantir la stabilité numérique.",
+            "lien": "https://www.linkedin.com/blog/engineering/ai/ai-helping-build-better-ai-how-agents-accelerate-model-experimentation?utm_source=tldrdata",
+            "categorie": "Deep Dive"
+        },
+        {
+            "titre": "Pourquoi les clés primaires UUID détruisent silencieusement les performances",
+            "resume": "Explication de l'impact des UUID aléatoires sur la fragmentation des index et l'efficacité du cache, et pourquoi les UUIDv7 ordonnés dans le temps sont préférables.",
+            "lien": "https://ankit-rana.com/logs/12-uuids-primary-keys-performance/?utm_source=tldrdata",
+            "categorie": "Deep Dive"
+        },
+        {
+            "titre": "Créer un pipeline d'entraînement multi-nœuds avec PyTorch DDP",
+            "resume": "Un guide modulaire pour mettre en place un pipeline d'entraînement distribué multi-GPU prêt pour la production avec PyTorch Distributed Data Parallel.",
+            "lien": "https://towardsdatascience.com/building-a-production-grade-multi-node-training-pipeline-with-pytorch-ddp/?utm_source=tldrdata",
             "categorie": "Tutoriel"
         }
     ]
