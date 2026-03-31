@@ -15,13 +15,34 @@ if not API_KEY:
 client = genai.Client(api_key=API_KEY)
 MODEL_ID = "gemini-2.0-flash"
 
+def get_current_data_date():
+    """Récupère la date de la dernière newsletter enregistrée dans le JSON."""
+    try:
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+        path = os.path.join(base_dir, '..', 'data', 'tldr.json')
+        if os.path.exists(path):
+            with open(path, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+                return data.get("date")
+    except Exception as e:
+        print(f"Note: Impossible de lire la date actuelle ({e})")
+    return None
+
 def get_latest_newsletter_html():
     """Récupère le HTML de la newsletter la plus récente (7 derniers jours)."""
     base_url = "https://tldr.tech/data/"
     today = datetime.now()
     
+    current_saved_date = get_current_data_date()
+    
     for i in range(7):
         date_str = (today - timedelta(days=i)).strftime("%Y-%m-%d")
+        
+        # SÉCURITÉ : Si on a déjà cette date, on arrête tout de suite pour économiser le quota
+        if current_saved_date == date_str:
+            print(f"ℹ️ La newsletter du {date_str} est déjà à jour. Arrêt du script.")
+            exit(0)
+
         url = f"{base_url}{date_str}"
         print(f"Vérification de l'URL : {url}")
         
@@ -33,40 +54,78 @@ def get_latest_newsletter_html():
         except requests.RequestException as e:
             print(f"Erreur lors de la requête : {e}")
             
-    print("Aucune newsletter trouvée.")
+    print("Aucune nouvelle newsletter trouvée.")
     return None, None
 
-def extract_content(html):
-    """Nettoie le HTML pour ne garder que le texte utile."""
+def extract_articles(html):
+    """Extrait les articles proprement (Titre, Lien, Résumé EN) et ignore les sponsors."""
     soup = BeautifulSoup(html, 'html.parser')
-    for s in soup(["script", "style"]):
-        s.extract()
-    return soup.get_text(separator="\n", strip=True)
+    # Les articles chez TLDR sont souvent dans des <article class="mt-3"> ou simplement des sections avec des liens gras
+    articles_raw = soup.find_all('article', class_='mt-3')
+    
+    extracted = []
+    for art in articles_raw:
+        # Recherche du titre et lien
+        link_tag = art.find('a', class_='font-bold')
+        if not link_tag:
+            continue
+            
+        title = link_tag.get_text(strip=True)
+        link = link_tag.get('href', '')
+        
+        # Filtrage Sponsors
+        if "(Sponsor)" in title or "fandf.co" in link:
+            continue
+            
+        # Recherche du résumé
+        summary_div = art.find('div', class_='newsletter-html')
+        summary = summary_div.get_text(strip=True) if summary_div else ""
+        
+        if title and link:
+            extracted.append({
+                "title_en": title,
+                "link": link,
+                "summary_en": summary
+            })
+        
+        # Limite raisonnable pour l'affichage et le quota
+        if len(extracted) >= 15:
+            break
+            
+    return extracted
 
-def process_with_ai(text_content, date_str):
-    """Demande à l'IA d'extraire et traduire les articles en JSON."""
+def process_with_ai(articles, date_str):
+    """Demande à l'IA de traduire et synthétiser les articles extraits en JSON."""
+    if not articles:
+        return "[]"
+
+    # On prépare un bloc de texte structuré et minimal pour économiser des tokens
+    compact_content = ""
+    for i, art in enumerate(articles):
+        compact_content += f"ID:{i+1}\nT:{art['title_en']}\nS:{art['summary_en']}\nL:{art['link']}\n\n"
+
     prompt = f"""
-    Voici la newsletter 'TLDR Data' du {date_str}. 
-    Extrait les articles de fond (News, tutoriels, outils).
-    Ignore les sponsors et les jobs.
+    Voici une sélection d'articles TLDR Data du {date_str}.
+    Traduis les titres et résumés en Français de manière concise et pro.
+    Catégorise chaque article : News, Tutoriel, Tool, ou Deep Dive.
+
+    IMPORTANT : Réponds UNIQUEMENT avec un tableau JSON valide.
     
-    IMPORTANT : Ta réponse doit être uniquement un tableau JSON valide, sans texte avant ou après.
-    
-    Format attendu :
+    Format :
     [
         {{
-            "titre": "Traduction française du titre",
-            "resume": "Résumé concis en français",
-            "lien": "URL source",
-            "categorie": "News|Tutoriel|Tool|Deep Dive"
+            "titre": "Titre traduit",
+            "resume": "Résumé court FR",
+            "lien": "URL",
+            "categorie": "Catégorie"
         }}
     ]
-    
+
     Contenu :
-    {text_content}
+    {compact_content}
     """
     
-    print(f"Envoi à {MODEL_ID}...")
+    print(f"🚀 Envoi de {len(articles)} articles à Gemini pour traduction...")
     
     try:
         response = client.models.generate_content(
@@ -74,7 +133,7 @@ def process_with_ai(text_content, date_str):
             contents=prompt
         )
         
-        # Nettoyage des balises Markdown ```json si présentes
+        # Nettoyage Markdown
         result = response.text.strip()
         if result.startswith("```json"):
             result = result.replace("```json", "", 1)
@@ -84,20 +143,23 @@ def process_with_ai(text_content, date_str):
         return result.strip()
         
     except Exception as e:
-        # Gestion intelligente du quota (Error 429)
         if "429" in str(e) or "RESOURCE_EXHAUSTED" in str(e):
-            print("\n⚠️ QUOTA ÉPUISÉ : Le script s'arrête proprement pour aujourd'hui.")
-            exit(0) # Sortie propre sans erreur GitHub
-        print(f"Erreur lors de la génération : {e}")
+            print("\n⚠️ QUOTA ÉPUISÉ : Gemini ne répond plus aujourd'hui. On s'arrête proprement.")
+            exit(0)
+        print(f"❌ Erreur Gemini : {e}")
         raise e
 
 def main():
     html, date_str = get_latest_newsletter_html()
     if not html:
-        exit(1)
+        return
         
-    text = extract_content(html)
-    json_data = process_with_ai(text, date_str)
+    articles_list = extract_articles(html)
+    if not articles_list:
+        print("Aucun article exploitable trouvé. La structure de la page a peut-être changé.")
+        exit(0)
+
+    json_data = process_with_ai(articles_list, date_str)
     
     try:
         articles = json.loads(json_data)
@@ -106,7 +168,6 @@ def main():
             "articles": articles
         }
         
-        # Gestion propre des chemins de fichiers
         base_dir = os.path.dirname(os.path.abspath(__file__))
         out_path = os.path.join(base_dir, '..', 'data', 'tldr.json')
         os.makedirs(os.path.dirname(out_path), exist_ok=True)
@@ -114,7 +175,7 @@ def main():
         with open(out_path, 'w', encoding='utf-8') as f:
             json.dump(final_output, f, indent=4, ensure_ascii=False)
             
-        print(f"✅ Succès ! {len(articles)} articles sauvegardés dans data/tldr.json")
+        print(f"✅ Mise à jour réussie : {len(articles)} articles pour le {date_str}")
         
     except json.JSONDecodeError:
         print("❌ Erreur : L'IA n'a pas renvoyé un JSON valide.")
