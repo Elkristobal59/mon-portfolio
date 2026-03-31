@@ -13,7 +13,7 @@ if not API_KEY:
 
 # Initialisation standard (la plus stable)
 client = genai.Client(api_key=API_KEY)
-MODEL_ID = "gemini-1.5-flash"
+MODEL_ID = "gemini-1.5-flash-latest"
 
 def get_current_data_date():
     """Récupère la date de la dernière newsletter enregistrée dans le JSON."""
