@@ -286,6 +286,70 @@
     <!-- ===== CONTENU PRINCIPAL ===== -->
     <main class="max-w-5xl mx-auto px-6 pb-28">
 
+        <!-- ===== VEILLE DATA (BANNER) ===== -->
+        <section class="mb-16 reveal">
+            <a href="veille.html" id="veille-banner" class="group block relative overflow-hidden rounded-3xl no-underline"
+               style="background: linear-gradient(135deg, rgba(15,23,42,0.95) 0%, rgba(6,22,38,0.98) 100%); border: 1px solid rgba(52,211,153,0.18);">
+
+                <!-- Fond décoratif -->
+                <div class="absolute inset-0 pointer-events-none" 
+                     style="background: radial-gradient(circle at center, rgba(52,211,153,0.08) 0%, transparent 70%);"></div>
+                
+                <!-- Grilles subtiles -->
+                <div class="absolute inset-0 pointer-events-none opacity-[0.03]"
+                     style="background-image: radial-gradient(rgba(255,255,255,0.2) 1px, transparent 1px); background-size: 20px 20px;"></div>
+
+                <div class="relative z-10 flex flex-col items-center text-center p-8 md:p-12">
+                    
+                    <!-- Badge Badge -->
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full mb-6 text-[10px] font-mono tracking-widest uppercase" 
+                         style="background: rgba(52,211,153,0.05); border: 1px solid rgba(52,211,153,0.2); color: #34d399;">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                        Projet Automatisé · Live
+                    </div>
+
+                    <!-- Titre Principal -->
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-black text-white mb-4 leading-tight group-hover:scale-[1.02] transition-transform duration-500">
+                        Les News <span style="color:#34d399;">Data & IA</span> de la semaine
+                    </h2>
+
+                    <!-- Description -->
+                    <p class="text-sm md:text-base max-w-2xl mx-auto mb-8 leading-relaxed px-4" style="color:#94a3b8;">
+                        Chaque lundi et jeudi, un pipeline intelligent extrait, traduit et catégorise l'actualité mondiale de 
+                        <span class="text-white font-medium">TLDR Data</span> via <span class="text-white font-medium">Gemini AI</span>. 
+                        Restez à la pointe sans quitter ce portfolio.
+                    </p>
+
+                    <!-- Bouton CTA Central -->
+                    <div class="flex flex-col items-center gap-4">
+                        <div class="btn-hover inline-flex items-center gap-3 px-8 py-3.5 rounded-full bg-emerald-500 text-slate-950 font-bold text-sm transition-all shadow-lg shadow-emerald-500/20 group-hover:shadow-emerald-500/40">
+                            Consulter la veille
+                            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                            </svg>
+                        </div>
+                        
+                        <!-- Mini Stack -->
+                        <div class="flex items-center gap-4 mt-2 opacity-60">
+                            <span class="text-[10px] font-mono uppercase tracking-tighter" style="color:#64748b;">Powered by</span>
+                            <div class="flex gap-3">
+                                <span class="text-[10px] font-bold" style="color:#60a5fa;">Python</span>
+                                <span class="text-[10px] font-bold" style="color:#a78bfa;">Gemini 3</span>
+                                <span class="text-[10px] font-bold" style="color:#34d399;">GitHub</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Attribution fine en bas -->
+                    <div class="mt-10 pt-6 border-t border-slate-800/50 w-full max-w-lg">
+                        <p class="text-[10px] leading-relaxed italic" style="color:#475569;">
+                            Remerciements à <a href="https://tldr.tech/data" target="_blank" rel="noopener noreferrer" class="underline hover:text-emerald-400 decoration-slate-700" onclick="event.stopPropagation()">TLDR Data</a> pour la curation originale.
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </section>
+
         <!-- ===== À PROPOS ===== -->
         <section class="mb-24 reveal">
             <h2 class="text-sm font-mono text-slate-500 uppercase tracking-widest mb-8">// Mon Parcours & Mon Rôle</h2>
@@ -631,6 +695,9 @@
     <!-- ===== FOOTER ===== -->
     <footer class="text-center py-12 border-t border-slate-800/60 mt-20 bg-slate-900/20">
         <p class="text-[10px] text-slate-600 mb-2">© 2026 Christopher Gilleron · Tous droits réservés</p>
+        <p class="text-[10px] text-slate-500 mb-4 italic max-w-xl mx-auto px-6">
+            Ce site est un projet personnel de veille technologique. Les résumés sont traduits et adaptés à partir de la newsletter <a href="https://tldr.tech" target="_blank" class="underline hover:text-slate-300">TLDR.tech</a>. Soutenez leur travail en vous abonnant à l'original.
+        </p>
         <p class="text-[10px] text-slate-500">Développé avec passion à Lille · Hébergé sur Vercel · 
             <span class="inline-flex items-center gap-1.5">
                 <span class="w-1 h-1 rounded-full bg-emerald-500/80 animate-pulse"></span>
