@@ -17,9 +17,6 @@ jobs:
     # On place les variables d'environnement ici pour tout le job
     env:
       GEMINI_API_KEY: ${{ secrets.TLDR_PORTFOLIO }}
-      # Cette ligne supprime les messages d'avertissement sur Node.js 20
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true 
-
     steps:
       - name: Récupération du code (Checkout)
         uses: actions/checkout@v4
