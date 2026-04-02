@@ -1,9 +1,11 @@
 import os
 import json
 import requests
+import time
 from datetime import datetime, timedelta
 from bs4 import BeautifulSoup
 from google import genai
+from google.genai import errors
 
 # --- CONFIGURATION ---
 API_KEY = os.environ.get("GEMINI_API_KEY")
@@ -11,15 +13,17 @@ if not API_KEY:
     print("Erreur: La variable d'environnement GEMINI_API_KEY est manquante.")
     exit(1)
 
-# Initialisation standard
+# Initialisation du client
 client = genai.Client(api_key=API_KEY)
-# Utilisation de Gemini 3 Flash Preview (Quota frais et performant)
-MODEL_ID = "gemini-3-flash-preview"
+
+# Modèles
+PRIMARY_MODEL = "gemini-3-flash-preview"
+FALLBACK_MODEL = "gemini-3-flash"
 
 def get_current_data_date():
     """Récupère la date de la dernière newsletter enregistrée dans le JSON."""
     try:
-        base_dir = os.path.dirname(os.path.abspath(__file__))
+        base_dir = os.path.dirname(os.path.abspath(_file_))
         path = os.path.join(base_dir, '..', 'data', 'tldr.json')
         if os.path.exists(path):
             with open(path, 'r', encoding='utf-8') as f:
@@ -74,7 +78,6 @@ def extract_articles(html):
         title = link_tag.get_text(strip=True)
         link = link_tag.get('href', '')
         
-        # Filtrage Sponsors
         if "(Sponsor)" in title or "fandf.co" in link:
             continue
             
@@ -88,14 +91,27 @@ def extract_articles(html):
                 "summary_en": summary
             })
         
-        # Limite à 12 articles pour la page
         if len(extracted) >= 12:
             break
             
     return extracted
 
+def call_gemini_api(model_id, prompt):
+    """Effectue l'appel réel à l'API Gemini."""
+    response = client.models.generate_content(
+        model=model_id,
+        contents=prompt
+    )
+    result = response.text.strip()
+    # Nettoyage du Markdown si présent
+    if result.startswith("json"):
+        result = result.replace("json", "", 1)
+    if result.endswith(""):
+        result = result[::-1].replace("", "", 1)[::-1]
+    return result.strip()
+
 def process_with_ai(articles, date_str):
-    """Traduction et synthèse via Gemini."""
+    """Traduction et synthèse via Gemini avec gestion du Hot Swap."""
     if not articles:
         return "[]"
 
@@ -124,27 +140,29 @@ def process_with_ai(articles, date_str):
     {compact_content}
     """
     
-    print(f"🚀 Traduction de {len(articles)} articles via {MODEL_ID}...")
+    print(f"🚀 Tentative de traduction via {PRIMARY_MODEL}...")
     
     try:
-        response = client.models.generate_content(
-            model=MODEL_ID,
-            contents=prompt
-        )
+        # Tentative 1 : Modèle Preview
+        return call_gemini_api(PRIMARY_MODEL, prompt)
         
-        result = response.text.strip()
-        if result.startswith("```json"):
-            result = result.replace("```json", "", 1)
-        if result.endswith("```"):
-            result = result[::-1].replace("```", "", 1)[::-1]
-            
-        return result.strip()
+    except errors.ServerError as e:
+        # Si erreur 503 (Surcharge), on tente le Hot Swap
+        if "503" in str(e) or "UNAVAILABLE" in str(e):
+            print(f"⚠️ {PRIMARY_MODEL} surchargé (503). Pause de 5s et basculement vers {FALLBACK_MODEL}...")
+            time.sleep(5)
+            try:
+                return call_gemini_api(FALLBACK_MODEL, prompt)
+            except Exception as e2:
+                print(f"❌ Échec du modèle de secours : {e2}")
+                raise e2
+        raise e
         
     except Exception as e:
         if "429" in str(e) or "RESOURCE_EXHAUSTED" in str(e):
             print("\n⚠️ QUOTA ÉPUISÉ : Gemini ne répond plus aujourd'hui.")
             exit(0)
-        print(f"❌ Erreur Gemini : {e}")
+        print(f"❌ Erreur Gemini critique : {e}")
         raise e
 
 def main():
@@ -166,7 +184,7 @@ def main():
             "articles": articles
         }
         
-        base_dir = os.path.dirname(os.path.abspath(__file__))
+        base_dir = os.path.dirname(os.path.abspath(_file_))
         out_path = os.path.join(base_dir, '..', 'data', 'tldr.json')
         os.makedirs(os.path.dirname(out_path), exist_ok=True)
         
@@ -180,5 +198,5 @@ def main():
         print("Réponse reçue :", json_data)
         exit(1)
 
-if __name__ == "__main__":
+if _name_ == "_main_":
     main()
