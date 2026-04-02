@@ -1,77 +1,81 @@
 {
-    "date": "2026-04-02",
-    "articles": [
+    "editions": [
         {
-            "titre": "L'agent d'analyse IA interne de Meta",
-            "resume": "Meta a conçu un agent IA autonome pour automatiser l'analyse de données via un système de connaissances structuré en 'recettes' et 'ingrédients'.",
-            "lien": "https://medium.com/@AnalyticsAtMeta/inside-metas-home-grown-ai-analytics-agent-4ea6779acfb3?utm_source=tldrdata",
-            "categorie": "Deep Dive"
-        },
-        {
-            "titre": "Le pouvoir des Data Sketches : un guide complet",
-            "resume": "Introduction aux structures de données probabilistes compactes pour résumer d'immenses jeux de données avec une efficacité mémoire et une vitesse accrues.",
-            "lien": "https://luminousmen.com/post/the-power-of-data-sketches-a-comprehensive-guide/?utm_source=tldrdata",
-            "categorie": "Tutoriel"
-        },
-        {
-            "titre": "Au-delà de BM25 : la recherche neuronale 'sparse' chez Faire",
-            "resume": "Comment Faire a déployé un modèle de recherche neuronale interprétable pour améliorer la pertinence des résultats et les conversions sur leur marketplace.",
-            "lien": "https://craft.faire.com/beyond-bm25-and-dense-embeddings-841a7b18ce27?utm_source=tldrdata",
-            "categorie": "Deep Dive"
-        },
-        {
-            "titre": "Utiliser les agents IA de manière responsable",
-            "resume": "Les agents de codage peuvent générer du code risqué ; une supervision humaine et des garde-fous d'infrastructure restent indispensables.",
-            "lien": "https://vercel.com/blog/agent-responsibly?utm_source=tldrdata",
-            "categorie": "News"
-        },
-        {
-            "titre": "La revanche du Data Scientist",
-            "resume": "Malgré l'essor des LLM, les compétences en expérimentation, métriques et évaluation de données restent cruciales pour fiabiliser les systèmes IA.",
-            "lien": "https://hamel.dev/blog/posts/revenge/?utm_source=tldrdata",
-            "categorie": "News"
-        },
-        {
-            "titre": "Personne ne prend de décisions avec vos tableaux de bord",
-            "resume": "Critique de la BI 'théâtrale' : de nombreux tableaux de bord manquent d'utilité réelle faute d'objectifs décisionnels et de responsabilités clairs.",
-            "lien": "https://blog.dataengineerthings.org/nobody-is-making-decisions-with-your-dashboards-06849015f28b?utm_source=tldrdata",
-            "categorie": "Deep Dive"
-        },
-        {
-            "titre": "Change Data Capture : évitez de copier 50M de lignes inutilement",
-            "resume": "Introduction au CDC pour synchroniser uniquement les modifications de bases de données, optimisant ainsi les pipelines de données modernes.",
-            "lien": "https://podostack.com/p/change-data-capture-cdc-intro?utm_source=tldrdata",
-            "categorie": "Tutoriel"
-        },
-        {
-            "titre": "Écrire des fournisseurs de tables personnalisés dans Apache DataFusion",
-            "resume": "Guide technique pour intégrer des sources de données propriétaires dans DataFusion en optimisant le partitionnement et le filtrage.",
-            "lien": "https://datafusion.apache.org/blog/2026/03/31/writing-table-providers?utm_source=tldrdata",
-            "categorie": "Tutoriel"
-        },
-        {
-            "titre": "MotherDuck est désormais compatible avec Postgres",
-            "resume": "MotherDuck propose un nouveau point de terminaison compatible PostgreSQL, facilitant la connexion des outils BI standards à son entrepôt de données.",
-            "lien": "https://motherduck.com/blog/motherduck-now-speaks-postgres/?utm_source=tldrdata",
-            "categorie": "Tool"
-        },
-        {
-            "titre": "Qdrant Skills pour les agents IA",
-            "resume": "Qdrant lance des 'compétences' open-source permettant aux agents IA de diagnostiquer et résoudre des problèmes complexes de recherche vectorielle.",
-            "lien": "https://qdrant.tech/blog/qdrant-skills-release/?utm_source=tldrdata",
-            "categorie": "Tool"
-        },
-        {
-            "titre": "Concevoir la couche de mémoire d'un agent IA pour les données d'événements",
-            "resume": "Utilisation d'ApertureDB pour créer une couche de mémoire multimodale (graphe et vecteur) afin d'améliorer la précision des agents IA.",
-            "lien": "https://mlops.community/engineering-the-memory-layer-for-an-ai-agent-to-navigate-large-scale-event-data/?utm_source=tldrdata",
-            "categorie": "Deep Dive"
-        },
-        {
-            "titre": "Qu'est-ce que l'ingénierie de l'inférence ?",
-            "resume": "Analyse approfondie de l'optimisation de l'inférence LLM (quantification, parallélisme, cache) pour réduire les coûts et la latence à grande échelle.",
-            "lien": "https://newsletter.pragmaticengineer.com/p/what-is-inference-engineering?utm_source=tldrdata",
-            "categorie": "Deep Dive"
+            "date": "2026-04-02",
+            "articles": [
+                {
+                    "titre": "L'agent d'analyse IA interne de Meta",
+                    "resume": "Meta a conçu un agent IA autonome pour automatiser l'analyse de données via un système de connaissances structuré en 'recettes' et 'ingrédients'.",
+                    "lien": "https://medium.com/@AnalyticsAtMeta/inside-metas-home-grown-ai-analytics-agent-4ea6779acfb3?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Le pouvoir des Data Sketches : un guide complet",
+                    "resume": "Introduction aux structures de données probabilistes compactes pour résumer d'immenses jeux de données avec une efficacité mémoire et une vitesse accrues.",
+                    "lien": "https://luminousmen.com/post/the-power-of-data-sketches-a-comprehensive-guide/?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                },
+                {
+                    "titre": "Au-delà de BM25 : la recherche neuronale 'sparse' chez Faire",
+                    "resume": "Comment Faire a déployé un modèle de recherche neuronale interprétable pour améliorer la pertinence des résultats et les conversions sur leur marketplace.",
+                    "lien": "https://craft.faire.com/beyond-bm25-and-dense-embeddings-841a7b18ce27?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Utiliser les agents IA de manière responsable",
+                    "resume": "Les agents de codage peuvent générer du code risqué ; une supervision humaine et des garde-fous d'infrastructure restent indispensables.",
+                    "lien": "https://vercel.com/blog/agent-responsibly?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "La revanche du Data Scientist",
+                    "resume": "Malgré l'essor des LLM, les compétences en expérimentation, métriques et évaluation de données restent cruciales pour fiabiliser les systèmes IA.",
+                    "lien": "https://hamel.dev/blog/posts/revenge/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Personne ne prend de décisions avec vos tableaux de bord",
+                    "resume": "Critique de la BI 'théâtrale' : de nombreux tableaux de bord manquent d'utilité réelle faute d'objectifs décisionnels et de responsabilités clairs.",
+                    "lien": "https://blog.dataengineerthings.org/nobody-is-making-decisions-with-your-dashboards-06849015f28b?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Change Data Capture : évitez de copier 50M de lignes inutilement",
+                    "resume": "Introduction au CDC pour synchroniser uniquement les modifications de bases de données, optimisant ainsi les pipelines de données modernes.",
+                    "lien": "https://podostack.com/p/change-data-capture-cdc-intro?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                },
+                {
+                    "titre": "Écrire des fournisseurs de tables personnalisés dans Apache DataFusion",
+                    "resume": "Guide technique pour intégrer des sources de données propriétaires dans DataFusion en optimisant le partitionnement et le filtrage.",
+                    "lien": "https://datafusion.apache.org/blog/2026/03/31/writing-table-providers?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                },
+                {
+                    "titre": "MotherDuck est désormais compatible avec Postgres",
+                    "resume": "MotherDuck propose un nouveau point de terminaison compatible PostgreSQL, facilitant la connexion des outils BI standards à son entrepôt de données.",
+                    "lien": "https://motherduck.com/blog/motherduck-now-speaks-postgres/?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Qdrant Skills pour les agents IA",
+                    "resume": "Qdrant lance des 'compétences' open-source permettant aux agents IA de diagnostiquer et résoudre des problèmes complexes de recherche vectorielle.",
+                    "lien": "https://qdrant.tech/blog/qdrant-skills-release/?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Concevoir la couche de mémoire d'un agent IA pour les données d'événements",
+                    "resume": "Utilisation d'ApertureDB pour créer une couche de mémoire multimodale (graphe et vecteur) afin d'améliorer la précision des agents IA.",
+                    "lien": "https://mlops.community/engineering-the-memory-layer-for-an-ai-agent-to-navigate-large-scale-event-data/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Qu'est-ce que l'ingénierie de l'inférence ?",
+                    "resume": "Analyse approfondie de l'optimisation de l'inférence LLM (quantification, parallélisme, cache) pour réduire les coûts et la latence à grande échelle.",
+                    "lien": "https://newsletter.pragmaticengineer.com/p/what-is-inference-engineering?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                }
+            ]
         }
     ]
 }

@@ -4,77 +4,195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Technologique | Data, IA & MLOps</title>
-    <meta name="description" content="Veille technologique hebdomadaire de Christopher Gilleron sur la Data, l'IA et le MLOps. Résumés traduits automatiquement de la newsletter TLDR Data.">
+    <title>News Data & IA | Veille automatisée — Christopher Gilleron</title>
+    <meta name="description" content="La page d'accueil des News Data : actualités Data, IA et MLOps extraites, traduites et catégorisées automatiquement depuis TLDR Data grâce à Python, Gemini AI et GitHub Actions.">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
+        /* ===== BASE ===== */
         html { scroll-behavior: smooth; }
-        body { background-color: #0a0f1e; color: #f8fafc; font-family: 'Inter', sans-serif; opacity: 0; transition: opacity 0.8s ease-in-out; }
+        body {
+            background-color: #060b18;
+            color: #f8fafc;
+            font-family: 'Inter', sans-serif;
+            opacity: 0;
+            transition: opacity 0.7s ease-in-out;
+        }
         body.loaded { opacity: 1; }
 
+        /* ===== NAVBAR ===== */
         .nav-blur {
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            background: rgba(10, 15, 30, 0.85);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(6, 11, 24, 0.88);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
-
-        .gradient-text {
-            background: linear-gradient(135deg, #60a5fa, #34d399);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
         .avatar {
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
+            width: 40px; height: 40px; border-radius: 50%;
             background: linear-gradient(135deg, #60a5fa, #34d399);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 0.95rem;
-            color: #0a0f1e;
-            flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 800; font-size: 0.85rem; color: #060b18; flex-shrink: 0;
         }
 
-        .hero-glow {
-            background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(52, 211, 153, 0.15), transparent);
+        /* ===== HERO ===== */
+        .hero-bg {
+            background:
+                radial-gradient(ellipse 70% 55% at 50% -10%, rgba(52, 211, 153, 0.12), transparent),
+                radial-gradient(ellipse 50% 40% at 80% 60%, rgba(96, 165, 250, 0.07), transparent);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #34d399 0%, #60a5fa 60%, #a78bfa 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .pulse-dot {
+            width: 8px; height: 8px; border-radius: 50%; background: #34d399;
+            animation: pulse-anim 2s ease-in-out infinite;
+        }
+        @keyframes pulse-anim {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.85); }
         }
 
+        /* ===== PIPELINE SECTION ===== */
+        .pipeline-card {
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(8px);
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .pipeline-card:hover {
+            border-color: rgba(52, 211, 153, 0.25);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            background: rgba(15, 23, 42, 0.75);
+        }
+        .pipeline-number {
+            width: 36px; height: 36px; border-radius: 50%;
+            background: linear-gradient(135deg, rgba(52,211,153,0.2), rgba(96,165,250,0.2));
+            border: 1px solid rgba(52, 211, 153, 0.3);
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'JetBrains Mono', monospace; font-weight: 700;
+            font-size: 0.8rem; color: #34d399; flex-shrink: 0;
+        }
+        .pipeline-connector {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(52,211,153,0.3), rgba(96,165,250,0.1));
+        }
+        .stack-pill {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem; font-weight: 500;
+            padding: 0.25rem 0.75rem; border-radius: 9999px;
+            border: 1px solid; transition: all 0.2s;
+        }
+        .stack-pill:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+        .pill-python   { color: #60a5fa; border-color: rgba(96,165,250,0.3);  background: rgba(96,165,250,0.08); }
+        .pill-bs4      { color: #f97316; border-color: rgba(249,115,22,0.3);  background: rgba(249,115,22,0.08); }
+        .pill-gemini   { color: #a78bfa; border-color: rgba(167,139,250,0.3); background: rgba(167,139,250,0.08); }
+        .pill-actions  { color: #34d399; border-color: rgba(52,211,153,0.3);  background: rgba(52,211,153,0.08); }
+        .pill-pages    { color: #fbbf24; border-color: rgba(251,191,36,0.3);  background: rgba(251,191,36,0.08); }
+        .pill-json     { color: #e2e8f0; border-color: rgba(226,232,240,0.2); background: rgba(226,232,240,0.05); }
+
+        /* ===== DIVIDER ===== */
+        .section-divider {
+            border: none; height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
+        }
+
+        /* ===== DATE SELECTOR ===== */
+        .date-select-wrapper {
+            position: relative;
+            display: inline-flex; align-items: center;
+        }
+        #date-select {
+            appearance: none; -webkit-appearance: none;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(52, 211, 153, 0.25);
+            color: #34d399;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            padding: 0.5rem 2.5rem 0.5rem 0.9rem;
+            border-radius: 0.6rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            outline: none;
+        }
+        #date-select:hover, #date-select:focus {
+            border-color: rgba(52, 211, 153, 0.5);
+            box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.08);
+        }
+        #date-select option { background: #0f172a; color: #f8fafc; }
+        .select-chevron {
+            position: absolute; right: 0.7rem; pointer-events: none; color: #34d399;
+        }
+
+        /* ===== ARTICLES ===== */
         .news-card {
             background: rgba(15, 23, 42, 0.4);
             border: 1px solid rgba(255, 255, 255, 0.05);
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        
         .news-card:hover {
             transform: translateY(-4px);
-            border-color: rgba(52, 211, 153, 0.3);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-color: rgba(52, 211, 153, 0.25);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
             background: rgba(15, 23, 42, 0.8);
         }
+        .news-card.fade-in {
+            animation: fadeInUp 0.4s ease forwards;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
 
-        .btn-hover { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
-        .btn-hover:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); }
-        
-        /* Shimmer loading effect */
+        /* ===== SKELETON ===== */
         .skeleton {
-            background: linear-gradient(90deg, rgba(255, 255, 255, 0.03) 25%, rgba(255, 255, 255, 0.08) 50%, rgba(255, 255, 255, 0.03) 75%);
+            background: linear-gradient(90deg,
+                rgba(255,255,255,0.03) 25%,
+                rgba(255,255,255,0.08) 50%,
+                rgba(255,255,255,0.03) 75%);
             background-size: 200% 100%;
             animation: shimmer 1.5s infinite;
         }
         @keyframes shimmer {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
+            0%   { background-position: -200% 0; }
+            100% { background-position:  200% 0; }
         }
+
+        /* ===== STATS BAR ===== */
+        .stat-box {
+            background: rgba(15,23,42,0.4);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 0.875rem;
+            padding: 1.1rem 1.5rem;
+            text-align: center;
+        }
+
+        /* ===== MISC ===== */
+        .code-inline {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            background: rgba(96,165,250,0.1);
+            border: 1px solid rgba(96,165,250,0.2);
+            color: #93c5fd;
+            padding: 0.1rem 0.45rem;
+            border-radius: 0.3rem;
+        }
+        .section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #34d399;
+        }
+        .arrow-icon { transition: transform 0.2s; }
+        .news-card:hover .arrow-icon { transform: translate(3px, -3px); }
     </style>
 </head>
 
 <body class="relative min-h-screen flex flex-col">
+
     <!-- ===== NAVBAR ===== -->
     <nav class="nav-blur fixed top-0 left-0 right-0 z-50">
         <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
@@ -86,48 +204,178 @@
                 </div>
             </a>
             <div class="flex items-center gap-6">
-                <a href="index.html" class="text-sm font-medium text-slate-400 hover:text-white transition-colors">Retour à l'accueil</a>
+                <a href="index.html" class="text-sm font-medium text-slate-400 hover:text-white transition-colors">← Accueil</a>
             </div>
         </div>
     </nav>
 
-    <!-- ===== HEADER ===== -->
-    <header class="hero-glow pt-36 pb-12 px-6 text-center">
+    <!-- ===== HERO ===== -->
+    <header class="hero-bg pt-32 pb-10 px-6 text-center">
         <div class="max-w-3xl mx-auto">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono mb-6">
-                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                VEILLE AUTOMATISÉE
+            <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-xs font-mono mb-7">
+                <div class="pulse-dot"></div>
+                VEILLE AUTOMATISÉE · TLDR DATA
             </div>
-            <h1 class="text-4xl sm:text-5xl font-extrabold text-white mb-5 leading-tight">
-                Data, IA & MLOps
+
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-5 leading-tight tracking-tight">
+                Les News <span class="gradient-text">Data & IA</span> <br class="hidden sm:block">de la semaine
             </h1>
-            <p class="text-slate-400 mb-2 leading-relaxed text-sm sm:text-base">
-                Chaque semaine, cette page est mise à jour de manière **100% automatisée** : un robot (GitHub Actions + script Python) extrait les meilleures actualités anglophones de <i>TLDR Data</i>, puis l'IA de Google (Gemini) les traduit et les catégorise ici pour vous.
+
+            <p class="text-slate-400 mb-8 leading-relaxed text-sm sm:text-base max-w-2xl mx-auto">
+                Chaque lundi et jeudi, un pipeline 100% automatisé extrait les meilleures actualités anglophones
+                de <span class="text-white font-medium">TLDR Data</span>, puis
+                <span class="text-white font-medium">Gemini AI</span> les traduit et les catégorise ici.
+                Les <span class="text-emerald-400 font-medium">10 dernières éditions</span> sont accessibles via le menu ci-dessous.
             </p>
+
+            <!-- Stats bar -->
+            <div class="flex flex-wrap justify-center gap-4 mb-2">
+                <div class="stat-box">
+                    <div class="text-2xl font-black text-white" id="stat-editions">—</div>
+                    <div class="text-[10px] text-slate-500 mt-0.5 font-mono uppercase tracking-wider">Éditions stockées</div>
+                </div>
+                <div class="stat-box">
+                    <div class="text-2xl font-black text-emerald-400" id="stat-articles">—</div>
+                    <div class="text-[10px] text-slate-500 mt-0.5 font-mono uppercase tracking-wider">Articles traduits</div>
+                </div>
+                <div class="stat-box">
+                    <div class="text-2xl font-black text-blue-400">0%</div>
+                    <div class="text-[10px] text-slate-500 mt-0.5 font-mono uppercase tracking-wider">Intervention humaine</div>
+                </div>
+            </div>
         </div>
     </header>
 
-    <!-- ===== MAIN CONTENT ===== -->
-    <main class="max-w-4xl mx-auto px-6 flex-grow w-full pb-20">
-        
-        <div class="flex items-center justify-between mb-8 pb-4 border-b border-slate-800">
+    <!-- ===== PIPELINE ===== -->
+    <section class="max-w-5xl mx-auto px-6 pt-12 pb-10 w-full">
+
+        <div class="flex items-center gap-3 mb-7">
+            <span class="section-label">Comment ça marche</span>
+            <div class="flex-1 h-px bg-slate-800"></div>
+        </div>
+
+        <!-- Connecteur visuel desktop -->
+        <div class="hidden md:flex items-center gap-2 mb-6 px-4">
+            <div class="pipeline-number">01</div>
+            <div class="pipeline-connector"></div>
+            <div class="pipeline-number">02</div>
+            <div class="pipeline-connector"></div>
+            <div class="pipeline-number">03</div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+
+            <!-- Étape 1 : Scraping -->
+            <div class="pipeline-card rounded-2xl p-6">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="text-2xl">🕷️</div>
+                    <div>
+                        <div class="text-[10px] font-mono text-slate-500 uppercase tracking-widest">Étape 01</div>
+                        <div class="font-bold text-white text-base">Scraping</div>
+                    </div>
+                </div>
+                <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                    Le script Python visite <span class="code-inline">tldr.tech/data/YYYY-MM-DD</span>,
+                    parse le HTML avec <span class="code-inline">BeautifulSoup</span> et extrait les articles
+                    en filtrant automatiquement les <span class="text-slate-300">sponsors</span>.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="stack-pill pill-python">Python</span>
+                    <span class="stack-pill pill-bs4">BeautifulSoup4</span>
+                    <span class="stack-pill pill-json">requests</span>
+                </div>
+            </div>
+
+            <!-- Étape 2 : IA -->
+            <div class="pipeline-card rounded-2xl p-6">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="text-2xl">🤖</div>
+                    <div>
+                        <div class="text-[10px] font-mono text-slate-500 uppercase tracking-widest">Étape 02</div>
+                        <div class="font-bold text-white text-base">Traduction & Catégorisation</div>
+                    </div>
+                </div>
+                <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                    Les articles bruts (EN) sont envoyés à l'API <span class="code-inline">Gemini</span> avec
+                    un prompt structuré. Le modèle retourne un <span class="code-inline">tableau JSON</span> avec
+                    titres traduits, résumés courts et catégories (<em>News, Tool, Tutoriel, Deep Dive</em>).
+                    Un <span class="text-slate-300">Hot Swap</span> bascule sur le modèle de secours si surcharge.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="stack-pill pill-gemini">Gemini API</span>
+                    <span class="stack-pill pill-json">JSON</span>
+                </div>
+            </div>
+
+            <!-- Étape 3 : GitHub Actions -->
+            <div class="pipeline-card rounded-2xl p-6">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="text-2xl">⚙️</div>
+                    <div>
+                        <div class="text-[10px] font-mono text-slate-500 uppercase tracking-widest">Étape 03</div>
+                        <div class="font-bold text-white text-base">Publication automatique</div>
+                    </div>
+                </div>
+                <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                    Un workflow <span class="code-inline">GitHub Actions</span> déclenché chaque <strong class="text-white">lundi et jeudi</strong>
+                    exécute le script, insère la nouvelle édition en tête du JSON
+                    (<strong class="text-white">10 éditions max</strong>, FIFO), puis commit et push automatiquement
+                    vers <span class="code-inline">GitHub Pages</span>.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="stack-pill pill-actions">GitHub Actions</span>
+                    <span class="stack-pill pill-pages">GitHub Pages</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Stack globale -->
+        <div class="flex flex-wrap items-center gap-3">
+            <span class="text-[11px] text-slate-600 font-mono uppercase tracking-wider mr-1">Stack complète :</span>
+            <span class="stack-pill pill-python">Python 3.11</span>
+            <span class="stack-pill pill-bs4">BeautifulSoup4</span>
+            <span class="stack-pill pill-gemini">Gemini 2.5 Flash</span>
+            <span class="stack-pill pill-actions">GitHub Actions</span>
+            <span class="stack-pill pill-pages">GitHub Pages</span>
+            <span class="stack-pill pill-json">JSON</span>
+        </div>
+    </section>
+
+    <hr class="section-divider mx-6">
+
+    <!-- ===== NEWS SECTION ===== -->
+    <main class="max-w-5xl mx-auto px-6 flex-grow w-full pb-24 pt-10">
+
+        <!-- Barre de sélection -->
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
             <h2 class="text-lg font-semibold text-white flex items-center gap-2">
-                <span>📰</span> À la Une
+                <span>📰</span> Édition du jour
             </h2>
-            <div id="date-badge" class="text-xs font-mono text-slate-500 bg-slate-800/50 px-3 py-1.5 rounded border border-slate-700">
-                Date : Chargement...
+
+            <div class="flex items-center gap-3 flex-wrap">
+                <span class="text-xs text-slate-500 font-mono">Choisir une date :</span>
+                <div class="date-select-wrapper">
+                    <select id="date-select" aria-label="Choisir l'édition à afficher">
+                        <option value="">Chargement...</option>
+                    </select>
+                    <svg class="select-chevron w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </div>
+                <div id="edition-count" class="text-[11px] font-mono text-slate-600 bg-slate-800/40 px-2.5 py-1 rounded-md border border-slate-700/50"></div>
             </div>
         </div>
 
-        <!-- Conteneur pour les articles -->
-        <div id="news-container" class="space-y-6">
-            <!-- Skeletons (état de chargement) -->
+        <!-- Conteneur articles -->
+        <div id="news-container" class="space-y-5">
+            <!-- Skeletons -->
             <div class="news-card rounded-2xl p-6">
-                <div class="skeleton h-4 w-24 rounded mb-4"></div>
+                <div class="skeleton h-4 w-20 rounded mb-4"></div>
                 <div class="skeleton h-6 w-3/4 rounded mb-3"></div>
                 <div class="skeleton h-4 w-full rounded mb-2"></div>
                 <div class="skeleton h-4 w-5/6 rounded mb-5"></div>
-                <div class="skeleton h-4 w-32 rounded"></div>
+                <div class="skeleton h-4 w-28 rounded"></div>
             </div>
             <div class="news-card rounded-2xl p-6">
                 <div class="skeleton h-4 w-24 rounded mb-4"></div>
@@ -135,113 +383,184 @@
                 <div class="skeleton h-4 w-full rounded mb-2"></div>
                 <div class="skeleton h-4 w-4/6 rounded mb-5"></div>
             </div>
+            <div class="news-card rounded-2xl p-6">
+                <div class="skeleton h-4 w-16 rounded mb-4"></div>
+                <div class="skeleton h-6 w-5/6 rounded mb-3"></div>
+                <div class="skeleton h-4 w-full rounded mb-2"></div>
+                <div class="skeleton h-4 w-3/4 rounded mb-5"></div>
+            </div>
         </div>
-        
     </main>
 
     <!-- ===== FOOTER ===== -->
-    <footer class="text-center py-8 border-t border-slate-800/60 mt-auto bg-slate-900/20">
-        <p class="text-[10px] text-slate-500">
-            Généré automatiquement via <b>Gemini AI</b> & <b>GitHub Actions</b>
+    <footer class="text-center py-8 border-t border-slate-800/50 bg-slate-900/20">
+        <p class="text-[11px] text-slate-500 font-mono">
+            Pipeline automatisé · <b class="text-slate-400">Gemini AI</b> + <b class="text-slate-400">GitHub Actions</b> + <b class="text-slate-400">GitHub Pages</b>
         </p>
+        <p class="text-[10px] text-slate-700 mt-1">Source : <a href="https://tldr.tech/data" target="_blank" class="underline hover:text-slate-500 transition">tldr.tech/data</a></p>
     </footer>
 
     <script>
-        // Fonction pour déterminer la couleur du badge de catégorie
-        function getCategoryColor(category) {
-            const cat = category.toLowerCase();
-            if (cat.includes('deep dive') || cat.includes('article')) return 'blue';
-            if (cat.includes('tutoriel') || cat.includes('guide')) return 'purple';
-            if (cat.includes('outil') || cat.includes('tool')) return 'emerald';
-            if (cat.includes('news') || cat.includes('actu')) return 'orange';
-            return 'slate'; // Défaut
+        // =============================================
+        // HELPERS
+        // =============================================
+
+        function getCategoryStyle(category) {
+            const cat = (category || '').toLowerCase();
+            if (cat.includes('deep dive'))  return { color: 'blue',    label: 'Deep Dive'  };
+            if (cat.includes('tutoriel'))   return { color: 'purple',  label: 'Tutoriel'   };
+            if (cat.includes('tool'))       return { color: 'emerald', label: 'Tool'        };
+            if (cat.includes('news'))       return { color: 'orange',  label: 'News'        };
+            return { color: 'slate', label: category || '—' };
         }
 
-        // Chargement du JSON
-        async function loadNews() {
+        function formatDateFR(dateStr) {
+            const d = new Date(dateStr + 'T12:00:00'); // forcer midi pour éviter décalage TZ
+            return d.toLocaleDateString('fr-FR', {
+                weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+            });
+        }
+
+        // =============================================
+        // RENDU DES ARTICLES
+        // =============================================
+
+        function renderArticles(articles) {
             const container = document.getElementById('news-container');
-            const dateBadge = document.getElementById('date-badge');
-            
+            container.innerHTML = '';
+
+            if (!articles || articles.length === 0) {
+                container.innerHTML = '<div class="text-center py-12 text-slate-500">Aucune actualité disponible pour cette date.</div>';
+                return;
+            }
+
+            articles.forEach((article, index) => {
+                const { color, label } = getCategoryStyle(article.categorie);
+
+                const card = document.createElement('div');
+                card.className = 'news-card rounded-2xl p-6 group relative fade-in';
+                card.style.animationDelay = `${index * 60}ms`;
+
+                const wrapperTag = article.lien ? 'a' : 'div';
+                const wrapperAttrs = article.lien
+                    ? `href="${article.lien}" target="_blank" rel="noopener noreferrer" class="block outline-none no-underline"`
+                    : ``;
+
+                const arrowIcon = article.lien
+                    ? `<span class="arrow-icon opacity-0 group-hover:opacity-100 transition-opacity text-${color}-400 absolute top-6 right-6 text-lg">↗</span>`
+                    : '';
+
+                const readMore = article.lien
+                    ? `<div class="text-${color}-400/80 text-xs font-medium flex items-center gap-1.5 group-hover:text-${color}-400 mt-1">
+                            Lire la source
+                            <svg class="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                            </svg>
+                       </div>`
+                    : '';
+
+                card.innerHTML = `
+                    <${wrapperTag} ${wrapperAttrs}>
+                        <div class="inline-block px-2.5 py-1 rounded bg-${color}-500/10 border border-${color}-500/20 text-${color}-400 text-[10px] font-mono uppercase tracking-wider mb-4">
+                            ${label}
+                        </div>
+                        ${arrowIcon}
+                        <h3 class="text-lg font-bold text-white mb-2.5 group-hover:text-${color}-300 transition-colors pr-8 leading-snug">
+                            ${article.titre}
+                        </h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-3">
+                            ${article.resume}
+                        </p>
+                        ${readMore}
+                    </${wrapperTag}>
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+        // =============================================
+        // CHARGEMENT PRINCIPAL
+        // =============================================
+
+        async function loadNews() {
+            const select = document.getElementById('date-select');
+            const editionCount = document.getElementById('edition-count');
+            const statEditions = document.getElementById('stat-editions');
+            const statArticles = document.getElementById('stat-articles');
+
             try {
-                // Pour éviter le cache violent du navigateur sur un fichier statique
-                const response = await fetch('data/tldr.json?t=' + new Date().getTime());
-                
-                if (!response.ok) {
-                    throw new Error('Fichier JSON introuvable.');
-                }
-                
+                const response = await fetch('data/tldr.json?t=' + Date.now());
+                if (!response.ok) throw new Error('Fichier JSON introuvable.');
+
                 const data = await response.json();
-                
-                // Mettre à jour la date
-                const dateObj = new Date(data.date);
-                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-                dateBadge.innerText = 'Édition du : ' + dateObj.toLocaleDateString('fr-FR', options);
-                
-                // Vider le conteneur des skeletons
-                container.innerHTML = '';
-                
-                // S'il n'y a pas d'articles
-                if (!data.articles || data.articles.length === 0) {
-                    container.innerHTML = '<div class="text-center py-10 text-slate-500">Aucune actualité trouvée pour cette date.</div>';
+                const editions = data.editions || [];
+
+                if (!editions.length) {
+                    document.getElementById('news-container').innerHTML =
+                        '<div class="text-center py-12 text-slate-500">Aucune édition disponible.</div>';
                     return;
                 }
-                
-                // Générer les cartes d'articles
-                data.articles.forEach(article => {
-                    const color = getCategoryColor(article.categorie);
-                    
-                    const card = document.createElement('div');
-                    card.className = 'news-card rounded-2xl p-6 group relative';
-                    
-                    // Lien cliquable sur toute la carte si un lien existe
-                    const wrapperStart = article.lien ? `<a href="${article.lien}" target="_blank" class="block outline-none cursor-pointer no-underline">` : `<div>`;
-                    const wrapperEnd = article.lien ? `</a>` : `</div>`;
-                    
-                    const arrowIcon = article.lien ? `<span class="opacity-0 group-hover:opacity-100 transition-opacity text-${color}-400 absolute top-6 right-6">↗</span>` : '';
-                    
-                    card.innerHTML = `
-                        ${wrapperStart}
-                            <div class="inline-block px-2.5 py-1 rounded bg-${color}-500/10 border border-${color}-500/20 text-${color}-400 text-[10px] font-mono uppercase tracking-wider mb-4">
-                                ${article.categorie}
-                            </div>
-                            ${arrowIcon}
-                            <h3 class="text-xl font-bold text-white mb-3 group-hover:text-${color}-300 transition-colors pr-8">
-                                ${article.titre}
-                            </h3>
-                            <p class="text-slate-400 text-sm leading-relaxed mb-4">
-                                ${article.resume}
-                            </p>
-                            ${article.lien ? `
-                            <div class="text-${color}-400/80 text-xs font-medium flex items-center gap-1.5 group-hover:text-${color}-400">
-                                Lire la source d'origine <svg class="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-                            </div>
-                            ` : ''}
-                        ${wrapperEnd}
-                    `;
-                    
-                    container.appendChild(card);
+
+                // Calculer les stats globales
+                const totalArticles = editions.reduce((sum, ed) => sum + (ed.articles || []).length, 0);
+                statEditions.textContent = editions.length;
+                statArticles.textContent = totalArticles;
+
+                // Remplir le menu déroulant
+                select.innerHTML = '';
+                editions.forEach((ed, i) => {
+                    const opt = document.createElement('option');
+                    opt.value = i;
+                    opt.textContent = formatDateFR(ed.date);
+                    if (i === 0) opt.textContent += '  ← Dernière édition';
+                    select.appendChild(opt);
                 });
-                
+
+                // Afficher automatiquement la plus récente
+                displayEdition(editions, 0, editionCount);
+
+                // Écouter le changement de sélection
+                select.addEventListener('change', () => {
+                    const idx = parseInt(select.value);
+                    displayEdition(editions, idx, editionCount);
+                });
+
             } catch (error) {
-                console.error("Erreur de chargement:", error);
-                
-                container.innerHTML = `
+                console.error('Erreur de chargement:', error);
+                document.getElementById('news-container').innerHTML = `
                     <div class="bg-red-500/10 border border-red-500/20 rounded-xl p-6 text-center">
                         <div class="text-red-400 text-3xl mb-2">⚠️</div>
                         <h3 class="text-red-400 font-medium mb-1">Impossible de charger les actualités</h3>
-                        <p class="text-red-400/70 text-sm text-center">Assurez-vous que le fichier data/tldr.json a bien été généré.</p>
+                        <p class="text-red-400/70 text-sm">Vérifiez que <code>data/tldr.json</code> existe et est valide.</p>
                     </div>
                 `;
-                dateBadge.innerText = 'Édition hors-ligne';
             }
         }
 
-        // Au chargement
+        function displayEdition(editions, idx, editionCountEl) {
+            const ed = editions[idx];
+            if (!ed) return;
+
+            const count = (ed.articles || []).length;
+            editionCountEl.textContent = `${count} article${count > 1 ? 's' : ''}`;
+
+            // Mettre à jour le titre de section
+            const h2 = document.querySelector('main h2');
+            if (h2) {
+                h2.innerHTML = `<span>📰</span> ${formatDateFR(ed.date)}`;
+            }
+
+            renderArticles(ed.articles);
+        }
+
+        // =============================================
+        // INIT
+        // =============================================
+
         document.addEventListener('DOMContentLoaded', () => {
-            document.body.classList.add('loaded'); // Fondu CSS
-            
-            // Simuler un très léger temps de chargement pour montrer le "Shimmer effect" (très pro sur un portfolio)
-            setTimeout(loadNews, 800);
+            document.body.classList.add('loaded');
+            setTimeout(loadNews, 600);
         });
     </script>
 </body>
