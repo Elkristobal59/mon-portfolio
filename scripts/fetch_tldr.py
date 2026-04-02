@@ -23,7 +23,7 @@ FALLBACK_MODEL = "gemini-3-flash"
 def get_current_data_date():
     """Récupère la date de la dernière newsletter enregistrée dans le JSON."""
     try:
-        base_dir = os.path.dirname(os.path.abspath(_file_))
+        base_dir = os.path.dirname(os.path.abspath(__file__))
         path = os.path.join(base_dir, '..', 'data', 'tldr.json')
         if os.path.exists(path):
             with open(path, 'r', encoding='utf-8') as f:
@@ -104,10 +104,10 @@ def call_gemini_api(model_id, prompt):
     )
     result = response.text.strip()
     # Nettoyage du Markdown si présent
-    if result.startswith("json"):
-        result = result.replace("json", "", 1)
-    if result.endswith(""):
-        result = result[::-1].replace("", "", 1)[::-1]
+    if "```json" in result:
+        result = result.split("```json")[1].split("```")[0]
+    elif "```" in result:
+        result = result.split("```")[1].split("```")[0]
     return result.strip()
 
 def process_with_ai(articles, date_str):
@@ -184,7 +184,7 @@ def main():
             "articles": articles
         }
         
-        base_dir = os.path.dirname(os.path.abspath(_file_))
+        base_dir = os.path.dirname(os.path.abspath(__file__))
         out_path = os.path.join(base_dir, '..', 'data', 'tldr.json')
         os.makedirs(os.path.dirname(out_path), exist_ok=True)
         
@@ -198,5 +198,5 @@ def main():
         print("Réponse reçue :", json_data)
         exit(1)
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     main()
