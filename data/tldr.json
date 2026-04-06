@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-04-06",
+            "articles": [
+                {
+                    "titre": "Recherche vidéo multimodale chez Netflix",
+                    "resume": "Netflix a conçu une architecture IA pour identifier des moments clés dans des milliers d'heures de vidéo, utilisant Cassandra, Kafka et Elasticsearch pour remplacer la recherche par mots-clés.",
+                    "lien": "https://netflixtechblog.com/powering-multimodal-intelligence-for-video-search-3e0020cf1202?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Comment Datadog a redéfini la réplication de données",
+                    "resume": "Pour réduire une latence de 7 secondes, Datadog est passé de requêtes Postgres directes à un flux CDC via Debezium et Kafka, optimisant la recherche sur des milliers de métriques.",
+                    "lien": "https://blog.bytebytego.com/p/how-datadog-redefined-data-replication?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Optimiser l'efficacité du stockage Magic Pocket chez Dropbox",
+                    "resume": "Dropbox a réduit la fragmentation et les coûts de stockage de son infrastructure immuable de 30 à 50 % grâce à une nouvelle stratégie de compaction multi-niveaux.",
+                    "lien": "https://dropbox.tech/infrastructure/improving-storage-efficiency-in-magic-pocket-our-immutable-blob-store?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "L'obsolescence des tableaux de bord et l'attention organisationnelle",
+                    "resume": "De nombreux tableaux de bord finissent inutilisés car l'attention des entreprises se déplace, les transformant en vestiges de priorités passées plutôt qu'en outils décisionnels durables.",
+                    "lien": "https://www.counting-stuff.com/dashboard-rot-as-org-attention-grave-markers/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Claude et le futur de la donnée : prédictions de l'IA",
+                    "resume": "Claude prédit l'obsolescence des outils BI traditionnels face aux LLM et une mutation des ingénieurs de données vers des rôles de « curateurs de contexte ».",
+                    "lien": "https://motherduck.com/blog/consulting-the-oracle-claude-on-the-future-of-data/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Comment devenir ingénieur Data ET IA",
+                    "resume": "L'ingénierie IA repose sur des bases solides en data engineering ; le métier évolue vers la transformation de la modélisation et de l'orchestration en « ingénierie de contexte ».",
+                    "lien": "https://pipeline2insights.substack.com/p/how-become-a-data-and-ai-engineer?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                },
+                {
+                    "titre": "30 questions d'entretien BI à l'ère de l'IA",
+                    "resume": "Les entretiens BI délaissent le SQL classique pour se concentrer sur la gouvernance, les couches sémantiques et la fiabilité des données destinées aux agents IA.",
+                    "lien": "https://hackernoon.com/30-bi-engineering-interview-questions-that-actually-matter-in-the-ai-era?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                },
+                {
+                    "titre": "Mise à jour majeure de MCP pour l'IA agentique",
+                    "resume": "La prochaine spécification du protocole MCP introduira des serveurs sans état et le support de tâches autonomes pour faciliter le déploiement d'agents IA à grande échelle.",
+                    "lien": "https://techstrong.ai/articles/next-major-mcp-update-focuses-on-scaling-agentic-ai/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "NornicDB : Base de données graphe et vecteur",
+                    "resume": "Une base de données compatible Neo4j optimisée pour l'IA, combinant requêtes Cypher et recherche vectorielle GPU pour gérer la mémoire persistante des agents.",
+                    "lien": "https://github.com/orneryd/NornicDB?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Data Inlining dans DuckLake : le streaming pour les Data Lakes",
+                    "resume": "Cette technique stocke les petites mises à jour directement dans le catalogue plutôt qu'en fichiers Parquet, résolvant le problème des « petits fichiers » pour le streaming.",
+                    "lien": "https://ducklake.select/2026/04/02/data-inlining-in-ducklake/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "La dette technique cachée de l'ingénierie agentique",
+                    "resume": "Le déploiement d'agents IA génère une dette technique massive liée à l'observabilité et la gouvernance, nécessitant des contrôles standardisés dès le début des projets.",
+                    "lien": "https://thenewstack.io/hidden-agentic-technical-debt/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Les agents de code comme processeurs de contextes longs",
+                    "resume": "Les agents spécialisés en codage surpassent le RAG classique sur les contextes longs en utilisant des outils externes pour itérer et traiter massivement des textes.",
+                    "lien": "https://arxiv.org/html/2603.20432v1?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                }
+            ]
+        },
+        {
             "date": "2026-04-02",
             "articles": [
                 {
