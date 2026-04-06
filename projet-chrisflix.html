@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHRISFLIX : Media Center Automatisé — Christopher Gilleron</title>
+    <meta name="description"
+        content="Projet infrastructure & automatisation : déploiement d'une stack Arrs (Radarr, Sonarr, Prowlarr) avec Jellyfin et Jellyseerr sur serveur Windows & NAS Synology.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #0a0f1e;
+            color: #f8fafc;
+            font-family: 'Inter', sans-serif;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        body.loaded {
+            opacity: 1;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .nav-blur {
+            backdrop-filter: blur(16px);
+            background: rgba(10, 15, 30, 0.85);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #60a5fa, #34d399);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: .95rem;
+            color: #0a0f1e;
+            flex-shrink: 0;
+        }
+
+        .nav-link {
+            color: #94a3b8;
+            transition: color 0.2s;
+            font-size: .875rem;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            color: #f8fafc;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            padding: 3px 10px;
+            font-size: .72rem;
+            color: #94a3b8;
+        }
+
+        .service-card {
+            background: rgba(16, 24, 48, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 16px;
+            padding: 20px;
+            transition: border-color 0.2s;
+        }
+
+        .service-card:hover {
+            border-color: rgba(96, 165, 250, 0.3);
+        }
+
+        /* Archi diagram */
+        .arch-box {
+            border-radius: 10px;
+            padding: 10px 16px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-align: center;
+            border: 1px solid;
+        }
+
+        .arch-arrow {
+            color: #4b5563;
+            font-size: 1.2rem;
+        }
+
+        /* --- Progress Bar --- */
+        #progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(to right, #60a5fa, #34d399); z-index: 100; width: 0%; transition: width 0.1s ease-out; }
+
+        /* --- Back to Top --- */
+        #back-to-top { position: fixed; bottom: 30px; right: 30px; width: 44px; height: 44px; background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(8px); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #f8fafc; cursor: pointer; z-index: 40; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
+        #back-to-top.show { opacity: 1; visibility: visible; }
+        #back-to-top:hover { transform: translateY(-5px); border-color: #60a5fa; color: #60a5fa; }
+
+        /* --- Reveal Animations --- */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* --- Micro-animations boutons --- */
+        .btn-hover { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .btn-hover:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); }
+    </style>
+</head>
+
+<body class="relative">
+    <div id="progress-bar"></div>
+    <nav class="nav-blur fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3 no-underline">
+                <div class="avatar">CG</div>
+                <span class="font-bold text-white hidden sm:block">Christopher Gilleron</span>
+            </a>
+            <div class="flex items-center gap-6">
+                <a href="index.html" class="nav-link">Accueil</a>
+                <a href="projet-rag.html" class="nav-link">RAG</a>
+                <a href="projet-immich.html" class="nav-link text-emerald-400">Immich</a>
+                <a href="projet-chrisflix.html" class="nav-link text-blue-400">Chrisflix</a>
+                <a href="projet-getaround.html" class="nav-link">GetAround</a>
+                <a href="https://www.linkedin.com/in/christophergilleron/" target="_blank"
+                    class="btn-hover px-4 py-1.5 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-sm font-medium hover:bg-sky-500/20 transition-all">LinkedIn</a>
+                <a href="https://github.com/Elkristobal59" target="_blank"
+                    class="btn-hover px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-sm font-medium hover:bg-blue-500/20 transition-all">GitHub</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-3xl mx-auto px-6 pt-32 pb-28">
+
+        <a href="index.html"
+            class="inline-flex items-center gap-2 text-slate-500 text-sm hover:text-slate-300 transition-colors mb-10 no-underline">
+            ← Retour au portfolio
+        </a>
+
+        <!-- Header -->
+        <div class="mb-12">
+            <div
+                class="w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-3xl mb-6">
+                🍿</div>
+            <div class="text-xs text-blue-400 font-mono mb-3 tracking-widest">AUTOMATISATION — DEVOPS — MÉDIA</div>
+            <h1 class="text-4xl font-extrabold text-white mb-4 leading-tight">Chrisflix : Hub de Streaming 100% Automatisé</h1>
+            <p class="text-slate-400 text-lg leading-relaxed">
+                Conception et déploiement d'une stack multimédia hybride (Laptop MSI + NAS Synology) orchestrée par Docker. 
+                De la demande sur application mobile au visionnage sur Apple TV, tout le cycle de vie du contenu est automatisé via une stack de micro-services spécialisés.
+            </p>
+            <div class="flex flex-wrap gap-2 mt-6">
+                <span class="tag">Docker Compose</span>
+                <span class="tag">Synology NAS</span>
+                <span class="tag">Jellyfin</span>
+                <span class="tag">Radarr/Sonarr</span>
+                <span class="tag">Prowlarr</span>
+                <span class="tag">FlareSolverr Proxy</span>
+                <span class="tag">Jellyseerr Hub</span>
+                <span class="tag">Bazarr Subtitles</span>
+            </div>
+        </div>
+
+        <hr class="border-slate-800 mb-12">
+
+        <!-- Contexte -->
+        <section class="mb-12 reveal">
+            <h2 class="text-xl font-bold text-white mb-4">🎯 Objectif du Projet</h2>
+            <p class="text-slate-400 leading-relaxed">
+                Le but était de créer une alternative privée et gratuite aux plateformes de SVoD classiques (Netflix, Prime), en offrant une expérience utilisateur identique. Le défi technique résidait dans l'automatisation totale : recherche intelligente, contournement des protections anti-bot (Cloudflare), gestion des sous-titres et notification instantanée.
+            </p>
+        </section>
+
+        <!-- Architecture -->
+        <section class="mb-12 reveal">
+            <h2 class="text-xl font-bold text-white mb-6">🏗️ Architecture Technique Hybride</h2>
+
+            <!-- Architecture Diagram -->
+            <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-6 mb-6">
+                <div class="flex flex-col items-center gap-3 text-center">
+                    <div class="arch-box bg-blue-500/10 border-blue-500/30 text-blue-300 w-56">🧞 Jellyseerr (Mobile App)<br><span class="font-normal opacity-70">Point d'entrée utilisateur</span></div>
+                    <div class="arch-arrow">↓</div>
+                    <div class="bg-slate-800/60 border border-slate-700 rounded-xl p-4 w-full max-w-md">
+                        <div class="text-xs text-slate-500 font-mono mb-3">SERVEUR WINDOWS (Docker Stack)</div>
+                        <div class="mb-3">
+                            <div class="arch-box bg-blue-500/10 border-blue-500/30 text-blue-300 text-xs">🤖 Radarr & Sonarr (Logique métier)</div>
+                        </div>
+                        <div class="mb-3 flex gap-2 justify-center">
+                            <div class="arch-box bg-indigo-500/10 border-indigo-500/30 text-indigo-300 text-[0.65rem] flex-1">🔎 Prowlarr</div>
+                            <div class="arch-arrow">↔</div>
+                            <div class="arch-box bg-red-500/10 border-red-500/30 text-red-300 text-[0.65rem] flex-1">🕵️ FlareSolverr</div>
+                        </div>
+                        <div class="arch-box bg-emerald-500/10 border-emerald-500/30 text-emerald-300 text-xs mt-3">📽️ Jellyfin Server & Bazarr</div>
+                    </div>
+                    <div class="arch-arrow">↓ CIFS/SMB Network</div>
+                    <div class="arch-box bg-yellow-500/10 border-yellow-500/30 text-yellow-300 w-56">📁 NAS Synology DS218 Play<br><span class="font-normal opacity-70">Download Station + Stockage (TB)</span></div>
+                </div>
+            </div>
+            <p class="text-slate-500 text-xs text-center">Le serveur principal traite les requêtes et pilote le NAS distant pour le téléchargement sécurisé via VPN.</p>
+        </section>
+
+        <!-- Stack Services -->
+        <section class="mb-12 reveal">
+            <h2 class="text-xl font-bold text-white mb-6">📦 Micro-services & Automatisation</h2>
+            <div class="space-y-4">
+                <div class="service-card">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="text-xl">🧞</span>
+                        <div class="font-bold text-white">Interface Jellyseerr</div>
+                        <span class="tag ml-auto">User Request Hub</span>
+                    </div>
+                    <p class="text-slate-400 text-sm">Interface web et mobile permettant aux utilisateurs de parcourir les tendances mondiales. Une "Demande" déclenche automatiquement tout le pipeline de recherche sans intervention humaine.</p>
+                </div>
+                <div class="service-card">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="text-xl">🤖</span>
+                        <div class="font-bold text-white">Stack "Arr" (Radarr/Sonarr)</div>
+                        <span class="tag ml-auto">Download Management</span>
+                    </div>
+                    <p class="text-slate-400 text-sm">Gestionnaires intelligents qui monitorent les sorties de médias. Ils pilotent le NAS via des dossiers "Blackhole" et gèrent les métadonnées pour une bibliothèque parfaitement propre.</p>
+                </div>
+                <div class="service-card">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="text-xl">🕵️</span>
+                        <div class="font-bold text-white">Prowlarr & FlareSolverr</div>
+                        <span class="tag ml-auto">Search & Proxy</span>
+                    </div>
+                    <p class="text-slate-400 text-sm">Multiplexeur d'indexeurs couplé à un proxy de résolution Cloudflare. Permet de maintenir l'accès aux sources torrents privées et publiques en contournant les protections anti-bot.</p>
+                </div>
+                <div class="service-card">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="text-xl">📝</span>
+                        <div class="font-bold text-white">Bazarr AI Subtitles</div>
+                        <span class="tag ml-auto">Post-Processing</span>
+                    </div>
+                    <p class="text-slate-400 text-sm">Service dédié aux sous-titres. Dès qu'un média est importé, Bazarr scanne les sources mondiales (via API) pour trouver et synchroniser les sous-titres français (VFF).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Learnings -->
+        <section class="mb-12 reveal">
+            <h2 class="text-xl font-bold text-white mb-4">💡 Défis Techniques & Apprentissages</h2>
+            <ul class="space-y-3 text-slate-400 text-sm">
+                <li class="flex gap-3"><span class="text-blue-400 mt-0.5">✓</span> **Interopérabilité Réseau** : Mise en place de montages réseaux CIFS/SMB robustes entre Windows (Docker Desktop) et un NAS Synology distant.
+                </li>
+                <li class="flex gap-3"><span class="text-blue-400 mt-0.5">✓</span> **Architecture Distribuée** : Séparation de la puissance de calcul (Serveur MSI) et du stockage/téléchargement (NAS) pour optimiser les ressources.
+                </li>
+                <li class="flex gap-3"><span class="text-blue-400 mt-0.5">✓</span> **Notification Push** : Configuration de Webhooks pour que Radarr "prévienne" Jellyfin en temps réel dès qu'un film est prêt.</li>
+                <li class="flex gap-3"><span class="text-blue-400 mt-0.5">✓</span> **Post-Processing Automatisé** : Automatisation du nettoyage des noms de fichiers et de la récupération de métadonnées multilingues.</li>
+            </ul>
+        </section>
+
+    </div>
+
+    <footer class="text-center py-10 border-t border-slate-800/60 text-slate-600 text-sm">
+        Christopher Gilleron · Projet Homelab 2026
+    </footer>
+
+    <!-- ===== BOUTON RETOUR EN HAUT ===== -->
+    <div id="back-to-top" title="Retour en haut">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+    </div>
+
+    <script>
+        function handleScroll() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("progress-bar").style.width = scrolled + "%";
+
+            const btt = document.getElementById("back-to-top");
+            if (winScroll > 400) { btt.classList.add("show"); } else { btt.classList.remove("show"); }
+        }
+
+        const revealCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        };
+
+        const revealObserver = new IntersectionObserver(revealCallback, { threshold: 0.1 });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.add('loaded');
+            document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+            document.getElementById("back-to-top").addEventListener("click", () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+
+        window.onscroll = handleScroll;
+    </script>
+</body>
+
+</html>
