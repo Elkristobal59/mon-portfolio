@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-04-13",
+            "articles": [
+                {
+                    "titre": "Construction d'un pipeline de métriques à haut débit avec OpenTelemetry et vmagent",
+                    "resume": "Airbnb a migré son pipeline StatsD vers OpenTelemetry et Prometheus, gérant plus de 100 millions d'échantillons/sec via une agrégation vmagent à deux couches.",
+                    "lien": "https://medium.com/airbnb-engineering/building-a-high-volume-metrics-pipeline-with-opentelemetry-and-vmagent-c714d6910b45?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Création de Biz Ask Anything : du prototype au produit",
+                    "resume": "Yelp a développé un système d'extraction automatique d'attributs commerciaux à partir de textes non structurés avec validation humaine et monitoring itératif.",
+                    "lien": "https://engineeringblog.yelp.com/2026/03/building-baa-from-prototype-to-product.html?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Construire des systèmes RAG agentiques hiérarchiques",
+                    "resume": "Présentation de Protocol-H, un framework RAG open-source utilisant une architecture superviseur-travailleur pour combiner SQL et recherche vectorielle multi-modale.",
+                    "lien": "https://www.infoq.com/articles/building-hierarchical-agentic-rag-systems/?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                },
+                {
+                    "titre": "Maintenir la santé d'une file d'attente Postgres",
+                    "resume": "Analyse de l'impact des 'dead tuples' sur les performances des files d'attente Postgres et comment optimiser le vacuuming en limitant les requêtes concurrentes.",
+                    "lien": "https://planetscale.com/blog/keeping-a-postgres-queue-healthy?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Pourquoi l'entropie de Shannon détecte ce que la validation de schéma rate",
+                    "resume": "L'utilisation de l'entropie comme métrique d'intégrité pour détecter les pertes d'information ou les dérives de distribution que les schémas classiques ignorent.",
+                    "lien": "https://etherealogic.ai/why-shannon-entropy-catches-what-schema-validation-misses/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Votre tableau de bord IA est joli, mais personne n'apprend rien",
+                    "resume": "Conseils pour créer des dashboards utiles avec l'IA : focalisation sur une question claire, choix de graphiques adaptés et narration structurée des données.",
+                    "lien": "https://motherduck.com/blog/vibecoding-dashboards-best-practices/?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                },
+                {
+                    "titre": "Docglow (Repo GitHub)",
+                    "resume": "Outil open-source transformant les projets dbt en documentation interactive avec lignage, recherche et assistant IA intégré.",
+                    "lien": "https://github.com/docglow/docglow?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Immersion dans l'architecture d'Apache Iceberg",
+                    "resume": "Exploration des trois couches d'Iceberg (Catalogue, Métadonnées, Données) qui permettent les transactions ACID et l'évolution de schéma à grande échelle.",
+                    "lien": "https://medium.com/snowflake/deep-dive-into-apache-iceberg-architecture-the-three-layers-that-power-your-lakehouse-83c03403e503?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "kuva (Repo GitHub)",
+                    "resume": "Bibliothèque Rust et CLI pour générer rapidement des graphiques de haute qualité (SVG, PNG, PDF) à partir de fichiers CSV/TSV.",
+                    "lien": "https://github.com/Psy-Fer/kuva?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Opendataloader-pdf (Repo GitHub)",
+                    "resume": "Parser PDF open-source convertissant les documents en Markdown, JSON ou HTML, avec support hybride IA pour les scans et tableaux complexes.",
+                    "lien": "https://github.com/opendataloader-project/opendataloader-pdf?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Leaders vs Challengers : la bataille des catalogues de données",
+                    "resume": "Analyse du marché des catalogues de données pour le lakehouse, entre solutions managées propriétaires et outils open-source flexibles.",
+                    "lien": "https://xebia.com/blog/market-leaders-challengers-data-catalogs-data-lakehouse/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "L'économie défaillante des bases de données",
+                    "resume": "Analyse de la rentabilité réelle des éditeurs de bases de données face aux coûts de R&D massifs et à la domination des hyperscalers.",
+                    "lien": "https://www.bitsxpages.com/p/the-broken-economics-of-databases?utm_source=tldrdata",
+                    "categorie": "News"
+                }
+            ]
+        },
+        {
             "date": "2026-04-09",
             "articles": [
                 {
