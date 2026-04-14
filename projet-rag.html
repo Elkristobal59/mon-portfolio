@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assistant RAG V7 — Christopher Gilleron</title>
-    <meta name="description" content="Projet Assistant Documentaire RAG V7 100% local : pipeline modulaire avec Contextual Retrieval asynchrone, hot-swap de configuration, chunking sémantique adapté aux documents financiers français, LLM Mistral (Ollama), embeddings BGE-M3 GPU, reranking neural et indexation temps réel.">
+    <title>Assistant RAG — Christopher Gilleron</title>
+    <meta name="description" content="Projet Assistant Documentaire RAG 100% local : pipeline modulaire avec Contextual Retrieval asynchrone, hot-swap de configuration, chunking sémantique adapté aux documents financiers français, LLM Mistral (Ollama), embeddings BGE-M3 GPU, reranking neural et indexation temps réel.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -69,10 +69,10 @@
         <!-- Header -->
         <div class="mb-12">
             <div class="w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-3xl mb-6">🤖</div>
-            <div class="text-xs text-blue-400 font-mono mb-3 tracking-widest">PROJET PERSONNEL — IA GÉNÉRATIVE · V7</div>
-            <h1 class="text-4xl font-extrabold text-white mb-4 leading-tight">Assistant Documentaire RAG Local <span class="text-blue-400">V7</span></h1>
+            <div class="text-xs text-blue-400 font-mono mb-3 tracking-widest">PROJET PERSONNEL — IA GÉNÉRATIVE</div>
+            <h1 class="text-4xl font-extrabold text-white mb-4 leading-tight">Assistant Documentaire RAG Local</h1>
             <p class="text-slate-400 text-lg leading-relaxed">
-                Un système avancé de question-réponse sur corpus documentaire privé (PDF et Word), entièrement hébergé en local sur GPU pour garantir une stricte confidentialité. La V7 introduit une architecture modulaire, un <strong class="text-slate-300">Contextual Retrieval asynchrone</strong> (asyncio + batching Ollama parallèle), un <strong class="text-slate-300">hot-swap de configuration</strong> sans redémarrage, et un chunking sémantique spécialement calibré pour les documents financiers français. La base vectorielle s'auto-alimente en continu via Watchdog : chaque nouveau document déposé sur le NAS est automatiquement ingéré, indexé et suppressible. Totalement indépendant d'APIs cloud.
+                Un système avancé de question-réponse sur corpus documentaire privé (PDF et Word), entièrement hébergé en local sur GPU pour garantir une stricte confidentialité. L'architecture est modulaire et incorpore un <strong class="text-slate-300">Contextual Retrieval asynchrone</strong> (asyncio + batching Ollama parallèle), un <strong class="text-slate-300">hot-swap de configuration</strong> sans redémarrage, et un chunking sémantique spécialement calibré pour les documents financiers français. La base vectorielle s'auto-alimente en continu via Watchdog : chaque nouveau document déposé sur le NAS est automatiquement ingéré, indexé et suppressible. Totalement indépendant d'APIs cloud.
             </p>
             <div class="flex flex-wrap gap-2 mt-6">
                 <span class="tag">Python</span>
@@ -265,10 +265,10 @@
 
         <hr class="border-slate-800 mb-12">
 
-        <!-- Architecture Modulaire V7 -->
+        <!-- Architecture Modulaire -->
         <section class="mb-12 reveal">
-            <h2 class="text-xl font-bold text-white mb-6">⚙️ Architecture Modulaire V7</h2>
-            <p class="text-slate-400 text-sm mb-5">La V7 refactorise le monolithe original en 5 modules indépendants, chacun avec une responsabilité unique :</p>
+            <h2 class="text-xl font-bold text-white mb-6">⚙️ Architecture Modulaire</h2>
+            <p class="text-slate-400 text-sm mb-5">Le système est décomposé en 5 modules indépendants, chacun avec une responsabilité unique :</p>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4">
                     <div class="text-amber-400 text-xs font-mono mb-1">hot_config.py</div>
