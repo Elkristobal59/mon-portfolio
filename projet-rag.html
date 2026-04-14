@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assistant RAG — Christopher Gilleron</title>
-    <meta name="description" content="Projet Assistant Documentaire RAG 100% local : pipeline avancée avec LLM Mistral (Ollama), embeddings BGE-M3 GPU, reranking neural et indexation temps réel.">
+    <title>Assistant RAG V7 — Christopher Gilleron</title>
+    <meta name="description" content="Projet Assistant Documentaire RAG V7 100% local : pipeline modulaire avec Contextual Retrieval asynchrone, hot-swap de configuration, chunking sémantique adapté aux documents financiers français, LLM Mistral (Ollama), embeddings BGE-M3 GPU, reranking neural et indexation temps réel.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -69,13 +69,14 @@
         <!-- Header -->
         <div class="mb-12">
             <div class="w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-3xl mb-6">🤖</div>
-            <div class="text-xs text-blue-400 font-mono mb-3 tracking-widest">PROJET PERSONNEL — IA GÉNÉRATIVE</div>
-            <h1 class="text-4xl font-extrabold text-white mb-4 leading-tight">Assistant Documentaire RAG Local</h1>
+            <div class="text-xs text-blue-400 font-mono mb-3 tracking-widest">PROJET PERSONNEL — IA GÉNÉRATIVE · V7</div>
+            <h1 class="text-4xl font-extrabold text-white mb-4 leading-tight">Assistant Documentaire RAG Local <span class="text-blue-400">V7</span></h1>
             <p class="text-slate-400 text-lg leading-relaxed">
-                Un système avancé de question-réponse sur corpus documentaire privé (PDF et Word), entièrement hébergé en local sur GPU pour garantir une stricte confidentialité. La base vectorielle s'auto-alimente en continu : chaque nouveau document déposé sur le NAS est automatiquement ingéré et indexé. Totalement indépendant d'APIs cloud, le système est propulsé par LangChain, ChromaDB, le LLM Mistral via Ollama, et intègre des stratégies d'IA de pointe (HyDE, Contextual Retrieval, Reranking neural) pour une extraction factuelle sans hallucination.
+                Un système avancé de question-réponse sur corpus documentaire privé (PDF et Word), entièrement hébergé en local sur GPU pour garantir une stricte confidentialité. La V7 introduit une architecture modulaire, un <strong class="text-slate-300">Contextual Retrieval asynchrone</strong> (asyncio + batching Ollama parallèle), un <strong class="text-slate-300">hot-swap de configuration</strong> sans redémarrage, et un chunking sémantique spécialement calibré pour les documents financiers français. La base vectorielle s'auto-alimente en continu via Watchdog : chaque nouveau document déposé sur le NAS est automatiquement ingéré, indexé et suppressible. Totalement indépendant d'APIs cloud.
             </p>
             <div class="flex flex-wrap gap-2 mt-6">
                 <span class="tag">Python</span>
+                <span class="tag">asyncio</span>
                 <span class="tag">LangChain</span>
                 <span class="tag">ChromaDB</span>
                 <span class="tag">Ollama (Mistral)</span>
@@ -83,7 +84,9 @@
                 <span class="tag">Gradio</span>
                 <span class="tag">Contextual Retrieval & HyDE</span>
                 <span class="tag">CrossEncoder Reranker</span>
+                <span class="tag">Hot Swap Config</span>
                 <span class="tag">CUDA GPU</span>
+                <span class="tag">Watchdog</span>
             </div>
         </div>
 
@@ -147,20 +150,20 @@
             <ol class="steps space-y-4">
                 <li class="step flex items-start bg-slate-900/50 border border-slate-800 rounded-xl p-4">
                     <div class="flex-1">
-                        <div class="font-semibold text-white mb-1">Ingestion & Contextual Retrieval</div>
-                        <p class="text-slate-400 text-sm">Les PDF sont parsés via <code class="text-blue-300">PyMuPDFLoader</code> (préservation du layout spatial des tableaux), les fichiers Word via <code class="text-blue-300">UnstructuredWordDocumentLoader</code>. Chaque chunk est découpé avec <code class="text-blue-300">RecursiveCharacterTextSplitter</code> (600 tokens, 200 overlap). Pour les documents financiers critiques (salaires, impôts), un pré-résumé LLM contextuel est ajouté à chaque chunk (méthode inspirée du <i>Contextual Retrieval</i> d'Anthropic).</p>
+                        <div class="font-semibold text-white mb-1">Ingestion & Contextual Retrieval Asynchrone</div>
+                        <p class="text-slate-400 text-sm">Les PDF sont parsés via <code class="text-blue-300">PyMuPDFLoader</code> (préservation du layout spatial des tableaux), les fichiers Word via <code class="text-blue-300">UnstructuredWordDocumentLoader</code>. Le <strong class="text-slate-300">Contextual Retrieval</strong> (méthode Anthropic) enrichit chaque chunk d'un résumé LLM contextuel — désormais exécuté en <strong class="text-slate-300">mode asynchrone</strong> avec <code class="text-blue-300">asyncio.gather()</code> et batching (5 appels Ollama simultanés). Gain de vitesse : ~5× par rapport à la version synchrone précédente.</p>
                     </div>
                 </li>
                 <li class="step flex items-start bg-slate-900/50 border border-slate-800 rounded-xl p-4">
                     <div class="flex-1">
-                        <div class="font-semibold text-white mb-1">Extraction de métadonnées intelligente</div>
-                        <p class="text-slate-400 text-sm">Les métadonnées sont extraites automatiquement par regex depuis le chemin et le nom de fichier : <b>année</b>, <b>mois</b> (noms FR ou format numérique), <b>type de document</b> (salary, tax, real_estate, insurance) et <b>catégorie</b> (dossier parent). Ces métadonnées sont attachées à chaque chunk pour le filtrage à la recherche.</p>
+                        <div class="font-semibold text-white mb-1">Extraction de métadonnées multi-couches</div>
+                        <p class="text-slate-400 text-sm">Extraction en deux passes : <strong class="text-slate-300">1) nom de fichier</strong> (regex multi-formats : AAAA-MM, MM/AAAA, DDMMAAAA, mois en lettres) puis <strong class="text-slate-300">2) contenu des premières pages</strong> en fallback si les données sont incomplètes. La détection du type de document utilise un <strong class="text-slate-300">scoring multi-mots-clés</strong> (seuil de score &gt; 0) plutôt qu'une simple correspondance — bien plus robuste pour les noms de fichiers génériques. Normalisation Unicode des accents via <code class="text-blue-300">unicodedata</code>.</p>
                     </div>
                 </li>
                 <li class="step flex items-start bg-slate-900/50 border border-slate-800 rounded-xl p-4">
                     <div class="flex-1">
-                        <div class="font-semibold text-white mb-1">Vectorisation GPU (BGE-M3)</div>
-                        <p class="text-slate-400 text-sm">Chaque chunk enrichi est transformé en embeddings via le modèle state-of-the-art multilingue <code class="text-blue-300">BAAI/bge-m3</code> sur GPU CUDA, puis stocké dans ChromaDB avec ses métadonnées pour un filtrage granulaire à la recherche.</p>
+                        <div class="font-semibold text-white mb-1">Chunking sémantique financier + Vectorisation GPU</div>
+                        <p class="text-slate-400 text-sm">Le découpage utilise des <strong class="text-slate-300">séparateurs sémantiques spécifiques</strong> aux documents financiers français (<code class="text-blue-300">\nNet à payer</code>, <code class="text-blue-300">\nCotisations salariales</code>, <code class="text-blue-300">\nRevenu fiscal</code>…) pour ne jamais couper un tableau de cotisations en plein milieu. Taille optimisée à <strong class="text-slate-300">800 caractères / 150 overlap</strong>. Chaque chunk est vectorisé via <code class="text-blue-300">BAAI/bge-m3</code> sur GPU CUDA et stocké dans ChromaDB.</p>
                     </div>
                 </li>
                 <li class="step flex items-start bg-slate-900/50 border border-slate-800 rounded-xl p-4">
@@ -262,15 +265,47 @@
 
         <hr class="border-slate-800 mb-12">
 
+        <!-- Architecture Modulaire V7 -->
+        <section class="mb-12 reveal">
+            <h2 class="text-xl font-bold text-white mb-6">⚙️ Architecture Modulaire V7</h2>
+            <p class="text-slate-400 text-sm mb-5">La V7 refactorise le monolithe original en 5 modules indépendants, chacun avec une responsabilité unique :</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4">
+                    <div class="text-amber-400 text-xs font-mono mb-1">hot_config.py</div>
+                    <div class="text-white font-semibold text-sm mb-1">Hot Swap de Configuration</div>
+                    <p class="text-slate-500 text-xs">Thread daemon surveillant <code class="text-blue-300">config.json</code> toutes les 30s. Modifier le modèle Ollama, la taille des chunks ou le prompt sans redémarrer le pipeline ni perdre l'état Watchdog.</p>
+                </div>
+                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4">
+                    <div class="text-emerald-400 text-xs font-mono mb-1">metadata_extractor.py</div>
+                    <div class="text-white font-semibold text-sm mb-1">Extraction Multi-couches</div>
+                    <p class="text-slate-500 text-xs">Parsing du nom de fichier en priorité, fallback automatique sur le contenu des premières pages. Scoring multi-mots-clés pour la détection du type de document.</p>
+                </div>
+                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4">
+                    <div class="text-blue-400 text-xs font-mono mb-1">context_enricher.py</div>
+                    <div class="text-white font-semibold text-sm mb-1">Contextual Retrieval Async</div>
+                    <p class="text-slate-500 text-xs">Batching asynchrone via <code class="text-blue-300">asyncio.gather()</code>. 5 appels Ollama simultanés par batch (~5× plus rapide). Fallback automatique sur préfixe statique pour les documents non prioritaires.</p>
+                </div>
+                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4">
+                    <div class="text-violet-400 text-xs font-mono mb-1">chunk_strategy.py</div>
+                    <div class="text-white font-semibold text-sm mb-1">Chunking Sémantique</div>
+                    <p class="text-slate-500 text-xs">Séparateurs financiers prioritaires (<code class="text-blue-300">\nNet à payer</code>, <code class="text-blue-300">\nTotal cotisations</code>…) pour préserver la cohérence des lignes de tableau. Filtrage des micro-chunks (&lt; 40 caractères).</p>
+                </div>
+            </div>
+        </section>
+
+        <hr class="border-slate-800 mb-12">
+
         <!-- Apprentissages -->
         <section class="mb-12 reveal">
             <h2 class="text-xl font-bold text-white mb-4">💡 Apprentissages Clés</h2>
             <ul class="space-y-3 text-slate-400 text-sm">
-                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> La taille des chunks est un paramètre critique : 600 tokens avec 200 d'overlap offrent le meilleur compromis entre contexte et précision sur des documents financiers français.</li>
+                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> <strong class="text-slate-300">800 caractères / 150 overlap</strong> est un meilleur réglage que 600/200 pour les documents financiers : les tableaux de cotisations tènent dans un seul chunk et l'overlap excessif (33%) ne polluait que les résultats.</li>
                 <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> PyMuPDFLoader préserve le layout spatial des tableaux bien mieux que UnstructuredPDFLoader, qui casse les montants en éléments isolés incompréhensibles.</li>
                 <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> Le reranking CrossEncoder après la recherche vectorielle améliore drastiquement la pertinence — les embeddings seuls ne suffisent pas pour des requêtes financières précises.</li>
-                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> Le Contextual Retrieval LLM est très efficace mais coûteux en temps : le limiter aux documents courts et critiques (≤ 20 chunks, types salary/tax) permet un bon compromis performance/qualité.</li>
+                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> Le Contextual Retrieval LLM synchrone bloquait ~40s pour 20 chunks. L'implémentation <strong class="text-slate-300">asyncio + batching (5 appels simultanés)</strong> ramène ce délai à ~8-10s sans changer la qualité du contexte généré.</li>
                 <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> Le fallback progressif sur les filtres de métadonnées est indispensable : un filtre trop strict retourne zéro résultat, un filtre absent noie la réponse dans du bruit.</li>
+                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> L'extraction de métadonnées depuis le seul nom de fichier échoue pour les fichiers génériques (ex: <code class="text-blue-300">doc_0043.pdf</code>). Le <strong class="text-slate-300">fallback sur le contenu des premières pages</strong> réduit les cas <em>type=other</em> de ~40%.</li>
+                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> Le hot-swap de configuration via un thread de surveillance de <code class="text-blue-300">config.json</code> évite les redémarrages Watchdog — critique en production continue sur un NAS.</li>
                 <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> Afficher les sources dans l'UI est essentiel pour établir la confiance utilisateur et permettre la vérification humaine.</li>
             </ul>
         </section>
