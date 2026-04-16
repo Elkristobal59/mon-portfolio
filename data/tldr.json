@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-04-16",
+            "articles": [
+                {
+                    "titre": "Orchestration d'expériences ML par des agents IA",
+                    "resume": "Teads a mis en place un système multi-agents pour automatiser le cycle de vie du ML, réduisant les cycles de développement de plusieurs jours à quelques heures tout en améliorant les performances de 8 à 12 %.",
+                    "lien": "https://medium.com/teads-engineering/we-let-ai-agents-orchestrate-our-ml-experiments-fc8606816fde?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "OCR de 30 000 articles scientifiques avec Hugging Face",
+                    "resume": "Utilisation de Chandra-OCR-2 et de scripts générés par Codex pour convertir 27 000 articles en Markdown en seulement 30 heures pour un coût optimisé de 850 $.",
+                    "lien": "https://huggingface.co/blog/nielsr/ocr-papers-jobs?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Mise à l'échelle des recommandations via la déduplication au niveau requête",
+                    "resume": "Pinterest utilise Apache Iceberg pour trier et dédupliquer les données au niveau des requêtes, permettant une compression massive et un entraînement plus efficace des modèles de ranking.",
+                    "lien": "https://medium.com/pinterest-engineering/scaling-recommendation-systems-with-request-level-deduplication-93bd514142d9?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Migration sans interruption vers Cassandra 4.x chez Yelp",
+                    "resume": "Yelp a migré plus de 1 000 nœuds Cassandra sans temps d'arrêt, obtenant une amélioration de latence allant jusqu'à 60 % grâce à une stratégie de déploiement progressif sur Kubernetes.",
+                    "lien": "https://engineeringblog.yelp.com/2026/04/zero-downtime-upgrade-yelp-cassandra-upgrade-story.html?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Configurer sa stack de données pour l'IA en 2026",
+                    "resume": "Guide sur la construction d'une infrastructure de données robuste privilégiant la simplicité, les transformations SQL (dbt) et la gouvernance plutôt que le battage médiatique technologique.",
+                    "lien": "https://www.theseattledataguy.com/how-to-set-up-your-data-stack-for-2026-data-infrastructure-for-ai/?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                },
+                {
+                    "titre": "Repenser la mémoire de l'IA au-delà de la simple recherche",
+                    "resume": "Proposition d'un système de mémoire basé sur SQLite gérant la pertinence, la confiance et l'obsolescence pour éviter que des faits périmés ne polluent les réponses de l'IA.",
+                    "lien": "https://towardsdatascience.com/stop-treating-ai-memory-like-a-search-problem/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Power BI et le support des modèles sémantiques tiers",
+                    "resume": "Analyse des limitations techniques empêchant un support optimal des modèles tiers dans Power BI et recommandations de Microsoft pour centraliser la logique métier en interne.",
+                    "lien": "https://blog.crossjoin.co.uk/2026/04/12/power-bi-and-support-for-third-party-semantic-models/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "DuckLake v1.0 : un format Lakehouse natif SQL en production",
+                    "resume": "DuckLake stocke désormais ses métadonnées dans de véritables bases de données (SQLite, Postgres) plutôt que dans des fichiers, offrant un comportement de base de données classique au Lakehouse.",
+                    "lien": "https://ducklake.select/2026/04/13/ducklake-10/?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "KumoRFM-2 : modèle prédictif relationnel pour humains et agents",
+                    "resume": "Un modèle de fondation capable de raisonner directement sur les tables et les clés de bases de données sans nécessiter de pipeline complexe d'ingénierie de caractéristiques.",
+                    "lien": "https://kumo.ai/company/news/kumorfm-2-the-most-powerful-predictive-model-for-humans-and-agents/?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Support natif des LLM et agents IA dans Apache Airflow",
+                    "resume": "Le nouveau package 'common-ai' pour Airflow 3.0+ introduit des opérateurs dédiés aux LLM et agents, incluant l'approbation humaine et l'observabilité complète des jetons.",
+                    "lien": "https://airflow.apache.org/blog/common-ai-provider/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Gestion du contexte dans les applications d'agents à long terme",
+                    "resume": "Slack détaille ses méthodes d'élagage et de résumé intelligent du contexte pour maintenir la fiabilité et la cohérence des agents sur de longues périodes d'exécution.",
+                    "lien": "https://slack.engineering/managing-context-in-long-run-agentic-applications/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Guide comparatif 2026 pour la mise à l'échelle de Prometheus",
+                    "resume": "Comparaison des solutions de stockage long terme pour Prometheus (VictoriaMetrics, Thanos, OpenObserve, etc.) basée sur l'efficacité des ressources et la charge opérationnelle.",
+                    "lien": "https://sanj.dev/post/prometheus-scaling-thanos-mimir-victoriametrics/?utm_source=tldrdata",
+                    "categorie": "Tool"
+                }
+            ]
+        },
+        {
             "date": "2026-04-13",
             "articles": [
                 {
