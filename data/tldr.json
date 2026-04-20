@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-04-20",
+            "articles": [
+                {
+                    "titre": "Créer un compteur grow-only sur un store KV cohérent",
+                    "resume": "Analyse des compteurs CRDT et des modèles de cohérence pour éviter la perte d'incréments lors de lectures obsolètes dans les bases de données distribuées.",
+                    "lien": "https://brunocalza.me/blog/2026/04/13/building-a-grow-only-counter-on-a-sequentially-consistent-kv-store.html?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Supermetal vs Flink vs Spark pour le CDC Postgres vers Iceberg",
+                    "resume": "Comparaison de performance montrant l'avantage de Supermetal grâce à une architecture optimisée pour les snapshots et une réduction de la sérialisation.",
+                    "lien": "https://thenewstack.io/postgres-iceberg-cdc-benchmarks/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "PostgreSQL MVCC, octet par octet",
+                    "resume": "Explication technique du fonctionnement du MVCC dans PostgreSQL via les champs xmin et xmax pour gérer la visibilité des lignes sans bloquer les lecteurs.",
+                    "lien": "https://boringsql.com/posts/postgresql-mvcc-byte-by-byte/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Daedalus et le labyrinthe de données",
+                    "resume": "Stratégie de Just Eat Takeaway pour contrer la dérive sémantique via un glossaire métier, un catalogue DataHub et une couche sémantique Looker.",
+                    "lien": "https://medium.com/justeattakeaway-tech/daedalus-and-the-data-labyrinth-2c166b1d9866?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Au-delà de la démo : pourquoi l'évaluation des agents est cruciale",
+                    "resume": "Criteo présente un cadre d'évaluation rigoureux pour les agents LLM, mesurant la fiabilité à long terme, l'usage des outils et la gestion d'erreurs.",
+                    "lien": "https://medium.com/criteo-engineering/beyond-the-demo-why-agentic-evaluation-matters-ccbeb9841c8b?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Comment de mauvaises bases de données freinent le succès de l'IA",
+                    "resume": "Analyse de l'échec de nombreux projets d'IA générative dû à une préparation insuffisante des données et à l'absence de gouvernance automatisée.",
+                    "lien": "https://www.cio.com/article/4158048/how-poor-data-foundations-can-undermine-ai-success.html?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Data Shift vs Data Drift",
+                    "resume": "Distinction entre la dérive de données (changements statistiques graduels) et le décalage de données (changements soudains dus au système ou au métier).",
+                    "lien": "https://www.montecarlodata.com/blog-data-shift-vs-data-drift?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                },
+                {
+                    "titre": "Polars : extension du streaming, I/O Lakehouse et profilage Cloud",
+                    "resume": "Nouvelles fonctionnalités de Polars incluant le support étendu du streaming, l'écriture native vers Delta/Iceberg et le profilage détaillé des requêtes.",
+                    "lien": "https://pola.rs/posts/polars-in-aggregate-apr26/?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "La configuration déclarative OpenTelemetry devient stable",
+                    "resume": "Stabilisation de la spécification YAML/JSON pour OpenTelemetry, permettant une configuration agnostique du langage via un fichier unique versionné.",
+                    "lien": "https://www.infoq.com/news/2026/04/opentelemetry-declarative-config/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Workloads d'agents sur Airflow : observables et auditables",
+                    "resume": "Airflow 3 introduit un support natif pour les workflows d'agents avec gestion d'état persistant, approbation humaine et intégration d'outils LLM.",
+                    "lien": "https://airflow.apache.org/blog/agentic-workloads-airflow-3/?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Migration vers la cryptographie post-quantique chez Meta",
+                    "resume": "Retours d'expérience sur le déploiement des standards NIST (ML-KEM, ML-DSA) pour protéger les données sensibles contre les futurs ordinateurs quantiques.",
+                    "lien": "https://engineering.fb.com/2026/04/16/security/post-quantum-cryptography-migration-at-meta-framework-lessons-and-takeaways/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "PositionService : la pagination à grande échelle",
+                    "resume": "Architecture d'Arcesium utilisant DuckDB, S3 et Parquet pour gérer la pagination de milliards d'enregistrements financiers avec cohérence temporelle.",
+                    "lien": "https://medium.com/arcesium-engineering-blog/positionservice-pagination-at-scale-119b772c5094?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                }
+            ]
+        },
+        {
             "date": "2026-04-16",
             "articles": [
                 {
