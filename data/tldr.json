@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-04-23",
+            "articles": [
+                {
+                    "titre": "Création d'un système de stockage de métriques résilient chez Airbnb",
+                    "resume": "Airbnb a conçu un système gérant 50 millions d'échantillons/sec via une isolation multi-locataire stricte et des garde-fous pour protéger la stabilité globale du service.",
+                    "lien": "https://medium.com/airbnb-engineering/building-a-fault-tolerant-metrics-storage-system-at-airbnb-26a01a6e7017?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Modernisation de la recherche dans Facebook Groups",
+                    "resume": "Meta a refondu son moteur de recherche en combinant recherche lexicale et sémantique (Faiss), optimisée par un modèle MTML et validée par un juge basé sur Llama 3.",
+                    "lien": "https://engineering.fb.com/2026/04/21/ml-applications/modernizing-the-facebook-groups-search-to-unlock-the-power-of-community-knowledge/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Normalisation d'URL à grande échelle chez Pinterest",
+                    "resume": "Le système MIQPS normalise les URLs en supprimant le bruit pour permettre le dédoublage de contenu tout en préservant la précision par des boucles d'évaluation continue.",
+                    "lien": "https://medium.com/pinterest-engineering/smarter-url-normalization-at-scale-how-miqps-powers-content-deduplication-at-pinterest-4aa42e807d7d?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "L'interface comme contrat de données",
+                    "resume": "Proposition d'une approche par interfaces pour les ontologies d'entreprise, permettant de conserver la richesse spécifique à chaque domaine tout en assurant l'interopérabilité via RDF.",
+                    "lien": "https://ontologist.substack.com/p/the-interface-is-the-contract?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Données prêtes pour l'IA vs pour l'Analytics",
+                    "resume": "L'Analytics privilégie les données agrégées pour les humains, tandis que l'IA requiert des données brutes riches en détails et en sémantique pour le raisonnement des modèles.",
+                    "lien": "https://medium.com/@community_md101/ai-ready-data-vs-analytics-ready-data-f67ef0804341?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "dbt-score : Linter pour la qualité des métadonnées dbt",
+                    "resume": "Outil évaluant les projets dbt selon des règles de documentation, de tests et de complexité SQL pour appliquer des standards de gouvernance en CI/CD.",
+                    "lien": "https://github.com/PicnicSupermarket/dbt-score?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "ggsql : Une grammaire de graphiques pour SQL",
+                    "resume": "Outil permettant de créer des visualisations directement dans les requêtes SQL, déléguant les calculs à la base de données pour plus de performance.",
+                    "lien": "https://opensource.posit.co/blog/2026-04-20_ggsql_alpha_release/?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Pgweb : Client PostgreSQL léger via navigateur",
+                    "resume": "Client open-source écrit en Go offrant une interface web simple pour explorer les tables et exécuter des requêtes, sans aucune dépendance externe.",
+                    "lien": "https://github.com/sosedoff/pgweb?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "ML Intern : Agent de codage autonome pour le ML",
+                    "resume": "Agent développé par Hugging Face capable de rechercher, coder et déployer des projets de machine learning en utilisant la documentation et les datasets.",
+                    "lien": "https://github.com/huggingface/ml-intern/?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Créer une plateforme de données Iceberg à bas coût",
+                    "resume": "Guide sur l'utilisation de Cloudflare R2 avec un proxy Rust pour bâtir un lac de données Apache Iceberg économique, sans frais de sortie de données.",
+                    "lien": "https://arturastutkus.substack.com/p/the-last-mile-to-apache-iceberg-building?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                },
+                {
+                    "titre": "Résumé du cache KV par reconstruction d'attention",
+                    "resume": "Nouvelle méthode de compression pour LLM qui identifie et résume mathématiquement le contexte de faible valeur au lieu de simplement le supprimer.",
+                    "lien": "https://jchandra.com/posts/hae-ols/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Les quatre cavaliers de l'AIpocalypse",
+                    "resume": "Analyse des limites économiques et d'infrastructure de l'IA : pénuries de capacité, coûts d'inférence croissants et retards massifs dans la construction des datacenters.",
+                    "lien": "https://www.wheresyoured.at/four-horsemen-of-the-aipocalypse/?utm_source=tldrdata",
+                    "categorie": "News"
+                }
+            ]
+        },
+        {
             "date": "2026-04-20",
             "articles": [
                 {
