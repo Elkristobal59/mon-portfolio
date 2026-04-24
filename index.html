@@ -231,19 +231,16 @@
                     <span id="greeting" class="text-[10px] text-slate-500 hidden sm:block">Chargement...</span>
                 </div>
             </a>
-            <div class="flex items-center gap-6">
+            <div class="flex items-center gap-4 sm:gap-6">
                 <a href="index.html" class="nav-link">Accueil</a>
                 <a href="#projets" class="nav-link">Projets</a>
-                <a href="veille.html" class="btn-hover text-emerald-400 text-sm font-semibold hover:text-emerald-300 transition-colors flex items-center gap-1.5 border border-emerald-500/30 bg-emerald-500/10 px-3 py-1.5 rounded-full">
-                    <span>📰</span> TLDR Data News
+                <a href="projet-proxmox.html" class="nav-link text-emerald-400 hidden md:block">Proxmox</a>
+                <a href="veille.html" class="btn-hover text-emerald-400 text-[10px] sm:text-sm font-semibold hover:text-emerald-300 transition-colors flex items-center gap-1.5 border border-emerald-500/30 bg-emerald-500/10 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full">
+                    <span>📰</span> TLDR
                 </a>
                 <a href="https://www.linkedin.com/in/christophergilleron/" target="_blank"
-                    class="btn-hover px-4 py-1.5 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-sm font-medium hover:bg-sky-500/20 transition-all">
-                    LinkedIn
-                </a>
-                <a href="https://github.com/Elkristobal59" target="_blank"
-                    class="btn-hover px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-sm font-medium hover:bg-blue-500/20 transition-all">
-                    GitHub
+                    class="btn-hover px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-[10px] sm:text-sm font-medium hover:bg-sky-500/20 transition-all">
+                    IN
                 </a>
             </div>
         </div>
@@ -605,6 +602,33 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                <!-- Card Proxmox Migration (NEW) -->
+                <a href="projet-proxmox.html" data-category="infra"
+                    class="project-card card-hover flex flex-col bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden hover:border-emerald-500/50 group no-underline">
+                    <div class="h-40 w-full relative">
+                        <img src="images/lenovo.jpeg" alt="Proxmox Cloud infrastructure" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity drop-shadow-lg">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#0a0f1e] via-transparent to-transparent"></div>
+                        <div class="absolute -bottom-5 left-6 w-12 h-12 rounded-xl bg-slate-900/50 backdrop-blur-md border border-slate-700/50 flex items-center justify-center text-2xl z-10 shadow-xl">
+                            🏗️</div>
+                    </div>
+                    <div class="p-6 pt-8 flex flex-col flex-1">
+                        <div class="text-xs text-emerald-400 font-mono mb-2 tracking-wide">INFRASTRUCTURE — HOMELAB PRO</div>
+                        <h3 class="text-lg font-bold text-white mb-3 group-hover:text-emerald-300 transition-colors">Migration Cloud Privé & Proxmox</h3>
+                        <p class="text-slate-400 text-sm mb-5 leading-relaxed flex-1">
+                            Modernisation complète de l'infrastructure : passage d'un environnement hybride vers un hyperviseur **Proxmox** dédié. Virtualisation, snapshots et backups automatisés vers NAS.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="tag">Proxmox VE</span>
+                            <span class="tag">Virtualisation</span>
+                            <span class="tag">Docker</span>
+                            <span class="tag">Tailscale Mesh</span>
+                        </div>
+                        <div class="mt-auto text-emerald-400 text-sm font-medium group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+                            Voir l'infrastructure →
+                        </div>
+                    </div>
+                </a>
 
                 <!-- Card RAG -->
                 <a href="projet-rag.html" data-category="ia"

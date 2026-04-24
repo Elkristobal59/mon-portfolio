@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Migration Cloud Privé : Proxmox & Docker — Christopher Gilleron</title>
+    <meta name="description"
+        content="Projet d'infrastructure avancée : migration d'un environnement Docker Windows vers un serveur dédié Lenovo sous Proxmox. Virtualisation, sécurité et automatisation.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #0a0f1e;
+            color: #f8fafc;
+            font-family: 'Inter', sans-serif;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        body.loaded {
+            opacity: 1;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .nav-blur {
+            backdrop-filter: blur(16px);
+            background: rgba(10, 15, 30, 0.85);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #60a5fa, #34d399);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: .95rem;
+            color: #0a0f1e;
+            flex-shrink: 0;
+        }
+
+        .nav-link {
+            color: #94a3b8;
+            transition: color 0.2s;
+            font-size: .875rem;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            color: #f8fafc;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            padding: 3px 10px;
+            font-size: .72rem;
+            color: #94a3b8;
+        }
+
+        .feature-card {
+            background: rgba(16, 24, 48, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: rgba(52, 211, 153, 0.3);
+            background: rgba(16, 24, 48, 0.8);
+            transform: translateY(-4px);
+        }
+
+        .gradient-border {
+            position: relative;
+            background: rgba(10, 15, 30, 0.9);
+            border-radius: 20px;
+        }
+
+        .gradient-border::before {
+            content: "";
+            position: absolute;
+            inset: -1px;
+            background: linear-gradient(135deg, #60a5fa, #34d399);
+            border-radius: 21px;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        /* Archi diagram */
+        .arch-box {
+            border-radius: 10px;
+            padding: 10px 16px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-align: center;
+            border: 1px solid;
+        }
+
+        /* --- Progress Bar --- */
+        #progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(to right, #60a5fa, #34d399); z-index: 100; width: 0%; transition: width 0.1s ease-out; }
+
+        /* --- Back to Top --- */
+        #back-to-top { position: fixed; bottom: 30px; right: 30px; width: 44px; height: 44px; background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(8px); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #f8fafc; cursor: pointer; z-index: 40; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
+        #back-to-top.show { opacity: 1; visibility: visible; }
+
+        /* --- Reveal Animations --- */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+
+<body class="relative">
+    <div id="progress-bar"></div>
+    
+    <!-- Navigation -->
+    <nav class="nav-blur fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3 no-underline">
+                <div class="avatar">CG</div>
+                <span class="font-bold text-white hidden sm:block">Christopher Gilleron</span>
+            </a>
+            <div class="flex items-center gap-6">
+                <a href="index.html" class="nav-link">Accueil</a>
+                <a href="projet-proxmox.html" class="nav-link text-emerald-400">Proxmox</a>
+                <a href="projet-rag.html" class="nav-link">RAG</a>
+                <a href="projet-immich.html" class="nav-link">Immich</a>
+                <a href="projet-chrisflix.html" class="nav-link">Chrisflix</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-4xl mx-auto px-6 pt-32 pb-28">
+
+        <a href="index.html"
+            class="inline-flex items-center gap-2 text-slate-500 text-sm hover:text-slate-300 transition-colors mb-10 no-underline">
+            ← Retour au portfolio
+        </a>
+
+        <!-- Header -->
+        <header class="mb-16 reveal">
+            <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-3xl mb-6">
+                🏗️</div>
+            <div class="text-xs text-emerald-400 font-mono mb-3 tracking-widest uppercase">Infrastructure · Virtualisation · Homelab</div>
+            <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-6 leading-tight">Proxmox Homelab : L'Infrastructure comme Pilier de l'IA</h1>
+            <p class="text-slate-400 text-lg leading-relaxed mb-8">
+                Migration d'une infrastructure Docker hybride vers un environnement de virtualisation de type 1 (Proxmox VE). 
+                L'objectif : garantir une haute disponibilité pour mes services IA et multimédia, tout en isolant les workloads critiques dans un serveur Tiny ultra-efficient.
+            </p>
+            <div class="flex flex-wrap gap-2">
+                <span class="tag">Proxmox VE 9</span>
+                <span class="tag">Debian 13</span>
+                <span class="tag">Docker Compose</span>
+                <span class="tag">Tailscale Mesh</span>
+                <span class="tag">SMB/CIFS Storage</span>
+                <span class="tag">VZDump Backups</span>
+            </div>
+        </header>
+
+        <!-- Hardware & Visuals -->
+        <section class="mb-20 reveal">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                <div>
+                    <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                        <span class="text-emerald-400">💻</span> Le Matériel
+                    </h2>
+                    <div class="space-y-4">
+                        <div class="bg-slate-900/40 border border-slate-800 p-5 rounded-xl">
+                            <h3 class="text-white font-semibold text-sm mb-1 uppercase tracking-wider opacity-60">Serveur Principal</h3>
+                            <p class="text-slate-200 font-bold text-lg">Lenovo ThinkCentre M80q Tiny</p>
+                            <ul class="text-slate-400 text-sm mt-3 space-y-2">
+                                <li class="flex items-center gap-2 font-mono">▸ Intel Core i5-10500T (6C/12T) vPro</li>
+                                <li class="flex items-center gap-2 font-mono">▸ 16 Go de RAM DDR4</li>
+                                <li class="flex items-center gap-2 font-mono">▸ Silencieux & Consommation < 35W</li>
+                            </ul>
+                        </div>
+                        <div class="bg-slate-900/40 border border-slate-800 p-5 rounded-xl">
+                            <h3 class="text-white font-semibold text-sm mb-1 uppercase tracking-wider opacity-60">Stockage Réseau</h3>
+                            <p class="text-slate-200 font-bold text-lg">NAS Synology DS218 Play</p>
+                            <p class="text-slate-400 text-sm mt-2">Dédié au stockage massif (Photos, Médias) et aux sauvegardes froides.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative group">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-emerald-500 to-blue-500 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
+                    <img src="images/lenovo.jpeg" alt="Lenovo M80q Tiny" class="relative rounded-2xl border border-slate-800 object-cover w-full shadow-2xl">
+                    <p class="mt-4 text-center text-xs text-slate-500 italic">Le coeur de mon écosystème : Compact, puissant et stable.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Architecture Transformation -->
+        <section class="mb-20 reveal">
+            <h2 class="text-2xl font-bold text-white mb-8">🔄 Transformation de l'Architecture</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Avant -->
+                <div class="feature-card border-red-500/10">
+                    <h3 class="text-red-400 font-bold mb-4 flex items-center gap-2">
+                        <span>❌</span> Avant (Architecture Hybride)
+                    </h3>
+                    <ul class="text-slate-400 text-sm space-y-3">
+                        <li class="flex gap-2"><span>•</span> Serveur tournant sur mon PC MSI Windows (instable).</li>
+                        <li class="flex gap-2"><span>•</span> Dépendance aux mises à jour et redémarrages Windows.</li>
+                        <li class="flex gap-2"><span>•</span> Risque de perte de données en cas de crash système.</li>
+                        <li class="flex gap-2 text-red-500/70"><span>•</span> Pas de sauvegarde automatisée centralisée.</li>
+                    </ul>
+                </div>
+                <!-- Après -->
+                <div class="feature-card border-emerald-500/20">
+                    <h3 class="text-emerald-400 font-bold mb-4 flex items-center gap-2">
+                        <span>✅</span> Maintenant (Architecture Proxmox)
+                    </h3>
+                    <ul class="text-slate-400 text-sm space-y-3">
+                        <li class="flex gap-2 font-semibold text-slate-200"><span>•</span> Hyperviseur dédié (Type 1) tournant 24h/24.</li>
+                        <li class="flex gap-2"><span>•</span> Isolation totale des services via VM Debian 13.</li>
+                        <li class="flex gap-2"><span>•</span> <b>Snapshots</b> avant chaque mise à jour critique (Rollback).</li>
+                        <li class="flex gap-2"><span>•</span> <b>Backups automatiques</b> de toute la VM vers le NAS.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Ecosystem -->
+        <section class="mb-20 reveal">
+            <h2 class="text-2xl font-bold text-white mb-10 text-center">📦 Un Écosystème de Services Orchestrés</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-900/30 border border-slate-800">
+                    <div class="text-2xl">📸</div>
+                    <div>
+                        <h4 class="text-white font-bold text-sm">Immich Project</h4>
+                        <p class="text-slate-500 text-[11px] leading-relaxed">Gestion de +200 000 photos avec IA (Reconnaissance faciale et objets) tournant sur CPU pur.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-900/30 border border-slate-800">
+                    <div class="text-2xl">🎬</div>
+                    <div>
+                        <h4 class="text-white font-bold text-sm">Chrisflix Stack</h4>
+                        <p class="text-slate-500 text-[11px] leading-relaxed">Automatisation média totale : Jellyfin, Radarr, Prowlarr et son pipeline de téléchargement vers NAS.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-900/30 border border-slate-800">
+                    <div class="text-2xl">🎸</div>
+                    <div>
+                        <h4 class="text-white font-bold text-sm">ChrisMusic (Navidrome)</h4>
+                        <p class="text-slate-500 text-[11px] leading-relaxed">Serveur de streaming "Bit-perfect" pour l'iPhone. Ma propre alternative à Spotify, sécurisée par Tailscale.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-900/30 border border-slate-800">
+                    <div class="text-2xl">🏠</div>
+                    <div>
+                        <h4 class="text-white font-bold text-sm">Home Assistant</h4>
+                        <p class="text-slate-500 text-[11px] leading-relaxed">Domotique centrale pilotant volets, chauffage et sécurité de l'appartement.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- NAS Link visual -->
+            <div class="mt-12 p-8 bg-gradient-to-br from-slate-900 to-slate-950 rounded-2xl border border-slate-800 text-center relative overflow-hidden">
+                 <div class="absolute top-0 right-0 p-4 opacity-10 text-6xl">🗄️</div>
+                 <h3 class="text-lg font-bold text-white mb-4">Interconnexion Synology NAS</h3>
+                 <p class="text-slate-400 text-sm leading-relaxed max-w-2xl mx-auto">
+                    Tous les containers Docker sont reliés au NAS via des volumes **CIFS/SMB** sécurisés. 
+                    Le serveur traite la donnée (Cerveau) tandis que le Synology gère le stockage froid et les sauvegardes système (VZDump).
+                 </p>
+                 <img src="images/lenovo nas.jpeg" alt="Synology NAS Setup" class="mt-8 rounded-xl max-w-md mx-auto border border-slate-800/50 shadow-xl opacity-80 group-hover:opacity-100 transition">
+            </div>
+        </section>
+
+        <!-- Security & Tailscale -->
+        <section class="mb-20 reveal">
+            <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                <span class="text-sky-400">🛡️</span> Sécurité & Accès Distant
+            </h2>
+            <div class="bg-sky-500/5 border border-sky-500/20 rounded-2xl p-8 mb-8">
+                <h3 class="text-sky-300 font-bold text-lg mb-2">VPN Mesh Tailscale</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                    Au lieu d'ouvrir des ports dangereux sur ma box internet, j'utilise un réseau "Zero Trust" avec **Tailscale**. 
+                    Mon iPhone, mon Mac et mon serveur Proxmox communiquent dans un tunnel chiffré de bout en bout. 
+                    Cela me permet d'accéder à mes photos ou à la domotique partout dans le monde, en toute sécurité.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="feature-card hover:border-emerald-500/30">
+                    <h4 class="text-white font-bold mb-3 flex items-center gap-2">
+                        <span class="text-emerald-500">🔄</span> Automatisme de Sauvegarde
+                    </h4>
+                    <p class="text-slate-500 text-xs">
+                        Script de sauvegarde quotidienne de la VM envoyant un fichier compressé vers le NAS. 3 versions sont conservées (Retention policy 3).
+                    </p>
+                </div>
+                <div class="feature-card hover:border-blue-500/30">
+                    <h4 class="text-white font-bold mb-3 flex items-center gap-2">
+                        <span class="text-blue-500">🔙</span> Snapshots Instantanés
+                    </h4>
+                    <p class="text-slate-500 text-xs">
+                        Avant chaque grosse modification sur Debian ou Docker, une "photo" de l'état du système est prise. Le retour en arrière prend moins de 10 secondes.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Learnings -->
+        <footer class="mb-12 reveal border-t border-slate-800 pt-12">
+            <h2 class="text-xl font-bold text-white mb-6 italic">"Passer du Desktop au Homelab, c'est professionnaliser sa gestion de la donnée."</h2>
+            <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                Ce projet m'a permis d'approfondir mes compétences en **administration système Linux**, en **virtualisation bas-niveau** et en **gestion de réseaux sécurisés**. 
+                Avoir une infrastructure stable est la base indispensable pour n'importe quel projet de Data Science ou d'IA ambitieux.
+            </p>
+            <a href="index.html" class="text-emerald-400 font-bold hover:underline">Découvrir mes autres projets →</a>
+        </footer>
+
+    </div>
+
+    <!-- Back to top -->
+    <div id="back-to-top" title="Retour en haut">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+    </div>
+
+    <script>
+        function handleScroll() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("progress-bar").style.width = scrolled + "%";
+
+            const btt = document.getElementById("back-to-top");
+            if (winScroll > 400) { btt.classList.add("show"); } else { btt.classList.remove("show"); }
+        }
+
+        const revealCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        };
+
+        const revealObserver = new IntersectionObserver(revealCallback, { threshold: 0.1 });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.add('loaded');
+            document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+            document.getElementById("back-to-top").addEventListener("click", () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+
+        window.onscroll = handleScroll;
+    </script>
+</body>
+
+</html>
