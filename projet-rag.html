@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Assistant RAG — Christopher Gilleron</title>
-    <meta name="description" content="Projet Assistant Documentaire RAG 100% local : pipeline modulaire avec Contextual Retrieval asynchrone, hot-swap de configuration, chunking sémantique adapté aux documents financiers français, LLM Mistral (Ollama), embeddings BGE-M3 GPU, reranking neural et indexation temps réel.">
+    <meta name="description" content="Projet Assistant Documentaire RAG V7 : pipeline modulaire avec Contextual Retrieval asynchrone, hot-swap de configuration, chunking sémantique adapté aux documents financiers français, LLM Mistral (Ollama), embeddings BGE-M3 optimisés CPU, reranking neural et indexation temps réel sur serveur Proxmox.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -162,8 +162,11 @@
                 </li>
                 <li class="step flex items-start bg-slate-900/50 border border-slate-800 rounded-xl p-4">
                     <div class="flex-1">
-                        <div class="font-semibold text-white mb-1">Chunking sémantique financier + Vectorisation GPU</div>
-                        <p class="text-slate-400 text-sm">Le découpage utilise des <strong class="text-slate-300">séparateurs sémantiques spécifiques</strong> aux documents financiers français (<code class="text-blue-300">\nNet à payer</code>, <code class="text-blue-300">\nCotisations salariales</code>, <code class="text-blue-300">\nRevenu fiscal</code>…) pour ne jamais couper un tableau de cotisations en plein milieu. Taille optimisée à <strong class="text-slate-300">800 caractères / 150 overlap</strong>. Chaque chunk est vectorisé via <code class="text-blue-300">BAAI/bge-m3</code> sur GPU CUDA et stocké dans ChromaDB.</p>
+                        <div class="font-semibold text-white mb-1">Chunking sémantique financier + Inférence CPU</div>
+                        <p class="text-slate-400 text-sm">Le découpage utilise des <strong class="text-slate-300">séparateurs sémantiques spécifiques</strong> aux documents financiers français (<code class="text-blue-300">\nNet à payer</code>, <code class="text-blue-300">\nCotisations salariales</code>, <code class="text-blue-300">\nRevenu fiscal</code>…) pour ne jamais couper un tableau de cotisations en plein milieu. Taille optimisée à <strong class="text-slate-300">800 caractères / 150 overlap</strong>. 
+                        <br><br>
+                        <i class="text-slate-500 text-xs text-balance">Note : L'indexation initiale massive du corpus a été réalisée via laptop MSI (GPU NVIDIA) en amont, avant la migration sur le serveur Lenovo pour la maintenance continue en CPU optimisé.</i>
+                        </p>
                     </div>
                 </li>
                 <li class="step flex items-start bg-slate-900/50 border border-slate-800 rounded-xl p-4">
@@ -175,7 +178,7 @@
                 <li class="step flex items-start bg-slate-900/50 border border-slate-800 rounded-xl p-4">
                     <div class="flex-1">
                         <div class="font-semibold text-white mb-1">Cross-Encoder Reranking Neural</div>
-                        <p class="text-slate-400 text-sm">Les 20+ candidats initiaux sont réévalués en profondeur par le modèle <code class="text-blue-300">BAAI/bge-reranker-v2-m3</code> (CrossEncoder multilingue sur GPU). Les 5 extraits les mieux scorés sont injectés dans le prompt final.</p>
+                        <p class="text-slate-400 text-sm">Les 20+ candidats initiaux sont réévalués en profondeur par le modèle <code class="text-blue-300">BAAI/bge-reranker-v2-m3</code> (CrossEncoder multilingue exécuté sur CPU). Les 5 extraits les mieux scorés sont injectés dans le prompt final.</p>
                     </div>
                 </li>
                 <li class="step flex items-start bg-slate-900/50 border border-slate-800 rounded-xl p-4">
@@ -206,13 +209,13 @@
                 </div>
                 <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4">
                     <div class="text-blue-400 text-sm font-mono mb-1">Embeddings</div>
-                    <div class="text-white font-semibold">BAAI/bge-m3 (GPU CUDA)</div>
-                    <p class="text-slate-500 text-xs mt-1">Modèle d'embeddings multilingue state-of-the-art, accéléré GPU via HuggingFace + sentence-transformers.</p>
+                    <div class="text-white font-semibold">BAAI/bge-m3 (CPU Optimized)</div>
+                    <p class="text-slate-500 text-xs mt-1">Modèle d'embeddings multilingue state-of-the-art, optimisé pour l'inférence CPU hautement parallélisée.</p>
                 </div>
                 <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4">
                     <div class="text-blue-400 text-sm font-mono mb-1">Reranker</div>
                     <div class="text-white font-semibold">BAAI/bge-reranker-v2-m3</div>
-                    <p class="text-slate-500 text-xs mt-1">CrossEncoder multilingue sur GPU pour un scoring fin des résultats (passage de 20+ candidats à top-5).</p>
+                    <p class="text-slate-500 text-xs mt-1">CrossEncoder multilingue sur CPU pour un scoring fin des résultats (passage de 20+ candidats à top-5).</p>
                 </div>
                 <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4">
                     <div class="text-blue-400 text-sm font-mono mb-1">Orchestration</div>

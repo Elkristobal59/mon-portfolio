@@ -147,7 +147,7 @@
             <div class="text-xs text-emerald-400 font-mono mb-3 tracking-widest">INFRASTRUCTURE — HOMELAB</div>
             <h1 class="text-4xl font-extrabold text-white mb-4 leading-tight">Cloud Photo Privé — Immich</h1>
             <p class="text-slate-400 text-lg leading-relaxed">
-                Déploiement d'une stack Docker sur laptop MSI (GPU Nvidia) avec stockage distant sur un NAS Synology
+                Déploiement d'une stack Docker sur serveur Lenovo (Proxmox Virtualization) avec stockage distant sur un NAS Synology
                 DS218 Play, accessible depuis n'importe où via le réseau privé Tailscale (WireGuard). Sauvegarde
                 automatique de 2 iPhones — sans ouvrir un seul port.
             </p>
@@ -157,7 +157,7 @@
                 <span class="tag">Immich</span>
                 <span class="tag">PostgreSQL (pgvecto-rs)</span>
                 <span class="tag">Redis cache</span>
-                <span class="tag">Nvidia CUDA</span>
+                <span class="tag">Intel QuickSync (HWA)</span>
                 <span class="tag">Tailscale VPN</span>
                 <span class="tag">WireGuard</span>
             </div>
@@ -189,10 +189,10 @@
                         Tailscale<br><span class="font-normal opacity-70">VPN Mesh (WireGuard)</span></div>
                     <div class="arch-arrow">↕</div>
                     <div class="bg-slate-800/60 border border-slate-700 rounded-xl p-4 w-full max-w-md">
-                        <div class="text-xs text-slate-500 font-mono mb-3">LAPTOP MSI (Docker + GPU Nvidia)</div>
+                        <div class="text-xs text-slate-500 font-mono mb-3">SERVEUR LENOVO (Docker + Debian 13)</div>
                         <div class="mb-3">
                             <div class="arch-box bg-emerald-500/10 border-emerald-500/30 text-emerald-300 text-xs">📸
-                                Immich API & Machine Learning (CUDA)</div>
+                                Immich API & Machine Learning (CPU Optimized)</div>
                         </div>
                         <div class="arch-box bg-indigo-500/10 border-indigo-500/30 text-indigo-300 text-xs mb-3">🗄️
                             PostgreSQL (pgvecto-rs) & Redis</div>
@@ -219,8 +219,7 @@
                         <span class="tag ml-auto">Photo, Vidéo & IA</span>
                     </div>
                     <p class="text-slate-400 text-sm">Alternative open-source à Google Photos. Reconnaissance faciale et
-                        d'objets propulsée par l'intelligence artificielle (accélérée par un conteneur dédié exploitant
-                        Nvidia CUDA), synchronisation mobile automatique. Héberge + 50 000 photos.</p>
+                        d'objets propulsée par l'intelligence artificielle (exécutée sur CPU optimisé avec support Intel QuickSync), synchronisation mobile automatique. Héberge + 200 000 photos.</p>
                 </div>
                 <div class="service-card">
                     <div class="flex items-center gap-3 mb-2">
@@ -258,9 +257,8 @@
                 </li>
                 <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> La gestion des volumes Docker pour
                     la persistance des données est critique — une mauvaise config = perte de données.</li>
-                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> Immich nécessite un GPU pour
-                    l'inférence des modèles de reconnaissance (CLIP). Mettre en place le pass-through d'une carte
-                    graphique Nvidia (CUDA) vers un conteneur Docker est redoutablement efficace.</li>
+                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> Immich tourne parfaitement sur 
+                    CPU. L'utilisation du processeur i5 avec QuickSync permet une gestion fluide de l'IA (CLIP) et du décodage vidéo sans carte dédiée.</li>
                 <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> Les architectures orientées
                     micro-services pour l'IA nécessitent un stockage optimisé pour les vecteurs (extensions comme
                     pgvecto-rs).</li>
