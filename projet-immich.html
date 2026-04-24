@@ -219,7 +219,7 @@
                         <span class="tag ml-auto">Photo, Vidéo & IA</span>
                     </div>
                     <p class="text-slate-400 text-sm">Alternative open-source à Google Photos. Reconnaissance faciale et
-                        d'objets propulsée par l'intelligence artificielle (exécutée sur CPU optimisé avec support Intel QuickSync), synchronisation mobile automatique. Héberge + 200 000 photos.</p>
+                        d'objets propulsée par l'intelligence artificielle. <b>Initialement indexé via GPU (MSI)</b> pour traiter 200 000+ photos, puis migré sur Lenovo pour la maintenance courante.</p>
                 </div>
                 <div class="service-card">
                     <div class="flex items-center gap-3 mb-2">
@@ -257,8 +257,8 @@
                 </li>
                 <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> La gestion des volumes Docker pour
                     la persistance des données est critique — une mauvaise config = perte de données.</li>
-                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> Immich tourne parfaitement sur 
-                    CPU. L'utilisation du processeur i5 avec QuickSync permet une gestion fluide de l'IA (CLIP) et du décodage vidéo sans carte dédiée.</li>
+                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> Immich a bénéficié de la puissance 
+                    <b>CUDA (MSI)</b> pour l'indexation initiale massive, assurant un traitement rapide des visages et objets, avant de basculer sur une architecture stable CPU pour le quotidien.</li>
                 <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> Les architectures orientées
                     micro-services pour l'IA nécessitent un stockage optimisé pour les vecteurs (extensions comme
                     pgvecto-rs).</li>
