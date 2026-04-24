@@ -70,23 +70,23 @@
         <div class="mb-12">
             <div class="w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-3xl mb-6">🤖</div>
             <div class="text-xs text-blue-400 font-mono mb-3 tracking-widest">PROJET PERSONNEL — IA GÉNÉRATIVE</div>
-            <h1 class="text-4xl font-extrabold text-white mb-4 leading-tight">Assistant Documentaire RAG Local</h1>
+            <h1 class="text-4xl font-extrabold text-white mb-4 leading-tight">Assistant Documentaire RAG V7</h1>
             <p class="text-slate-400 text-lg leading-relaxed">
-                Un système avancé de question-réponse sur corpus documentaire privé (PDF et Word), entièrement hébergé en local sur GPU pour garantir une stricte confidentialité. L'architecture est modulaire et incorpore un <strong class="text-slate-300">Contextual Retrieval asynchrone</strong> (asyncio + batching Ollama parallèle), un <strong class="text-slate-300">hot-swap de configuration</strong> sans redémarrage, et un chunking sémantique spécialement calibré pour les documents financiers français. La base vectorielle s'auto-alimente en continu via Watchdog : chaque nouveau document déposé sur le NAS est automatiquement ingéré, indexé et suppressible. Totalement indépendant d'APIs cloud.
+                Un système avancé de question-réponse sur corpus documentaire privé (PDF et Word), désormais migré sur un serveur dédié <strong class="text-slate-300">Proxmox</strong> pour une disponibilité 24h/24. L'architecture est entièrement containerisée via <strong class="text-slate-300">Docker</strong>, incorporant un Contextual Retrieval asynchrone, un hot-swap de configuration, et un moteur <strong class="text-slate-300">Ollama local</strong> intégré à la stack. La base vectorielle s'auto-alimente en continu via Watchdog en surveillant un partage réseau NAS.
             </p>
             <div class="flex flex-wrap gap-2 mt-6">
                 <span class="tag">Python</span>
                 <span class="tag">asyncio</span>
                 <span class="tag">LangChain</span>
                 <span class="tag">ChromaDB</span>
+                <span class="tag">Docker Stack</span>
+                <span class="tag">Proxmox / Debian</span>
                 <span class="tag">Ollama (Mistral)</span>
                 <span class="tag">HuggingFace BGE-M3</span>
                 <span class="tag">Gradio</span>
-                <span class="tag">Contextual Retrieval & HyDE</span>
-                <span class="tag">CrossEncoder Reranker</span>
-                <span class="tag">Hot Swap Config</span>
-                <span class="tag">CUDA GPU</span>
-                <span class="tag">Watchdog</span>
+                <span class="tag">Contextual Retrieval</span>
+                <span class="tag">CPU optimized</span>
+                <span class="tag">Watchdog NAS Sync</span>
             </div>
         </div>
 
@@ -112,10 +112,10 @@
                     </div>
                 </div>
                 <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-5 flex gap-4">
-                    <div class="infra-icon bg-green-500/10 border border-green-500/20">⚡</div>
+                    <div class="infra-icon bg-green-500/10 border border-green-500/20">🖥️</div>
                     <div class="flex-1">
-                        <div class="font-semibold text-white mb-1">GPU CUDA — Accélération matérielle</div>
-                        <p class="text-slate-400 text-sm">Les embeddings <code class="text-blue-300">BAAI/bge-m3</code> et le reranker <code class="text-blue-300">BAAI/bge-reranker-v2-m3</code> tournent sur GPU CUDA pour des temps de réponse optimaux. Le LLM Mistral s'exécute lui aussi en local via Ollama.</p>
+                        <div class="font-semibold text-white mb-1">Compute — Lenovo M80q (Proxmox)</div>
+                        <p class="text-slate-400 text-sm">Le pipeline tourne dans une VM Debian isolée. Les embeddings <code class="text-blue-300">bge-m3</code> sont optimisés pour l'exécution **CPU** sur l'Intel i5, tandis qu'un container Ollama dédié fournit la puissance LLM en local.</p>
                     </div>
                 </div>
                 <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-5 flex gap-4">
