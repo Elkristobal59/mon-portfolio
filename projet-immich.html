@@ -157,7 +157,8 @@
                 <span class="tag">Immich</span>
                 <span class="tag">PostgreSQL (pgvecto-rs)</span>
                 <span class="tag">Redis cache</span>
-                <span class="tag">Intel QuickSync (HWA)</span>
+                <span class="tag">CUDA (MSI GPU)</span>
+                <span class="tag">Intel QuickSync</span>
                 <span class="tag">Tailscale VPN</span>
                 <span class="tag">WireGuard</span>
             </div>
@@ -165,47 +166,117 @@
 
         <hr class="border-slate-800 mb-12">
 
-        <!-- Contexte -->
+        <!-- Contexte & Vision -->
         <section class="mb-12 reveal">
-            <h2 class="text-xl font-bold text-white mb-4">🎯 Pourquoi ce projet ?</h2>
-            <p class="text-slate-400 leading-relaxed">
-                Après avoir utilisé Google Photos et iCloud, j'ai voulu reprendre le contrôle de mes données
-                personnelles. L'objectif était de construire une solution de cloud privé complète, sécurisée, et
-                accessible depuis n'importe où dans le monde — sans abonnement mensuel et sans compromettre la sécurité.
-            </p>
-        </section>
-
-        <!-- Architecture -->
-        <section class="mb-12 reveal">
-            <h2 class="text-xl font-bold text-white mb-6">🏗️ Architecture</h2>
-
-            <!-- Visual Architecture Diagram -->
-            <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-6 mb-6">
-                <div class="flex flex-col items-center gap-3 text-center">
-                    <div class="arch-box bg-purple-500/10 border-purple-500/30 text-purple-300 w-48">📱 2×
-                        iPhone<br><span class="font-normal opacity-70">Sauvegarde auto</span></div>
-                    <div class="arch-arrow">↕</div>
-                    <div class="arch-box bg-orange-500/10 border-orange-500/30 text-orange-300 w-48">🔐
-                        Tailscale<br><span class="font-normal opacity-70">VPN Mesh (WireGuard)</span></div>
-                    <div class="arch-arrow">↕</div>
-                    <div class="bg-slate-800/60 border border-slate-700 rounded-xl p-4 w-full max-w-md">
-                        <div class="text-xs text-slate-500 font-mono mb-3">SERVEUR LENOVO (Docker + Debian 13)</div>
-                        <div class="mb-3">
-                            <div class="arch-box bg-emerald-500/10 border-emerald-500/30 text-emerald-300 text-xs">📸
-                                Immich API & Machine Learning (CPU Optimized)</div>
-                        </div>
-                        <div class="arch-box bg-indigo-500/10 border-indigo-500/30 text-indigo-300 text-xs mb-3">🗄️
-                            PostgreSQL (pgvecto-rs) & Redis</div>
-                        <div class="arch-box bg-slate-700/50 border-slate-600 text-slate-400 text-xs mt-3">🐋 Docker
-                            Engine</div>
-                    </div>
-                    <div class="arch-arrow">↕ CIFS/SMB</div>
-                    <div class="arch-box bg-yellow-500/10 border-yellow-500/30 text-yellow-300 w-48">📁 NAS Synology
-                        DS218 Play<br><span class="font-normal opacity-70">Stockage photos (300 Go+)</span></div>
+            <h2 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                🎯 Vision du projet
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="md:col-span-2">
+                    <p class="text-slate-400 leading-relaxed mb-4">
+                        Après des années sur <strong>Google Photos</strong> et <strong>iCloud</strong>, j'ai souhaité reprendre une souveraineté totale sur mes souvenirs. L'objectif : bâtir mon propre <b>"Google Photos" privé</b>, sans compromis sur l'expérience utilisateur, mais 100% auto-hébergé.
+                    </p>
+                    <p class="text-slate-400 leading-relaxed">
+                        Une solution sans abonnement, accessible mondialement via VPN, et capable d'absorber des dizaines d'années de photos familiales en toute sécurité.
+                    </p>
+                </div>
+                <div class="bg-emerald-500/5 border border-emerald-500/10 rounded-2xl p-5 flex flex-col items-center justify-center text-center">
+                    <div class="w-10 h-10 rounded-full bg-emerald-500/10 flex items-center justify-center text-xl mb-3">📱</div>
+                    <div class="text-2xl font-bold text-white">2 iPhones</div>
+                    <div class="text-[10px] text-emerald-400 font-mono uppercase tracking-widest mt-1">Synchronisation Auto</div>
                 </div>
             </div>
-            <p class="text-slate-500 text-xs text-center">Les iPhones synchronisent leurs photos via Tailscale vers le
-                serveur Immich (laptop MSI), qui stocke la bibliothèque sur le NAS via CIFS.</p>
+        </section>
+
+        <section class="mb-12 reveal">
+            <h2 class="text-xl font-bold text-white mb-6">🏗️ Architecture & Flux</h2>
+
+            <!-- Visual Architecture Diagram -->
+            <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-8 mb-6">
+                <div class="flex flex-col items-center">
+                    <!-- Top Layer -->
+                    <div class="flex gap-4 mb-8">
+                        <div class="arch-box bg-sky-500/10 border-sky-500/30 text-sky-300 w-32">
+                            📱 iPhone 1<br><span class="font-normal text-[10px] opacity-70">iOS App</span>
+                        </div>
+                        <div class="arch-box bg-sky-500/10 border-sky-500/30 text-sky-300 w-32">
+                            📱 iPhone 2<br><span class="font-normal text-[10px] opacity-70">iOS App</span>
+                        </div>
+                    </div>
+
+                    <!-- Network Layer -->
+                    <div class="w-full max-w-sm flex flex-col items-center mb-8 relative">
+                        <div class="absolute -top-6 left-1/2 -translate-x-1/2 text-slate-600">↓</div>
+                        <div class="arch-box bg-orange-500/10 border-orange-500/30 text-orange-300 w-full py-2">
+                            🔐 Tailscale Mesh VPN (WireGuard)
+                        </div>
+                        <div class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-slate-600">↓</div>
+                    </div>
+
+                    <!-- Core Layer -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+                        <div class="bg-slate-800/60 border border-slate-700 rounded-xl p-4">
+                            <div class="text-[10px] text-slate-500 font-mono mb-2 uppercase">Core Server (Lenovo)</div>
+                            <div class="space-y-2">
+                                <div class="p-2 bg-emerald-500/10 border border-emerald-500/20 rounded text-emerald-300 text-xs text-center">
+                                    📸 Immich Server (API)
+                                </div>
+                                <div class="p-2 bg-indigo-500/10 border border-indigo-500/20 rounded text-indigo-300 text-xs text-center">
+                                    🗄️ Postgres + Vector DB
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-slate-800/60 border border-slate-700 rounded-xl p-4">
+                            <div class="text-[10px] text-slate-500 font-mono mb-2 uppercase">Storage (Synology NAS)</div>
+                            <div class="h-full flex items-center justify-center">
+                                <div class="p-3 bg-yellow-500/10 border border-yellow-500/20 rounded text-yellow-300 text-xs w-full text-center">
+                                    📁 Library (CIFS/SMB)<br>
+                                    <span class="text-[10px] opacity-70">300 Go+ de souvenirs</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Focus Performance -->
+        <section class="mb-12 reveal">
+            <div class="bg-gradient-to-br from-indigo-900/30 to-emerald-900/10 border border-indigo-500/20 rounded-2xl p-8 relative overflow-hidden">
+                <div class="relative z-10">
+                    <h2 class="text-xl font-bold text-white mb-6 flex items-center gap-3">
+                        <span class="text-2xl">⚡</span>
+                        Optimisation : Du GPU vers le CPU
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-2">
+                                <div class="w-2 h-2 rounded-full bg-indigo-400"></div>
+                                <span class="text-indigo-400 font-mono text-xs uppercase tracking-wider">Phase Initialisation</span>
+                            </div>
+                            <div class="text-lg font-bold text-white">Puissance CUDA (MSI)</div>
+                            <p class="text-slate-400 text-sm leading-relaxed">
+                                Utilisation intensive d'un laptop MSI avec GPU NVIDIA pour l'indexation initiale massive. Cela a permis un traitement ultra-rapide des visages et objets (CLIP/ML) sur plus de 200 000 fichiers.
+                            </p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-2">
+                                <div class="w-2 h-2 rounded-full bg-emerald-400"></div>
+                                <span class="text-emerald-400 font-mono text-xs uppercase tracking-wider">Phase Quotidienne</span>
+                            </div>
+                            <div class="text-lg font-bold text-white">Architecture CPU Stable</div>
+                            <p class="text-slate-400 text-sm leading-relaxed">
+                                Migration vers une architecture CPU stable (Lenovo/Debian) pour le quotidien. Cette configuration assure une consommation réduite tout en restant réactive pour les nouveaux imports.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-indigo-500/5 border-l-4 border-indigo-500/50 rounded-r-xl">
+                        <p class="text-slate-300 text-sm italic">
+                            "Immich a bénéficié de la puissance CUDA (MSI) pour l'indexation initiale massive, assurant un traitement rapide des visages et objets, avant de basculer sur une architecture stable CPU pour le quotidien."
+                        </p>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- Services -->
@@ -219,7 +290,7 @@
                         <span class="tag ml-auto">Photo, Vidéo & IA</span>
                     </div>
                     <p class="text-slate-400 text-sm">Alternative open-source à Google Photos. Reconnaissance faciale et
-                        d'objets propulsée par l'intelligence artificielle. <b>Initialement indexé via GPU (MSI)</b> pour traiter 200 000+ photos, puis migré sur Lenovo pour la maintenance courante.</p>
+                        d'objets propulsée par l'intelligence artificielle (Machine Learning).</p>
                 </div>
                 <div class="service-card">
                     <div class="flex items-center gap-3 mb-2">
@@ -257,8 +328,7 @@
                 </li>
                 <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> La gestion des volumes Docker pour
                     la persistance des données est critique — une mauvaise config = perte de données.</li>
-                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> Immich a bénéficié de la puissance 
-                    <b>CUDA (MSI)</b> pour l'indexation initiale massive, assurant un traitement rapide des visages et objets, avant de basculer sur une architecture stable CPU pour le quotidien.</li>
+                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> L'optimisation hybride (GPU pour l'init, CPU pour le run) permet de concilier performance brute et sobriété énergétique.</li>
                 <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> Les architectures orientées
                     micro-services pour l'IA nécessitent un stockage optimisé pour les vecteurs (extensions comme
                     pgvecto-rs).</li>
