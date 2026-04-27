@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-04-27",
+            "articles": [
+                {
+                    "titre": "Comment Airtable a réduit ses coûts de stockage d'archives par 100",
+                    "resume": "Airtable a migré ses données MySQL froides vers S3 au format Parquet, utilisant Apache DataFusion pour les requêtes, réduisant drastiquement les coûts tout en maintenant une latence interactive.",
+                    "lien": "https://www.datatinkerer.io/p/how-airtable-saved-millions-by-cutting?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Stockage interne vs externe : les limites des tables externes",
+                    "resume": "Comparaison entre tables internes (gestion intégrale des données) et externes (métadonnées uniquement), soulignant les avantages du découplage stockage/calcul pour le passage à l'échelle.",
+                    "lien": "https://motherduck.com/blog/internal-vs-external-storage-whats-the-limit-of-external-tables/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Agents de codage : automatiser les migrations de datasets",
+                    "resume": "Spotify a utilisé son agent 'Honk' pour automatiser la migration de 1800 pipelines de données, économisant 10 semaines de travail grâce à la standardisation des systèmes et des tests.",
+                    "lien": "https://engineering.atspotify.com/2026/4/background-coding-agents-dataset-migrations-honk-part-4?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Mesurer moins pour apprendre plus : l'importance des métriques de qualité",
+                    "resume": "Discord a amélioré ses expérimentations en supprimant les métriques redondantes pour se concentrer sur un petit set d'indicateurs clés, évitant ainsi les biais statistiques liés aux tests multiples.",
+                    "lien": "https://discord.com/blog/measure-less-to-learn-more-using-fewer-higher-quality-metrics-to-capture-what-matters?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Les bases de données n'ont pas été conçues pour l'IA",
+                    "resume": "Face aux agents IA générant des requêtes imprévisibles, les bases de données nécessitent de nouveaux garde-fous : permissions strictes, timeouts, logs d'audit et écritures idempotentes.",
+                    "lien": "https://arpitbhayani.me/blogs/defensive-databases/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Défaillance d'une région Cloud : repenser la haute disponibilité",
+                    "resume": "L'instabilité géopolitique impose de traiter les pannes régionales comme un risque de premier ordre, nécessitant des stratégies multi-régions et une gestion des données consciente des juridictions.",
+                    "lien": "https://www.infoq.com/articles/sovereign-fault-domains-cloud-resilience/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Arrêtez de laisser les outils guider vos décisions de plateforme",
+                    "resume": "Les choix d'architecture data doivent reposer sur les cas d'usage et les contraintes opérationnelles (latence, coût) plutôt que sur la popularité d'outils comme Spark ou Snowflake.",
+                    "lien": "https://andreaskretz.substack.com/p/stop-letting-tools-lead-your-platform?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "tda-mapper (Repo GitHub)",
+                    "resume": "Une bibliothèque Python permettant de trouver des formes et clusters cachés dans des données complexes via l'algorithme Mapper de l'analyse topologique des données.",
+                    "lien": "https://github.com/lucasimi/tda-mapper-python?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Extension DuckDB - Whisper",
+                    "resume": "Une extension pour DuckDB permettant de transcrire des fichiers audio en texte directement via SQL, facilitant l'analyse de données vocales dans vos tables habituelles.",
+                    "lien": "https://duckdb.org/community_extensions/extensions/whisper.html?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Jaeger adopte OpenTelemetry pour l'observabilité de l'IA",
+                    "resume": "Jaeger v2 se reconstruit sur OpenTelemetry pour unifier logs, métriques et traces, tout en ajoutant des interfaces permettant aux ingénieurs de collaborer avec des agents IA en langage naturel.",
+                    "lien": "https://thenewstack.io/jaeger-v2-ai-observability/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Corriger les erreurs factuelles des LLM",
+                    "resume": "Analyse de la méthode 'Reflexion' pour réduire les hallucinations des LLM sur des données privées en stockant les erreurs passées dans une mémoire épisodique pour corriger les prompts futurs.",
+                    "lien": "https://thebigdataguy.substack.com/p/fixing-what-llms-get-wrong?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Measurement Engineering : l'avenir de la Data Science face à l'IA",
+                    "resume": "Alors que l'IA automatise le code et le SQL, la valeur ajoutée se déplace vers le jugement : savoir quoi mesurer et valider si l'analyse reflète fidèlement la réalité.",
+                    "lien": "https://ericdataproduct.substack.com/p/measurement-engineering-the-part?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                }
+            ]
+        },
+        {
             "date": "2026-04-23",
             "articles": [
                 {
