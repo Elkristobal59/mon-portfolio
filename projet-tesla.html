@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tesla Inventory Monitor : Bot Anti-Akamai — Christopher Gilleron</title>
+    <meta name="description"
+        content="Bot de monitoring d'inventaire Tesla avec contournement Akamai, notifications Telegram en temps réel et déploiement Docker sur serveur Proxmox.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { background-color: #0a0f1e; color: #f8fafc; font-family: 'Inter', sans-serif; opacity: 0; transition: opacity 0.8s ease-in-out; }
+        body.loaded { opacity: 1; }
+        html { scroll-behavior: smooth; }
+        .nav-blur { backdrop-filter: blur(16px); background: rgba(10, 15, 30, 0.85); border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
+        .avatar { width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, #60a5fa, #34d399); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: .95rem; color: #0a0f1e; flex-shrink: 0; }
+        .nav-link { color: #94a3b8; transition: color 0.2s; font-size: .875rem; font-weight: 500; }
+        .nav-link:hover { color: #f8fafc; }
+        .tag { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 6px; padding: 3px 10px; font-size: .72rem; color: #94a3b8; }
+        .feature-card { background: rgba(16, 24, 48, 0.6); border: 1px solid rgba(255, 255, 255, 0.07); border-radius: 16px; padding: 24px; transition: all 0.3s ease; }
+        .feature-card:hover { border-color: rgba(239, 68, 68, 0.3); background: rgba(16, 24, 48, 0.8); transform: translateY(-4px); }
+        .tesla-red { color: #e31937; }
+        .tesla-glow { border-color: rgba(227, 25, 55, 0.3); }
+        .timeline-dot { width: 14px; height: 14px; border-radius: 50%; border: 3px solid #e31937; background: #0a0f1e; flex-shrink: 0; z-index: 1; }
+        .timeline-line { position: absolute; left: 6px; top: 14px; bottom: 0; width: 2px; background: linear-gradient(to bottom, #e31937, transparent); }
+        #progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(to right, #e31937, #ff6b6b); z-index: 100; width: 0%; transition: width 0.1s ease-out; }
+        #back-to-top { position: fixed; bottom: 30px; right: 30px; width: 44px; height: 44px; background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(8px); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #f8fafc; cursor: pointer; z-index: 40; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
+        #back-to-top.show { opacity: 1; visibility: visible; }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .code-block { background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 20px; font-family: 'Courier New', monospace; font-size: 0.78rem; color: #94a3b8; overflow-x: auto; line-height: 1.7; }
+        .code-block .comment { color: #4a5568; }
+        .code-block .keyword { color: #e31937; }
+        .code-block .string { color: #34d399; }
+        .code-block .emoji { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+
+<body class="relative">
+    <div id="progress-bar"></div>
+
+    <!-- Navigation -->
+    <nav class="nav-blur fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3 no-underline">
+                <div class="avatar">CG</div>
+                <span class="font-bold text-white hidden sm:block">Christopher Gilleron</span>
+            </a>
+            <div class="flex items-center gap-6">
+                <a href="index.html" class="nav-link">Accueil</a>
+                <a href="projet-proxmox.html" class="nav-link">Proxmox</a>
+                <a href="projet-rag.html" class="nav-link">RAG</a>
+                <a href="projet-tesla.html" class="nav-link tesla-red">Tesla Bot</a>
+                <a href="projet-chrisflix.html" class="nav-link">Chrisflix</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-4xl mx-auto px-6 pt-32 pb-28">
+
+        <a href="index.html"
+            class="inline-flex items-center gap-2 text-slate-500 text-sm hover:text-slate-300 transition-colors mb-10 no-underline">
+            ← Retour au portfolio
+        </a>
+
+        <!-- Header -->
+        <header class="mb-16 reveal">
+            <div class="w-14 h-14 rounded-2xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-3xl mb-6">
+                🚗</div>
+            <div class="text-xs tesla-red font-mono mb-3 tracking-widest uppercase">Web Scraping · Anti-Bot Bypass · Automation · DevOps</div>
+            <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-6 leading-tight">Tesla Inventory Monitor :<br>Le Bot qui ne Rate Aucune Opportunité</h1>
+            <p class="text-slate-400 text-lg leading-relaxed mb-8">
+                Je cherche à acheter une Tesla. Le problème ? Les véhicules en stock disparaissent en quelques heures, souvent avant même que je ne rafraîchisse la page.
+                Ma solution : un bot de monitoring autonome qui surveille l'inventaire Tesla France 24h/24 depuis mon serveur Proxmox, 
+                contourne les protections anti-bot d'Akamai, et m'envoie une notification Telegram instantanée dès qu'un nouveau véhicule apparaît.
+            </p>
+            <div class="flex flex-wrap gap-2">
+                <span class="tag">Python 3.11</span>
+                <span class="tag">nodriver (CDP)</span>
+                <span class="tag">Playwright</span>
+                <span class="tag">curl_cffi</span>
+                <span class="tag">Docker Compose</span>
+                <span class="tag">Xvfb</span>
+                <span class="tag">Telegram Bot API</span>
+                <span class="tag">Proxmox</span>
+            </div>
+        </header>
+
+        <!-- Le Défi -->
+        <section class="mb-20 reveal">
+            <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                <span class="tesla-red">⚡</span> Le Défi : Pourquoi c'est Difficile
+            </h2>
+            <p class="text-slate-400 text-sm leading-relaxed mb-8">
+                Surveiller l'inventaire Tesla ne se résume pas à un simple <code class="text-red-400">requests.get()</code>. Le site est protégé par <strong class="text-white">Akamai Bot Manager</strong>, 
+                l'un des systèmes anti-bot les plus sophistiqués au monde. Chaque requête est analysée en temps réel : empreinte TLS, fingerprint JavaScript, cohérence des headers, 
+                type d'IP (résidentielle vs. datacenter), et même les mouvements de souris.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="feature-card text-center">
+                    <div class="text-3xl mb-3">🛡️</div>
+                    <h4 class="text-white font-bold text-sm mb-2">Akamai Bot Manager</h4>
+                    <p class="text-slate-500 text-xs">Analyse TLS, JavaScript fingerprinting, détection de headless browser, challenge cookies en temps réel.</p>
+                </div>
+                <div class="feature-card text-center">
+                    <div class="text-3xl mb-3">🌐</div>
+                    <h4 class="text-white font-bold text-sm mb-2">IPv6 vs IPv4</h4>
+                    <p class="text-slate-500 text-xs">Le serveur sortait en IPv6 par défaut, une famille d'IP traitée différemment par Akamai. Invisible depuis un PC classique.</p>
+                </div>
+                <div class="feature-card text-center">
+                    <div class="text-3xl mb-3">👻</div>
+                    <h4 class="text-white font-bold text-sm mb-2">Headless Detection</h4>
+                    <p class="text-slate-500 text-xs">Même le mode <code>--headless=new</code> de Chrome est détecté par les capteurs Akamai dans un environnement serveur.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Architecture Multicouche -->
+        <section class="mb-20 reveal">
+            <h2 class="text-2xl font-bold text-white mb-8">🏗️ Architecture Anti-Détection Multicouche</h2>
+            <p class="text-slate-400 text-sm leading-relaxed mb-8">
+                Le bot utilise une stratégie en cascade : si la méthode principale échoue, il bascule automatiquement sur la suivante. Cette résilience garantit une disponibilité maximale.
+            </p>
+            <div class="space-y-4">
+                <!-- Méthode 1 -->
+                <div class="bg-gradient-to-r from-red-500/5 to-transparent border border-red-500/20 rounded-2xl p-6">
+                    <div class="flex items-center gap-4 mb-3">
+                        <span class="bg-red-500/20 text-red-400 text-xs font-bold px-3 py-1 rounded-full">PRIORITÉ 1</span>
+                        <h3 class="text-white font-bold">nodriver — Contrôle Chrome via CDP</h3>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        <strong class="text-slate-200">nodriver</strong> pilote Google Chrome directement via le Chrome DevTools Protocol, sans laisser les traces détectables de Playwright ou Selenium. 
+                        Combiné à <strong class="text-slate-200">Xvfb</strong> (un écran virtuel), Chrome tourne en mode fenêtré complet sur le serveur — 
+                        une empreinte identique à un utilisateur réel sur un PC Windows.
+                    </p>
+                    <p class="text-slate-500 text-xs mt-3 italic">
+                        💡 Astuce clé : après avoir établi la session, le bot appelle directement l'API Tesla via un XHR synchrone depuis le contexte du navigateur. Les cookies Akamai sont automatiquement inclus.
+                    </p>
+                </div>
+                <!-- Méthode 2 -->
+                <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-6">
+                    <div class="flex items-center gap-4 mb-3">
+                        <span class="bg-slate-700 text-slate-300 text-xs font-bold px-3 py-1 rounded-full">FALLBACK 2</span>
+                        <h3 class="text-white font-bold">curl_cffi — Empreinte TLS Chrome</h3>
+                    </div>
+                    <p class="text-slate-400 text-sm">Appel API direct imitant parfaitement la signature TLS de Chrome 124, sans navigateur. Ultra-rapide (~200ms).</p>
+                </div>
+                <!-- Méthode 3 -->
+                <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-6">
+                    <div class="flex items-center gap-4 mb-3">
+                        <span class="bg-slate-700 text-slate-300 text-xs font-bold px-3 py-1 rounded-full">FALLBACK 3</span>
+                        <h3 class="text-white font-bold">Playwright + Stealth — Navigation complète</h3>
+                    </div>
+                    <p class="text-slate-400 text-sm">Navigateur automatisé avec injection stealth, interception réseau et simulation d'attente humaine.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Problèmes Résolus (Timeline) -->
+        <section class="mb-20 reveal">
+            <h2 class="text-2xl font-bold text-white mb-8">🔧 Les Obstacles Techniques (et leurs Solutions)</h2>
+            <div class="space-y-8">
+                <div class="flex gap-5">
+                    <div class="relative flex flex-col items-center">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-line"></div>
+                    </div>
+                    <div class="pb-8">
+                        <h4 class="text-white font-bold mb-1">Blocage IPv6 invisible</h4>
+                        <p class="text-slate-400 text-sm">Le serveur Proxmox sortait en IPv6 (<code class="text-red-400">2a02:8429:...</code>) au lieu de l'IPv4 résidentielle. Akamai bloquait silencieusement cette famille d'IP.</p>
+                        <p class="text-emerald-400 text-xs mt-2 font-semibold">✅ Solution : <code>sysctls: net.ipv6.conf.all.disable_ipv6=1</code> dans Docker Compose.</p>
+                    </div>
+                </div>
+                <div class="flex gap-5">
+                    <div class="relative flex flex-col items-center">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-line"></div>
+                    </div>
+                    <div class="pb-8">
+                        <h4 class="text-white font-bold mb-1">Headless Chrome détecté</h4>
+                        <p class="text-slate-400 text-sm">Même le mode <code class="text-slate-300">--headless=new</code> de Chrome était repéré par les capteurs JavaScript d'Akamai (absence de plugins, screen dimensions, etc).</p>
+                        <p class="text-emerald-400 text-xs mt-2 font-semibold">✅ Solution : Xvfb (écran virtuel 1920×1080) + Chrome en mode fenêtré complet = empreinte identique à un vrai PC.</p>
+                    </div>
+                </div>
+                <div class="flex gap-5">
+                    <div class="relative flex flex-col items-center">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-line"></div>
+                    </div>
+                    <div class="pb-8">
+                        <h4 class="text-white font-bold mb-1">Bug CDP nodriver (sameParty)</h4>
+                        <p class="text-slate-400 text-sm">L'interception réseau via CDP crashait à cause d'un champ cookie supprimé dans Chrome 147 (<code class="text-slate-300">sameParty</code>), incompatible avec le parser de nodriver.</p>
+                        <p class="text-emerald-400 text-xs mt-2 font-semibold">✅ Solution : Appel XHR direct à l'API Tesla depuis le contexte navigateur — les cookies Akamai sont déjà validés.</p>
+                    </div>
+                </div>
+                <div class="flex gap-5">
+                    <div class="flex flex-col items-center">
+                        <div class="timeline-dot"></div>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-bold mb-1">Boucle async incompatible</h4>
+                        <p class="text-slate-400 text-sm"><code class="text-slate-300">nodriver</code> est async, mais le script principal est synchrone. <code>asyncio.run()</code> échouait dans certains contextes.</p>
+                        <p class="text-emerald-400 text-xs mt-2 font-semibold">✅ Solution : <code>nest_asyncio.apply()</code> pour autoriser les boucles async imbriquées.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Déploiement Docker -->
+        <section class="mb-20 reveal">
+            <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                <span class="text-sky-400">🐳</span> Déploiement Docker sur Proxmox
+            </h2>
+            <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                Le bot tourne 24h/24 dans un conteneur Docker sur mon serveur Proxmox, avec <code class="text-slate-300">restart: unless-stopped</code>. 
+                Il survit aux redémarrages du serveur et aux mises à jour automatiquement.
+            </p>
+            <div class="code-block">
+                <span class="comment"># docker-compose.yml</span><br>
+                <span class="keyword">services</span>:<br>
+                &nbsp;&nbsp;<span class="keyword">tesla-scraper</span>:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;build: .<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;container_name: tesla-scraper<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;restart: unless-stopped<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;shm_size: <span class="string">'1gb'</span> &nbsp;<span class="comment"># Mémoire partagée pour Chrome</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;sysctls:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span class="string">net.ipv6.conf.all.disable_ipv6=1</span> &nbsp;<span class="comment"># Force IPv4</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;volumes:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- ./.env:/app/.env &nbsp;<span class="comment"># Secrets Telegram</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- ./stock_vins.json:/app/stock_vins.json &nbsp;<span class="comment"># Cache persistant</span><br>
+            </div>
+            <div class="code-block mt-4">
+                <span class="comment"># Dockerfile — Chrome + Xvfb (faux écran)</span><br>
+                <span class="keyword">CMD</span> xvfb-run --auto-servernum \<br>
+                &nbsp;&nbsp;--server-args=<span class="string">"-screen 0 1920x1080x24"</span> \<br>
+                &nbsp;&nbsp;python tesla_stock_monitor.py
+            </div>
+        </section>
+
+        <!-- Notifications -->
+        <section class="mb-20 reveal">
+            <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                <span>📱</span> Alertes Telegram en Temps Réel
+            </h2>
+            <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                Dès qu'un nouveau véhicule apparaît dans l'inventaire, je reçois instantanément une notification Telegram avec toutes les informations essentielles : 
+                modèle, prix, kilométrage, localisation et lien direct vers la page de commande Tesla.
+            </p>
+            <div class="bg-slate-900/60 border border-slate-700 rounded-2xl p-6 max-w-md mx-auto">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white text-lg">🤖</div>
+                    <div>
+                        <p class="text-white text-sm font-bold">Tesla Stock Bot</p>
+                        <p class="text-slate-500 text-[10px]">Aujourd'hui à 00:14</p>
+                    </div>
+                </div>
+                <div class="bg-slate-800/80 rounded-xl p-4 text-sm text-slate-300 space-y-1">
+                    <p>🚗 <strong class="text-white">Nouveau Model 3 disponible !</strong></p>
+                    <p>➖ Trim: Model 3 Propulsion 2026</p>
+                    <p>➖ Prix: 36 990 €</p>
+                    <p>➖ Kilométrage: 0 km</p>
+                    <p>➖ Localisation: Lille</p>
+                    <p>➖ VIN: <code class="text-xs">LRW3190_7ddd...</code></p>
+                    <p class="pt-2">🔗 <a class="text-blue-400 underline text-xs">Lien vers le véhicule</a></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stack Résumé -->
+        <section class="mb-20 reveal">
+            <h2 class="text-2xl font-bold text-white mb-8 text-center">🧰 Stack Technique Complète</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <div class="bg-slate-900/40 border border-slate-800 rounded-xl p-4 text-center">
+                    <p class="text-2xl mb-2">🐍</p>
+                    <p class="text-white text-xs font-bold">Python 3.11</p>
+                    <p class="text-slate-500 text-[10px]">Moteur principal</p>
+                </div>
+                <div class="bg-slate-900/40 border border-slate-800 rounded-xl p-4 text-center">
+                    <p class="text-2xl mb-2">🥷</p>
+                    <p class="text-white text-xs font-bold">nodriver</p>
+                    <p class="text-slate-500 text-[10px]">Anti-détection CDP</p>
+                </div>
+                <div class="bg-slate-900/40 border border-slate-800 rounded-xl p-4 text-center">
+                    <p class="text-2xl mb-2">🐳</p>
+                    <p class="text-white text-xs font-bold">Docker</p>
+                    <p class="text-slate-500 text-[10px]">Conteneurisation</p>
+                </div>
+                <div class="bg-slate-900/40 border border-slate-800 rounded-xl p-4 text-center">
+                    <p class="text-2xl mb-2">📺</p>
+                    <p class="text-white text-xs font-bold">Xvfb</p>
+                    <p class="text-slate-500 text-[10px]">Écran virtuel</p>
+                </div>
+                <div class="bg-slate-900/40 border border-slate-800 rounded-xl p-4 text-center">
+                    <p class="text-2xl mb-2">🔐</p>
+                    <p class="text-white text-xs font-bold">curl_cffi</p>
+                    <p class="text-slate-500 text-[10px]">Empreinte TLS</p>
+                </div>
+                <div class="bg-slate-900/40 border border-slate-800 rounded-xl p-4 text-center">
+                    <p class="text-2xl mb-2">🎭</p>
+                    <p class="text-white text-xs font-bold">Playwright</p>
+                    <p class="text-slate-500 text-[10px]">Fallback stealth</p>
+                </div>
+                <div class="bg-slate-900/40 border border-slate-800 rounded-xl p-4 text-center">
+                    <p class="text-2xl mb-2">📡</p>
+                    <p class="text-white text-xs font-bold">Telegram API</p>
+                    <p class="text-slate-500 text-[10px]">Notifications</p>
+                </div>
+                <div class="bg-slate-900/40 border border-slate-800 rounded-xl p-4 text-center">
+                    <p class="text-2xl mb-2">🏗️</p>
+                    <p class="text-white text-xs font-bold">Proxmox</p>
+                    <p class="text-slate-500 text-[10px]">Hébergement 24/7</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="mb-12 reveal border-t border-slate-800 pt-12">
+            <h2 class="text-xl font-bold text-white mb-6 italic">"Ne jamais rater une opportunité, c'est automatiser sa veille."</h2>
+            <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                Ce projet m'a confronté aux réalités du <strong>web scraping moderne</strong> : les protections anti-bot de niveau enterprise (Akamai, Cloudflare) 
+                ne se contournent pas avec de simples requêtes HTTP. Il faut comprendre le fonctionnement des <strong>empreintes TLS</strong>, 
+                du <strong>fingerprinting JavaScript</strong>, et maîtriser les subtilités réseau (IPv4/IPv6) qui passent inaperçues en développement local 
+                mais deviennent critiques en production sur un serveur.
+            </p>
+            <a href="index.html" class="tesla-red font-bold hover:underline">Découvrir mes autres projets →</a>
+        </footer>
+
+    </div>
+
+    <!-- Back to top -->
+    <div id="back-to-top" title="Retour en haut">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+    </div>
+
+    <script>
+        function handleScroll() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            document.getElementById("progress-bar").style.width = (winScroll / height) * 100 + "%";
+            const btt = document.getElementById("back-to-top");
+            if (winScroll > 400) { btt.classList.add("show"); } else { btt.classList.remove("show"); }
+        }
+        const revealCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) { entry.target.classList.add('active'); observer.unobserve(entry.target); }
+            });
+        };
+        const revealObserver = new IntersectionObserver(revealCallback, { threshold: 0.1 });
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.add('loaded');
+            document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+            document.getElementById("back-to-top").addEventListener("click", () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+        });
+        window.onscroll = handleScroll;
+    </script>
+</body>
+
+</html>
