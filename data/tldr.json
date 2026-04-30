@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-04-30",
+            "articles": [
+                {
+                    "titre": "Génération de flux par langage naturel : l'approche agentique",
+                    "resume": "Shopify utilise un agent IA optimisé par fine-tuning de modèles open-source pour permettre aux marchands de créer des automatisations via le langage naturel, surpassant les modèles généralistes en coût et précision.",
+                    "lien": "https://shopify.engineering/fine-tuning-agent-shopify-flow?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Du clic à la conversion : l'architecture de Pinterest pour le shopping",
+                    "resume": "Pinterest a développé un modèle de recherche à deux tours optimisé pour les conversions réelles plutôt que les simples clics, utilisant une architecture multi-tâches pour gérer les données de conversion éparses.",
+                    "lien": "https://medium.com/pinterest-engineering/from-clicks-to-conversions-architecting-shopping-conversion-candidate-generation-at-pinterest-04cae5e1455b?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Comment Vinted personnalise l'autocomplétion de recherche",
+                    "resume": "Vinted a refondu son système de suggestion en combinant un scoring heuristique (popularité, taux de vente) et un modèle Learning-to-Rank (LightGBM) pour un réordonnancement personnalisé en temps réel.",
+                    "lien": "https://vinted.engineering//2026/04/22/personalized-search-autocomplete/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Skipper : le moteur de workflow embarqué d'Airbnb",
+                    "resume": "Skipper est un moteur de workflow léger conçu pour garantir l'exécution de processus métier longs sans orchestrateur externe, en persistant l'état directement dans la base de données du service.",
+                    "lien": "https://medium.com/airbnb-engineering/skipper-building-airbnbs-embedded-workflow-engine-f6c34552146f?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "GraphRAG au-delà de la démo : retours d'expérience",
+                    "resume": "Analyse de l'usage de GraphRAG en production : idéal pour le raisonnement multi-documents, mais complexe à gérer en termes de coûts d'indexation, de mise à jour et d'observabilité.",
+                    "lien": "https://medium.com/data-science-at-microsoft/graphrag-beyond-the-demo-lessons-from-the-trenches-add83180f849?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Pièges de l'A/B Testing : retours sur des données réelles",
+                    "resume": "Les échecs des tests A/B proviennent souvent d'infrastructures défaillantes ou de mauvaises pratiques statistiques (échantillonnage biaisé, lecture précoce des résultats) plutôt que des idées testées.",
+                    "lien": "http://kdnuggets.com/a-b-testing-pitfalls-what-works-and-what-doesnt-with-real-data?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "oLLM (Dépôt GitHub)",
+                    "resume": "Une bibliothèque Python permettant d'exécuter des LLM à large contexte sur du matériel grand public en déchargeant les poids du modèle et le cache KV sur SSD au lieu de la mémoire GPU.",
+                    "lien": "https://github.com/Mega4alik/ollm?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Tables matérialisées dans Apache Flink",
+                    "resume": "Flink introduit les tables matérialisées qui simplifient les pipelines ETL en intégrant directement le schéma et la logique de rafraîchissement continu ou planifié dans le catalogue.",
+                    "lien": "https://rmoff.net/2026/04/28/materialized-tables-in-apache-flink/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Mises à jour HOT dans Postgres",
+                    "resume": "Explication de l'optimisation 'Heap Only Tuple' (HOT) de PostgreSQL, qui permet de mettre à jour des colonnes non indexées sans modifier les index, réduisant ainsi la charge WAL et la maintenance.",
+                    "lien": "https://boringsql.com/posts/hot-updates/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Rocky (Dépôt GitHub)",
+                    "resume": "Outil en Rust offrant une couche de contrôle sur les entrepôts de données, incluant des contrats de données, du lignage et des tests via des branches sécurisées.",
+                    "lien": "https://github.com/rocky-data/rocky?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "SQLite dans le navigateur avec sql.js, WASM et Google Drive",
+                    "resume": "Guide pratique pour faire tourner SQLite côté client via WebAssembly, avec une architecture permettant de synchroniser et stocker la base de données sur le Google Drive de l'utilisateur.",
+                    "lien": "https://dev.to/deeshansharma/running-sqlite-in-the-browser-with-sqljs-and-wasm-a-practical-guide-with-google-drive-sync-edh?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                },
+                {
+                    "titre": "Moteur de recommandation temps réel avec Feature Stores et Redis",
+                    "resume": "Comment coupler Feature Stores et Redis pour atteindre des latences inférieures à 100ms sur des systèmes de recommandation à grande échelle utilisant la recherche vectorielle.",
+                    "lien": "https://hackernoon.com/building-a-high-scale-real-time-recommendation-engine-with-feature-stores-and-redis-observability?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                }
+            ]
+        },
+        {
             "date": "2026-04-27",
             "articles": [
                 {
