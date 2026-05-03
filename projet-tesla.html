@@ -129,13 +129,35 @@
                         <span class="bg-red-500/20 text-red-400 text-xs font-bold px-3 py-1 rounded-full">PRIORITÉ 1</span>
                         <h3 class="text-white font-bold">nodriver — Contrôle Chrome via CDP</h3>
                     </div>
-                    <p class="text-slate-400 text-sm leading-relaxed">
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
                         <strong class="text-slate-200">nodriver</strong> pilote Google Chrome directement via le Chrome DevTools Protocol, sans laisser les traces détectables de Playwright ou Selenium. 
                         Combiné à <strong class="text-slate-200">Xvfb</strong> (un écran virtuel), Chrome tourne en mode fenêtré complet sur le serveur — 
                         une empreinte identique à un utilisateur réel sur un PC Windows.
                     </p>
+                    <div class="code-block mb-4">
+                        <span class="comment"># Simulation du comportement humain pour bypasser Akamai</span><br>
+                        <span class="keyword">async def</span> <span class="text-blue-400">_fetch</span>():<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"># Étape 1 : Page d'accueil pour validation cookies</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;page = <span class="keyword">await</span> browser.get(<span class="string">"https://www.tesla.com/fr_FR"</span>)<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">for</span> _ <span class="keyword">in</span> <span class="text-blue-400">range</span>(<span class="text-orange-400">3</span>):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">await</span> page.mouse_move(random.randint(<span class="text-orange-400">100</span>, <span class="text-orange-400">800</span>), random.randint(<span class="text-orange-400">100</span>, <span class="text-orange-400">600</span>))<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">await</span> asyncio.sleep(random.uniform(<span class="text-orange-400">0.5</span>, <span class="text-orange-400">1.5</span>))<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">await</span> page.scroll_down(random.randint(<span class="text-orange-400">200</span>, <span class="text-orange-400">500</span>))<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"># Étape 2 : Navigation vers l'inventaire</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">await</span> page.get(TESLA_URL)<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">for</span> _ <span class="keyword">in</span> <span class="text-blue-400">range</span>(<span class="text-orange-400">5</span>):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">await</span> page.mouse_move(random.randint(<span class="text-orange-400">0</span>, <span class="text-orange-400">1000</span>), random.randint(<span class="text-orange-400">0</span>, <span class="text-orange-400">800</span>))<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span> random.random() > <span class="text-orange-400">0.5</span>: <span class="keyword">await</span> page.scroll_down(random.randint(<span class="text-orange-400">100</span>, <span class="text-orange-400">300</span>))<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">await</span> asyncio.sleep(random.uniform(<span class="text-orange-400">0.8</span>, <span class="text-orange-400">2.5</span>))<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"># Vérification blocage & Appel API XHR</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;title = <span class="keyword">await</span> page.evaluate(<span class="string">"document.title"</span>)<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span> <span class="string">"Access Denied"</span> <span class="keyword">in</span> <span class="text-blue-400">str</span>(title): <span class="keyword">return</span> <span class="text-blue-400">None</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;raw = <span class="keyword">await</span> page.evaluate(<span class="string">"const xhr = new XMLHttpRequest(); xhr.open('GET', path, false); xhr.send(); return xhr.responseText;"</span>)
+                    </div>
                     <p class="text-slate-500 text-xs mt-3 italic">
-                        💡 Astuce clé : après avoir établi la session, le bot appelle directement l'API Tesla via un XHR synchrone depuis le contexte du navigateur. Les cookies Akamai sont automatiquement inclus.
+                        💡 Astuce clé : après avoir établi la session via simulation, le bot appelle l'API Tesla via un XHR synchrone (evaluate) depuis le contexte du navigateur pour récupérer le JSON brut proprement, contournant les bugs d'interception CDP.
                     </p>
                 </div>
                 <!-- Méthode 2 -->
