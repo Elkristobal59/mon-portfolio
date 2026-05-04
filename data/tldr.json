@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-05-04",
+            "articles": [
+                {
+                    "titre": "Data Mesh chez Grab Partie II : Outils de certification",
+                    "resume": "Grab automatise la certification du Data Mesh via un graphe de métadonnées piloté par événements (DataHub, Kafka, Temporal) pour valider l'ownership et la qualité en temps réel.",
+                    "lien": "https://engineering.grab.com/data-mesh-2?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "DocDB de Stripe : Mouvement de données sans interruption",
+                    "resume": "Stripe gère 5 millions de requêtes/s sur MongoDB grâce à une plateforme de migration (CDC, snapshots) permettant des mises à jour et du sharding sans interruption de service.",
+                    "lien": "https://www.infoq.com/presentations/docdb-online-database/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Optimiser l'efficacité réseau du ML : Feature Trimmer",
+                    "resume": "Pinterest a développé Feature Trimmer pour supprimer dynamiquement les caractéristiques ML redondantes, réduisant massivement l'utilisation de la bande passante et les coûts.",
+                    "lien": "https://medium.com/pinterest-engineering/optimizing-ml-workload-network-efficiency-part-i-feature-trimmer-ae20beb08d69?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Refonte du classement de recherche chez Faire via le Deep Learning",
+                    "resume": "Migration d'XGBoost vers le Deep Learning pour améliorer la pertinence. L'infrastructure Docker personnalisée a réduit la latence de démarrage de 30 à quelques minutes.",
+                    "lien": "https://craft.faire.com/how-we-rebuilt-search-ranking-at-faire-with-deep-learning-14f080679c83?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Un second cerveau IA pour 60 000 employés chez Meta",
+                    "resume": "Meta a déployé un système interne basé sur le RAG et des agents IA pour aider ses collaborateurs à synthétiser et exploiter les vastes connaissances internes de l'entreprise.",
+                    "lien": "https://medium.com/@AnalyticsAtMeta/how-we-built-an-ai-second-brain-for-60k-knowledge-workers-78c507dd795b?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Les cinq mondes de l'ingénierie des données",
+                    "resume": "L'article définit cinq modèles opérationnels (startup, legacy, critique, etc.) et explique pourquoi les 'bonnes pratiques' diffèrent radicalement selon l'environnement.",
+                    "lien": "https://ghostinthedata.info/posts/2026/2026-05-02-five-worlds-data-engineering/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Automatiser la validation des données : notre méthode",
+                    "resume": "Utilisation d'agents IA pour automatiser les audits de validation répétitifs, permettant aux ingénieurs de se concentrer sur la prise de décision basée sur des preuves générées par l'IA.",
+                    "lien": "https://hex.tech/blog/automated-data-validation/?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                },
+                {
+                    "titre": "Gérer l'évolution des schémas dans Polars",
+                    "resume": "Guide technique sur l'utilisation des paramètres intégrés de Polars (schema_mode, ScanCastOptions) pour maintenir la robustesse des pipelines face aux changements de données.",
+                    "lien": "https://pola.rs/posts/schema-evolution/?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                },
+                {
+                    "titre": "Datanomy (Repo GitHub)",
+                    "resume": "Un outil en ligne de commande (CLI) interactif pour inspecter les fichiers Parquet : schémas, métadonnées, statistiques et structures internes.",
+                    "lien": "https://github.com/raulcd/datanomy?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Étude de cas RAG : La mise en production avec Weave CLI",
+                    "resume": "Présentation de Weave CLI, un outil qui unifie 11 bases vectorielles et 5 fournisseurs d'embeddings derrière une interface unique avec traçage OpenTelemetry intégré.",
+                    "lien": "https://www.decodingai.com/p/ship-rag-with-weave-cli?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Apache Fluss sur EKS : Le Kafka indexable",
+                    "resume": "Retour d'expérience sur Apache Fluss, qui combine streaming et stockage colonnaire. Conseils pour le déploiement sur EKS et l'intégration avec Flink.",
+                    "lien": "https://medium.com/fresha-data-engineering/bottling-the-river-apache-fluss-on-eks-6aa63c00d9e9?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                },
+                {
+                    "titre": "Compression efficace du cache KV avec TurboQuant",
+                    "resume": "Nouvel algorithme de quantification compressant les caches Key-Value des LLM à environ 3 bits par valeur sans perte de précision grâce à l'approche PolarQuant.",
+                    "lien": "https://machinelearningmastery.com/effective-kv-compression-with-turboquant/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                }
+            ]
+        },
+        {
             "date": "2026-04-30",
             "articles": [
                 {
