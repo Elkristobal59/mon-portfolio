@@ -18,6 +18,23 @@
         .nav-link:hover { color:#f8fafc; }
         .tag { background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:6px;padding:3px 10px;font-size:.72rem;color:#94a3b8; }
         
+        /* --- Iframe Dashboard --- */
+        .iframe-container {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            box-shadow: 0 0 60px rgba(59, 130, 246, 0.1);
+            margin-bottom: 2rem;
+        }
+        .iframe-container iframe {
+            display: block;
+            width: 100%;
+            height: 700px;
+            border: none;
+            background: #1e1b2e;
+        }
+
         /* --- Progress Bar --- */
         #progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(to right, #60a5fa, #34d399); z-index: 100; width: 0%; transition: width 0.1s ease-out; }
 
@@ -103,6 +120,28 @@
                     <div class="text-slate-500 text-xs">Pôles d'expertise métiers couverts</div>
                 </div>
             </div>
+        </section>
+
+        <!-- Dashboard -->
+        <section class="mb-12 reveal">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-xl font-bold text-white">📊 Démo Interactive (Streamlit)</h2>
+                <a href="https://huggingface.co/spaces/Elkristobal59/GDM-Aide-RUN-V2" target="_blank"
+                   class="text-xs text-blue-400 border border-blue-500/30 px-3 py-1.5 rounded-full hover:bg-blue-500/10 transition-all no-underline">
+                    ↗ Ouvrir sur Hugging Face
+                </a>
+            </div>
+            <div class="iframe-container">
+                <iframe
+                    src="https://elkristobal59-gdm-aide-run-v2.hf.space/"
+                    title="GDM Ticket AI Router Dashboard"
+                    loading="lazy"
+                    allow="fullscreen">
+                </iframe>
+            </div>
+            <p class="text-slate-600 text-xs text-center mt-3">
+                L'application est hébergée sur Hugging Face Spaces. Le chargement peut prendre quelques secondes.
+            </p>
         </section>
 
         <!-- Choix Stratégiques -->
