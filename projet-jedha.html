@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet Final Jedha — Christopher Gilleron</title>
+    <meta name="description" content="Dashboard Streamlit IA de routage NLP de tickets de support pour Grain de Malice, projet final certification Jedha.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        html { scroll-behavior: smooth; }
+        body { background-color: #0a0f1e; color: #f8fafc; font-family: 'Inter', sans-serif; opacity: 0; transition: opacity 0.8s ease-in-out; }
+        body.loaded { opacity: 1; }
+        .nav-blur { backdrop-filter: blur(16px); background: rgba(10,15,30,0.85); border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .avatar { width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#60a5fa,#34d399);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.95rem;color:#0a0f1e;flex-shrink:0; }
+        .nav-link { color:#94a3b8;transition:color 0.2s;font-size:.875rem;font-weight:500; }
+        .nav-link:hover { color:#f8fafc; }
+        .tag { background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:6px;padding:3px 10px;font-size:.72rem;color:#94a3b8; }
+        
+        /* --- Progress Bar --- */
+        #progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(to right, #60a5fa, #34d399); z-index: 100; width: 0%; transition: width 0.1s ease-out; }
+
+        /* --- Back to Top --- */
+        #back-to-top { position: fixed; bottom: 30px; right: 30px; width: 44px; height: 44px; background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(8px); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #f8fafc; cursor: pointer; z-index: 40; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
+        #back-to-top.show { opacity: 1; visibility: visible; }
+        #back-to-top:hover { transform: translateY(-5px); border-color: #60a5fa; color: #60a5fa; }
+
+        /* --- Reveal Animations --- */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* --- Micro-animations boutons --- */
+        .btn-hover { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .btn-hover:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); }
+    </style>
+</head>
+
+<body class="relative">
+    <div id="progress-bar"></div>
+    <nav class="nav-blur fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3 no-underline">
+                <div class="avatar">CG</div>
+                <span class="font-bold text-white hidden sm:block">Christopher Gilleron</span>
+            </a>
+            <div class="flex items-center gap-6">
+                <a href="index.html" class="nav-link">Accueil</a>
+                <a href="projet-rag.html" class="nav-link">RAG</a>
+                <a href="projet-immich.html" class="nav-link">Immich</a>
+                <a href="projet-jedha.html" class="nav-link text-blue-400">GDM Ticket AI</a>
+                <a href="projet-getaround.html" class="nav-link">GetAround</a>
+                <a href="https://www.linkedin.com/in/christophergilleron/" target="_blank" class="btn-hover px-4 py-1.5 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-sm font-medium hover:bg-sky-500/20 transition-all">LinkedIn</a>
+                <a href="https://github.com/Elkristobal59" target="_blank" class="btn-hover px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-sm font-medium hover:bg-blue-500/20 transition-all">GitHub</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-4xl mx-auto px-6 pt-32 pb-28">
+
+        <a href="index.html" class="inline-flex items-center gap-2 text-slate-500 text-sm hover:text-slate-300 transition-colors mb-10 no-underline">
+            ← Retour au portfolio
+        </a>
+
+        <!-- Header -->
+        <div class="mb-12">
+            <div class="w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-3xl mb-6">🎫</div>
+            <div class="text-xs text-blue-400 font-mono mb-3 tracking-widest">PROJET FINAL JEDHA — DATA SCIENCE & ARCHITECTURE IA</div>
+            <h1 class="text-4xl font-extrabold text-white mb-4 leading-tight">GDM Aide RUN — AI Ticket Router</h1>
+            <p class="text-slate-400 text-lg leading-relaxed">
+                Développement d'une application d'intelligence artificielle NLP pour le triage automatisé des tickets de support de la DOSI chez Grain de Malice.
+            </p>
+            <div class="flex flex-wrap gap-2 mt-6">
+                <span class="tag">Python</span>
+                <span class="tag">Streamlit</span>
+                <span class="tag">NLP</span>
+                <span class="tag">LightGBM</span>
+                <span class="tag">Scikit-learn</span>
+                <span class="tag">MLOps</span>
+                <span class="tag">Docker</span>
+            </div>
+        </div>
+
+        <hr class="border-slate-800 mb-12">
+
+        <!-- Contexte -->
+        <section class="mb-12 reveal">
+            <h2 class="text-xl font-bold text-white mb-4">🎯 Contexte & Objectif</h2>
+            <p class="text-slate-400 leading-relaxed mb-4">
+                En tant que technicien RUN chez Grain de Malice, j'ai constaté le volume important de tickets de support. Dans le cadre de mon projet final pour la double certification Jedha (Data Scientist & Architecte IA), j'ai conçu un modèle NLP capable d'analyser le texte des tickets et de prédire le pôle de résolution adéquat parmi 5 départements métiers, optimisant ainsi le temps de traitement (MTTR).
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4 text-center">
+                    <div class="text-2xl font-extrabold text-blue-400 mb-1">84%</div>
+                    <div class="text-slate-500 text-xs">Accuracy Globale du modèle</div>
+                </div>
+                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4 text-center">
+                    <div class="text-2xl font-extrabold text-blue-400 mb-1">97%</div>
+                    <div class="text-slate-500 text-xs">Précision sur le Monitoring</div>
+                </div>
+                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4 text-center">
+                    <div class="text-2xl font-extrabold text-blue-400 mb-1">5</div>
+                    <div class="text-slate-500 text-xs">Pôles d'expertise métiers couverts</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Choix Stratégiques -->
+        <section class="mb-12 reveal">
+            <h2 class="text-xl font-bold text-white mb-4">💡 Choix Stratégiques & Justification Métier</h2>
+            <p class="text-slate-400 leading-relaxed mb-4">
+                L'une des décisions clés a été d'équilibrer l'Accuracy et la Valeur Métier.
+            </p>
+            <ul class="text-slate-400 space-y-3 pl-5 list-disc">
+                <li>
+                    <strong class="text-white">Transparence MLOps :</strong> Plutôt que de fusionner des catégories pour gonfler l'Accuracy à >90% de façon artificielle, j'ai maintenu les 5 pôles réels de l'organisation : <em>Monitoring, RUN, Data & BI, Commerce & Magasins, Finance & Support</em>.
+                </li>
+                <li>
+                    <strong class="text-white">Valeur terrain :</strong> Même avec une accuracy de ~45% sur des pôles frontière (Commerce, Finance, Data) où le vocabulaire est très similaire, l'outil propose une première qualification très pertinente. Pour le Monitoring (alertes automatisées), il frôle la perfection, ce qui représente déjà un gain de temps massif.
+                </li>
+            </ul>
+        </section>
+
+        <!-- Stack -->
+        <section class="mb-12 reveal">
+            <h2 class="text-xl font-bold text-white mb-6">🛠️ Méthodologie du Sprint IA</h2>
+            <div class="space-y-3 text-slate-400 text-sm">
+                <div class="flex gap-3 bg-slate-900/50 border border-slate-800 rounded-xl p-4">
+                    <span class="text-blue-400 font-bold text-lg leading-none">1.</span>
+                    <div><span class="text-white font-semibold">Analyse & Pré-processing NLP</span> — Nettoyage approfondi des descriptions et objets des tickets, retrait du "bruit" IT, tokenization et vectorisation TF-IDF.</div>
+                </div>
+                <div class="flex gap-3 bg-slate-900/50 border border-slate-800 rounded-xl p-4">
+                    <span class="text-blue-400 font-bold text-lg leading-none">2.</span>
+                    <div><span class="text-white font-semibold">Entraînement Modèle</span> — Entraînement de modèles de classification. LightGBM s'est révélé le plus performant et léger pour classer les tickets avec une haute confiance.</div>
+                </div>
+                <div class="flex gap-3 bg-slate-900/50 border border-slate-800 rounded-xl p-4">
+                    <span class="text-blue-400 font-bold text-lg leading-none">3.</span>
+                    <div><span class="text-white font-semibold">Dashboard Streamlit MVP</span> — Interface utilisateur interactive développée en Streamlit, capable de traiter un ticket test et d'afficher le pole ciblé avec son niveau de certitude et la statistique de temps de résolution (MTTR).</div>
+                </div>
+                <div class="flex gap-3 bg-slate-900/50 border border-slate-800 rounded-xl p-4">
+                    <span class="text-blue-400 font-bold text-lg leading-none">4.</span>
+                    <div><span class="text-white font-semibold">Industrialisation Docker</span> — Conteneurisation de l'application prête pour un déploiement continu, soutenue devant un jury de certification technique.</div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer class="text-center py-10 border-t border-slate-800/60 text-slate-600 text-sm">
+        Christopher Gilleron · Hébergé sur Vercel
+    </footer>
+
+    <!-- ===== BOUTON RETOUR EN HAUT ===== -->
+    <div id="back-to-top" title="Retour en haut">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+    </div>
+
+    <script>
+        function handleScroll() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("progress-bar").style.width = scrolled + "%";
+
+            const btt = document.getElementById("back-to-top");
+            if (winScroll > 400) { btt.classList.add("show"); } else { btt.classList.remove("show"); }
+        }
+
+        const revealCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        };
+
+        const revealObserver = new IntersectionObserver(revealCallback, { threshold: 0.1 });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.add('loaded');
+            document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+            document.getElementById("back-to-top").addEventListener("click", () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+
+        window.onscroll = handleScroll;
+    </script>
+</body>
+</html>
