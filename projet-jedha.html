@@ -160,6 +160,72 @@
             </ul>
         </section>
 
+        <!-- Storytelling Diagnostic -->
+        <section class="mb-12 reveal">
+            <h2 class="text-xl font-bold text-white mb-6">🔬 Chronique d'un Diagnostic : Le Bug du Routage</h2>
+            
+            <div class="space-y-6">
+                <!-- Constat -->
+                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 relative overflow-hidden transition-all hover:bg-slate-800/50">
+                    <div class="absolute top-0 left-0 w-1 h-full bg-red-500/60"></div>
+                    <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
+                        <span class="text-red-400">1.</span> Le Constat : Un biais systémique
+                    </h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Lors d'un test en conditions réelles dans l'interface, un ticket très explicitement <strong class="text-white">MONITORING</strong> (<code>ALARM JOB: OP_NIGHT_BATCH_04</code>) a été classé en <strong class="text-white">RUN avec 100% de confiance</strong>. Pire encore, le modèle prédisait "RUN" pour absolument tout, signifiant qu'il n'avait en réalité rien appris sur les 4 autres classes métiers.
+                    </p>
+                </div>
+
+                <!-- L'Enquête -->
+                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 relative overflow-hidden transition-all hover:bg-slate-800/50">
+                    <div class="absolute top-0 left-0 w-1 h-full bg-blue-500/60"></div>
+                    <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
+                        <span class="text-blue-400">2.</span> L'Enquête : Déséquilibre & Vocabulaire
+                    </h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        Trois diagnostics successifs (via des scripts <code>diagnostic_modele.py</code> et <code>explore_data.py</code>) ont permis d'isoler la cause racine :
+                    </p>
+                    <ul class="text-slate-400 text-sm space-y-3 pl-5 list-disc">
+                        <li>L'inspection des métadonnées du <strong>LGBMClassifier</strong> a confirmé que le modèle "connaissait" bien les 5 classes. L'anomalie se trouvait dans l'apprentissage.</li>
+                        <li>L'exploration de la distribution a révélé un ratio de déséquilibre massif de <strong>13:1</strong>. Contrairement à l'intuition, MONITORING était la classe ultra-majoritaire (58.7%). Le paramètre <code>class_weight='balanced'</code> s'est avéré insuffisant face à ce ratio.</li>
+                        <li>L'analyse sémantique a mis en lumière une importante <strong>hors distribution</strong> : nos tickets de démo étaient en anglais naturel, alors que les vrais tickets de production étaient des alertes OPCON ultra structurées (ex: <code>ID=80985 Event Trigger=Job Failed</code>). Le modèle n'avait pas appris ce pattern.</li>
+                    </ul>
+                </div>
+
+                <!-- La Solution -->
+                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 relative overflow-hidden transition-all hover:bg-slate-800/50">
+                    <div class="absolute top-0 left-0 w-1 h-full bg-emerald-500/60"></div>
+                    <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
+                        <span class="text-emerald-400">3.</span> La Solution : Augmentation & MLOps
+                    </h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        Pour corriger le tir, j'ai intégré la technique <strong>SMOTE</strong> (Synthetic Minority Over-sampling Technique) directement sur les embeddings générés par <strong>DistilBERT</strong>. Cette méthode a permis de synthétiser des exemples pour passer de 10 668 à plus de <strong>31 310 exemples parfaitement équilibrés</strong>.
+                    </p>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                        En parallèle, j'ai sécurisé le pipeline d'entraînement avec des <strong>garde-fous métier</strong> : calcul systématique du recall par classe et division par 2 du score F1 global si une classe devient "morte" (< 10% de recall). Enfin, les tickets de démo ont été réécrits pour coller à la réalité du terrain.
+                    </p>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="bg-slate-950/50 rounded-lg p-4 border border-slate-800/80">
+                            <div class="text-xs text-slate-500 uppercase tracking-wider mb-1 font-semibold">Avant SMOTE (V3)</div>
+                            <div class="text-xl font-bold text-red-400/90 tracking-tight">Recall Monitoring : ~0%</div>
+                        </div>
+                        <div class="bg-slate-950/50 rounded-lg p-4 border border-slate-800/80">
+                            <div class="text-xs text-slate-500 uppercase tracking-wider mb-1 font-semibold">Après SMOTE (V4)</div>
+                            <div class="text-xl font-bold text-emerald-400 tracking-tight">Recall Monitoring : 98.7%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-6 flex items-start gap-3 bg-blue-500/5 border border-blue-500/10 rounded-xl p-4 text-sm text-slate-400">
+                <div class="text-xl">💡</div>
+                <p>
+                    L'amélioration des frontières de décision a légèrement augmenté l'empreinte du modèle exporté (de 2 Mo à 8.7 Mo). Un compromis assumé et parfaitement acceptable face aux 540 Mo d'un pipeline non optimisé.
+                </p>
+            </div>
+        </section>
+
         <!-- Stack -->
         <section class="mb-12 reveal">
             <h2 class="text-xl font-bold text-white mb-6">🛠️ Méthodologie du Sprint IA</h2>
