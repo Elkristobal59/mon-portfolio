@@ -146,33 +146,33 @@
 
         <!-- Choix Stratégiques -->
         <section class="mb-12 reveal">
-            <h2 class="text-xl font-bold text-white mb-4">💡 Choix Stratégiques & Justification Métier</h2>
+            <h2 class="text-xl font-bold text-white mb-4">💡 Choix Stratégiques : Réalisme Métier vs. "Vanity Metrics"</h2>
             <p class="text-slate-400 leading-relaxed mb-4">
-                L'une des décisions clés a été d'équilibrer l'Accuracy et la Valeur Métier.
+                Une accuracy globale de <strong>84%</strong> a été obtenue, avec de fortes disparités selon les pôles (ex: <strong>97% pour le Monitoring</strong>, mais ~45% pour Commerce, Data et Finance). Un profil junior pourrait être tenté de fusionner ces dernières classes pour afficher un score flatteur &gt;90% ("Vanity Metrics"). Voici pourquoi j'ai choisi de maintenir les 5 pôles :
             </p>
             <ul class="text-slate-400 space-y-3 pl-5 list-disc">
                 <li>
-                    <strong class="text-white">Transparence MLOps :</strong> Plutôt que de fusionner des catégories pour gonfler l'Accuracy à >90% de façon artificielle, j'ai maintenu les 5 pôles réels de l'organisation : <em>Monitoring, RUN, Data & BI, Commerce & Magasins, Finance & Support</em>.
+                    <strong class="text-white">Valeur Métier :</strong> L'objectif est de faire gagner du temps au support N1. Si l'IA route tout vers un pôle générique "Support", l'équipe devra toujours trier manuellement. Conserver les classes métier garde le produit pertinent.
                 </li>
                 <li>
-                    <strong class="text-white">Valeur terrain :</strong> Même avec une accuracy de ~45% sur des pôles frontière (Commerce, Finance, Data) où le vocabulaire est très similaire, l'outil propose une première qualification très pertinente. Pour le Monitoring (alertes automatisées), il frôle la perfection, ce qui représente déjà un gain de temps massif.
+                    <strong class="text-white">Réalité du Terrain :</strong> Le vocabulaire des tickets "Finance", "Data" et "Commerce" se chevauche énormément. Une accuracy de 45% sur des frontières aussi floues reste une excellente première qualification qui absorbe une grande partie du tri manuel.
                 </li>
             </ul>
         </section>
 
         <!-- Storytelling Diagnostic -->
         <section class="mb-12 reveal">
-            <h2 class="text-xl font-bold text-white mb-6">🔬 Chronique d'un Diagnostic : Le Bug du Routage</h2>
+            <h2 class="text-xl font-bold text-white mb-6">🔬 Chronique d'un Diagnostic : Le Sauvetage des Classes Minoritaires</h2>
             
             <div class="space-y-6">
                 <!-- Constat -->
                 <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 relative overflow-hidden transition-all hover:bg-slate-800/50">
                     <div class="absolute top-0 left-0 w-1 h-full bg-red-500/60"></div>
                     <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
-                        <span class="text-red-400">1.</span> Le Constat : Un biais systémique
+                        <span class="text-red-400">1.</span> Le Constat : L'illusion d'un modèle parfait
                     </h3>
                     <p class="text-slate-400 text-sm leading-relaxed">
-                        Lors d'un test en conditions réelles dans l'interface, un ticket très explicitement <strong class="text-white">MONITORING</strong> (<code>ALARM JOB: OP_NIGHT_BATCH_04</code>) a été classé en <strong class="text-white">RUN avec 100% de confiance</strong>. Pire encore, le modèle prédisait "RUN" pour absolument tout, signifiant qu'il n'avait en réalité rien appris sur les 4 autres classes métiers.
+                        Lors du premier passage en production (V3), un ticket explicitement "MONITORING" a été classé en "RUN" avec 100% de confiance. L'analyse a révélé un biais systémique sévère : le modèle prédisait "RUN" pour la majorité des cas, ignorant presque totalement les 4 autres classes métier, malgré l'utilisation de <code>class_weight='balanced'</code>.
                     </p>
                 </div>
 
@@ -180,15 +180,15 @@
                 <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 relative overflow-hidden transition-all hover:bg-slate-800/50">
                     <div class="absolute top-0 left-0 w-1 h-full bg-blue-500/60"></div>
                     <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
-                        <span class="text-blue-400">2.</span> L'Enquête : Déséquilibre & Vocabulaire
+                        <span class="text-blue-400">2.</span> L'Enquête : Le piège du déséquilibre (Imbalanced Data)
                     </h3>
                     <p class="text-slate-400 text-sm leading-relaxed mb-4">
-                        Trois diagnostics successifs (via des scripts <code>diagnostic_modele.py</code> et <code>explore_data.py</code>) ont permis d'isoler la cause racine :
+                        L'exploration des données (EDA) a permis de lever le voile sur le problème :
                     </p>
                     <ul class="text-slate-400 text-sm space-y-3 pl-5 list-disc">
-                        <li>L'inspection des métadonnées du <strong>LGBMClassifier</strong> a confirmé que le modèle "connaissait" bien les 5 classes. L'anomalie se trouvait dans l'apprentissage.</li>
-                        <li>L'exploration de la distribution a révélé un ratio de déséquilibre massif de <strong>13:1</strong>. Contrairement à l'intuition, MONITORING était la classe ultra-majoritaire (58.7%). Le paramètre <code>class_weight='balanced'</code> s'est avéré insuffisant face à ce ratio.</li>
-                        <li>L'analyse sémantique a mis en lumière une importante <strong>hors distribution</strong> : nos tickets de démo étaient en anglais naturel, alors que les vrais tickets de production étaient des alertes OPCON ultra structurées (ex: <code>ID=80985 Event Trigger=Job Failed</code>). Le modèle n'avait pas appris ce pattern.</li>
+                        <li>La distribution des classes présentait un <strong>déséquilibre massif de 13:1</strong> entre les catégories les plus et moins représentées.</li>
+                        <li>Les classes minoritaires comme "DATA" ou "FINANCE" étaient écrasées par le volume des tickets plus courants.</li>
+                        <li>L'algorithme de classification (LightGBM) finissait par minimiser son erreur en prédisant mathématiquement les classes dominantes.</li>
                     </ul>
                 </div>
 
@@ -196,22 +196,23 @@
                 <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 relative overflow-hidden transition-all hover:bg-slate-800/50">
                     <div class="absolute top-0 left-0 w-1 h-full bg-emerald-500/60"></div>
                     <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
-                        <span class="text-emerald-400">3.</span> La Solution : Augmentation & MLOps
+                        <span class="text-emerald-400">3.</span> Le Tour de Force : SMOTE & Embeddings DistilBERT
                     </h3>
                     <p class="text-slate-400 text-sm leading-relaxed mb-4">
-                        Pour corriger le tir, j'ai intégré la technique <strong>SMOTE</strong> (Synthetic Minority Over-sampling Technique) directement sur les embeddings générés par <strong>DistilBERT</strong>. Cette méthode a permis de synthétiser des exemples pour passer de 10 668 à plus de <strong>31 310 exemples parfaitement équilibrés</strong>.
+                        La solution technique (V4) a consisté à intégrer <strong>SMOTE (Synthetic Minority Over-sampling Technique)</strong>. 
+                        <strong>Comment ça marche ?</strong> Au lieu de simplement dupliquer les tickets existants (oversampling naïf), SMOTE génère de nouveaux exemples synthétiques en interpolant les caractéristiques des tickets des classes minoritaires directement dans l'espace vectoriel dense créé par notre modèle de langage NLP (<strong>DistilBERT</strong>).
                     </p>
                     <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                        En parallèle, j'ai sécurisé le pipeline d'entraînement avec des <strong>garde-fous métier</strong> : calcul systématique du recall par classe et division par 2 du score F1 global si une classe devient "morte" (< 10% de recall). Enfin, les tickets de démo ont été réécrits pour coller à la réalité du terrain.
+                        Ce rééquilibrage mathématique a permis de passer de 10 668 exemples biaisés à plus de <strong>31 310 exemples parfaitement équilibrés</strong> pour l'entraînement. En parallèle, j'ai implémenté un système de <strong>Garde-fous (Guardrails) MLOps</strong> qui divise le score de validation par deux si une classe tombe sous les 10% de rappel (Recall), interdisant ainsi au modèle de sacrifier un pôle métier pour gonfler son score de précision.
                     </p>
                     
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div class="bg-slate-950/50 rounded-lg p-4 border border-slate-800/80">
-                            <div class="text-xs text-slate-500 uppercase tracking-wider mb-1 font-semibold">Avant SMOTE (V3)</div>
+                            <div class="text-xs text-slate-500 uppercase tracking-wider mb-1 font-semibold">Sans SMOTE (V3)</div>
                             <div class="text-xl font-bold text-red-400/90 tracking-tight">Recall Monitoring : ~0%</div>
                         </div>
                         <div class="bg-slate-950/50 rounded-lg p-4 border border-slate-800/80">
-                            <div class="text-xs text-slate-500 uppercase tracking-wider mb-1 font-semibold">Après SMOTE (V4)</div>
+                            <div class="text-xs text-slate-500 uppercase tracking-wider mb-1 font-semibold">Avec SMOTE (V4)</div>
                             <div class="text-xl font-bold text-emerald-400 tracking-tight">Recall Monitoring : 98.7%</div>
                         </div>
                     </div>
@@ -228,23 +229,23 @@
 
         <!-- Stack -->
         <section class="mb-12 reveal">
-            <h2 class="text-xl font-bold text-white mb-6">🛠️ Méthodologie du Sprint IA</h2>
+            <h2 class="text-xl font-bold text-white mb-6">🛠️ Architecture & Pipeline IA</h2>
             <div class="space-y-3 text-slate-400 text-sm">
                 <div class="flex gap-3 bg-slate-900/50 border border-slate-800 rounded-xl p-4">
                     <span class="text-blue-400 font-bold text-lg leading-none">1.</span>
-                    <div><span class="text-white font-semibold">Analyse & Pré-processing NLP</span> — Nettoyage approfondi des descriptions et objets des tickets, retrait du "bruit" IT, tokenization et vectorisation TF-IDF.</div>
+                    <div><span class="text-white font-semibold">Extraction Sémantique (DistilBERT)</span> — Finie l'époque du TF-IDF basique. Les textes des tickets sont vectorisés par le Transformer DistilBERT (Multilingual) via l'extraction du tenseur <code>[CLS]</code>, permettant de capturer le contexte et le sens profond de la phrase, au-delà de la simple présence de mots-clés.</div>
                 </div>
                 <div class="flex gap-3 bg-slate-900/50 border border-slate-800 rounded-xl p-4">
                     <span class="text-blue-400 font-bold text-lg leading-none">2.</span>
-                    <div><span class="text-white font-semibold">Entraînement Modèle</span> — Entraînement de modèles de classification. LightGBM s'est révélé le plus performant et léger pour classer les tickets avec une haute confiance.</div>
+                    <div><span class="text-white font-semibold">Rééquilibrage (SMOTE)</span> — Application de l'algorithme SMOTE sur l'espace d'embeddings généré. Cette étape corrige l'Imbalanced Data en générant synthétiquement des points de données afin d'égaliser la représentation de tous les départements (classes de tickets) avant l'apprentissage.</div>
                 </div>
                 <div class="flex gap-3 bg-slate-900/50 border border-slate-800 rounded-xl p-4">
                     <span class="text-blue-400 font-bold text-lg leading-none">3.</span>
-                    <div><span class="text-white font-semibold">Dashboard Streamlit MVP</span> — Interface utilisateur interactive développée en Streamlit, capable de traiter un ticket test et d'afficher le pole ciblé avec son niveau de certitude et la statistique de temps de résolution (MTTR).</div>
+                    <div><span class="text-white font-semibold">Classification (LightGBM)</span> — Les vecteurs rééquilibrés nourrissent un classifieur gradient boosting LightGBM, un modèle très puissant choisi pour sa rapidité d'inférence exceptionnelle et sa robustesse sur des frontières de décision complexes, produisant des probabilités d'appartenance claires via Softmax.</div>
                 </div>
                 <div class="flex gap-3 bg-slate-900/50 border border-slate-800 rounded-xl p-4">
                     <span class="text-blue-400 font-bold text-lg leading-none">4.</span>
-                    <div><span class="text-white font-semibold">Industrialisation Docker</span> — Conteneurisation de l'application prête pour un déploiement continu, soutenue devant un jury de certification technique.</div>
+                    <div><span class="text-white font-semibold">Déploiement MLOps (Streamlit / Docker)</span> — L'application a été encapsulée dans un conteneur Docker. Une surcharge intelligente de la sérialisation Python permet de limiter la taille de l'artefact en mémoire à seulement 8.7 Mo, le rendant prêt pour un hébergement cloud fluide.</div>
                 </div>
             </div>
         </section>
