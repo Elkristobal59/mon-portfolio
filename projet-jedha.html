@@ -250,6 +250,36 @@
             </div>
         </section>
 
+        <!-- Perspectives d'Amélioration -->
+        <section class="mb-12 reveal">
+            <h2 class="text-xl font-bold text-white mb-6">🚀 Perspectives & Axes d'Amélioration</h2>
+            <p class="text-slate-400 leading-relaxed mb-6">
+                Bien que cette V4 rééquilibrée représente un produit industriellement viable et déployable (MVP), la posture du Data Scientist est d'itérer. Plusieurs pistes permettraient de franchir la barrière des 84% d'Accuracy, notamment sur le triage des tickets fonctionnels :
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-5 hover:border-slate-600 transition-all">
+                    <div class="text-2xl mb-3">🧬</div>
+                    <h3 class="text-white font-bold mb-2">Features Engineering Hybride</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Le texte a ses limites sémantiques. Injecter des métadonnées structurées dans le modèle LightGBM (département du créateur, ancienneté, heure de création) permettrait de facilement départager "Commerce" et "Finance" en cas de texte ambigu.</p>
+                </div>
+                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-5 hover:border-slate-600 transition-all">
+                    <div class="text-2xl mb-3">🔄</div>
+                    <h3 class="text-white font-bold mb-2">Feedback Loop (Active Learning)</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Créer une boucle de rétroaction dans l'interface de l'ITSM : si un technicien support corrige la prédiction de l'IA (ex: reclasse de Data vers Finance), ce ticket est flaggué et vient enrichir le dataset du prochain cycle de réentraînement.</p>
+                </div>
+                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-5 hover:border-slate-600 transition-all">
+                    <div class="text-2xl mb-3">🤖</div>
+                    <h3 class="text-white font-bold mb-2">Fine-Tuning du LLM (LoRA)</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Actuellement, DistilBERT est utilisé "sur étagère" comme extracteur de traits. En appliquant un Fine-Tuning paramétrique (PEFT/LoRA) directement sur le vocabulaire ultra-spécifique de l'entreprise, les embeddings générés seraient beaucoup plus distinctifs.</p>
+                </div>
+                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-5 hover:border-slate-600 transition-all">
+                    <div class="text-2xl mb-3">🎯</div>
+                    <h3 class="text-white font-bold mb-2">Classification Hiérarchique</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Séparer le problème : un Modèle A "binaire" très simple (Machine vs Humain) pour isoler le Monitoring avec 99.9% de précision. Puis un Modèle B, spécialisé uniquement sur le vocabulaire humain pour séparer RUN, Commerce, Data et Finance.</p>
+                </div>
+            </div>
+        </section>
+
     </div>
 
     <footer class="text-center py-10 border-t border-slate-800/60 text-slate-600 text-sm">
