@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-05-14",
+            "articles": [
+                {
+                    "titre": "Data Projects : gérer les actifs de données à l'échelle de Netflix",
+                    "resume": "Netflix remplace les ACL fragiles par des « Data Projects », regroupant tables et workflows sous des identités d'application durables pour simplifier la gestion des permissions et réduire la rotation des accès.",
+                    "lien": "https://netflixtechblog.medium.com/data-projects-managing-data-assets-at-netflix-scale-7ca25888591e?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Quand 36 000 petits fichiers cassent votre pipeline Spark",
+                    "resume": "L'accumulation de petits fichiers Parquet sur S3 peut saturer le DNS et les appels API, provoquant des erreurs UnknownHostException. La solution réside dans le compactage et l'usage de formats comme Delta Lake ou Iceberg.",
+                    "lien": "https://medium.com/@sanjeebmeister/when-36-000-tiny-files-break-your-spark-pipeline-a-deep-dive-into-s3-dns-exhaustion-and-the-small-05d4816fc909?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Pourquoi votre agent IA est amnésique et comment l'oubli est la solution",
+                    "resume": "Les agents IA échouent souvent dans les flux longs par perte de contexte. Microsoft propose une architecture de mémoire utilisant la consolidation et l'oubli sélectif pour stabiliser la rétention d'informations critiques.",
+                    "lien": "https://medium.com/data-science-at-microsoft/why-your-ai-agent-has-amnesia-and-why-forgetting-is-the-fix-417625e17c87?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Migration des systèmes d'ingestion de données à l'échelle de Meta",
+                    "resume": "Meta a migré ses pipelines massifs vers un service géré via une approche par étapes (Shadow/Reverse Shadow) avec des validations de checksums et des mécanismes de rollback automatisés pour garantir l'intégrité des données CDC.",
+                    "lien": "https://engineering.fb.com/2026/05/12/data-infrastructure/migrating-data-ingestion-systems-at-meta-scale/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Il faut que l'on parle de dbt",
+                    "resume": "Entre racines communautaires et ambitions d'entreprise, dbt doit impérativement améliorer dbt Core et l'ergonomie de son Cloud pour ne pas s'aliéner les utilisateurs qui ont fait sa valeur initiale.",
+                    "lien": "https://databased.pedramnavid.com/p/we-need-to-talk-about-dbt?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Résultats de l'enquête d'avril 2026 sur l'état de la modélisation des données",
+                    "resume": "L'enquête révèle que les difficultés de modélisation sont principalement organisationnelles (manque de formation, temps, exigences floues) plutôt que liées aux outils techniques.",
+                    "lien": "https://practicaldatamodeling.substack.com/p/april-2026-pdc-state-of-data-modeling?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Statistiques Lakehouse : pourquoi les moteurs de requête s'y perdent",
+                    "resume": "Les moteurs de requête Lakehouse peinent lorsque les métadonnées statistiques sont absentes ou incohérentes, menant à des plans d'exécution inefficaces, des surcoûts et des lenteurs.",
+                    "lien": "https://www.linkedin.com/pulse/lakehouse-statistics-why-query-engines-get-lost-neil-carson-agnac/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Les files d'attente Kafka peuvent-elles accélérer les consommateurs ? (Partie 2)",
+                    "resume": "Les « Share Groups » de Kafka permettent de dépasser la limite du nombre de partitions par consommateur, offrant une mise à l'échelle linéaire cruciale pour les tâches limitées par les entrées/sorties (I/O).",
+                    "lien": "https://www.streamingdata.tech/p/can-kafka-queues-make-consumers-faster-part-2?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Quack : le protocole client-serveur pour DuckDB",
+                    "resume": "Quack est un nouveau protocole HTTP permettant à des instances DuckDB de communiquer à distance, supportant la sérialisation native et l'authentification par jeton au-delà du mode in-process.",
+                    "lien": "https://duckdb.org/2026/05/12/quack-remote-protocol.html?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Avis tranchés sur les VUES PostgreSQL",
+                    "resume": "Bien que pratiques, les vues SQL sont des règles de réécriture complexes qui peuvent créer des dépendances fragiles et des difficultés de maintenance si elles sont confondues avec de simples tables.",
+                    "lien": "https://boringsql.com/posts/strong-views/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Les modèles de recherche agentiques",
+                    "resume": "De nouveaux modèles spécialisés émergent pour orchestrer tout le flux de recherche (retrieval), remplaçant les piles complexes d'embeddings et de rerankers par des solutions plus fines et spécifiques au domaine.",
+                    "lien": "http://softwaredoug.com/blog/2026/05/11/the-new-agentic-search-models.html?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Arrêtez de lancer des projets de données",
+                    "resume": "De nombreux projets échouent par manque de compréhension des besoins métiers. La solution : privilégier le dialogue avec les parties prenantes, définir un succès clair et livrer des MVP itératifs.",
+                    "lien": "https://www.datagibberish.com/p/stop-starting-data-projects?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                }
+            ]
+        },
+        {
             "date": "2026-05-11",
             "articles": [
                 {
@@ -689,83 +766,6 @@
                     "titre": "L'économie défaillante des bases de données",
                     "resume": "Analyse de la rentabilité réelle des éditeurs de bases de données face aux coûts de R&D massifs et à la domination des hyperscalers.",
                     "lien": "https://www.bitsxpages.com/p/the-broken-economics-of-databases?utm_source=tldrdata",
-                    "categorie": "News"
-                }
-            ]
-        },
-        {
-            "date": "2026-04-09",
-            "articles": [
-                {
-                    "titre": "Mise en cache intelligente pour Apache Druid chez Netflix",
-                    "resume": "Netflix a développé une couche de cache par intervalles pour optimiser les requêtes temporelles sur Druid en interceptant les requêtes et en stockant les résultats dans Cassandra.",
-                    "lien": "https://netflixtechblog.com/stop-answering-the-same-question-twice-interval-aware-caching-for-druid-at-netflix-scale-22fadc9b840e?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Meta utilise l'IA pour documenter les connaissances tacites",
-                    "resume": "Meta a déployé une cinquantaine d'agents IA spécialisés pour cartographier et documenter les conventions non écrites et les dépendances complexes de ses pipelines de données.",
-                    "lien": "https://engineering.fb.com/2026/04/06/developer-tools/how-meta-used-ai-to-map-tribal-knowledge-in-large-scale-data-pipelines/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Proxy-Pointer RAG : l'efficacité du vectoriel sans ses limites",
-                    "resume": "Cette approche utilise la structure des documents (hiérarchies, liens) pour améliorer la précision du RAG là où la simple similarité sémantique échoue sur des documents complexes.",
-                    "lien": "https://towardsdatascience.com/proxy-pointer-rag-achieving-vectorless-accuracy-at-vector-rag-scale-and-cost/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Couche sémantique vs Text-to-SQL : Benchmark 2026",
-                    "resume": "Une étude de dbt Labs démontre que les LLM sont plus précis et cohérents lorsqu'ils interrogent une couche sémantique structurée plutôt que de générer du SQL brut.",
-                    "lien": "https://docs.getdbt.com/blog/semantic-layer-vs-text-to-sql-2026?version=1.11&amp;utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "La visualisation de données est-elle morte ?",
-                    "resume": "L'IA a banalisé la création de graphiques, transformant une spécialisation créative en une compétence généraliste automatisée, reléguant la dataviz au rang de simple outil.",
-                    "lien": "https://www.juditbekker.com/post/is-data-visualization-dead",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Maintenance des pipelines streaming Delta Lake",
-                    "resume": "Conseils pour éviter la dégradation des performances due à l'accumulation de petits fichiers dans Delta Lake via l'utilisation d'OPTIMIZE et VACUUM.",
-                    "lien": "https://blog.dataengineerthings.org/%EF%B8%8F-sql-superpowers-your-streaming-delta-lake-pipeline-has-been-quietly-falling-apart-f2a98829a987?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
-                },
-                {
-                    "titre": "Sortie d'Apache Airflow 3.2.0",
-                    "resume": "Nouvelle version introduisant le partitionnement d'assets pour le scheduling, le support multi-équipes expérimental et des gains de performance majeurs.",
-                    "lien": "https://airflow.apache.org/blog/airflow-3.2.0/?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "Valkey : refonte de la table de hachage pour le matériel moderne",
-                    "resume": "Le fork de Redis a repensé ses structures de données internes pour mieux exploiter le cache CPU et réduire l'empreinte mémoire via l'adressage ouvert.",
-                    "lien": "https://www.infoq.com/presentations/hashtable-modern-hardware/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Présentation de Metrics SQL par Rill",
-                    "resume": "Rill lance une couche sémantique native SQL permettant de définir des métriques métier uniques et cohérentes pour les tableaux de bord et les agents IA.",
-                    "lien": "https://www.rilldata.com/blog/introducing-metrics-sql-a-sql-based-semantic-layer-for-humans-and-agents?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "Comparaison Dagster vs Airflow 3",
-                    "resume": "Synthèse des débats communautaires : Airflow reste la norme pour l'orchestration batch classique, tandis que Dagster séduit par son approche orientée assets.",
-                    "lien": "https://www.reddit.com/r/dataengineering/comments/1scyvwt/dagster_vs_airflow_3_which_to_pick/?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Les fonctions de hachage les plus simples",
-                    "resume": "Analyse de fonctions de hachage minimalistes et non-cryptographiques qui offrent d'excellentes performances pour la gestion des tables de hachage.",
-                    "lien": "https://purplesyringa.moe/blog/simplest-hash-functions/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Focus sur PhysioNet par le MIT Jameel Clinic",
-                    "resume": "Présentation de la plateforme PhysioNet, qui héberge plus de 400 jeux de données cliniques essentiels à la recherche biomédicale et à l'IA en santé.",
-                    "lien": "https://jclinic.mit.edu/physionet-at-25/?utm_source=tldrdata",
                     "categorie": "News"
                 }
             ]
