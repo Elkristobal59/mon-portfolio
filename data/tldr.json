@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-05-21",
+            "articles": [
+                {
+                    "titre": "mondayDB 3 – Résoudre l'HTAP pour un système de mille milliards de tables",
+                    "resume": "monday.com a remplacé son architecture MySQL par une architecture Lambda basée sur DuckDB et S3 pour gérer des tables dynamiques massives via CQRS et des snapshots immuables.",
+                    "lien": "https://engineering.monday.com/mondaydb-3-solving-htap-for-a-trillion-table-system/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "L'évolution du mouvement de données Cassandra chez Netflix",
+                    "resume": "Netflix a migré 3 Po/jour de Cassandra vers Iceberg en lisant directement les sauvegardes S3 via Spark, permettant une transition transparente sans modification du code applicatif.",
+                    "lien": "https://netflixtechblog.medium.com/the-evolution-of-cassandra-data-movement-at-netflix-6e13329c80a1?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Réduire l'usage des slots BigQuery de 90 % après une panne",
+                    "resume": "Teads a drastiquement optimisé ses coûts BigQuery grâce à la mise en cache Redis, la réécriture de requêtes SQL (semi-jointures) et une meilleure stratégie de partitionnement.",
+                    "lien": "https://medium.com/teads-engineering/how-we-cut-bigquery-slot-usage-by-90-on-one-of-our-most-resource-hungry-service-after-an-outage-c491af09e77e?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Retour à la vie !",
+                    "resume": "Une réflexion sur la dualité de l'IA en science des données : un outil puissant pour la productivité, mais comportant des risques environnementaux, sociaux et de propriété intellectuelle.",
+                    "lien": "https://tidydesign.substack.com/p/returning-to-life?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Améliorer l'expérimentation avec les évaluations LLM",
+                    "resume": "Spotify utilise les LLM comme juges précoces pour évaluer la qualité (ton, cohérence) et filtrer les idées faibles avant d'engager des ressources dans des tests A/B réels.",
+                    "lien": "https://engineering.atspotify.com/2026/5/better-experiments-with-llm-evals-a-funnel-not-a-fork?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Qu'est-ce qui est facile ou difficile désormais ?",
+                    "resume": "La performance des agents de codage dépendra moins de l'intelligence du modèle que de la qualité des boucles de rétroaction automatisées pour valider les résultats.",
+                    "lien": "https://brooker.co.za/blog/2026/05/18/whats-easy-whats-hard.html?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "La « taxe de pipeline » freine l'IA d'entreprise à grande échelle",
+                    "resume": "Le déplacement excessif de données entre entrepôts et bases vectorielles crée de la latence. La solution : amener les agents directement vers la donnée via SQL et Iceberg.",
+                    "lien": "https://www.ciodive.com/spons/the-pipeline-tax-is-breaking-enterprise-ai-at-agent-scale/820200/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "OpenData",
+                    "resume": "Une plateforme open-core facilitant la recherche, la jointure et la visualisation de datasets publics via une API unique et propre.",
+                    "lien": "https://tryopendata.ai/?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "WrenAI",
+                    "resume": "Couche de contexte open-source permettant aux agents IA de comprendre la sémantique métier et de générer du SQL fiable sur les piles de données existantes.",
+                    "lien": "https://github.com/Canner/WrenAI",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Surveiller la performance des agents Cortex via les traces",
+                    "resume": "Guide technique sur l'utilisation des données d'observabilité pour suivre la consommation de tokens, la latence et les erreurs des agents en production.",
+                    "lien": "https://montecarlo.ai/blog-monitoring-cortex-agent-performance-with-trace-data/?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                },
+                {
+                    "titre": "Protocoles pour l'usage transactionnel du stockage objet",
+                    "resume": "Analyse des primitives nécessaires (PUT conditionnels, LIST consistants) pour supporter des transactions OLTP sérialisables directement sur du stockage objet.",
+                    "lien": "https://www.bitsxpages.com/p/protocols-for-transactional-usage?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Ce que les benchmarks d'agents de données nous révèlent",
+                    "resume": "Analyse de la convergence entre données et IA, montrant que les agents réussissent mieux lorsqu'ils disposent d'un contexte multi-système riche (Slack, GitHub, dbt).",
+                    "lien": "https://roundup.getdbt.com/p/what-data-agent-benchmarks-do-and?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                }
+            ]
+        },
+        {
             "date": "2026-05-18",
             "articles": [
                 {
@@ -690,83 +767,6 @@
                     "resume": "Architecture d'Arcesium utilisant DuckDB, S3 et Parquet pour gérer la pagination de milliards d'enregistrements financiers avec cohérence temporelle.",
                     "lien": "https://medium.com/arcesium-engineering-blog/positionservice-pagination-at-scale-119b772c5094?utm_source=tldrdata",
                     "categorie": "Deep Dive"
-                }
-            ]
-        },
-        {
-            "date": "2026-04-16",
-            "articles": [
-                {
-                    "titre": "Orchestration d'expériences ML par des agents IA",
-                    "resume": "Teads a mis en place un système multi-agents pour automatiser le cycle de vie du ML, réduisant les cycles de développement de plusieurs jours à quelques heures tout en améliorant les performances de 8 à 12 %.",
-                    "lien": "https://medium.com/teads-engineering/we-let-ai-agents-orchestrate-our-ml-experiments-fc8606816fde?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "OCR de 30 000 articles scientifiques avec Hugging Face",
-                    "resume": "Utilisation de Chandra-OCR-2 et de scripts générés par Codex pour convertir 27 000 articles en Markdown en seulement 30 heures pour un coût optimisé de 850 $.",
-                    "lien": "https://huggingface.co/blog/nielsr/ocr-papers-jobs?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Mise à l'échelle des recommandations via la déduplication au niveau requête",
-                    "resume": "Pinterest utilise Apache Iceberg pour trier et dédupliquer les données au niveau des requêtes, permettant une compression massive et un entraînement plus efficace des modèles de ranking.",
-                    "lien": "https://medium.com/pinterest-engineering/scaling-recommendation-systems-with-request-level-deduplication-93bd514142d9?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Migration sans interruption vers Cassandra 4.x chez Yelp",
-                    "resume": "Yelp a migré plus de 1 000 nœuds Cassandra sans temps d'arrêt, obtenant une amélioration de latence allant jusqu'à 60 % grâce à une stratégie de déploiement progressif sur Kubernetes.",
-                    "lien": "https://engineeringblog.yelp.com/2026/04/zero-downtime-upgrade-yelp-cassandra-upgrade-story.html?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Configurer sa stack de données pour l'IA en 2026",
-                    "resume": "Guide sur la construction d'une infrastructure de données robuste privilégiant la simplicité, les transformations SQL (dbt) et la gouvernance plutôt que le battage médiatique technologique.",
-                    "lien": "https://www.theseattledataguy.com/how-to-set-up-your-data-stack-for-2026-data-infrastructure-for-ai/?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
-                },
-                {
-                    "titre": "Repenser la mémoire de l'IA au-delà de la simple recherche",
-                    "resume": "Proposition d'un système de mémoire basé sur SQLite gérant la pertinence, la confiance et l'obsolescence pour éviter que des faits périmés ne polluent les réponses de l'IA.",
-                    "lien": "https://towardsdatascience.com/stop-treating-ai-memory-like-a-search-problem/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Power BI et le support des modèles sémantiques tiers",
-                    "resume": "Analyse des limitations techniques empêchant un support optimal des modèles tiers dans Power BI et recommandations de Microsoft pour centraliser la logique métier en interne.",
-                    "lien": "https://blog.crossjoin.co.uk/2026/04/12/power-bi-and-support-for-third-party-semantic-models/?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "DuckLake v1.0 : un format Lakehouse natif SQL en production",
-                    "resume": "DuckLake stocke désormais ses métadonnées dans de véritables bases de données (SQLite, Postgres) plutôt que dans des fichiers, offrant un comportement de base de données classique au Lakehouse.",
-                    "lien": "https://ducklake.select/2026/04/13/ducklake-10/?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "KumoRFM-2 : modèle prédictif relationnel pour humains et agents",
-                    "resume": "Un modèle de fondation capable de raisonner directement sur les tables et les clés de bases de données sans nécessiter de pipeline complexe d'ingénierie de caractéristiques.",
-                    "lien": "https://kumo.ai/company/news/kumorfm-2-the-most-powerful-predictive-model-for-humans-and-agents/?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "Support natif des LLM et agents IA dans Apache Airflow",
-                    "resume": "Le nouveau package 'common-ai' pour Airflow 3.0+ introduit des opérateurs dédiés aux LLM et agents, incluant l'approbation humaine et l'observabilité complète des jetons.",
-                    "lien": "https://airflow.apache.org/blog/common-ai-provider/?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Gestion du contexte dans les applications d'agents à long terme",
-                    "resume": "Slack détaille ses méthodes d'élagage et de résumé intelligent du contexte pour maintenir la fiabilité et la cohérence des agents sur de longues périodes d'exécution.",
-                    "lien": "https://slack.engineering/managing-context-in-long-run-agentic-applications/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Guide comparatif 2026 pour la mise à l'échelle de Prometheus",
-                    "resume": "Comparaison des solutions de stockage long terme pour Prometheus (VictoriaMetrics, Thanos, OpenObserve, etc.) basée sur l'efficacité des ressources et la charge opérationnelle.",
-                    "lien": "https://sanj.dev/post/prometheus-scaling-thanos-mimir-victoriametrics/?utm_source=tldrdata",
-                    "categorie": "Tool"
                 }
             ]
         }
