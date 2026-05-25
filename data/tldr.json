@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-05-25",
+            "articles": [
+                {
+                    "titre": "Le gel des 58 millions de clés : l'impact du redimensionnement de HashMap sur l'allocation mémoire",
+                    "resume": "LinkedIn a analysé un incident où son service Rust gelait pendant 15 secondes lors du redimensionnement d'une HashMap, à cause d'un verrou mmap bloquant tout le runtime asynchrone.",
+                    "lien": "https://www.linkedin.com/blog/engineering/feed/the-58-million-key-freeze-what-a-hashmap-resize-taught-us-about-memory-allocation-at-scale?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Choisir le bon type de graphe",
+                    "resume": "Comparaison entre RDF/OWL, idéal pour la connaissance gouvernée et interopérable, et les graphes de propriétés (LPG), plus performants pour les analyses et traversées rapides.",
+                    "lien": "https://jessicatalisman.substack.com/p/choosing-the-right-graph?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "L'évolution Hugo : la plateforme d'ingestion de données unifiée de Grab avec Apache Flink",
+                    "resume": "Grab a centralisé son ingestion de données dans un flux automatisé basé sur Flink, réduisant le temps d'intégration de plusieurs jours à quelques minutes.",
+                    "lien": "https://engineering.grab.com/one-click-data-ingestion-platform-with-apache-flink?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Du Batch au Streaming et à l'IA : Iceberg pour tous",
+                    "resume": "Le format Apache Iceberg évolue vers la version 4 pour supporter le streaming basse latence et les charges de travail IA grâce à des commits simplifiés et de meilleures statistiques colonnaires.",
+                    "lien": "https://www.youtube.com/watch?v=4Bg64WnkfgE&utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Mode Plan permanent et fin du rôle de Data Engineer",
+                    "resume": "L'IA transforme l'ingénierie des données. L'utilisation de formats comme Substrait pourrait remplacer le SQL pour les agents, fusionnant les rôles de données traditionnels.",
+                    "lien": "https://motherduck.com/blog/cost-as-tokens-substrait-llm-chris-riccomini?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Ce que l'IA peut et ne peut pas faire pour un analyste de données",
+                    "resume": "Si l'IA excelle pour coder et préparer les données, elle reste trop incohérente pour les analyses complexes nécessitant du jugement humain et du contexte métier.",
+                    "lien": "https://adamwritesaboutdata.substack.com/p/of-hammers-and-nails-what-ai-can?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "DuckDB 1.5.3 : bien plus qu'un simple correctif",
+                    "resume": "Cette version introduit des extensions majeures, notamment Quack, le support DuckLake et de nouvelles capacités pour Iceberg et AWS.",
+                    "lien": "https://duckdb.org/2026/05/20/announcing-duckdb-153?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Présentation de Dimster, un outil de benchmarking pour Apache Kafka",
+                    "resume": "Dimster est un outil open-source permettant de tester les performances, le débit et la correction de Kafka avec des tableaux de bord Grafana intégrés.",
+                    "lien": "https://jack-vanlightly.com/blog/2026/5/20/introducing-dimster-a-performance-benchmarking-tool-for-apache-kafka?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Sortie de pg_infer 1.0.0 : les modèles transformer comme relations SQL",
+                    "resume": "Cette extension PostgreSQL permet d'interroger l'inférence des modèles transformer directement en SQL, facilitant leur parallélisation et leur intégration aux bases de données.",
+                    "lien": "https://www.postgresql.org/about/news/pg_infer-100-released-transformer-model-knowledge-as-sql-relations-3307/?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Où se cache la taxe JVM ? Performance Java vs Natif",
+                    "resume": "Une étude comparative démontre qu'une JVM optimisée exécutant des noyaux arithmétiques vectorisés n'impose aucune pénalité de performance par rapport au code natif.",
+                    "lien": "https://semyonsinchenko.github.io/ssinchenko/post/jvm-tax/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "SAM 3 : Segmentation d'images et vidéos par concepts",
+                    "resume": "Meta lance SAM 3, un modèle capable de segmenter et suivre des objets à partir de requêtes textuelles ou visuelles avec une précision accrue.",
+                    "lien": "https://github.com/facebookresearch/sam3?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Bintrail : requêtes temporelles MySQL via les Binlogs",
+                    "resume": "Bintrail permet d'effectuer des requêtes historiques (AS OF) sur MySQL sans modifier le schéma, en utilisant l'indexation des journaux binaires via ProxySQL.",
+                    "lien": "https://www.infoq.com/news/2026/05/bintrail-mysql-timetravel/?utm_source=tldrdata",
+                    "categorie": "Tool"
+                }
+            ]
+        },
+        {
             "date": "2026-05-21",
             "articles": [
                 {
@@ -690,83 +767,6 @@
                     "resume": "Analyse des limites économiques et d'infrastructure de l'IA : pénuries de capacité, coûts d'inférence croissants et retards massifs dans la construction des datacenters.",
                     "lien": "https://www.wheresyoured.at/four-horsemen-of-the-aipocalypse/?utm_source=tldrdata",
                     "categorie": "News"
-                }
-            ]
-        },
-        {
-            "date": "2026-04-20",
-            "articles": [
-                {
-                    "titre": "Créer un compteur grow-only sur un store KV cohérent",
-                    "resume": "Analyse des compteurs CRDT et des modèles de cohérence pour éviter la perte d'incréments lors de lectures obsolètes dans les bases de données distribuées.",
-                    "lien": "https://brunocalza.me/blog/2026/04/13/building-a-grow-only-counter-on-a-sequentially-consistent-kv-store.html?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Supermetal vs Flink vs Spark pour le CDC Postgres vers Iceberg",
-                    "resume": "Comparaison de performance montrant l'avantage de Supermetal grâce à une architecture optimisée pour les snapshots et une réduction de la sérialisation.",
-                    "lien": "https://thenewstack.io/postgres-iceberg-cdc-benchmarks/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "PostgreSQL MVCC, octet par octet",
-                    "resume": "Explication technique du fonctionnement du MVCC dans PostgreSQL via les champs xmin et xmax pour gérer la visibilité des lignes sans bloquer les lecteurs.",
-                    "lien": "https://boringsql.com/posts/postgresql-mvcc-byte-by-byte/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Daedalus et le labyrinthe de données",
-                    "resume": "Stratégie de Just Eat Takeaway pour contrer la dérive sémantique via un glossaire métier, un catalogue DataHub et une couche sémantique Looker.",
-                    "lien": "https://medium.com/justeattakeaway-tech/daedalus-and-the-data-labyrinth-2c166b1d9866?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Au-delà de la démo : pourquoi l'évaluation des agents est cruciale",
-                    "resume": "Criteo présente un cadre d'évaluation rigoureux pour les agents LLM, mesurant la fiabilité à long terme, l'usage des outils et la gestion d'erreurs.",
-                    "lien": "https://medium.com/criteo-engineering/beyond-the-demo-why-agentic-evaluation-matters-ccbeb9841c8b?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Comment de mauvaises bases de données freinent le succès de l'IA",
-                    "resume": "Analyse de l'échec de nombreux projets d'IA générative dû à une préparation insuffisante des données et à l'absence de gouvernance automatisée.",
-                    "lien": "https://www.cio.com/article/4158048/how-poor-data-foundations-can-undermine-ai-success.html?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Data Shift vs Data Drift",
-                    "resume": "Distinction entre la dérive de données (changements statistiques graduels) et le décalage de données (changements soudains dus au système ou au métier).",
-                    "lien": "https://www.montecarlodata.com/blog-data-shift-vs-data-drift?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
-                },
-                {
-                    "titre": "Polars : extension du streaming, I/O Lakehouse et profilage Cloud",
-                    "resume": "Nouvelles fonctionnalités de Polars incluant le support étendu du streaming, l'écriture native vers Delta/Iceberg et le profilage détaillé des requêtes.",
-                    "lien": "https://pola.rs/posts/polars-in-aggregate-apr26/?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "La configuration déclarative OpenTelemetry devient stable",
-                    "resume": "Stabilisation de la spécification YAML/JSON pour OpenTelemetry, permettant une configuration agnostique du langage via un fichier unique versionné.",
-                    "lien": "https://www.infoq.com/news/2026/04/opentelemetry-declarative-config/?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Workloads d'agents sur Airflow : observables et auditables",
-                    "resume": "Airflow 3 introduit un support natif pour les workflows d'agents avec gestion d'état persistant, approbation humaine et intégration d'outils LLM.",
-                    "lien": "https://airflow.apache.org/blog/agentic-workloads-airflow-3/?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "Migration vers la cryptographie post-quantique chez Meta",
-                    "resume": "Retours d'expérience sur le déploiement des standards NIST (ML-KEM, ML-DSA) pour protéger les données sensibles contre les futurs ordinateurs quantiques.",
-                    "lien": "https://engineering.fb.com/2026/04/16/security/post-quantum-cryptography-migration-at-meta-framework-lessons-and-takeaways/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "PositionService : la pagination à grande échelle",
-                    "resume": "Architecture d'Arcesium utilisant DuckDB, S3 et Parquet pour gérer la pagination de milliards d'enregistrements financiers avec cohérence temporelle.",
-                    "lien": "https://medium.com/arcesium-engineering-blog/positionservice-pagination-at-scale-119b772c5094?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
                 }
             ]
         }
