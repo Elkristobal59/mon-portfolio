@@ -188,6 +188,75 @@
         }
         .arrow-icon { transition: transform 0.2s; }
         .news-card:hover .arrow-icon { transform: translate(3px, -3px); }
+
+        /* ===== SEARCH BAR ===== */
+        #search-bar-wrapper {
+            position: relative;
+        }
+        #search-input {
+            width: 100%;
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 0.875rem;
+            color: #f8fafc;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+            padding: 0.75rem 1rem 0.75rem 2.75rem;
+            outline: none;
+            transition: all 0.25s ease;
+            backdrop-filter: blur(8px);
+        }
+        #search-input::placeholder { color: #475569; }
+        #search-input:focus {
+            border-color: rgba(52, 211, 153, 0.4);
+            box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.08);
+            background: rgba(15, 23, 42, 0.9);
+        }
+        #search-icon {
+            position: absolute; left: 0.875rem; top: 50%;
+            transform: translateY(-50%);
+            color: #475569;
+            pointer-events: none;
+            transition: color 0.2s;
+        }
+        #search-input:focus ~ #search-icon,
+        #search-bar-wrapper:focus-within #search-icon { color: #34d399; }
+        #clear-search {
+            position: absolute; right: 0.875rem; top: 50%;
+            transform: translateY(-50%);
+            color: #475569; cursor: pointer;
+            display: none;
+            transition: color 0.2s;
+        }
+        #clear-search:hover { color: #94a3b8; }
+        /* Filter chips */
+        .filter-chip {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.68rem; font-weight: 600;
+            padding: 0.3rem 0.8rem;
+            border-radius: 9999px;
+            border: 1px solid;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .filter-chip:hover { transform: translateY(-1px); }
+        .filter-chip.active-all    { background: rgba(52,211,153,0.15); border-color: rgba(52,211,153,0.5); color: #34d399; }
+        .filter-chip.inactive-all  { background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.08); color: #64748b; }
+        .filter-chip.active-news   { background: rgba(249,115,22,0.15); border-color: rgba(249,115,22,0.5); color: #f97316; }
+        .filter-chip.inactive-news { background: rgba(249,115,22,0.04); border-color: rgba(249,115,22,0.15); color: #78350f; }
+        .filter-chip.active-tool   { background: rgba(52,211,153,0.15); border-color: rgba(52,211,153,0.5); color: #34d399; }
+        .filter-chip.inactive-tool { background: rgba(52,211,153,0.04); border-color: rgba(52,211,153,0.15); color: #065f46; }
+        .filter-chip.active-tuto   { background: rgba(167,139,250,0.15); border-color: rgba(167,139,250,0.5); color: #a78bfa; }
+        .filter-chip.inactive-tuto { background: rgba(167,139,250,0.04); border-color: rgba(167,139,250,0.15); color: #3b1f6b; }
+        .filter-chip.active-deep   { background: rgba(96,165,250,0.15); border-color: rgba(96,165,250,0.5); color: #60a5fa; }
+        .filter-chip.inactive-deep { background: rgba(96,165,250,0.04); border-color: rgba(96,165,250,0.15); color: #1e3a5f; }
+        #search-results-count {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem; color: #475569;
+            transition: color 0.2s;
+        }
+        .news-card.hidden-by-search { display: none !important; }
     </style>
 </head>
 
@@ -200,14 +269,48 @@
                 <div class="avatar">CG</div>
                 <div class="flex flex-col">
                     <span class="font-bold text-white hidden sm:block">Christopher Gilleron</span>
-                    <span class="text-[10px] text-slate-500 hidden sm:block">Data Scientist</span>
+                    <span class="text-[10px] text-slate-500 hidden sm:block">Data Scientist & IA</span>
                 </div>
             </a>
-            <div class="flex items-center gap-6">
-                <a href="index.html" class="text-sm font-medium text-slate-400 hover:text-white transition-colors">← Accueil</a>
+            <div class="flex items-center gap-3 sm:gap-5">
+                <a href="index.html" class="nav-link">Accueil</a>
+                
+                <!-- Dropdown Projets -->
+                <div class="relative group">
+                    <button class="nav-link flex items-center gap-1 focus:outline-none py-2" aria-label="Menu Projets">
+                        Projets
+                        <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <!-- Dropdown Menu -->
+                    <div class="absolute right-0 mt-1 w-56 rounded-xl bg-slate-950/95 border border-slate-800 backdrop-blur-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 p-2 space-y-0.5">
+                        <a href="projet-rag.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">🤖 Assistant RAG V7</a>
+                        <a href="projet-proxmox.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">🏗️ Cloud Privé Proxmox</a>
+                        <a href="projet-immich.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">🖥️ Cloud Immich & NAS</a>
+                        <a href="projet-tesla.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">⚡ Tesla Inventory Bot</a>
+                        <a href="projet-chrisflix.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">🍿 Chrisflix Media Hub</a>
+                        <a href="projet-jedha.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">📊 GDM Ticket Router</a>
+                        <a href="projet-getaround.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">🚗 GetAround Price Predictor</a>
+                    </div>
+                </div>
+
+                <a href="veille.html" class="btn-hover text-emerald-400 text-[10px] sm:text-sm font-semibold hover:text-emerald-300 transition-colors flex items-center gap-1 border border-emerald-500/30 bg-emerald-500/10 px-2 sm:px-3 py-1 rounded-full">
+                    <span>📰</span> TLDR
+                </a>
+                <a href="https://github.com/Elkristobal59" target="_blank" rel="noopener noreferrer"
+                    class="btn-hover px-2 sm:px-3.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-[10px] sm:text-sm font-medium hover:bg-blue-500/20 transition-all">
+                    GitHub
+                </a>
+                <a href="https://www.linkedin.com/in/christophergilleron/" target="_blank" rel="noopener noreferrer"
+                    class="btn-hover px-2 sm:px-3.5 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-[10px] sm:text-sm font-medium hover:bg-sky-500/20 transition-all">
+                    LinkedIn
+                </a>
             </div>
         </div>
     </nav>
+
+
 
     <!-- ===== HERO ===== -->
     <header class="hero-bg pt-32 pb-10 px-6 text-center">
@@ -348,7 +451,7 @@
     <main class="max-w-5xl mx-auto px-6 flex-grow w-full pb-24 pt-10">
 
         <!-- Barre de sélection -->
-        <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
             <h2 class="text-lg font-semibold text-white flex items-center gap-2">
                 <span>📰</span> Édition du jour
             </h2>
@@ -365,6 +468,37 @@
                 </div>
                 <div id="edition-count" class="text-[11px] font-mono text-slate-600 bg-slate-800/40 px-2.5 py-1 rounded-md border border-slate-700/50"></div>
             </div>
+        </div>
+
+        <!-- ===== BARRE DE RECHERCHE ===== -->
+        <div class="mb-4" id="search-bar-wrapper">
+            <div style="position:relative;">
+                <svg id="search-icon" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11A6 6 0 111 11a6 6 0 0116 0z"/>
+                </svg>
+                <input
+                    id="search-input"
+                    type="text"
+                    placeholder="Rechercher un article, un outil, un mot-clé…"
+                    autocomplete="off"
+                    aria-label="Rechercher dans les articles"
+                >
+                <button id="clear-search" aria-label="Effacer la recherche">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Filtres par catégorie + compteur résultats -->
+        <div class="flex flex-wrap items-center gap-2 mb-6">
+            <button class="filter-chip active-all" data-filter="all">✦ Tous</button>
+            <button class="filter-chip inactive-news" data-filter="news">📡 News</button>
+            <button class="filter-chip inactive-tool" data-filter="tool">🛠 Tool</button>
+            <button class="filter-chip inactive-tuto" data-filter="tutoriel">📖 Tutoriel</button>
+            <button class="filter-chip inactive-deep" data-filter="deep dive">🔬 Deep Dive</button>
+            <span class="ml-auto" id="search-results-count"></span>
         </div>
 
         <!-- Conteneur articles -->
@@ -442,6 +576,9 @@
                 const card = document.createElement('div');
                 card.className = 'news-card rounded-2xl p-6 group relative fade-in';
                 card.style.animationDelay = `${index * 60}ms`;
+                card.dataset.category = (article.categorie || '').toLowerCase();
+                card.dataset.title    = (article.titre  || '').toLowerCase();
+                card.dataset.resume   = (article.resume || '').toLowerCase();
 
                 const wrapperTag = article.lien ? 'a' : 'div';
                 const wrapperAttrs = article.lien
@@ -554,6 +691,79 @@
             }
 
             renderArticles(ed.articles);
+            // Réappliquer le filtre de recherche actif après le rendu
+            if (typeof applySearch === 'function') applySearch();
+        }
+
+        // =============================================
+        // RECHERCHE DYNAMIQUE
+        // =============================================
+
+        let activeFilter = 'all';
+
+        function applySearch() {
+            const query = (document.getElementById('search-input').value || '').toLowerCase().trim();
+            const cards = document.querySelectorAll('#news-container .news-card[data-category]');
+            const clearBtn = document.getElementById('clear-search');
+            const countEl = document.getElementById('search-results-count');
+
+            clearBtn.style.display = query ? 'block' : 'none';
+
+            let visible = 0;
+            cards.forEach(card => {
+                const title   = (card.dataset.title   || '').toLowerCase();
+                const resume  = (card.dataset.resume  || '').toLowerCase();
+                const cat     = (card.dataset.category || '').toLowerCase();
+
+                const matchQuery  = !query || title.includes(query) || resume.includes(query) || cat.includes(query);
+                const matchFilter = activeFilter === 'all' || cat.includes(activeFilter);
+
+                if (matchQuery && matchFilter) {
+                    card.classList.remove('hidden-by-search');
+                    visible++;
+                } else {
+                    card.classList.add('hidden-by-search');
+                }
+            });
+
+            if (cards.length > 0) {
+                if (query || activeFilter !== 'all') {
+                    countEl.textContent = `${visible} résultat${visible !== 1 ? 's' : ''}`;
+                } else {
+                    countEl.textContent = '';
+                }
+            }
+        }
+
+        function initSearch() {
+            const input    = document.getElementById('search-input');
+            const clearBtn = document.getElementById('clear-search');
+            const chips    = document.querySelectorAll('.filter-chip');
+
+            input.addEventListener('input', applySearch);
+
+            clearBtn.addEventListener('click', () => {
+                input.value = '';
+                clearBtn.style.display = 'none';
+                applySearch();
+                input.focus();
+            });
+
+            chips.forEach(chip => {
+                chip.addEventListener('click', () => {
+                    activeFilter = chip.dataset.filter;
+                    // Mise à jour visuelle des chips
+                    chips.forEach(c => {
+                        const f = c.dataset.filter;
+                        if (c === chip) {
+                            c.className = `filter-chip active-${f === 'all' ? 'all' : f === 'deep dive' ? 'deep' : f === 'tutoriel' ? 'tuto' : f}`;
+                        } else {
+                            c.className = `filter-chip inactive-${f === 'all' ? 'all' : f === 'deep dive' ? 'deep' : f === 'tutoriel' ? 'tuto' : f}`;
+                        }
+                    });
+                    applySearch();
+                });
+            });
         }
 
         // =============================================
@@ -562,6 +772,7 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             document.body.classList.add('loaded');
+            initSearch();
             setTimeout(loadNews, 600);
         });
     </script>

@@ -50,11 +50,24 @@
             </a>
             <div class="flex items-center gap-6">
                 <a href="index.html" class="nav-link">Accueil</a>
-                <a href="projet-rag.html" class="nav-link text-blue-400">RAG</a>
-                <a href="projet-immich.html" class="nav-link">Immich</a>
-                <a href="projet-getaround.html" class="nav-link">GetAround</a>
+                <!-- Dropdown Projets -->
+                <div class="relative group">
+                    <button class="nav-link flex items-center gap-1 text-blue-400 font-semibold">
+                        Projets
+                        <svg class="w-3.5 h-3.5 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="absolute top-full right-0 mt-2 w-52 py-2 rounded-xl bg-slate-900/95 border border-slate-700/60 backdrop-blur-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                        <a href="projet-proxmox.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors">🏗️ Proxmox Homelab</a>
+                        <a href="projet-rag.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-blue-400 font-semibold bg-blue-500/10">🤖 Assistant RAG</a>
+                        <a href="projet-tesla.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors">🚗 Tesla Monitor</a>
+                        <a href="projet-chrisflix.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors">🎬 Chrisflix</a>
+                        <a href="projet-immich.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors">📸 Immich</a>
+                        <a href="projet-getaround.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors">🚀 GetAround</a>
+                        <a href="projet-jedha.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors">🎓 JEDHA</a>
+                    </div>
+                </div>
+                <a href="veille.html" class="nav-link">Veille</a>
                 <a href="https://www.linkedin.com/in/christophergilleron/" target="_blank" class="btn-hover px-4 py-1.5 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-sm font-medium hover:bg-sky-500/20 transition-all">LinkedIn</a>
-                <a href="https://github.com/Elkristobal59" target="_blank" class="btn-hover px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-sm font-medium hover:bg-blue-500/20 transition-all">GitHub</a>
             </div>
         </div>
     </nav>

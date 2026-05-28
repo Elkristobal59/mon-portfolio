@@ -228,26 +228,48 @@
                 <div class="avatar">CG</div>
                 <div class="flex flex-col">
                     <span class="font-bold text-white hidden sm:block">Christopher Gilleron</span>
-                    <span id="greeting" class="text-[10px] text-slate-500 hidden sm:block">Chargement...</span>
+                    <span class="text-[10px] text-slate-500 hidden sm:block">Data Scientist & IA</span>
                 </div>
             </a>
-            <div class="flex items-center gap-4 sm:gap-6">
+            <div class="flex items-center gap-3 sm:gap-5">
                 <a href="index.html" class="nav-link">Accueil</a>
-                <a href="#projets" class="nav-link">Projets</a>
-                <a href="veille.html" class="btn-hover text-emerald-400 text-[10px] sm:text-sm font-semibold hover:text-emerald-300 transition-colors flex items-center gap-1.5 border border-emerald-500/30 bg-emerald-500/10 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full">
+                
+                <!-- Dropdown Projets -->
+                <div class="relative group">
+                    <button class="nav-link flex items-center gap-1 focus:outline-none py-2" aria-label="Menu Projets">
+                        Projets
+                        <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <!-- Dropdown Menu -->
+                    <div class="absolute right-0 mt-1 w-56 rounded-xl bg-slate-950/95 border border-slate-800 backdrop-blur-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 p-2 space-y-0.5">
+                        <a href="projet-rag.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">🤖 Assistant RAG V7</a>
+                        <a href="projet-proxmox.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">🏗️ Cloud Privé Proxmox</a>
+                        <a href="projet-immich.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">🖥️ Cloud Immich & NAS</a>
+                        <a href="projet-tesla.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">⚡ Tesla Inventory Bot</a>
+                        <a href="projet-chrisflix.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">🍿 Chrisflix Media Hub</a>
+                        <a href="projet-jedha.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">📊 GDM Ticket Router</a>
+                        <a href="projet-getaround.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">🚗 GetAround Price Predictor</a>
+                    </div>
+                </div>
+
+                <a href="veille.html" class="btn-hover text-emerald-400 text-[10px] sm:text-sm font-semibold hover:text-emerald-300 transition-colors flex items-center gap-1 border border-emerald-500/30 bg-emerald-500/10 px-2 sm:px-3 py-1 rounded-full">
                     <span>📰</span> TLDR
                 </a>
-                <a href="https://github.com/Elkristobal59" target="_blank"
-                    class="btn-hover px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-[10px] sm:text-sm font-medium hover:bg-blue-500/20 transition-all">
+                <a href="https://github.com/Elkristobal59" target="_blank" rel="noopener noreferrer"
+                    class="btn-hover px-2 sm:px-3.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-[10px] sm:text-sm font-medium hover:bg-blue-500/20 transition-all">
                     GitHub
                 </a>
-                <a href="https://www.linkedin.com/in/christophergilleron/" target="_blank"
-                    class="btn-hover px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-[10px] sm:text-sm font-medium hover:bg-sky-500/20 transition-all">
-                    IN
+                <a href="https://www.linkedin.com/in/christophergilleron/" target="_blank" rel="noopener noreferrer"
+                    class="btn-hover px-2 sm:px-3.5 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-[10px] sm:text-sm font-medium hover:bg-sky-500/20 transition-all">
+                    LinkedIn
                 </a>
             </div>
         </div>
     </nav>
+
+
 
     <!-- ===== HERO ===== -->
     <header class="hero-glow pt-36 pb-20 px-6 text-center">
@@ -693,8 +715,8 @@
                 <!-- Card Chrisflix -->
                 <a href="projet-chrisflix.html" data-category="infra"
                     class="project-card card-hover flex flex-col bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden hover:border-blue-500/50 group no-underline">
-                    <div class="h-40 w-full relative bg-[linear-gradient(135deg,rgba(15,23,42,0.9),rgba(30,58,138,0.3))] flex items-center justify-center">
-                        <div class="text-6xl opacity-20">🎬</div>
+                    <div class="h-40 w-full relative">
+                        <img src="images/cover_chrisflix.png" alt="Chrisflix streaming hub dashboard" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity drop-shadow-lg">
                         <div class="absolute inset-0 bg-gradient-to-t from-[#0a0f1e] via-transparent to-transparent"></div>
                         <div class="absolute -bottom-5 left-6 w-12 h-12 rounded-xl bg-slate-900/50 backdrop-blur-md border border-slate-700/50 flex items-center justify-center text-2xl z-10 shadow-xl">
                             🍿</div>
@@ -719,8 +741,8 @@
                 <!-- Card Tesla Monitor -->
                 <a href="projet-tesla.html" data-category="scraping"
                     class="project-card card-hover flex flex-col bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden hover:border-red-500/50 group no-underline">
-                    <div class="h-40 w-full relative bg-[linear-gradient(135deg,rgba(15,23,42,0.9),rgba(127,29,29,0.3))] flex items-center justify-center">
-                        <div class="text-6xl opacity-20">🚗</div>
+                    <div class="h-40 w-full relative">
+                        <img src="images/cover_tesla.png" alt="Tesla inventory monitor bot dashboard" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity drop-shadow-lg">
                         <div class="absolute inset-0 bg-gradient-to-t from-[#0a0f1e] via-transparent to-transparent"></div>
                         <div class="absolute -bottom-5 left-6 w-12 h-12 rounded-xl bg-slate-900/50 backdrop-blur-md border border-slate-700/50 flex items-center justify-center text-2xl z-10 shadow-xl">
                             ⚡</div>
@@ -746,8 +768,8 @@
                 <!-- Card GDM -->
                 <a href="projet-jedha.html" data-category="ml"
                     class="project-card card-hover flex flex-col bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden hover:border-blue-500/50 group no-underline">
-                    <div class="h-40 w-full relative bg-[linear-gradient(135deg,rgba(15,23,42,0.9),rgba(59,130,246,0.3))] flex items-center justify-center">
-                        <div class="text-6xl opacity-20">🎫</div>
+                    <div class="h-40 w-full relative">
+                        <img src="images/logo_gdm_bg.png" alt="Grain de Malice automated ticket router" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity drop-shadow-lg">
                         <div class="absolute inset-0 bg-gradient-to-t from-[#0a0f1e] via-transparent to-transparent"></div>
                         <div class="absolute -bottom-5 left-6 w-12 h-12 rounded-xl bg-slate-900/50 backdrop-blur-md border border-slate-700/50 flex items-center justify-center text-2xl z-10 shadow-xl">
                             📊</div>
