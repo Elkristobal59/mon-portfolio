@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-05-28",
+            "articles": [
+                {
+                    "titre": "Groupes de Partage Kafka et Parallélisation de la Consommation — Réglage de max.poll.records",
+                    "resume": "Avec les Groupes de Partage Kafka, le goulot d'étranglement principal passe du nombre de partitions à la combinaison de `max.record.locks` et `max.poll.records`. La valeur par défaut de 500 est souvent trop élevée, provoquant une 'capture gourmande'. Le réglage recommandé est `max.record.locks / consommateurs-par-partition` pour un débit stable.",
+                    "lien": "https://jack-vanlightly.com/blog/2026/5/25/kafka-share-groups-and-parallelizing-consumption-part-1-tuning-maxpollrecords?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Comment CockroachDB a Conçu l'Indexation Vectorielle à Grande Échelle",
+                    "resume": "CockroachDB a développé son système d'indexation vectorielle, C-SPANN, pour le search vectoriel scalable, car les approches existantes étaient inadaptées à son architecture distribuée. C-SPANN utilise un arbre K-means hiérarchique, gère les insertions/suppressions en temps réel et s'intègre au sharding de CockroachDB.",
+                    "lien": "https://blog.bytebytego.com/p/how-cockroachdb-built-vector-indexing?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Concevoir un Stockage Objet S3 comme un Ingénieur Senior",
+                    "resume": "Le stockage objet à l'échelle S3 repose sur un namespace plat et immuable. À grande échelle (~100 Po, des millions d'objets), la conception nécessite le sharding distribué des métadonnées, la fusion des fichiers segments sur disque et le découpage des objets volumineux pour des lectures parallèles.",
+                    "lien": "https://levelup.gitconnected.com/design-s3-object-storage-like-a-senior-engineer-f3b938ab700d?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "J'ai Testé 5 Agents d'Analyse Open Source",
+                    "resume": "Cinq 'agents d'analyse' open source (LangChain, Wren AI, nao, LibreChat, Vercel) sont souvent regroupés, mais résolvent des problèmes très différents, peu étant réellement conçus pour l'analyse. La fiabilité dépend plus du contexte métier que de l'interface de l'agent.",
+                    "lien": "https://thenewaiorder.substack.com/p/i-battletested-5-open-source-analytics?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "J'ai Hérité d'une Facture Snowflake de 140K$ — Trois Mois Plus Tard Elle Était de 38K$. Voici Tout Ce Que J'ai Appris",
+                    "resume": "Les coûts et performances de Snowflake dépendent du stockage, du calcul et des services cloud. Les économies majeures proviennent du dimensionnement des entrepôts, de l'auto-suspension agressive et de la réduction du volume de stockage. L'optimisation clé réside dans la disposition physique des données et la conception des requêtes.",
+                    "lien": "https://levelup.gitconnected.com/i-inherited-a-140k-snowflake-bill-three-months-later-it-was-38k-heres-everything-i-learned-70acc2806e41?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                },
+                {
+                    "titre": "Le Risque de l'IA est un Problème d'Architecture",
+                    "resume": "Le risque de l'IA doit être évalué au niveau du système. Les risques (exposition des données, sortie incorrecte, action non intentionnelle) correspondent à des préjudices commerciaux. Le contrôle le plus important est l'architecture : ce que l'IA peut voir, ce que ses sorties alimentent et ce qu'elle peut faire sans vérification. La revue humaine et les permissions restreintes réduisent les risques.",
+                    "lien": "https://appliedingenuity.substack.com/p/ai-risk-is-an-architecture-problem?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Scaler les Processus Marketing Pilotés par l'IA avec PostgreSQL",
+                    "resume": "Les équipes marketing peuvent scaler les workflows IA en utilisant PostgreSQL comme couche de données centrale. Cela inclut la gestion d'état, la combinaison de tables relationnelles et JSONB, la connexion des données de campagne et l'exploitation de la recherche plein texte et pgvector pour le contexte sémantique.",
+                    "lien": "https://www.cybertec-postgresql.com/en/scaling-ai-driven-marketing-processes-with-postgresql/?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                },
+                {
+                    "titre": "RushDB 2.0: Infrastructure Mémoire pour l'Ère Agentique",
+                    "resume": "RushDB 2.0 est une infrastructure de mémoire pour agents qui combine stockage de graphes, recherche sémantique, découverte d'ontologie/schéma, accès MCP et intégration Neo4j. Elle fournit une mémoire structurée et un contexte fiable, évitant l'assemblage manuel de diverses bases de données.",
+                    "lien": "https://rushdb.com/blog/rushdb-2-0-release?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Auditer le Biais des Modèles avec des Datasets Équilibrés grâce à Mimesis",
+                    "resume": "La bibliothèque Mimesis permet de créer des jeux de données synthétiques et équilibrés pour tester les biais cachés (genre, âge, ethnie) dans un modèle, tout en maintenant les autres caractéristiques cohérentes. Cela aide à mesurer les changements de prédiction et à détecter les biais indésirables de manière sûre.",
+                    "lien": "https://www.kdnuggets.com/auditing-model-bias-with-balanced-datasets-with-mimesis?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "MurrDB (Dépôt GitHub)",
+                    "resume": "MurrDB est un cache de service rapide, soutenu par NVMe/S3, pour l'inférence ML/IA. Il est conçu pour les lectures/écritures par lots sur de grandes données tabulaires sans tout conserver en RAM. C'est une alternative à Redis moins chère et à faible latence pour la récupération d'attributs.",
+                    "lien": "https://github.com/murrdb/murr?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Déconstruire les 'Data Sketches'",
+                    "resume": "Les 'data sketches' estiment des métriques coûteuses (comme les comptes distincts) en stockant un petit échantillon probabiliste au lieu de scanner chaque ligne. Ils échangent une précision parfaite contre d'énormes gains en vitesse et en calcul, utiles pour les tableaux de bord et l'agrégation distribuée à grande échelle.",
+                    "lien": "https://lezwon.substack.com/p/deconstructing-data-sketches?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Open Data Product SDK: Transformer des Idées de Produits de Données en YAML Standard avec des Modèles d'IA",
+                    "resume": "L'Open Data Product SDK supporte désormais la conversion assistée par l'IA de texte libre et Markdown en YAML standardisé pour les catalogues de produits de données. Le workflow génère du YAML ODPC Catalog à partir des descriptions et objectifs, remplaçant l'édition manuelle de métadonnées par une approche automatisée et standardisée.",
+                    "lien": "https://blog.opendataproducts.org/open-data-product-sdk-turning-data-product-ideas-into-standard-yaml-with-ai-models-1a50782a9983?utm_source=tldrdata",
+                    "categorie": "News"
+                }
+            ]
+        },
+        {
             "date": "2026-05-25",
             "articles": [
                 {
@@ -690,83 +767,6 @@
                     "resume": "Alors que l'IA automatise le code et le SQL, la valeur ajoutée se déplace vers le jugement : savoir quoi mesurer et valider si l'analyse reflète fidèlement la réalité.",
                     "lien": "https://ericdataproduct.substack.com/p/measurement-engineering-the-part?utm_source=tldrdata",
                     "categorie": "Deep Dive"
-                }
-            ]
-        },
-        {
-            "date": "2026-04-23",
-            "articles": [
-                {
-                    "titre": "Création d'un système de stockage de métriques résilient chez Airbnb",
-                    "resume": "Airbnb a conçu un système gérant 50 millions d'échantillons/sec via une isolation multi-locataire stricte et des garde-fous pour protéger la stabilité globale du service.",
-                    "lien": "https://medium.com/airbnb-engineering/building-a-fault-tolerant-metrics-storage-system-at-airbnb-26a01a6e7017?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Modernisation de la recherche dans Facebook Groups",
-                    "resume": "Meta a refondu son moteur de recherche en combinant recherche lexicale et sémantique (Faiss), optimisée par un modèle MTML et validée par un juge basé sur Llama 3.",
-                    "lien": "https://engineering.fb.com/2026/04/21/ml-applications/modernizing-the-facebook-groups-search-to-unlock-the-power-of-community-knowledge/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Normalisation d'URL à grande échelle chez Pinterest",
-                    "resume": "Le système MIQPS normalise les URLs en supprimant le bruit pour permettre le dédoublage de contenu tout en préservant la précision par des boucles d'évaluation continue.",
-                    "lien": "https://medium.com/pinterest-engineering/smarter-url-normalization-at-scale-how-miqps-powers-content-deduplication-at-pinterest-4aa42e807d7d?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "L'interface comme contrat de données",
-                    "resume": "Proposition d'une approche par interfaces pour les ontologies d'entreprise, permettant de conserver la richesse spécifique à chaque domaine tout en assurant l'interopérabilité via RDF.",
-                    "lien": "https://ontologist.substack.com/p/the-interface-is-the-contract?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Données prêtes pour l'IA vs pour l'Analytics",
-                    "resume": "L'Analytics privilégie les données agrégées pour les humains, tandis que l'IA requiert des données brutes riches en détails et en sémantique pour le raisonnement des modèles.",
-                    "lien": "https://medium.com/@community_md101/ai-ready-data-vs-analytics-ready-data-f67ef0804341?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "dbt-score : Linter pour la qualité des métadonnées dbt",
-                    "resume": "Outil évaluant les projets dbt selon des règles de documentation, de tests et de complexité SQL pour appliquer des standards de gouvernance en CI/CD.",
-                    "lien": "https://github.com/PicnicSupermarket/dbt-score?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "ggsql : Une grammaire de graphiques pour SQL",
-                    "resume": "Outil permettant de créer des visualisations directement dans les requêtes SQL, déléguant les calculs à la base de données pour plus de performance.",
-                    "lien": "https://opensource.posit.co/blog/2026-04-20_ggsql_alpha_release/?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "Pgweb : Client PostgreSQL léger via navigateur",
-                    "resume": "Client open-source écrit en Go offrant une interface web simple pour explorer les tables et exécuter des requêtes, sans aucune dépendance externe.",
-                    "lien": "https://github.com/sosedoff/pgweb?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "ML Intern : Agent de codage autonome pour le ML",
-                    "resume": "Agent développé par Hugging Face capable de rechercher, coder et déployer des projets de machine learning en utilisant la documentation et les datasets.",
-                    "lien": "https://github.com/huggingface/ml-intern/?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "Créer une plateforme de données Iceberg à bas coût",
-                    "resume": "Guide sur l'utilisation de Cloudflare R2 avec un proxy Rust pour bâtir un lac de données Apache Iceberg économique, sans frais de sortie de données.",
-                    "lien": "https://arturastutkus.substack.com/p/the-last-mile-to-apache-iceberg-building?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
-                },
-                {
-                    "titre": "Résumé du cache KV par reconstruction d'attention",
-                    "resume": "Nouvelle méthode de compression pour LLM qui identifie et résume mathématiquement le contexte de faible valeur au lieu de simplement le supprimer.",
-                    "lien": "https://jchandra.com/posts/hae-ols/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Les quatre cavaliers de l'AIpocalypse",
-                    "resume": "Analyse des limites économiques et d'infrastructure de l'IA : pénuries de capacité, coûts d'inférence croissants et retards massifs dans la construction des datacenters.",
-                    "lien": "https://www.wheresyoured.at/four-horsemen-of-the-aipocalypse/?utm_source=tldrdata",
-                    "categorie": "News"
                 }
             ]
         }
