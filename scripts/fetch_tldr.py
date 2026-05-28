@@ -17,8 +17,8 @@ if not API_KEY:
 client = genai.Client(api_key=API_KEY)
 
 # Modèles
-PRIMARY_MODEL = "gemini-3-flash-preview"
-FALLBACK_MODEL = "gemini-3-flash"
+PRIMARY_MODEL = "gemini-2.0-flash-lite"
+FALLBACK_MODEL = "gemini-2.0-flash"
 
 # Nombre maximum d'éditions conservées
 MAX_EDITIONS = 10
