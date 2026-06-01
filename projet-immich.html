@@ -245,7 +245,7 @@
                     <!-- Core Layer -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
                         <div class="bg-slate-800/60 border border-slate-700 rounded-xl p-4">
-                            <div class="text-[10px] text-slate-500 font-mono mb-2 uppercase">Core Server (Lenovo)</div>
+                            <div class="text-[10px] text-slate-500 font-mono mb-2 uppercase">VM Debian (Proxmox VE)</div>
                             <div class="space-y-2">
                                 <div class="p-2 bg-emerald-500/10 border border-emerald-500/20 rounded text-emerald-300 text-xs text-center">
                                     📸 Immich Server (API)
@@ -266,6 +266,16 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <!-- Description de l'architecture -->
+            <div class="mt-6 text-slate-400 text-sm leading-relaxed space-y-4">
+                <p>
+                    L'infrastructure repose sur un hyperviseur <strong>Proxmox VE</strong> (installé sur un serveur Lenovo dédié) qui héberge une machine virtuelle <strong>Debian Linux</strong> pour faire tourner la stack Docker de manière isolée et stable.
+                </p>
+                <p>
+                    <strong>Interopérabilité Réseau</strong> : Mise en place de montages réseaux CIFS/SMB robustes sous forme de volumes Docker directement raccordés à la VM Debian (Proxmox VE) et le NAS Synology distant, permettant de déporter le stockage de la bibliothèque Immich (plus de 300 Go de souvenirs) sans surcharger le stockage local de la VM.
+                </p>
             </div>
         </section>
 

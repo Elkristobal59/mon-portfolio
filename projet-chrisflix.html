@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CHRISFLIX : Media Center Automatisé — Christopher Gilleron</title>
     <meta name="description"
-        content="Projet infrastructure & automatisation : déploiement d'une stack Arrs (Radarr, Sonarr, Prowlarr) avec Jellyfin et Jellyseerr sur serveur Windows & NAS Synology.">
+        content="Projet infrastructure & automatisation : déploiement d'une stack Arrs (Radarr, Sonarr, Prowlarr) avec Jellyfin et Jellyseerr sur VM Debian (Proxmox VE) & NAS Synology.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -176,7 +176,7 @@
             <div class="text-xs text-blue-400 font-mono mb-3 tracking-widest">AUTOMATISATION — DEVOPS — MÉDIA</div>
             <h1 class="text-4xl font-extrabold text-white mb-4 leading-tight">Chrisflix : Hub de Streaming 100% Automatisé</h1>
             <p class="text-slate-400 text-lg leading-relaxed">
-                Conception et déploiement d'une stack multimédia hybride (Laptop MSI + NAS Synology) orchestrée par Docker. 
+                Conception et déploiement d'une stack multimédia orchestrée par Docker sur une VM Debian (Proxmox VE), avec stockage déporté sur un NAS Synology. 
                 De la demande sur application mobile au visionnage sur Apple TV, tout le cycle de vie du contenu est automatisé via une stack de micro-services spécialisés.
             </p>
             <div class="flex flex-wrap gap-2 mt-6">
@@ -211,7 +211,7 @@
                     <div class="arch-box bg-blue-500/10 border-blue-500/30 text-blue-300 w-56">🧞 Jellyseerr (Mobile App)<br><span class="font-normal opacity-70">Point d'entrée utilisateur</span></div>
                     <div class="arch-arrow">↓</div>
                     <div class="bg-slate-800/60 border border-slate-700 rounded-xl p-4 w-full max-w-md">
-                        <div class="text-xs text-slate-500 font-mono mb-3">SERVEUR WINDOWS (Docker Stack)</div>
+                        <div class="text-xs text-slate-500 font-mono mb-3">VM DEBIAN / PROXMOX VE (Docker Stack)</div>
                         <div class="mb-3">
                             <div class="arch-box bg-blue-500/10 border-blue-500/30 text-blue-300 text-xs">🤖 Radarr & Sonarr (Logique métier)</div>
                         </div>
@@ -272,9 +272,9 @@
         <section class="mb-12 reveal">
             <h2 class="text-xl font-bold text-white mb-4">💡 Défis Techniques & Apprentissages</h2>
             <ul class="space-y-3 text-slate-400 text-sm">
-                <li class="flex gap-3"><span class="text-blue-400 mt-0.5">✓</span> **Interopérabilité Réseau** : Mise en place de montages réseaux CIFS/SMB robustes entre Windows (Docker Desktop) et un NAS Synology distant.
+                <li class="flex gap-3"><span class="text-blue-400 mt-0.5">✓</span> **Interopérabilité Réseau** : Mise en place de montages réseaux CIFS/SMB robustes sous forme de volumes Docker raccordés à la VM Debian (Proxmox VE) et le NAS Synology distant.
                 </li>
-                <li class="flex gap-3"><span class="text-blue-400 mt-0.5">✓</span> **Architecture Distribuée** : Séparation de la puissance de calcul (Serveur MSI) et du stockage/téléchargement (NAS) pour optimiser les ressources.
+                <li class="flex gap-3"><span class="text-blue-400 mt-0.5">✓</span> **Architecture Distribuée** : Séparation de la puissance de calcul (VM Docker Debian) et du stockage/téléchargement (NAS) pour optimiser les ressources.
                 </li>
                 <li class="flex gap-3"><span class="text-blue-400 mt-0.5">✓</span> **Notification Push** : Configuration de Webhooks pour que Radarr "prévienne" Jellyfin en temps réel dès qu'un film est prêt.</li>
                 <li class="flex gap-3"><span class="text-blue-400 mt-0.5">✓</span> **Post-Processing Automatisé** : Automatisation du nettoyage des noms de fichiers et de la récupération de métadonnées multilingues.</li>
