@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-06-04",
+            "articles": [
+                {
+                    "titre": "Votre Panier Raconte une Histoire : Comment l'Interpréter",
+                    "resume": "Zepto a développé un modèle contextuel de panier (MLM basé sur Transformer) pour déduire en temps réel l'intention de l'utilisateur en traitant les paniers comme des \"phrases\" et en prédisant les futurs achats.",
+                    "lien": "https://blog.zeptonow.com/your-cart-has-a-story-heres-how-we-learned-to-read-it-10ba9188f534?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Recherche Vectorielle dans Manticore Search : Un Plongeon Profond",
+                    "resume": "Manticore Search affirme que la recherche vectorielle doit être optimisée comme un système de récupération de production, en ajustant les métriques de similarité, le HNSW et les sauvegardes pour la performance et la cohérence.",
+                    "lien": "https://manticoresearch.com/blog/vector-search-deep-dive/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Ray Data vs Daft pour les lacs de données multimodales : Journal de bord",
+                    "resume": "Après des tests comparatifs, Ray Data a été choisi devant Daft pour sa stabilité et sa résilience à l'échelle, malgré les atouts de Daft pour ses primitives multimodales et son code plus propre.",
+                    "lien": "https://mehulbatra.medium.com/a-field-journal-on-ray-data-and-daft-for-multimodal-data-lake-e0c26839f5b5?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Démystifier 8 mythes sur l'organisation des données : Le Liquid Clustering surpasse le partitionnement",
+                    "resume": "Databricks réfute 8 mythes sur l'agencement des données, démontrant la supériorité du Liquid Clustering sur le partitionnement traditionnel pour les lakehouses modernes grâce à son organisation dynamique et ses fonctionnalités avancées.",
+                    "lien": "https://www.databricks.com/blog/debunking-8-data-layout-myths-why-liquid-clustering-outperforms-partitioning?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "L'essor des Moteurs Multi-Requêtes",
+                    "resume": "L'augmentation des requêtes de données courtes et intenses par les agents IA rend la gestion des coûts des entrepôts de données plus complexe. Le routage multi-moteur offre une solution économique en dirigeant chaque requête vers le moteur le plus adapté.",
+                    "lien": "https://dataopsleadership.substack.com/p/the-rise-of-multi-query-engines-how?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Plongée en Profondeur dans le Nouveau Type de Données \"Array\" de Redis",
+                    "resume": "Redis 8.8 introduit le type de données natif \"Array\", permettant un accès positionnel en temps constant et comblant un manque. Il gère efficacement les tableaux denses et clairsemés pour des accès rapides et des requêtes complexes.",
+                    "lien": "https://redis.io/blog/diving-deep-into-rediss-new-array-data-type/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Routage de Moteurs de Requêtes Multiples avec Iceberg",
+                    "resume": "QueryFlux est un proxy de routage SQL open source basé sur Rust qui dirige intelligemment les requêtes vers divers moteurs (Trino, Spark, etc.) partageant des tables Iceberg, gérant la traduction de protocole et le routage intelligent.",
+                    "lien": "https://lakeops.dev/blog/routing-multiple-query-engines-with-iceberg?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "dbt Core v2 est là : Toujours open source, reconstruit pour l'avenir",
+                    "resume": "dbt Core v2.0 alpha rend le runtime Rust du moteur Fusion open source, unifiant Core et Fusion pour des performances améliorées, des artefacts Parquet et une installation simplifiée, avec Fusion restant la CLI recommandée.",
+                    "lien": "https://docs.getdbt.com/blog/dbt-core-v2-is-here?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "ingestr (Dépôt GitHub)",
+                    "resume": "ingestr est un outil ELT en ligne de commande pour transférer des données de diverses bases et applications SaaS vers des entrepôts ou du stockage, offrant des chargements incrémentiels et une installation facile sans code personnalisé.",
+                    "lien": "https://github.com/bruin-data/ingestr?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "OpenTelemetry lance l'initiative \"Blueprints\" pour simplifier l'observabilité en entreprise",
+                    "resume": "OpenTelemetry a lancé les \"Blueprints\" pour simplifier l'adoption de l'observabilité en proposant des modèles standards et des implémentations de référence pour Kubernetes, l'infrastructure, les applications et les plateformes de télémétrie.",
+                    "lien": "https://www.infoq.com/news/2026/06/opentelemetry-blueprints-launch/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "MongoDB et les Procédures Stockées",
+                    "resume": "MongoDB peut exécuter une logique transactionnelle à faible latence sans procédures stockées, en combinant transactions ACID, bulkWrite, validation, indexes et mises à jour par pipeline, démontré par un exemple de traitement de paiements.",
+                    "lien": "https://medium.com/@johnlpage/mongodb-and-stored-procedures-c6bf3c051264?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                },
+                {
+                    "titre": "Autorisation pour les agents IA : Que construire avant la date limite de l'EU AI Act",
+                    "resume": "Présente les modèles d'identité, de politique et d'audit nécessaires pour faire respecter les appels d'agents avec le principe du moindre privilège, en vue de la future réglementation de l'EU AI Act.",
+                    "lien": "https://cerbos.dev/blog/authorization-for-ai-agents-what-to-build-before-eu-ai-act-deadline?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                }
+            ]
+        },
+        {
             "date": "2026-06-01",
             "articles": [
                 {
@@ -689,83 +766,6 @@
                     "titre": "Compression efficace du cache KV avec TurboQuant",
                     "resume": "Nouvel algorithme de quantification compressant les caches Key-Value des LLM à environ 3 bits par valeur sans perte de précision grâce à l'approche PolarQuant.",
                     "lien": "https://machinelearningmastery.com/effective-kv-compression-with-turboquant/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                }
-            ]
-        },
-        {
-            "date": "2026-04-30",
-            "articles": [
-                {
-                    "titre": "Génération de flux par langage naturel : l'approche agentique",
-                    "resume": "Shopify utilise un agent IA optimisé par fine-tuning de modèles open-source pour permettre aux marchands de créer des automatisations via le langage naturel, surpassant les modèles généralistes en coût et précision.",
-                    "lien": "https://shopify.engineering/fine-tuning-agent-shopify-flow?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Du clic à la conversion : l'architecture de Pinterest pour le shopping",
-                    "resume": "Pinterest a développé un modèle de recherche à deux tours optimisé pour les conversions réelles plutôt que les simples clics, utilisant une architecture multi-tâches pour gérer les données de conversion éparses.",
-                    "lien": "https://medium.com/pinterest-engineering/from-clicks-to-conversions-architecting-shopping-conversion-candidate-generation-at-pinterest-04cae5e1455b?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Comment Vinted personnalise l'autocomplétion de recherche",
-                    "resume": "Vinted a refondu son système de suggestion en combinant un scoring heuristique (popularité, taux de vente) et un modèle Learning-to-Rank (LightGBM) pour un réordonnancement personnalisé en temps réel.",
-                    "lien": "https://vinted.engineering//2026/04/22/personalized-search-autocomplete/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Skipper : le moteur de workflow embarqué d'Airbnb",
-                    "resume": "Skipper est un moteur de workflow léger conçu pour garantir l'exécution de processus métier longs sans orchestrateur externe, en persistant l'état directement dans la base de données du service.",
-                    "lien": "https://medium.com/airbnb-engineering/skipper-building-airbnbs-embedded-workflow-engine-f6c34552146f?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "GraphRAG au-delà de la démo : retours d'expérience",
-                    "resume": "Analyse de l'usage de GraphRAG en production : idéal pour le raisonnement multi-documents, mais complexe à gérer en termes de coûts d'indexation, de mise à jour et d'observabilité.",
-                    "lien": "https://medium.com/data-science-at-microsoft/graphrag-beyond-the-demo-lessons-from-the-trenches-add83180f849?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Pièges de l'A/B Testing : retours sur des données réelles",
-                    "resume": "Les échecs des tests A/B proviennent souvent d'infrastructures défaillantes ou de mauvaises pratiques statistiques (échantillonnage biaisé, lecture précoce des résultats) plutôt que des idées testées.",
-                    "lien": "http://kdnuggets.com/a-b-testing-pitfalls-what-works-and-what-doesnt-with-real-data?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "oLLM (Dépôt GitHub)",
-                    "resume": "Une bibliothèque Python permettant d'exécuter des LLM à large contexte sur du matériel grand public en déchargeant les poids du modèle et le cache KV sur SSD au lieu de la mémoire GPU.",
-                    "lien": "https://github.com/Mega4alik/ollm?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "Tables matérialisées dans Apache Flink",
-                    "resume": "Flink introduit les tables matérialisées qui simplifient les pipelines ETL en intégrant directement le schéma et la logique de rafraîchissement continu ou planifié dans le catalogue.",
-                    "lien": "https://rmoff.net/2026/04/28/materialized-tables-in-apache-flink/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Mises à jour HOT dans Postgres",
-                    "resume": "Explication de l'optimisation 'Heap Only Tuple' (HOT) de PostgreSQL, qui permet de mettre à jour des colonnes non indexées sans modifier les index, réduisant ainsi la charge WAL et la maintenance.",
-                    "lien": "https://boringsql.com/posts/hot-updates/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Rocky (Dépôt GitHub)",
-                    "resume": "Outil en Rust offrant une couche de contrôle sur les entrepôts de données, incluant des contrats de données, du lignage et des tests via des branches sécurisées.",
-                    "lien": "https://github.com/rocky-data/rocky?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "SQLite dans le navigateur avec sql.js, WASM et Google Drive",
-                    "resume": "Guide pratique pour faire tourner SQLite côté client via WebAssembly, avec une architecture permettant de synchroniser et stocker la base de données sur le Google Drive de l'utilisateur.",
-                    "lien": "https://dev.to/deeshansharma/running-sqlite-in-the-browser-with-sqljs-and-wasm-a-practical-guide-with-google-drive-sync-edh?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
-                },
-                {
-                    "titre": "Moteur de recommandation temps réel avec Feature Stores et Redis",
-                    "resume": "Comment coupler Feature Stores et Redis pour atteindre des latences inférieures à 100ms sur des systèmes de recommandation à grande échelle utilisant la recherche vectorielle.",
-                    "lien": "https://hackernoon.com/building-a-high-scale-real-time-recommendation-engine-with-feature-stores-and-redis-observability?utm_source=tldrdata",
                     "categorie": "Deep Dive"
                 }
             ]
