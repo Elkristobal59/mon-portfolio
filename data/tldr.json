@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-06-08",
+            "articles": [
+                {
+                    "titre": "Comment Anthropic active l'analyse de données en libre-service avec Claude",
+                    "resume": "Anthropic explique que l'analyse en libre-service précise avec les LLM dépend de la gestion du contexte, de la gouvernance et de la vérification, non de la génération SQL. Les gains proviennent de la réduction de l'ambiguïté et de la validation continue.",
+                    "lien": "https://claude.com/blog/how-anthropic-enables-self-service-data-analytics-with-claude?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Repartitionnement dynamique pour les charges de travail de séries temporelles",
+                    "resume": "Netflix a développé un système de division dynamique des partitions dans Cassandra pour gérer les partitions larges dans les charges de travail de séries temporelles à volume élevé, divisant automatiquement les partitions chaudes ou surdimensionnées.",
+                    "lien": "https://netflixtechblog.com/dynamically-splitting-wide-partitions-in-cassandra-for-time-series-workloads-0eded064f456?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "L'écart des vues matérialisées conscientes des jointures",
+                    "resume": "Les vues matérialisées conscientes des jointures accélèrent le BI en schéma en étoile. StarRocks, BigQuery, Redshift et Oracle les supportent directement, tandis que d'autres comme Snowflake ont des solutions partielles ou complexes.",
+                    "lien": "https://eric-sun.medium.com/the-join-aware-materialized-view-query-rewrite-gap-bdcb248dbd18?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Le \"Vibe Coding\" est dangereux, pas l'ingénierie \"agentique\"",
+                    "resume": "Wes McKinney soutient que le \"vibe coding\" (développement rapide sans vérification) est risqué, tandis que l'ingénierie \"agentique\" (avec IA comme accélérateur sous supervision humaine) est efficace si l'humain reste impliqué dans l'architecture et les tests.",
+                    "lien": "https://motherduck.com/blog/vibe-coding-dangerous-agentic-engineering-wes-mckinney/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Structure vs. Concept",
+                    "resume": "Cet article distingue taxonomies (organisation pour humains) et ontologies (définition logique pour systèmes). Il recommande de les lier mais de les maintenir séparées pour combiner curation métier et précision des modèles de données.",
+                    "lien": "https://ontologist.substack.com/p/structure-vs-concept?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "La vérité terrain est un processus, pas un ensemble de données",
+                    "resume": "Amazon a mis en place un protocole d'audit pour la vérification des faits par l'IA, permettant à l'IA de contester les labels de référence. Un auditeur humain valide ces contestations, améliorant la précision des données \"vérité terrain\".",
+                    "lien": "https://www.amazon.science/blog/ground-truth-is-a-process-not-a-dataset?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "PostgreSQL 19 Beta 1 est disponible !",
+                    "resume": "La première bêta de PostgreSQL 19 est sortie, offrant des améliorations majeures comme l'E/S asynchrone auto-évolutive, l'autovacuum parallèle, des insertions de clés étrangères plus rapides et des requêtes graphiques SQL/PGQ.",
+                    "lien": "https://www.postgresql.org/about/news/postgresql-19-beta-1-released-3313/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Qu'est-ce qu'Apache Arrow Flight ?",
+                    "resume": "Apache Arrow Flight utilise Arrow et gRPC pour transférer rapidement de grands ensembles de données columnaires avec une copie zéro, agissant comme une infrastructure pour des services de données haute performance.",
+                    "lien": "https://www.confessionsofadataguy.com/what-is-apache-arrow-flight/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Votre coffre Obsidian peut désormais exécuter du SQL",
+                    "resume": "Un nouveau plugin DuckDB + MotherDuck pour Obsidian permet d'exécuter des blocs SQL directement dans les notes, d'interroger des fichiers locaux ou des tables cloud, et d'intégrer les résultats avec une planification de rafraîchissement.",
+                    "lien": "https://motherduck.com/blog/obsidian-vault-duckdb-ai-agents?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "L'exode de Tableau a commencé",
+                    "resume": "Les entreprises réduisent l'utilisation de Tableau, percevant le BI comme trop coûteux. L'article conseille de conserver les métriques critiques, d'explorer des plateformes moins chères et de repenser la valeur du BI à l'ère de l'IA.",
+                    "lien": "https://superdatablog.substack.com/p/the-tableau-exodus-has-begun?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Plongée dans la calibration des modèles linguistiques : Platt Scaling, Isotonic Regression, Temperature Scaling",
+                    "resume": "L'article explore les méthodes de calibration des LLM : Temperature Scaling (simple), Platt Scaling (efficace mais grossier) et Isotonic Regression (précis mais risque d'overfitting).",
+                    "lien": "https://www.kdnuggets.com/a-deep-dive-into-calibration-of-language-models-platt-scaling-isotonic-regression-temperature-scaling?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Parallélisme visible par le broker vs local au client",
+                    "resume": "Le parallélisme visible par le broker utilise plus de partitions ou de consommateurs, tandis que le parallélisme local au client emploie des tâches asynchrones ou des files d'attente internes avec moins de consommateurs.",
+                    "lien": "https://jack-vanlightly.com/blog/2026/6/3/broker-visible-vs-client-local-parallelism?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                }
+            ]
+        },
+        {
             "date": "2026-06-04",
             "articles": [
                 {
@@ -690,83 +767,6 @@
                     "resume": "Utilisation de la détection de dérive sémantique (z-scores de distance cosinus) et de l'entropie de Shannon pour sécuriser les réponses des agents IA.",
                     "lien": "https://machinelearningmastery.com/implementing-statistical-guardrails-for-non-deterministic-agents/?utm_source=tldrdata",
                     "categorie": "Tutoriel"
-                }
-            ]
-        },
-        {
-            "date": "2026-05-04",
-            "articles": [
-                {
-                    "titre": "Data Mesh chez Grab Partie II : Outils de certification",
-                    "resume": "Grab automatise la certification du Data Mesh via un graphe de métadonnées piloté par événements (DataHub, Kafka, Temporal) pour valider l'ownership et la qualité en temps réel.",
-                    "lien": "https://engineering.grab.com/data-mesh-2?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "DocDB de Stripe : Mouvement de données sans interruption",
-                    "resume": "Stripe gère 5 millions de requêtes/s sur MongoDB grâce à une plateforme de migration (CDC, snapshots) permettant des mises à jour et du sharding sans interruption de service.",
-                    "lien": "https://www.infoq.com/presentations/docdb-online-database/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Optimiser l'efficacité réseau du ML : Feature Trimmer",
-                    "resume": "Pinterest a développé Feature Trimmer pour supprimer dynamiquement les caractéristiques ML redondantes, réduisant massivement l'utilisation de la bande passante et les coûts.",
-                    "lien": "https://medium.com/pinterest-engineering/optimizing-ml-workload-network-efficiency-part-i-feature-trimmer-ae20beb08d69?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Refonte du classement de recherche chez Faire via le Deep Learning",
-                    "resume": "Migration d'XGBoost vers le Deep Learning pour améliorer la pertinence. L'infrastructure Docker personnalisée a réduit la latence de démarrage de 30 à quelques minutes.",
-                    "lien": "https://craft.faire.com/how-we-rebuilt-search-ranking-at-faire-with-deep-learning-14f080679c83?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Un second cerveau IA pour 60 000 employés chez Meta",
-                    "resume": "Meta a déployé un système interne basé sur le RAG et des agents IA pour aider ses collaborateurs à synthétiser et exploiter les vastes connaissances internes de l'entreprise.",
-                    "lien": "https://medium.com/@AnalyticsAtMeta/how-we-built-an-ai-second-brain-for-60k-knowledge-workers-78c507dd795b?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Les cinq mondes de l'ingénierie des données",
-                    "resume": "L'article définit cinq modèles opérationnels (startup, legacy, critique, etc.) et explique pourquoi les 'bonnes pratiques' diffèrent radicalement selon l'environnement.",
-                    "lien": "https://ghostinthedata.info/posts/2026/2026-05-02-five-worlds-data-engineering/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Automatiser la validation des données : notre méthode",
-                    "resume": "Utilisation d'agents IA pour automatiser les audits de validation répétitifs, permettant aux ingénieurs de se concentrer sur la prise de décision basée sur des preuves générées par l'IA.",
-                    "lien": "https://hex.tech/blog/automated-data-validation/?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
-                },
-                {
-                    "titre": "Gérer l'évolution des schémas dans Polars",
-                    "resume": "Guide technique sur l'utilisation des paramètres intégrés de Polars (schema_mode, ScanCastOptions) pour maintenir la robustesse des pipelines face aux changements de données.",
-                    "lien": "https://pola.rs/posts/schema-evolution/?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
-                },
-                {
-                    "titre": "Datanomy (Repo GitHub)",
-                    "resume": "Un outil en ligne de commande (CLI) interactif pour inspecter les fichiers Parquet : schémas, métadonnées, statistiques et structures internes.",
-                    "lien": "https://github.com/raulcd/datanomy?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "Étude de cas RAG : La mise en production avec Weave CLI",
-                    "resume": "Présentation de Weave CLI, un outil qui unifie 11 bases vectorielles et 5 fournisseurs d'embeddings derrière une interface unique avec traçage OpenTelemetry intégré.",
-                    "lien": "https://www.decodingai.com/p/ship-rag-with-weave-cli?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "Apache Fluss sur EKS : Le Kafka indexable",
-                    "resume": "Retour d'expérience sur Apache Fluss, qui combine streaming et stockage colonnaire. Conseils pour le déploiement sur EKS et l'intégration avec Flink.",
-                    "lien": "https://medium.com/fresha-data-engineering/bottling-the-river-apache-fluss-on-eks-6aa63c00d9e9?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
-                },
-                {
-                    "titre": "Compression efficace du cache KV avec TurboQuant",
-                    "resume": "Nouvel algorithme de quantification compressant les caches Key-Value des LLM à environ 3 bits par valeur sans perte de précision grâce à l'approche PolarQuant.",
-                    "lien": "https://machinelearningmastery.com/effective-kv-compression-with-turboquant/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
                 }
             ]
         }
