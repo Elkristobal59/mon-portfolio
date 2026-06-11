@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-06-11",
+            "articles": [
+                {
+                    "titre": "Au cœur du moteur de requêtes de QuestDB",
+                    "resume": "Le moteur de requêtes séries temporelles de QuestDB combine exécution vectorisée, kernels SIMD C++, traitement Java, filtrage JIT et parallélisme. Des modifications SQL mineures peuvent impacter les performances de groupement, filtrage et agrégation.",
+                    "lien": "https://bcalza.b-cdn.net/blog/2026/06/08/inside-questdb-query-engine.html?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "L'évolution de l'architecture de données d'Airbnb pour le multiproduit",
+                    "resume": "Airbnb a fait évoluer son architecture de données offline avec un cadre de modélisation flexible. Ses principes incluent l'absence de modèles hybrides, des identifiants cohérents et des espaces de noms clairs pour séparer les modèles spécifiques aux produits des modèles monolithiques.",
+                    "lien": "https://medium.com/airbnb-engineering/scaling-beyond-one-how-airbnb-evolved-its-data-architecture-for-a-multi-product-world-6125645d470c?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Gérer Iceberg et Lance avec Gravitino : la réalité des architectures Lakehouse unifiées",
+                    "resume": "Apache Gravitino peut gouverner les tables Iceberg et les datasets Lance via une couche de métadonnées, un modèle RBAC et une surface d'audit unifiés. L'article détaille les différences de fonctionnement et les pièges entre les deux.",
+                    "lien": "https://mehulbatra.medium.com/parenting-iceberg-and-lance-with-gravitino-the-reality-behind-unified-lakehouse-architectures-22533b3ad19b?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Quand le temps d'événement rencontre la réalité : leçons de la facturation avec Apache Flink",
+                    "resume": "Gorgias a rencontré des problèmes d'agrégations incorrectes lors du traitement de données historiques avec Apache Flink pour sa pipeline de facturation. Ils ont résolu ces problèmes en alignant les clés et en ajoutant des délais conditionnels lors des relectures.",
+                    "lien": "https://medium.com/gorgias-engineering/when-event-time-meets-reality-lessons-from-building-billing-on-apache-flink-581ff895c60d?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Augmentation de prix de Dagster : la communauté réagit (Reddit)",
+                    "resume": "L'augmentation de prix des services managés de Dagster a provoqué un tollé, poussant les petits utilisateurs vers l'auto-hébergement, Airflow ou Prefect, tout en valorisant la version open source.",
+                    "lien": "https://www.reddit.com/r/dataengineering/comments/1tv5evp/dagster_price_increase_10x_insane_dont_ever_use/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Évaluations personnalisées pour Claude Fable 5",
+                    "resume": "Claude Fable 5 excelle dans l'analyse de données complexes, surpassant d'autres modèles de pointe sur les évaluations de Hex, notamment pour les tâches nécessitant jugement et vérification des données brutes.",
+                    "lien": "https://hex.tech/blog/fable-evals/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Pourquoi les métadonnées doivent être compatibles avec la mutation",
+                    "resume": "Dans les lakehouses à forte mise à jour, les métadonnées exigent une gestion des mutations. La table de métadonnées Merge-On-Read d'Apache Hudi optimise cela via des écritures 'append-first' et une compaction différée, surpassant les conceptions Copy-On-Write.",
+                    "lien": "https://hudi.apache.org/blog/2026/06/05/why-metadata-has-to-be-mutation-friendly/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Présentation de Streamling : un runtime de streaming de données performant",
+                    "resume": "Streamling est un runtime de streaming open source (Rust, Arrow, DataFusion) conçu pour les charges de travail transactionnelles. Il supporte des pipelines stateless mono-nœuds avec Kafka, Postgres, ClickHouse et des transformations TypeScript/WASM, avec livraison 'effectively-once'.",
+                    "lien": "https://www.streamingdata.tech/p/introducing-streamling?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "PostgreSQL Anonymizer 3.1 : Confidentialité Différentielle Locale",
+                    "resume": "PostgreSQL Anonymizer 3.1 étend le masquage des données sensibles avec six stratégies et intègre la Confidentialité Différentielle Locale via GRRM, offrant des garanties de confidentialité formelles pour les données d'enquête et catégoriques.",
+                    "lien": "https://www.postgresql.org/about/news/postgresql-anonymizer-31-introducing-local-differential-privacy-3311/?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Présentation de Loon : un nouveau moteur de stockage pour les données vectorielles évolutives",
+                    "resume": "Loon, le moteur de stockage derrière Milvus 3.0 et Zilliz Vector Lakebase, gère l'évolution des datasets vectoriels grâce à des formats de fichiers hybrides et des manifestes versionnés, permettant des mises à jour indépendantes des scalaires, vecteurs et références d'objets.",
+                    "lien": "https://medium.com/@zilliz_learn/introducing-loon-a-new-storage-engine-for-vector-data-that-never-stops-changing-a7f7fc763ab4?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "DataAgents : de 9 mois à 10 jours d'analyse chez Capital One",
+                    "resume": "Le pattern DataAgent de Capital One a réduit l'analyse de dormance cloud de 6-9 mois à 10 jours pour 350 types de ressources. Il combine données d'actifs, SQL généré par IA, et validation humaine pour identifier des économies fiables.",
+                    "lien": "https://medium.com/capital-one-tech/dataagents-how-we-turned-9-months-of-analysis-into-10-days-8d6ed482f5d7?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Mise à l'échelle du 'Zero Copy' chez Salesforce avec la fédération de fichiers",
+                    "resume": "La stratégie 'Zero Copy' de Salesforce Data 360 a évolué vers la fédération de fichiers Iceberg pour gérer les charges de travail IA sur des données d'entreprise distribuées, réduisant les coûts de calcul et améliorant la gouvernance.",
+                    "lien": "https://engineering.salesforce.com/scaling-zero-copy-from-1-trillion-to-120-trillion-rows-with-file-federation/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                }
+            ]
+        },
+        {
             "date": "2026-06-08",
             "articles": [
                 {
@@ -690,83 +767,6 @@
                     "resume": "En optimisant le cache avec Alluxio et le préchargement de données avec Fluid, NetEase a réduit le temps de démarrage des modèles de 42 minutes à seulement 30 secondes.",
                     "lien": "https://thenewstack.io/netease-fluid-llm-inference/?utm_source=tldrdata",
                     "categorie": "Deep Dive"
-                }
-            ]
-        },
-        {
-            "date": "2026-05-07",
-            "articles": [
-                {
-                    "titre": "Démocratiser le Machine Learning chez Netflix : Construire le Model Lifecycle Graph",
-                    "resume": "Netflix a centralisé ses actifs ML (modèles, pipelines, datasets) dans un graphe de métadonnées pour faciliter la découverte, la traçabilité et la réutilisation.",
-                    "lien": "https://netflixtechblog.com/democratizing-machine-learning-at-netflix-building-the-model-lifecycle-graph-5cc6d5828bb1?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Internes de DuckDB : Pourquoi est-il si rapide ?",
-                    "resume": "Analyse technique de DuckDB : stockage colonnaire, exécution vectorisée et optimisation des requêtes sur une seule machine sans mouvement de données client/serveur.",
-                    "lien": "https://www.greybeam.ai/blog/duckdb-internals-part-1?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Construire des pipelines de données auto-réparateurs chez Halodoc",
-                    "resume": "Mise en œuvre de couches de récupération automatique pour les échecs récurrents, réduisant les temps de restauration CDC de 45 à moins de 5 minutes.",
-                    "lien": "https://blogs.halodoc.io/building-self-healing-data-pipelines-at-halodoc/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Du SSH au REST : Modernisation sécurisée des pipelines de données EMR de Slack",
-                    "resume": "Migration de 700 opérateurs basés sur SSH vers une architecture REST via une passerelle interne (Quarry) pour une gestion fiable et sécurisée des jobs AWS EMR.",
-                    "lien": "https://slack.engineering/from-ssh-to-rest-a-security-driven-modernization-of-slacks-emr-data-pipelines/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Les agents peuvent-ils remplacer la stack de recherche ?",
-                    "resume": "Des agents LLM légers équipés d'outils de récupération simples surpassent les backends de recherche complexes en réécrivant et évaluant intelligemment les requêtes.",
-                    "lien": "https://softwaredoug.com/blog/2026/04/28/search-apis-replaced-by-agents?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Au-delà de la hype : L'architecture IA d'entreprise dont nous avons réellement besoin",
-                    "resume": "Vers une stack IA fédérée : IA native dans les ERP, modèles privés souverains, et orchestration d'agents avec traçabilité complète pour la conformité.",
-                    "lien": "https://www.cio.com/article/4166033/beyond-the-hype-the-enterprise-ai-architecture-we-actually-need.html?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Données manquantes : L'autre moitié de la transformation IA",
-                    "resume": "La productivité plafonne si l'on investit uniquement dans les outils techniques sans adapter le modèle opérationnel, la gestion d'équipe et les normes de communication.",
-                    "lien": "https://ericdataproduct.substack.com/p/were-missing-data-the-other-half?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Comment nous avons accéléré la transpilation en compilant SQLGlot avec mypyc",
-                    "resume": "Fivetran a multiplié par 5 la vitesse de parsing SQL en compilant SQLGlot (Python) en extensions C via mypyc tout en maintenant la compatibilité.",
-                    "lien": "https://www.fivetran.com/blog/how-we-accelerated-transpilation-by-compiling-sqlglot-with-mypyc?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Intégrer l'IA dans les architectures Apache Kafka : Modèles et meilleures pratiques",
-                    "resume": "Guide sur l'utilisation de Kafka comme socle d'événements pour l'IA, en privilégiant l'inférence externe (RPC, sidecar) pour préserver la stabilité du broker.",
-                    "lien": "https://www.confluent.io/blog/ai-kafka-integration-patterns/?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
-                },
-                {
-                    "titre": "S3 est parfait pour stocker des données, jusqu'à ce que vous tentiez d'y faire des recherches",
-                    "resume": "Firn est une API open-source permettant d'effectuer des recherches vectorielles et textuelles rapides directement sur des données stockées dans S3.",
-                    "lien": "https://gordonmurray.ie/data/2026/05/02/s3-is-the-perfect-place-to-store-data-until-you-try-to-search-it.html?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "Redis Array Type : Histoire d'un long développement",
-                    "resume": "Présentation d'un nouveau type de données Redis supportant l'indexation numérique native, idéal pour les buffers circulaires et les grandes collections indexées.",
-                    "lien": "https://antirez.com/news/164?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Mettre en œuvre des garde-fous statistiques pour les agents non déterministes",
-                    "resume": "Utilisation de la détection de dérive sémantique (z-scores de distance cosinus) et de l'entropie de Shannon pour sécuriser les réponses des agents IA.",
-                    "lien": "https://machinelearningmastery.com/implementing-statistical-guardrails-for-non-deterministic-agents/?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
                 }
             ]
         }
