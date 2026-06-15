@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-06-15",
+            "articles": [
+                {
+                    "titre": "L'Assistant Data de Spotify : La Couche de Contexte",
+                    "resume": "Spotify a développé Vedder, un assistant data IA pour 2100+ utilisateurs. Il dépasse le RAG basé sur le schéma grâce à une couche de contexte curatée par des experts, assurant la fiabilité des données et des requêtes SQL validées.",
+                    "lien": "https://engineering.atspotify.com/2026/6/encoding-your-domain-expert-the-context-layer-behind-spotifys-data-assistant/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Comment Feldera Fonctionne : Moteur de Maintenance Incrémentale de Vues",
+                    "resume": "Feldera traite les flux comme des vues SQL incrémentales, propageant les deltas via DBSP. Seules les lignes affectées sont mises à jour, offrant une sémantique proche du SQL par lots pour les pipelines continus avec des performances optimisées.",
+                    "lien": "https://www.junaideffendi.com/p/how-feldera-works-a-true-incremental?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Recherche Sémantique pour Agents IA à Grande Échelle chez LinkedIn",
+                    "resume": "LinkedIn a créé MUSE pour sa recherche sémantique dans l'Assistant de Recrutement. Il utilise un modèle d'embedding Matryoshka formé par un LLM Teacher, combinant récupération basée sur l'embedding et classement optimisé.",
+                    "lien": "https://www.linkedin.com/blog/engineering/ai/semantic-search-for-ai-agents-at-scale-retrieval-and-ranking-for-linkedins-hiring-assistant?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Le Mythe de l'Agent-Mois",
+                    "resume": "Les agents IA de codage réduisent le travail, mais pas les défis comme le design, les tests ou la maintenabilité. Ils peuvent générer de la dette technique et du code complexe à grande vitesse, soulignant l'importance des experts pour guider et contrôler ces systèmes.",
+                    "lien": "https://wesmckinney.com/blog/mythical-agent-month/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "La Facture Arrive : Gérer les Coûts de l'IA Agentique à Grande Échelle",
+                    "resume": "L'explosion du budget IA d'Uber révèle que le coût de l'IA agentique est un problème d'économie de tâches. Il faut mesurer la valeur par tâche, contrôler le contexte et créer une infrastructure d'agents robuste pour maîtriser les dépenses cachées.",
+                    "lien": "https://cockroachlabs.com/blog/agentic-ai-costs-at-scale?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Une Frontière sans Écosystème n'est pas Stable",
+                    "resume": "Les entreprises doivent combiner expertise humaine et IA, plutôt que de dépendre uniquement des meilleurs modèles. Posséder leurs workflows et connaissances institutionnelles leur permet d'innover et d'éviter de céder toute la valeur à quelques modèles \"frontier\".",
+                    "lien": "https://snscratchpad.com/posts/frontier-ecosystem/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Introduction de Flights : Ingestion Agent-Native dans MotherDuck",
+                    "resume": "Flights est une nouvelle fonctionnalité de MotherDuck permettant aux agents IA de créer, exécuter et planifier facilement des tâches d'ingestion et de transformation de données via un runtime Python sécurisé, avec support natif pour dlt et DuckDB.",
+                    "lien": "https://motherduck.com/blog/flights-agent-native-ingest/?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Apache DataFusion 54.0.0 est Disponible",
+                    "resume": "La version 54.0.0 d'Apache DataFusion apporte d'importantes améliorations SQL (LATERAL joins, fonctions lambda) et un nouveau lecteur Avro. Les performances sont considérablement accrues, notamment pour les jointures et les opérations de repartitionnement.",
+                    "lien": "https://datafusion.apache.org/blog/2026/06/12/datafusion-54.0.0?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Introduction d'Omnigent : Un Méta-Harnais pour Gérer les Agents IA",
+                    "resume": "Omnigent est un méta-harnais open-source de Databricks qui permet de combiner et contrôler divers agents IA (Claude Code, Codex, etc.) via une couche partagée, offrant sécurité, gestion des coûts et portabilité des workflows.",
+                    "lien": "https://www.databricks.com/blog/introducing-omnigent-meta-harness-combine-control-and-share-your-agents?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "La Linux Foundation Lance le Projet OpenSharing",
+                    "resume": "La Linux Foundation lance OpenSharing, étendant le protocole Delta Sharing aux modèles IA, compétences d'agents et données non structurées. Le projet vise à standardiser l'échange d'actifs IA et de données à travers les plateformes.",
+                    "lien": "https://www.linuxfoundation.org/press/linux-foundation-announces-opensharing-project-to-standardize-ai-asset-and-data-exchange?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Le Coût Caché de `ai_parse_document` en Production",
+                    "resume": "Utiliser `ai_parse_document` de Databricks sur des PDFs peut être coûteux et peu fiable à grande échelle. Les défis incluent les reruns coûteux, les doublons et les sorties non déterministes. Une conception de pipeline avec checkpoints et déduplication est essentielle pour la reproductibilité.",
+                    "lien": "https://xebia.com/blog/hidden-cost-ai-parse-document-production-databricks/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Nouveau Cadre pour l'Audit de la Désapprentissage Machine",
+                    "resume": "Google Research a introduit les tests de noyaux de divergence f régularisée pour auditer le désapprentissage machine et les fuites de confidentialité de manière plus fiable que les méthodes de test à deux échantillons standards.",
+                    "lien": "https://research.google/blog/new-framework-for-auditing-machine-unlearning/?utm_source=tldrdata",
+                    "categorie": "News"
+                }
+            ]
+        },
+        {
             "date": "2026-06-11",
             "articles": [
                 {
@@ -690,83 +767,6 @@
                     "resume": "De nombreux projets échouent par manque de compréhension des besoins métiers. La solution : privilégier le dialogue avec les parties prenantes, définir un succès clair et livrer des MVP itératifs.",
                     "lien": "https://www.datagibberish.com/p/stop-starting-data-projects?utm_source=tldrdata",
                     "categorie": "Tutoriel"
-                }
-            ]
-        },
-        {
-            "date": "2026-05-11",
-            "articles": [
-                {
-                    "titre": "Modélisation de scénarios pour les élections locales anglaises",
-                    "resume": "Les modèles de scénarios sont des produits de données et non des prédictions. L'incertitude peut dépasser l'impact du scénario lui-même, rendant les prévisions ponctuelles trompeuses sans intervalles de confiance.",
-                    "lien": "https://towardsdatascience.com/when-the-uncertainty-is-bigger-than-the-shock-scenario-modelling-for-english-local-elections/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Comment Discord automatise ses clusters ScyllaDB à grande échelle",
-                    "resume": "Discord a développé SCP (Scylla Control Plane) en Rust, un framework utilisant des workflows YAML pour automatiser en toute sécurité des opérations complexes comme l'expansion de clusters en moins de deux heures.",
-                    "lien": "https://discord.com/blog/how-discord-automates-scylladb-clusters-at-scale?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Améliorer le déploiement de Flink avec le Shadow Testing",
-                    "resume": "Grab a intégré une étape de tests en parallèle (shadow testing) à ses pipelines Apache Flink pour éliminer les temps d'arrêt lors des rollbacks en comparant les sorties en temps réel sans impacter la production.",
-                    "lien": "https://engineering.grab.com/enchancing-flink-shadow-testing?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Maîtriser l'appel d'outils dans les agents IA",
-                    "resume": "Guide pour créer des agents robustes : privilégier des définitions d'outils précises, une gestion des erreurs structurée, une parallélisation stratégique et des évaluations ciblées au-delà du succès final.",
-                    "lien": "https://machinelearningmastery.com/the-roadmap-to-mastering-tool-calling-in-ai-agents/?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
-                },
-                {
-                    "titre": "Des catalogues aux portefeuilles de produits de données pour GraphRAG",
-                    "resume": "L'IA nécessite un contexte métier lisible par machine. Les catalogues doivent évoluer vers des graphes de relations entre produits de données, entités et KPI pour permettre un raisonnement complexe via GraphRAG.",
-                    "lien": "https://blog.opendataproducts.org/from-data-catalogs-to-graphrag-ready-data-product-portfolios-9da3da15e1f9?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Évaluation d'agents IA : compétences contre documentation",
-                    "resume": "Wix a réalisé 250 tests montrant qu'une documentation optimisée pour les agents est fondamentale, alors que les compétences codées ne sont avantageuses que si elles sont parfaitement maintenues.",
-                    "lien": "https://www.wix.engineering/post/we-ran-250-ai-agent-evals-to-find-out-if-skills-beat-docs-the-answer-is-more-complicated-than-we-ex?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Comment BigQuery exécute réellement une requête",
-                    "resume": "La performance de BigQuery repose sur son modèle d'exécution parallèle. Le coût caché principal est le 'shuffle' (transfert de données) plutôt que le volume scanné, nécessitant une analyse fine des étapes d'exécution.",
-                    "lien": "https://blog.dataengineerthings.org/how-bigquery-actually-executes-a-query-and-why-most-optimization-advice-misses-half-the-picture-1e2ac96b378d?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "HelixDB",
-                    "resume": "Base de données open-source en Rust pour les applications IA combinant les formats graphe, vecteur, document, clé-valeur et relationnel avec outils RAG intégrés.",
-                    "lien": "https://github.com/helixdb/helix-db?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "Flowfile",
-                    "resume": "Outil ETL visuel basé sur Polars permettant de concevoir des pipelines par glisser-déposer ou via Python, avec export de code sans enfermement propriétaire.",
-                    "lien": "https://github.com/edwardvaneechoud/Flowfile?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "Data Landscape",
-                    "resume": "Carte interactive des standards ouverts de l'architecture de données moderne : contrats, schémas, formats de table, lignage, qualité et interfaces IA.",
-                    "lien": "https://www.data-landscape.com/?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "Autodata : un data scientist automatisé pour des données de haute qualité",
-                    "resume": "Meta présente Autodata, un système d'agents qui génère, critique et affine des données d'entraînement synthétiques pour remplacer la curation manuelle fastidieuse.",
-                    "lien": "https://facebookresearch.github.io/RAM/blogs/autodata/?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "NetEase Games : réduction du démarrage à froid des LLM",
-                    "resume": "En optimisant le cache avec Alluxio et le préchargement de données avec Fluid, NetEase a réduit le temps de démarrage des modèles de 42 minutes à seulement 30 secondes.",
-                    "lien": "https://thenewstack.io/netease-fluid-llm-inference/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
                 }
             ]
         }
