@@ -370,14 +370,33 @@
             <img src="images/actual%202.webp" alt="Vue détaillée Finance App" class="w-full h-auto">
         </div>
 
+        <!-- Securite & Infra -->
+        <section class="mb-12 reveal">
+            <h2 class="text-xl font-bold text-white mb-6">🛡️ Sécurité & Infrastructure (DevSecOps)</h2>
+            <div class="space-y-4">
+                <div class="service-card">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="text-xl">🔒</span>
+                        <div class="font-bold text-white">Gestion des Secrets (Secret Zero)</div>
+                        <span class="tag ml-auto">Doppler</span>
+                    </div>
+                    <p class="text-slate-400 text-sm">Élimination totale des fichiers <code>.env</code> contenant des données en clair sur le serveur. Utilisation d'un Secret Manager centralisé qui injecte les variables (clés API, accès DB) directement dans la mémoire vive (RAM) des conteneurs via un jeton révocable en lecture seule.</p>
+                </div>
+                <div class="service-card">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="text-xl">🛡️</span>
+                        <div class="font-bold text-white">Hardening & Réseau Zero Trust</div>
+                        <span class="tag ml-auto">UFW / Fail2Ban / Tailscale</span>
+                    </div>
+                    <p class="text-slate-400 text-sm">Administration du serveur sécurisée par une architecture réseau Zero Trust (VPN Mesh). Durcissement de l'OS avec fermeture des ports standards, règles de pare-feu strictes, déploiement d'un IPS, et authentification exclusivement par clés cryptographiques asymétriques robustes (Ed25519).</p>
+                </div>
+            </div>
+        </section>
+
         <!-- Learnings -->
         <section class="mb-12 reveal">
             <h2 class="text-xl font-bold text-white mb-4">💡 Défis Techniques & Bonnes Pratiques</h2>
             <ul class="space-y-3 text-slate-400 text-sm">
-                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> **Sécurité des données** : Tous
-                    les secrets (API Binance, etc.) sont isolés dans des fichiers `.env` avec des permissions strictes
-                    (`chmod 600`).
-                </li>
                 <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> **Intégrité de la Base
                     (Isolation)** : L'outil BI (Metabase) ne lit pas la base de production pour éviter les "database
                     locks". Un processus génère un snapshot cohérent à chaque cycle d'agrégation.
