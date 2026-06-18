@@ -94,20 +94,71 @@
         }
 
         /* --- Progress Bar --- */
-        #progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(to right, #60a5fa, #34d399); z-index: 100; width: 0%; transition: width 0.1s ease-out; }
+        #progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(to right, #60a5fa, #34d399);
+            z-index: 100;
+            width: 0%;
+            transition: width 0.1s ease-out;
+        }
 
         /* --- Back to Top --- */
-        #back-to-top { position: fixed; bottom: 30px; right: 30px; width: 44px; height: 44px; background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(8px); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #f8fafc; cursor: pointer; z-index: 40; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
-        #back-to-top.show { opacity: 1; visibility: visible; }
-        #back-to-top:hover { transform: translateY(-5px); border-color: #34d399; color: #34d399; }
+        #back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 44px;
+            height: 44px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #f8fafc;
+            cursor: pointer;
+            z-index: 40;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        #back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #back-to-top:hover {
+            transform: translateY(-5px);
+            border-color: #34d399;
+            color: #34d399;
+        }
 
         /* --- Reveal Animations --- */
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
         /* --- Micro-animations boutons --- */
-        .btn-hover { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
-        .btn-hover:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); }
+        .btn-hover {
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .btn-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
     </style>
 </head>
 
@@ -125,29 +176,49 @@
             </a>
             <div class="flex items-center gap-3 sm:gap-5">
                 <a href="index.html" class="nav-link">Accueil</a>
-                
+
                 <!-- Dropdown Projets -->
                 <div class="relative group">
                     <button class="nav-link flex items-center gap-1 focus:outline-none py-2" aria-label="Menu Projets">
                         Projets
-                        <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+                        <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
                     <!-- Dropdown Menu -->
-                    <div class="absolute right-0 mt-1 w-56 rounded-xl bg-slate-950/95 border border-slate-800 backdrop-blur-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 p-2 space-y-0.5">
-                        <a href="projet-rag.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">🤖 Assistant RAG V7</a>
-                        <a href="projet-proxmox.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">🏗️ Cloud Privé Proxmox</a>
-                        <a href="projet-immich.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">🖥️ Cloud Immich & NAS</a>
-                        <a href="projet-tesla.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">⚡ Tesla Inventory Bot</a>
-                        <a href="projet-chrisflix.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">🍿 Chrisflix Media Hub</a>
-                        <a href="projet-jedha.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">📊 GDM Ticket Router</a>
-                        <a href="projet-getaround.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">🚗 GetAround Price Predictor</a>
-                        <a href="projet-finance.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">💰 Finance App</a>
+                    <div
+                        class="absolute right-0 mt-1 w-56 rounded-xl bg-slate-950/95 border border-slate-800 backdrop-blur-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 p-2 space-y-0.5">
+                        <a href="projet-rag.html"
+                            class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">🤖
+                            Assistant RAG V7</a>
+                        <a href="projet-proxmox.html"
+                            class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">🏗️
+                            Cloud Privé Proxmox</a>
+                        <a href="projet-immich.html"
+                            class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">🖥️
+                            Cloud Immich & NAS</a>
+                        <a href="projet-tesla.html"
+                            class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">⚡
+                            Tesla Inventory Bot</a>
+                        <a href="projet-chrisflix.html"
+                            class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">🍿
+                            Chrisflix Media Hub</a>
+                        <a href="projet-jedha.html"
+                            class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">📊
+                            GDM Ticket Router</a>
+                        <a href="projet-getaround.html"
+                            class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">🚗
+                            GetAround Price Predictor</a>
+                        <a href="projet-finance.html"
+                            class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">💰
+                            Finance App</a>
                     </div>
                 </div>
 
-                <a href="veille.html" class="btn-hover text-emerald-400 text-[10px] sm:text-sm font-semibold hover:text-emerald-300 transition-colors flex items-center gap-1 border border-emerald-500/30 bg-emerald-500/10 px-2 sm:px-3 py-1 rounded-full">
+                <a href="veille.html"
+                    class="btn-hover text-emerald-400 text-[10px] sm:text-sm font-semibold hover:text-emerald-300 transition-colors flex items-center gap-1 border border-emerald-500/30 bg-emerald-500/10 px-2 sm:px-3 py-1 rounded-full">
                     <span>📰</span> TLDR
                 </a>
                 <a href="https://github.com/Elkristobal59" target="_blank" rel="noopener noreferrer"
@@ -174,11 +245,14 @@
             <div
                 class="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-3xl mb-6">
                 💰</div>
-            <div class="text-xs text-emerald-400 font-mono mb-3 tracking-widest">DATA ENGINEERING — HOMELAB — FINANCE</div>
+            <div class="text-xs text-emerald-400 font-mono mb-3 tracking-widest">DATA ENGINEERING — HOMELAB — FINANCE
+            </div>
             <h1 class="text-4xl font-extrabold text-white mb-4 leading-tight">Finance App : Agrégateur Financier</h1>
             <p class="text-slate-400 text-lg leading-relaxed">
-                Conception et déploiement d'une architecture 3-tiers pour agréger et analyser toutes mes données financières personnelles.
-                Combine le budgeting d'Actual, des imports automatiques (API & CSV) et la puissance analytique de Metabase.
+                Conception et déploiement d'une architecture 3-tiers pour agréger et analyser toutes mes données
+                financières personnelles.
+                Combine le budgeting d'Actual, des imports automatiques (API & CSV) et la puissance analytique de
+                Metabase.
             </p>
             <div class="flex flex-wrap gap-2 mt-6">
                 <span class="tag">Docker Compose</span>
@@ -200,7 +274,10 @@
         <section class="mb-12 reveal">
             <h2 class="text-xl font-bold text-white mb-4">🎯 Objectif du Projet</h2>
             <p class="text-slate-400 leading-relaxed">
-                L'objectif était d'obtenir une vision consolidée de mes finances, réparties sur de multiples comptes traditionnels (LCL, BoursoBank) et plateformes modernes (Binance, Revolut, Trade Republic, Wise). La solution devait être sécurisée (données locales via Docker), automatisée au maximum, et fournir des dashboards interactifs puissants sans compromettre l'intégrité de la base transactionnelle.
+                L'objectif était d'obtenir une vision consolidée de mes finances, réparties sur de multiples comptes
+                traditionnels (LCL, BoursoBank) et plateformes modernes (Binance, Revolut, Trade Republic, Wise). La
+                solution devait être sécurisée (données locales via Docker), automatisée au maximum, et fournir des
+                dashboards interactifs puissants sans compromettre l'intégrité de la base transactionnelle.
             </p>
         </section>
 
@@ -213,35 +290,44 @@
                 <div class="flex flex-col items-center gap-3 text-center">
                     <div class="bg-slate-800/60 border border-slate-700 rounded-xl p-4 w-full max-w-md">
                         <div class="text-xs text-slate-500 font-mono mb-3">Réseau Docker Bridge (`finance-net`)</div>
-                        
+
                         <!-- UI Tiers -->
                         <div class="mb-3">
-                            <div class="arch-box bg-blue-500/10 border-blue-500/30 text-blue-300 text-xs">📱 Actual Budget Server (Port 5006)<br><span class="font-normal opacity-70">UI Budget & SQLite Live</span></div>
+                            <div class="arch-box bg-blue-500/10 border-blue-500/30 text-blue-300 text-xs">📱 Actual
+                                Budget Server (Port 5006)<br><span class="font-normal opacity-70">UI Budget & SQLite
+                                    Live</span></div>
                         </div>
 
                         <!-- Sync Worker Tiers -->
                         <div class="mb-3 flex flex-col gap-2 items-center">
                             <div class="arch-arrow">↑↓</div>
-                            <div class="arch-box bg-emerald-500/10 border-emerald-500/30 text-emerald-300 text-xs w-full">
+                            <div
+                                class="arch-box bg-emerald-500/10 border-emerald-500/30 text-emerald-300 text-xs w-full">
                                 ⚙️ Sync-Worker Python<br>
-                                <span class="font-normal opacity-70">Agrégation CCXT (Binance) & Parsers CSV Automatiques</span>
+                                <span class="font-normal opacity-70">Agrégation CCXT (Binance) & Parsers CSV
+                                    Automatiques</span>
                             </div>
                         </div>
 
                         <!-- Backup / DB -->
                         <div class="mb-3 flex flex-col gap-2 items-center">
                             <div class="arch-arrow">↓ sqlite3 .backup</div>
-                            <div class="arch-box bg-yellow-500/10 border-yellow-500/30 text-yellow-300 text-[0.65rem] w-full">📁 Snapshot Cohérent (Read-Only)</div>
+                            <div
+                                class="arch-box bg-yellow-500/10 border-yellow-500/30 text-yellow-300 text-[0.65rem] w-full">
+                                📁 Snapshot Cohérent (Read-Only)</div>
                         </div>
 
                         <!-- BI Tiers -->
                         <div class="mt-3">
-                            <div class="arch-box bg-indigo-500/10 border-indigo-500/30 text-indigo-300 text-xs">📊 Metabase (Port 3000)<br><span class="font-normal opacity-70">Dashboards Analytiques BI</span></div>
+                            <div class="arch-box bg-indigo-500/10 border-indigo-500/30 text-indigo-300 text-xs">📊
+                                Metabase (Port 3000)<br><span class="font-normal opacity-70">Dashboards Analytiques
+                                    BI</span></div>
                         </div>
                     </div>
                 </div>
             </div>
-            <p class="text-slate-500 text-xs text-center">Une architecture conteneurisée robuste protégeant la base en production via un snapshot SQLite pour l'analytique.</p>
+            <p class="text-slate-500 text-xs text-center">Une architecture conteneurisée robuste protégeant la base en
+                production via un snapshot SQLite pour l'analytique.</p>
         </section>
 
         <!-- Stack Services -->
@@ -254,7 +340,8 @@
                         <div class="font-bold text-white">Banques FR (LCL, BoursoBank, Revolut)</div>
                         <span class="tag ml-auto">Native PSD2</span>
                     </div>
-                    <p class="text-slate-400 text-sm">Intégration via Enable Banking PSD2 directement dans l'interface d'Actual Budget. Aucune ligne de code requise, synchronisation robuste et native.</p>
+                    <p class="text-slate-400 text-sm">Intégration via Enable Banking PSD2 directement dans l'interface
+                        d'Actual Budget. Aucune ligne de code requise, synchronisation robuste et native.</p>
                 </div>
                 <div class="service-card">
                     <div class="flex items-center gap-3 mb-2">
@@ -262,7 +349,8 @@
                         <div class="font-bold text-white">Binance via API</div>
                         <span class="tag ml-auto">Python CCXT</span>
                     </div>
-                    <p class="text-slate-400 text-sm">Le worker Python intègre la librairie CCXT pour se connecter en mode read-only à l'API Binance et synchroniser automatiquement les soldes et transactions.</p>
+                    <p class="text-slate-400 text-sm">Le worker Python intègre la librairie CCXT pour se connecter en
+                        mode read-only à l'API Binance et synchroniser automatiquement les soldes et transactions.</p>
                 </div>
                 <div class="service-card">
                     <div class="flex items-center gap-3 mb-2">
@@ -270,7 +358,10 @@
                         <div class="font-bold text-white">Imports Manuels (Trade Republic, Wise...)</div>
                         <span class="tag ml-auto">CSV Parsing</span>
                     </div>
-                    <p class="text-slate-400 text-sm">Pour les institutions sans API ouverte, le worker écoute le répertoire local `./imports/<source>/`. Lorsqu'un export CSV est déposé, il est parsé et injecté automatiquement.</p>
+                    <p class="text-slate-400 text-sm">Pour les institutions sans API ouverte, le worker écoute le
+                        répertoire local `./imports/
+                        <source>/`. Lorsqu'un export CSV est déposé, il est parsé et injecté automatiquement.
+                    </p>
                 </div>
             </div>
         </section>
@@ -283,12 +374,20 @@
         <section class="mb-12 reveal">
             <h2 class="text-xl font-bold text-white mb-4">💡 Défis Techniques & Bonnes Pratiques</h2>
             <ul class="space-y-3 text-slate-400 text-sm">
-                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> **Sécurité des données** : Tous les secrets (API Binance, etc.) sont isolés dans des fichiers `.env` avec des permissions strictes (`chmod 600`).
+                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> **Sécurité des données** : Tous
+                    les secrets (API Binance, etc.) sont isolés dans des fichiers `.env` avec des permissions strictes
+                    (`chmod 600`).
                 </li>
-                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> **Intégrité de la Base (Isolation)** : L'outil BI (Metabase) ne lit pas la base de production pour éviter les "database locks". Un processus génère un snapshot cohérent à chaque cycle d'agrégation.
+                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> **Intégrité de la Base
+                    (Isolation)** : L'outil BI (Metabase) ne lit pas la base de production pour éviter les "database
+                    locks". Un processus génère un snapshot cohérent à chaque cycle d'agrégation.
                 </li>
-                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> **Réseau Bridge Interne** : Les conteneurs Docker communiquent via un réseau privé `finance-net` en résolution DNS par nom de conteneur, minimisant les ports exposés sur la machine hôte.</li>
-                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> **Evolutivité** : Des placeholders structurés (ex: connecteur Oldubil) sont déjà en place pour intégrer facilement de nouvelles sources de données à l'avenir.</li>
+                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> **Réseau Bridge Interne** : Les
+                    conteneurs Docker communiquent via un réseau privé `finance-net` en résolution DNS par nom de
+                    conteneur, minimisant les ports exposés sur la machine hôte.</li>
+                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> **Evolutivité** : Des placeholders
+                    structurés (ex: connecteur Oldubil) sont déjà en place pour intégrer facilement de nouvelles sources
+                    de données à l'avenir.</li>
             </ul>
         </section>
 
