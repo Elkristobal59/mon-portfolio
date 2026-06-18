@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-06-18",
+            "articles": [
+                {
+                    "titre": "Prédire le comportement d'un modèle via la simulation de déploiement",
+                    "resume": "OpenAI présente sa simulation de déploiement, une technique de sécurité pré-lancement qui rejoue des conversations utilisateur réelles pour prédire le comportement d'un modèle en production, offrant une évaluation plus réaliste des comportements indésirables.",
+                    "lien": "https://openai.com/index/deployment-simulation/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Construire une base de données IA pour les opérations GTM agiles",
+                    "resume": "Rippling a transformé sa fondation de données GTM en une base de données IA sur un lakehouse pour des opérations agiles, intégrant résolution d'entités ML, architecture médaillon, recherche sémantique et une interface en langage naturel pour agents IA.",
+                    "lien": "https://medium.com/@john.kutay/building-an-ai-database-for-agentic-gtm-operations-6a0c86fb8cdc?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Reconstruire le système de récupération publicitaire d'Instacart : du scoring à la génération",
+                    "resume": "Instacart a refait son système de récupération publicitaire, passant d'un modèle BERT basé sur le scoring à une approche générative qui 'épelle' les recommandations. Cela a résolu des problèmes de vocabulaire, de démarrage à froid et de dérive structurelle.",
+                    "lien": "https://tech.instacart.com/from-scoring-to-spelling-rebuilding-ads-retrieval-at-instacart-cf36b4e8d1bb?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Plateforme de requêtes fédérées pour le ML à l'échelle : Architecture et multi-tenancy",
+                    "resume": "Guidewire a utilisé Apache Trino pour fédérer des requêtes SQL sur Iceberg, Redshift, OpenSearch et S3, accélérant les workflows ML exploratoires. L'article détaille l'architecture et les défis de gouvernance rencontrés avec S3.",
+                    "lien": "https://medium.com/guidewire-engineering-blog/federated-query-platform-for-ml-at-scale-architecture-and-multi-tenancy-3a2c060ff3e5?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Pourquoi nous sommes passés des lacs de données Hive-style à Apache Iceberg ?",
+                    "resume": "Le passage d'un lac de données de style Hive à Apache Iceberg a résolu des problèmes persistants grâce à ses capacités de pruning efficace, d'évolution de schéma/partition et de meilleures performances de requêtes, suite au support renforcé d'AWS.",
+                    "lien": "https://medium.com/@rongalinaidu/why-we-moved-from-hive-style-data-lakes-to-apache-iceberg-f9f23e7a64d3?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Le traitement des données devient une charge de travail GPU",
+                    "resume": "Le traitement des données évolue des ETL SQL CPU vers des pipelines d'inférence basés sur GPU pour divers types de médias. Les modèles organisent d'abord les données, créant des embeddings et des résumés, ce qui pousse les plateformes vers un calcul mixte et le streaming.",
+                    "lien": "https://anyscale.com/blog/data-processing-becoming-gpu-workload?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "La crise d'identité : La résolution d'entités, fondation manquante des produits de données",
+                    "resume": "La résolution d'identité et le MDM natif de l'entrepôt sont essentiels pour des produits de données fiables et l'IA. L'article décrit les limites des vérifications locales et une approche combinant ML, règles et clustering pour gérer les identités à l'échelle.",
+                    "lien": "https://moderndata101.substack.com/p/the-identity-crisis-entity-resolution?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "datapitfalls (Dépôt GitHub)",
+                    "resume": "datapitfalls est un outil open-source basé sur Claude qui audite les graphiques, le code et les analyses pour détecter les erreurs de données courantes, de la formulation de la question à la communication, en s'appuyant sur la taxonomie 'Avoiding Data Pitfalls'.",
+                    "lien": "https://github.com/bjonesdataliteracy/datapitfalls?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "pg_kpart version 1.0",
+                    "resume": "pg_kpart est une nouvelle extension PostgreSQL qui bloque les requêtes sur les tables partitionnées si le planificateur ne peut pas élaguer par clé de partition, prévenant ainsi les scans complets accidentels et les tempêtes d'E/S.",
+                    "lien": "https://www.postgresql.org/about/news/pg_kpart-version-10-3316/?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Présentation de Lakehouse//RT : Performance en temps réel sur un Lakehouse unifié",
+                    "resume": "Databricks lance Lakehouse//RT, un entrepôt de données en temps réel alimenté par Reyden, offrant des performances de requête en millisecondes directement sur les données du lakehouse, simplifiant l'analyse en temps réel, la BI et le service d'applications.",
+                    "lien": "https://www.databricks.com/blog/introducing-lakehousert-real-time-performance-unified-lakehouse?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Fine-tuning un modèle d'IA clinique pour atteindre la parité avec les modèles de pointe",
+                    "resume": "Heidi AI a ajusté un modèle clinique plus petit pour égaler la performance d'un modèle de pointe lors de tests aveugles par des cliniciens, en s'appuyant sur des retours d'experts, des contrôles de sécurité et une boucle produit dédiée au jugement clinique.",
+                    "lien": "https://www.heidihealth.com/blog/clinical-ai-model-fine-tuning?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Comment la segmentation Data 360 traite un quadrillion d'enregistrements",
+                    "resume": "La segmentation Data 360 de Salesforce traite un quadrillion d'enregistrements par mois sur des schémas clients variés et exécute 3 millions de jobs Spark, le goulot d'étranglement étant la gestion des métadonnées volumineuses et des milliards de plans de requête candidats.",
+                    "lien": "https://engineering.salesforce.com/how-data-360-segmentation-processes-a-quadrillion-records-across-arbitrary-customer-data-models/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                }
+            ]
+        },
+        {
             "date": "2026-06-15",
             "articles": [
                 {
@@ -690,83 +767,6 @@
                     "resume": "Réflexion sur la gouvernance et les garde-fous nécessaires alors que les agents IA autonomes commencent à interagir avec des systèmes de production critiques.",
                     "lien": "https://www.cio.com/article/4170277/your-ai-agent-deletes-critical-data-who-is-responsible.html?utm_source=tldrdata",
                     "categorie": "News"
-                }
-            ]
-        },
-        {
-            "date": "2026-05-14",
-            "articles": [
-                {
-                    "titre": "Data Projects : gérer les actifs de données à l'échelle de Netflix",
-                    "resume": "Netflix remplace les ACL fragiles par des « Data Projects », regroupant tables et workflows sous des identités d'application durables pour simplifier la gestion des permissions et réduire la rotation des accès.",
-                    "lien": "https://netflixtechblog.medium.com/data-projects-managing-data-assets-at-netflix-scale-7ca25888591e?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Quand 36 000 petits fichiers cassent votre pipeline Spark",
-                    "resume": "L'accumulation de petits fichiers Parquet sur S3 peut saturer le DNS et les appels API, provoquant des erreurs UnknownHostException. La solution réside dans le compactage et l'usage de formats comme Delta Lake ou Iceberg.",
-                    "lien": "https://medium.com/@sanjeebmeister/when-36-000-tiny-files-break-your-spark-pipeline-a-deep-dive-into-s3-dns-exhaustion-and-the-small-05d4816fc909?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Pourquoi votre agent IA est amnésique et comment l'oubli est la solution",
-                    "resume": "Les agents IA échouent souvent dans les flux longs par perte de contexte. Microsoft propose une architecture de mémoire utilisant la consolidation et l'oubli sélectif pour stabiliser la rétention d'informations critiques.",
-                    "lien": "https://medium.com/data-science-at-microsoft/why-your-ai-agent-has-amnesia-and-why-forgetting-is-the-fix-417625e17c87?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Migration des systèmes d'ingestion de données à l'échelle de Meta",
-                    "resume": "Meta a migré ses pipelines massifs vers un service géré via une approche par étapes (Shadow/Reverse Shadow) avec des validations de checksums et des mécanismes de rollback automatisés pour garantir l'intégrité des données CDC.",
-                    "lien": "https://engineering.fb.com/2026/05/12/data-infrastructure/migrating-data-ingestion-systems-at-meta-scale/?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Il faut que l'on parle de dbt",
-                    "resume": "Entre racines communautaires et ambitions d'entreprise, dbt doit impérativement améliorer dbt Core et l'ergonomie de son Cloud pour ne pas s'aliéner les utilisateurs qui ont fait sa valeur initiale.",
-                    "lien": "https://databased.pedramnavid.com/p/we-need-to-talk-about-dbt?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Résultats de l'enquête d'avril 2026 sur l'état de la modélisation des données",
-                    "resume": "L'enquête révèle que les difficultés de modélisation sont principalement organisationnelles (manque de formation, temps, exigences floues) plutôt que liées aux outils techniques.",
-                    "lien": "https://practicaldatamodeling.substack.com/p/april-2026-pdc-state-of-data-modeling?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Statistiques Lakehouse : pourquoi les moteurs de requête s'y perdent",
-                    "resume": "Les moteurs de requête Lakehouse peinent lorsque les métadonnées statistiques sont absentes ou incohérentes, menant à des plans d'exécution inefficaces, des surcoûts et des lenteurs.",
-                    "lien": "https://www.linkedin.com/pulse/lakehouse-statistics-why-query-engines-get-lost-neil-carson-agnac/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Les files d'attente Kafka peuvent-elles accélérer les consommateurs ? (Partie 2)",
-                    "resume": "Les « Share Groups » de Kafka permettent de dépasser la limite du nombre de partitions par consommateur, offrant une mise à l'échelle linéaire cruciale pour les tâches limitées par les entrées/sorties (I/O).",
-                    "lien": "https://www.streamingdata.tech/p/can-kafka-queues-make-consumers-faster-part-2?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Quack : le protocole client-serveur pour DuckDB",
-                    "resume": "Quack est un nouveau protocole HTTP permettant à des instances DuckDB de communiquer à distance, supportant la sérialisation native et l'authentification par jeton au-delà du mode in-process.",
-                    "lien": "https://duckdb.org/2026/05/12/quack-remote-protocol.html?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "Avis tranchés sur les VUES PostgreSQL",
-                    "resume": "Bien que pratiques, les vues SQL sont des règles de réécriture complexes qui peuvent créer des dépendances fragiles et des difficultés de maintenance si elles sont confondues avec de simples tables.",
-                    "lien": "https://boringsql.com/posts/strong-views/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Les modèles de recherche agentiques",
-                    "resume": "De nouveaux modèles spécialisés émergent pour orchestrer tout le flux de recherche (retrieval), remplaçant les piles complexes d'embeddings et de rerankers par des solutions plus fines et spécifiques au domaine.",
-                    "lien": "http://softwaredoug.com/blog/2026/05/11/the-new-agentic-search-models.html?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Arrêtez de lancer des projets de données",
-                    "resume": "De nombreux projets échouent par manque de compréhension des besoins métiers. La solution : privilégier le dialogue avec les parties prenantes, définir un succès clair et livrer des MVP itératifs.",
-                    "lien": "https://www.datagibberish.com/p/stop-starting-data-projects?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
                 }
             ]
         }
