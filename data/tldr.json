@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-06-25",
+            "articles": [
+                {
+                    "titre": "Comment Netflix a simplifié le calcul par lots avec Kueue",
+                    "resume": "Netflix a simplifié sa plateforme de calcul par lots en remplaçant son système existant par Kueue, un système de file d'attente et d'ordonnancement de tâches natif Kubernetes, tout en conservant la compatibilité API et en ajoutant le partage équitable préemptif.",
+                    "lien": "https://netflixtechblog.com/how-netflix-simplified-batch-compute-with-kueue-87860682629c?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Le parcours d'un ingénieur pour maîtriser les agents d'IA de longue durée",
+                    "resume": "Les agents de codage de longue durée sont plus efficaces avec un contexte structuré et des artefacts persistants. Un orchestrateur agentique transforme ces transferts en un workflow d'état, permettant aux agents de traiter des tâches complexes sans perdre de cohérence.",
+                    "lien": "https://careersatdoordash.com/blog/engineers-journey-long-running-ai-agents/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Équilibrage de charge côté client à un million de requêtes par seconde",
+                    "resume": "Zalando a développé un équilibreur de charge côté client haute performance pour son API de lecture de produits, gérant plus d'un million de requêtes/seconde grâce à un hachage consistant, une découverte Kubernetes, un \"fade-in\" N-ring et un routage conscient des zones de disponibilité.",
+                    "lien": "https://engineering.zalando.com/posts/2026/06/client-side-load-balancing.html?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Personnalisation en temps réel à l'échelle : Comment Zepto comprend vos désirs immédiats",
+                    "resume": "Zepto a créé un ReRanker à double séquence pour la personnalisation en temps réel, combinant l'historique utilisateur et le comportement de session via des encodeurs transformer, un pooling conscient de la cible, une porte de fusion apprise et des signaux en temps réel.",
+                    "lien": "https://blog.zepto.com/real-time-personalisation-at-scale-how-zepto-undrstands-what-you-want-right-now-d743b13367c8?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Peut-on s'accorder sur une taxonomie des architectures de stockage/charge de travail ?",
+                    "resume": "Les architectures de stockage de données peuvent être classifiées en une taxonomie basée sur le nombre de systèmes, les charges de travail, la visibilité des données et les copies durables, organisant les systèmes modernes en divers modèles comme le Single Tier ou le Shared Tiering.",
+                    "lien": "https://jack-vanlightly.com/blog/2026/6/21/can-we-agree-on-a-storage/workload-architecture-taxonomy?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Le syndrome des fenêtres cassées pour les données",
+                    "resume": "La qualité des entrepôts de données doit être intégrée au cycle de vie complet du développement. Les équipes peuvent prévenir la propagation des incohérences en déplaçant les vérifications plus tôt via des revues de modélisation, la validation locale, le CI/CD et la surveillance.",
+                    "lien": "https://medium.com/booking-com-development/broken-windows-of-data-7f7d12ce2cd0?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Pourquoi les équipes data techniquement excellentes échouent encore",
+                    "resume": "De nombreuses équipes data excellentes restent peu pertinentes car la seule exécution ne suffit plus. La vraie valeur réside dans la capacité à influencer activement les décisions grâce à une analyse opinionnée et à l'impact sur les résultats commerciaux.",
+                    "lien": "https://practicaldatacommunity.substack.com/p/why-technically-excellent-data-teams?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "SQL Concepts Lab",
+                    "resume": "SQL Concepts Lab est un tutoriel interactif et basé sur navigateur utilisant DuckDB-WASM pour apprendre et expérimenter les concepts SQL fondamentaux directement, sans installation, avec des exercices pratiques et un feedback immédiat.",
+                    "lien": "https://oluies.github.io/sql-concepts-lab/?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                },
+                {
+                    "titre": "dbtrail",
+                    "resume": "dbtrail offre la récupération MySQL ponctuelle en streamant les binlogs et en indexant les changements de lignes. Il permet d'inspecter les modifications, de générer du SQL de réversion, de parcourir l'historique et d'exécuter des requêtes de \"time-travel\".",
+                    "lien": "https://github.com/dbtrail/dbtrail?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "SQLBuild",
+                    "resume": "SQLBuild étend dbt avec une exécution sensible aux changements en \"fingerprintant\" les modèles et réutilisant les tables de production. Il supporte les audits, les jobs incrémentaux, les nœuds Python, la lignée, les contrats et DuckDB CI.",
+                    "lien": "https://github.com/chio-labs/sqlbuild?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Clustering de texte non structuré avec les embeddings LLM et HDBSCAN",
+                    "resume": "Le clustering de texte non structuré permet de découvrir automatiquement des sujets en combinant les embeddings de sentence-transformers avec UMAP pour la réduction de dimensionnalité et HDBSCAN pour le clustering basé sur la densité.",
+                    "lien": "https://machinelearningmastery.com/clustering-unstructured-text-with-llm-embeddings-and-hdbscan/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Unir l'analyse et les agents d'IA à l'ère de la GenAI",
+                    "resume": "PJ One Piece réduit le délai d'analyse de deux semaines à 10 minutes grâce à un agent d'IA générative, utilisant des métadonnées, des garde-fous SQL et des agents superviseurs pour libérer les data scientists.",
+                    "lien": "https://techblog.lycorp.co.jp/en/techverse2026-105?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                }
+            ]
+        },
+        {
             "date": "2026-06-18",
             "articles": [
                 {
@@ -690,83 +767,6 @@
                     "resume": "Analyse de la convergence entre données et IA, montrant que les agents réussissent mieux lorsqu'ils disposent d'un contexte multi-système riche (Slack, GitHub, dbt).",
                     "lien": "https://roundup.getdbt.com/p/what-data-agent-benchmarks-do-and?utm_source=tldrdata",
                     "categorie": "Deep Dive"
-                }
-            ]
-        },
-        {
-            "date": "2026-05-18",
-            "articles": [
-                {
-                    "titre": "Goulot d'étranglement caché dans ClickHouse chez Cloudflare",
-                    "resume": "Analyse de la latence liée à la planification des requêtes plutôt qu'aux entrées/sorties suite à un changement de rétention. Résolu par un cache de lecture partagé.",
-                    "lien": "https://blog.cloudflare.com/clickhouse-query-plan-contention/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Panne AWS de mai 2026 : Leçons pour la reprise après sinistre",
-                    "resume": "Retour sur l'interruption majeure d'AWS US-EAST-1 due à une surchauffe, soulignant la nécessité d'une véritable stratégie de reprise multi-régions.",
-                    "lien": "https://www.singlestore.com/blog/aws-outage-may-2026-cross-region-disaster-recovery/?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Viaduct 1.0 et le futur du Data Mesh chez Airbnb",
-                    "resume": "Présentation d'un service mesh de données open-source basé sur GraphQL, permettant un accès unifié aux données via un schéma décentralisé.",
-                    "lien": "https://medium.com/airbnb-engineering/viaduct-1-0-and-the-future-of-airbnbs-data-mesh-6bab4ec98b89?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "La complexité de l'ingestion de données dans la stack moderne",
-                    "resume": "Analyse des coûts cachés de l'ingestion. Prône une approche hybride : connecteurs managés pour le SaaS et pipelines personnalisés pour le spécifique.",
-                    "lien": "https://lukewhittaker.substack.com/p/the-modern-data-stack-is-overcomplicated-5ff?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Les pièges du ORDER BY dans PostgreSQL",
-                    "resume": "Explication des incohérences de résolution des noms de colonnes et expressions dans PostgreSQL entre les alias SELECT et les clauses FROM.",
-                    "lien": "https://boringsql.com/posts/order-by-jungle/?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
-                },
-                {
-                    "titre": "Évolution de schéma via la propagation pilotée par ontologie",
-                    "resume": "Utilisation d'ontologies et de LLM pour classifier les colonnes et maintenir les politiques d'accès malgré l'évolution structurelle des bases de données.",
-                    "lien": "https://dlthub.com/blog/llm-ontology-schema-evolution?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "ducklake-sdk (Dépôt GitHub)",
-                    "resume": "SDK Rust/Python pour lire et écrire des tables DuckLake sans exécuter DuckDB, avec intégrations pour Polars, Arrow et DuckDB.",
-                    "lien": "https://github.com/borchero/ducklake-sdk?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "Apache Arrow comme format d'échange de données",
-                    "resume": "Comment Arrow devient le standard colonnaire en mémoire, permettant le transfert de données sans copie (zero-copy) entre différents outils de traitement.",
-                    "lien": "https://www.confessionsofadataguy.com/apache-arrow-as-data-interchange/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Les impératifs du RAG en production",
-                    "resume": "Guide sur les composants essentiels d'un système RAG fiable : découpage sémantique, indexation robuste, hachage de contenu et observabilité.",
-                    "lien": "https://arpitbhayani.me/blogs/rag-production/?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
-                },
-                {
-                    "titre": "MinIO MemKV : Optimiser l'utilisation des GPU pour l'IA",
-                    "resume": "Nouveau magasin de mémoire contextuelle pour l'inférence IA, conçu pour réduire les coûts de recalcul et améliorer l'efficacité des clusters GPU.",
-                    "lien": "https://thenewstack.io/minio-memkv-recompute-tax/?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Context pruning : réduire les tokens LLM sans perdre en qualité",
-                    "resume": "Techniques de suppression sélective des tokens et segments superflus dans les entrées LLM pour réduire drastiquement les coûts et la latence.",
-                    "lien": "https://redis.io/blog/context-pruning-llm-tokens/?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
-                },
-                {
-                    "titre": "Responsabilité en cas de suppression de données par un agent IA",
-                    "resume": "Réflexion sur la gouvernance et les garde-fous nécessaires alors que les agents IA autonomes commencent à interagir avec des systèmes de production critiques.",
-                    "lien": "https://www.cio.com/article/4170277/your-ai-agent-deletes-critical-data-who-is-responsible.html?utm_source=tldrdata",
-                    "categorie": "News"
                 }
             ]
         }
