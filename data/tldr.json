@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-06-29",
+            "articles": [
+                {
+                    "titre": "Journaux d'agents de code IA (12 To)",
+                    "resume": "Le codage IA passe de la maximisation des tokens à l'efficacité. Des workflows optimisés nécessitent une planification rigoureuse, des sessions d'agents adaptées, un contexte propre, des outils API-first, une CI robuste et une revue humaine ciblée pour maîtriser les coûts.",
+                    "lien": "https://www.youtube.com/watch?v=3abXSMZUbbM&utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Comment SmithDB a construit son index inversé pour la recherche plein texte",
+                    "resume": "SmithDB crée des index inversés efficaces grâce au parsing JSON, à la tokenisation et au tri radix, améliorant la vitesse de construction. La compaction en streaming gère la mémoire, et les requêtes fusionnent des index SSD locaux avec des segments de stockage objet pour une fraîcheur sub-seconde.",
+                    "lien": "https://www.langchain.com/blog/full-text-search-in-smithdb-constructing-and-querying-our-inverted-index-pt-2?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Évolution automatique du schéma dans le framework d'ingestion DB de Pinterest",
+                    "resume": "Pinterest a développé une évolution automatique du schéma pour le CDC sur Kafka, Flink, Spark et Iceberg, traitant le schéma comme un contrat. Des contrôles détectent les dérives, et les changements sont déployés avec auditabilité, récupération basée sur les SLA et options de rattrapage.",
+                    "lien": "https://medium.com/pinterest-engineering/automated-schema-evolution-in-pinterests-next-generation-db-ingestion-framework-36c5c07070de?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Comment Razorpay a construit sa plateforme de données clients",
+                    "resume": "Razorpay a créé une CDP interne pour transformer des données transactionnelles dispersées de plus de 500M profils en segments d'audience interrogeables en temps réel. Ils utilisent Airflow et Spark pour les calculs quotidiens, et Temporal pour une ingestion fiable dans DynamoDB avec versioning et lookups hachés préservant la confidentialité.",
+                    "lien": "https://engineering.razorpay.com/turning-scattered-data-into-queryable-segments-at-scale-how-razorpay-built-its-customer-data-3937c4b012de?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Pourquoi la performance en charge réelle est la métrique clé",
+                    "resume": "La performance en charge réelle est cruciale car les benchmarks ne reflètent pas les conditions de production (données, concurrence, latence, échelle, coût). Il faut évaluer si la charge de travail correspond à la vôtre, si la configuration est prête pour la production, si les résultats sont stables avec la croissance des données et si le produit est disponible.",
+                    "lien": "https://www.snowflake.com/en/blog/engineering/measuring-real-workload-performance/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Construire sa propre version auto-hébergée de dbt Cloud",
+                    "resume": "Une application dbt Cloud auto-hébergée peut être construite avec dbt Core, une interface React/FastAPI et Prefect pour l'orchestration. La leçon clé est d'utiliser les API plutôt que le scraping CLI pour une gestion fiable des jobs, des logs et des déploiements.",
+                    "lien": "https://medium.com/@diedericks.dan/building-my-own-self-hosted-dbt-cloud-d3b737ae885c?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                },
+                {
+                    "titre": "Annonce de la version Apache Flink 2.3.0",
+                    "resume": "Flink 2.3 progresse vers une plateforme de streaming déclarative. Les tables matérialisées peuvent évoluer via DDL/requêtes sans re-traitement historique inutile. Le SQL ajoute la conversion de changelog, la gestion des conflits upsert et le support S3 natif sans dépendances Hadoop.",
+                    "lien": "https://flink.apache.org/2026/06/25/apache-flink-2.3.0-release-announcement/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Groupes de partage Kafka : Attentes de récupération pathologiques avec record_limit",
+                    "resume": "Un piège de performance dans les groupes de partage Kafka survient avec `record_limit` et moins de consommateurs que de partitions, surtout en cas de déséquilibre. Cela provoque des attentes de récupération pathologiques, ralentissant la consommation. La solution simple est d'avoir au moins autant de consommateurs que de partitions avec `record_limit`.",
+                    "lien": "https://jack-vanlightly.com/blog/2026/6/24/kafka-share-groups-pathological-fetch-waits-with-recordlimit?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Hardwood 1.0 : Un lecteur Apache Parquet rapide et léger pour la JVM",
+                    "resume": "Hardwood 1.0 est un lecteur Parquet natif JVM (Java 21+) prêt pour la production, sans dépendances obligatoires et avec décodage parallèle. Il supporte les types Parquet, les projections, le push-down de prédicats et les fichiers locaux/object-store, offrant des performances élevées (16,5M lignes/sec).",
+                    "lien": "https://www.morling.dev/blog/hardwood-1-0-fast-lightweight-apache-parquet-reader-for-the-jvm/?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Embeddings 14x plus rapides : la refonte du chemin ONNX dans Manticore",
+                    "resume": "Manticore a réécrit son pipeline d'embeddings sur ONNX Runtime, réduisant le gaspillage CPU et multipliant le débit par 14 pour la recherche vectorielle à faible latence. La conception utilise une session ONNX thread-safe, désactive le spinning intra-op et traite les documents individuellement pour éviter les contentions et le surcoût de padding.",
+                    "lien": "https://manticoresearch.com/blog/onnx-embeddings-speedup/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Évaluation d'agents IA : Les documents l'emportent-ils sur les compétences ?",
+                    "resume": "Une évaluation de 250 runs par Wix montre que les documents optimisés pour agents IA ont amélioré la complétion de tâches CLI de 67% à 87% et réduit l'utilisation de tokens de 35%, surpassant les compétences seules si désalignées. Pour les tâches API, les deux atteignent 80%, mais les documents sont plus rapides.",
+                    "lien": "https://www.wix.engineering/post/we-ran-250-ai-agent-evals-to-find-out-if-skills-beat-docs-the-answer-is-more-complicated-than-we-ex?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Comment Dropbox a utilisé DSPy pour améliorer les réponses IA de Dash Chat",
+                    "resume": "Dropbox a utilisé DSPy pour transformer les évaluations IA en améliorations concrètes pour Dash Chat. En combinant évaluations LLM-as-judge, exemples labellisés et validation statistique, ils ont réduit les réponses incomplètes, amélioré la couverture d'intention utilisateur et diminué l'utilisation de tokens sans sacrifier la qualité.",
+                    "lien": "https://dropbox.tech/machine-learning/how-we-turned-ai-evaluations-into-better-responses-in-dash-chat?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                }
+            ]
+        },
+        {
             "date": "2026-06-25",
             "articles": [
                 {
@@ -690,83 +767,6 @@
                     "resume": "Bintrail permet d'effectuer des requêtes historiques (AS OF) sur MySQL sans modifier le schéma, en utilisant l'indexation des journaux binaires via ProxySQL.",
                     "lien": "https://www.infoq.com/news/2026/05/bintrail-mysql-timetravel/?utm_source=tldrdata",
                     "categorie": "Tool"
-                }
-            ]
-        },
-        {
-            "date": "2026-05-21",
-            "articles": [
-                {
-                    "titre": "mondayDB 3 – Résoudre l'HTAP pour un système de mille milliards de tables",
-                    "resume": "monday.com a remplacé son architecture MySQL par une architecture Lambda basée sur DuckDB et S3 pour gérer des tables dynamiques massives via CQRS et des snapshots immuables.",
-                    "lien": "https://engineering.monday.com/mondaydb-3-solving-htap-for-a-trillion-table-system/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "L'évolution du mouvement de données Cassandra chez Netflix",
-                    "resume": "Netflix a migré 3 Po/jour de Cassandra vers Iceberg en lisant directement les sauvegardes S3 via Spark, permettant une transition transparente sans modification du code applicatif.",
-                    "lien": "https://netflixtechblog.medium.com/the-evolution-of-cassandra-data-movement-at-netflix-6e13329c80a1?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Réduire l'usage des slots BigQuery de 90 % après une panne",
-                    "resume": "Teads a drastiquement optimisé ses coûts BigQuery grâce à la mise en cache Redis, la réécriture de requêtes SQL (semi-jointures) et une meilleure stratégie de partitionnement.",
-                    "lien": "https://medium.com/teads-engineering/how-we-cut-bigquery-slot-usage-by-90-on-one-of-our-most-resource-hungry-service-after-an-outage-c491af09e77e?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Retour à la vie !",
-                    "resume": "Une réflexion sur la dualité de l'IA en science des données : un outil puissant pour la productivité, mais comportant des risques environnementaux, sociaux et de propriété intellectuelle.",
-                    "lien": "https://tidydesign.substack.com/p/returning-to-life?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Améliorer l'expérimentation avec les évaluations LLM",
-                    "resume": "Spotify utilise les LLM comme juges précoces pour évaluer la qualité (ton, cohérence) et filtrer les idées faibles avant d'engager des ressources dans des tests A/B réels.",
-                    "lien": "https://engineering.atspotify.com/2026/5/better-experiments-with-llm-evals-a-funnel-not-a-fork?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Qu'est-ce qui est facile ou difficile désormais ?",
-                    "resume": "La performance des agents de codage dépendra moins de l'intelligence du modèle que de la qualité des boucles de rétroaction automatisées pour valider les résultats.",
-                    "lien": "https://brooker.co.za/blog/2026/05/18/whats-easy-whats-hard.html?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "La « taxe de pipeline » freine l'IA d'entreprise à grande échelle",
-                    "resume": "Le déplacement excessif de données entre entrepôts et bases vectorielles crée de la latence. La solution : amener les agents directement vers la donnée via SQL et Iceberg.",
-                    "lien": "https://www.ciodive.com/spons/the-pipeline-tax-is-breaking-enterprise-ai-at-agent-scale/820200/?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "OpenData",
-                    "resume": "Une plateforme open-core facilitant la recherche, la jointure et la visualisation de datasets publics via une API unique et propre.",
-                    "lien": "https://tryopendata.ai/?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "WrenAI",
-                    "resume": "Couche de contexte open-source permettant aux agents IA de comprendre la sémantique métier et de générer du SQL fiable sur les piles de données existantes.",
-                    "lien": "https://github.com/Canner/WrenAI",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "Surveiller la performance des agents Cortex via les traces",
-                    "resume": "Guide technique sur l'utilisation des données d'observabilité pour suivre la consommation de tokens, la latence et les erreurs des agents en production.",
-                    "lien": "https://montecarlo.ai/blog-monitoring-cortex-agent-performance-with-trace-data/?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
-                },
-                {
-                    "titre": "Protocoles pour l'usage transactionnel du stockage objet",
-                    "resume": "Analyse des primitives nécessaires (PUT conditionnels, LIST consistants) pour supporter des transactions OLTP sérialisables directement sur du stockage objet.",
-                    "lien": "https://www.bitsxpages.com/p/protocols-for-transactional-usage?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Ce que les benchmarks d'agents de données nous révèlent",
-                    "resume": "Analyse de la convergence entre données et IA, montrant que les agents réussissent mieux lorsqu'ils disposent d'un contexte multi-système riche (Slack, GitHub, dbt).",
-                    "lien": "https://roundup.getdbt.com/p/what-data-agent-benchmarks-do-and?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
                 }
             ]
         }
