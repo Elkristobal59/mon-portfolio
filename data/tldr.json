@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-07-02",
+            "articles": [
+                {
+                    "titre": "Utiliser les LLM pour Analyser les Plans Spark SQL : Déboguer les Jobs Longs",
+                    "resume": "Expedia utilise des LLM pour analyser et expliquer les plans d'exécution Spark, identifiant rapidement les goulots d'étranglement et accélérant le débogage des jobs Spark SQL de production à longue exécution.",
+                    "lien": "https://medium.com/expedia-group-tech/using-llms-to-analyze-spark-sql-plans-a-practical-approach-to-debugging-long-running-jobs-35eace7eeec4?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "L'Ontologie Partout !",
+                    "resume": "Les ontologies réapparaissent comme couche de plateforme de données pratique, car les agents IA nécessitent une signification métier explicite. Elles encodent concepts partagés, relations typées et contraintes, formant des couches sémantiques ou graphes de connaissances.",
+                    "lien": "https://handsondata.substack.com/p/ontology-everywhere?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Comment Meta a Construit DEmate : Dompter les LLM pour l'Ingénierie de Données",
+                    "resume": "DeMate de Meta est un assistant LLM interne pour ingénieurs de données, aidant à écrire du SQL, générer des pipelines, réviser du code et comprendre des flux de données complexes, via une architecture RAG avec prompts précis et retours humains.",
+                    "lien": "https://medium.com/@AnalyticsAtMeta/how-we-built-demate-taming-llms-for-data-engineering-at-meta-d134e69637c5?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Construire des Index sur une Cible Mouvante",
+                    "resume": "Apache Hudi explore les défis et solutions pour maintenir des index sur des jeux de données en constante évolution, évaluant diverses stratégies d'indexation et les compromis entre fraîcheur, performance, coût d'écriture et scalabilité.",
+                    "lien": "https://hudi.apache.org/blog/2026/06/25/building-indexes-on-a-moving-target/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Un Problème de Qualité de Données est Toujours un Problème de Propriété",
+                    "resume": "Les échecs de qualité des données sont souvent des échecs de propriété : l'absence d'un propriétaire unique pour une métrique dégrade la confiance. La solution est une gouvernance explicite avec un propriétaire désigné, des droits clairs et des règles de qualité applicables.",
+                    "lien": "https://medium.com/@community_md101/never-seen-a-data-quality-issue-that-wasnt-actually-an-ownership-problem-ba06931abaa3?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Interroger Plus Vite, Plus Intelligemment : Notre Passage à DuckDB",
+                    "resume": "Arcesium a migré d'Athena à Trino puis DuckDB, réduisant les coûts et temps d'exécution des requêtes de 50%. DuckDB a offert rapidité et faible empreinte mémoire, nécessitant l'adaptation à l'évolution de schémas sans Glue et d'autres ajustements techniques.",
+                    "lien": "https://medium.com/arcesium-engineering-blog/query-faster-query-smarter-our-move-to-duckdb-and-what-we-learned-c935128e80bc?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Trop de Tables Nuit à la Performance (PostgreSQL)",
+                    "resume": "Avoir trop de tables dans PostgreSQL peut gravement nuire à la performance (catalogues lourds, planification lente, I/O accrue). Les conseils incluent la consolidation de tables, l'évitement du schéma par locataire excessif et l'utilisation du partitionnement.",
+                    "lien": "https://www.cybertec-postgresql.com/en/too-many-tables-are-bad/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Présentation de TabFM : Modèle Fondateur Zero-Shot pour Données Tabulaires",
+                    "resume": "TabFM est un modèle fondateur pour la classification et la régression tabulaires, utilisant l'apprentissage in-context pour éliminer l'entraînement par jeu de données et le réglage des hyperparamètres. Il surpasse les modèles basés sur des arbres sur divers benchmarks.",
+                    "lien": "https://research.google/blog/introducing-tabfm-a-zero-shot-foundation-model-for-tabular-data/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "TiDB (Référentiel GitHub)",
+                    "resume": "TiDB est une base de données SQL distribuée open-source, cloud-native, offrant une forte cohérence, compatibilité MySQL, scalabilité horizontale, haute disponibilité et traitement HTAP. Elle est adaptée aux charges de travail nécessitant transactions, analyses et recherche vectorielle.",
+                    "lien": "https://github.com/pingcap/tidb?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "SedonaDB 0.4 : Jointures Spatiales Accélérées par GPU",
+                    "resume": "SedonaDB 0.4 intègre RayBooster, un moteur de jointure spatiale GPU utilisant les cœurs de ray tracing NVIDIA. Il accélère les requêtes d'intersection géométrique jusqu'à 5,9 fois, réduit les coûts AWS et peut même surpasser un H100 avec une RTX 3090.",
+                    "lien": "https://sedona.apache.org/latest/blog/2026/06/26/sedonadb-04-gpu-accelerated-spatial-joins/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Comment Corrompre un Fichier de Base de Données SQLite",
+                    "resume": "SQLite est résistant à la corruption, mais peut être endommagé par un accès fichier non sécurisé, de mauvaises sauvegardes, journaux manquants, verrous brisés, synchronisations échouées, stockage défectueux, bugs mémoire ou paramètres PRAGMA risqués.",
+                    "lien": "https://www.sqlite.org/howtocorrupt.html?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "La Résidence des Données : Un Problème d'Infrastructure, Pas Juridique",
+                    "resume": "La résidence des données est un défi d'infrastructure, pas seulement légal, exigeant que les charges de travail réglementées prennent en compte le stockage, le traitement, la journalisation et l'accès aux données. Les plateformes doivent être conçues pour être 'region-aware'.",
+                    "lien": "https://hackernoon.com/data-residency-is-not-a-legal-problem-it-is-an-infrastructure-design-problem?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                }
+            ]
+        },
+        {
             "date": "2026-06-29",
             "articles": [
                 {
@@ -690,83 +767,6 @@
                     "resume": "L'Open Data Product SDK supporte désormais la conversion assistée par l'IA de texte libre et Markdown en YAML standardisé pour les catalogues de produits de données. Le workflow génère du YAML ODPC Catalog à partir des descriptions et objectifs, remplaçant l'édition manuelle de métadonnées par une approche automatisée et standardisée.",
                     "lien": "https://blog.opendataproducts.org/open-data-product-sdk-turning-data-product-ideas-into-standard-yaml-with-ai-models-1a50782a9983?utm_source=tldrdata",
                     "categorie": "News"
-                }
-            ]
-        },
-        {
-            "date": "2026-05-25",
-            "articles": [
-                {
-                    "titre": "Le gel des 58 millions de clés : l'impact du redimensionnement de HashMap sur l'allocation mémoire",
-                    "resume": "LinkedIn a analysé un incident où son service Rust gelait pendant 15 secondes lors du redimensionnement d'une HashMap, à cause d'un verrou mmap bloquant tout le runtime asynchrone.",
-                    "lien": "https://www.linkedin.com/blog/engineering/feed/the-58-million-key-freeze-what-a-hashmap-resize-taught-us-about-memory-allocation-at-scale?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Choisir le bon type de graphe",
-                    "resume": "Comparaison entre RDF/OWL, idéal pour la connaissance gouvernée et interopérable, et les graphes de propriétés (LPG), plus performants pour les analyses et traversées rapides.",
-                    "lien": "https://jessicatalisman.substack.com/p/choosing-the-right-graph?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "L'évolution Hugo : la plateforme d'ingestion de données unifiée de Grab avec Apache Flink",
-                    "resume": "Grab a centralisé son ingestion de données dans un flux automatisé basé sur Flink, réduisant le temps d'intégration de plusieurs jours à quelques minutes.",
-                    "lien": "https://engineering.grab.com/one-click-data-ingestion-platform-with-apache-flink?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Du Batch au Streaming et à l'IA : Iceberg pour tous",
-                    "resume": "Le format Apache Iceberg évolue vers la version 4 pour supporter le streaming basse latence et les charges de travail IA grâce à des commits simplifiés et de meilleures statistiques colonnaires.",
-                    "lien": "https://www.youtube.com/watch?v=4Bg64WnkfgE&utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Mode Plan permanent et fin du rôle de Data Engineer",
-                    "resume": "L'IA transforme l'ingénierie des données. L'utilisation de formats comme Substrait pourrait remplacer le SQL pour les agents, fusionnant les rôles de données traditionnels.",
-                    "lien": "https://motherduck.com/blog/cost-as-tokens-substrait-llm-chris-riccomini?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Ce que l'IA peut et ne peut pas faire pour un analyste de données",
-                    "resume": "Si l'IA excelle pour coder et préparer les données, elle reste trop incohérente pour les analyses complexes nécessitant du jugement humain et du contexte métier.",
-                    "lien": "https://adamwritesaboutdata.substack.com/p/of-hammers-and-nails-what-ai-can?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "DuckDB 1.5.3 : bien plus qu'un simple correctif",
-                    "resume": "Cette version introduit des extensions majeures, notamment Quack, le support DuckLake et de nouvelles capacités pour Iceberg et AWS.",
-                    "lien": "https://duckdb.org/2026/05/20/announcing-duckdb-153?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Présentation de Dimster, un outil de benchmarking pour Apache Kafka",
-                    "resume": "Dimster est un outil open-source permettant de tester les performances, le débit et la correction de Kafka avec des tableaux de bord Grafana intégrés.",
-                    "lien": "https://jack-vanlightly.com/blog/2026/5/20/introducing-dimster-a-performance-benchmarking-tool-for-apache-kafka?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "Sortie de pg_infer 1.0.0 : les modèles transformer comme relations SQL",
-                    "resume": "Cette extension PostgreSQL permet d'interroger l'inférence des modèles transformer directement en SQL, facilitant leur parallélisation et leur intégration aux bases de données.",
-                    "lien": "https://www.postgresql.org/about/news/pg_infer-100-released-transformer-model-knowledge-as-sql-relations-3307/?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "Où se cache la taxe JVM ? Performance Java vs Natif",
-                    "resume": "Une étude comparative démontre qu'une JVM optimisée exécutant des noyaux arithmétiques vectorisés n'impose aucune pénalité de performance par rapport au code natif.",
-                    "lien": "https://semyonsinchenko.github.io/ssinchenko/post/jvm-tax/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "SAM 3 : Segmentation d'images et vidéos par concepts",
-                    "resume": "Meta lance SAM 3, un modèle capable de segmenter et suivre des objets à partir de requêtes textuelles ou visuelles avec une précision accrue.",
-                    "lien": "https://github.com/facebookresearch/sam3?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "Bintrail : requêtes temporelles MySQL via les Binlogs",
-                    "resume": "Bintrail permet d'effectuer des requêtes historiques (AS OF) sur MySQL sans modifier le schéma, en utilisant l'indexation des journaux binaires via ProxySQL.",
-                    "lien": "https://www.infoq.com/news/2026/05/bintrail-mysql-timetravel/?utm_source=tldrdata",
-                    "categorie": "Tool"
                 }
             ]
         }
