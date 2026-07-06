@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-07-06",
+            "articles": [
+                {
+                    "titre": "Le Plan de Stockage IA de Meta à l'Échelle",
+                    "resume": "Meta partage son architecture de stockage IA à grande échelle, incluant hiérarchie multi-niveaux, placement intelligent, réplication, caching, encodage d'effacement et optimisation réseau.",
+                    "lien": "https://engineering.fb.com/2026/07/01/data-infrastructure/metas-ai-storage-blueprint-at-scale/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Migration du service de comptage de Grab : choix de conception et apprentissages",
+                    "resume": "Grab a migré son service de comptage antifraude vers Aerospike sans interruption, améliorant la latence de lecture p99 et les coûts de 50% grâce à des façades de stockage et un déploiement progressif.",
+                    "lien": "https://engineering.grab.com/counter-service-storage-migration?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Les LLM de séries temporelles expliqués avec t0-alpha",
+                    "resume": "t0-alpha, un prévisionniste de séries temporelles probabiliste open-source de 102M paramètres, surpasse les méthodes classiques et offre une prévision zéro-shot prometteuse pour la production.",
+                    "lien": "https://towardsdatascience.com/time-series-llms-explained-with-t0-alpha/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Meilleurs modèles, pires outils",
+                    "resume": "Les modèles Anthropic récents réussissent les tâches mais échouent aux schémas d'outils stricts en ajoutant des champs invalides, suggérant un surapprentissage. Les systèmes d'agents nécessitent une validation de schéma plus rigoureuse.",
+                    "lien": "https://lucumr.pocoo.org/2026/7/4/better-models-worse-tools/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Vercel a réduit son équipe SDR de 10 à 1 personne pour 5 000 $ par an",
+                    "resume": "Vercel a automatisé la qualification des leads, réduisant son équipe SDR à 1,25 personne avec un ROI de 32x, grâce à une ingénierie GTM robuste et une infrastructure évolutive.",
+                    "lien": "https://www.saastr.com/vercel-took-a-10-person-sdr-team-down-to-1-the-whole-thing-costs-5000-a-year-with-vercels-coo-jeanne-dewitt-grosser/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Le guide pratique de l'ingénierie de contexte",
+                    "resume": "L'ingénierie de contexte structure les connaissances d'entreprise pour les agents IA. Les modèles de données clairs et la documentation sont essentiels. Gérer le contexte comme un dépôt Git avec CI/CD et gouvernance est recommandé.",
+                    "lien": "https://roundup.getdbt.com/p/the-context-engineering-playbook?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                },
+                {
+                    "titre": "Comparaison des meilleures bases de données vectorielles open source",
+                    "resume": "Redis a comparé les principales bases de données vectorielles open source. Redis excelle en faible latence/QPS élevé, Qdrant/Weaviate en filtrage de métadonnées, et Milvus en passage à l'échelle massive.",
+                    "lien": "https://redis.io/blog/best-open-source-vector-databases-comparison/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "StreamFusion (Dépôt GitHub)",
+                    "resume": "StreamFusion est un accélérateur Flink SQL open source qui remplace les opérateurs de streaming par une exécution native Rust/Apache Arrow/DataFusion, améliorant les performances des opérations SQL.",
+                    "lien": "https://github.com/datafusion-contrib/StreamFusion?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Claude Science, un atelier IA pour scientifiques, est maintenant disponible",
+                    "resume": "Claude Science AI Workbench est un nouvel outil pour scientifiques, accélérant la découverte en assistant la revue de littérature, l'élaboration d'hypothèses, l'analyse de données et la rédaction de code.",
+                    "lien": "https://www.anthropic.com/news/claude-science-ai-workbench?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Le parcours d'un token IA à travers un centre de données",
+                    "resume": "L'inférence est le coût dominant de l'IA. Son économie dépend du coût par token et de la latence, avec des défis liés à la bande passante mémoire. Les optimisations clés incluent la gestion du cache KV et la quantification.",
+                    "lien": "https://www.datagravity.dev/p/how-an-ai-token-travels-through-a?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Réduction de variance sous le grain de randomisation",
+                    "resume": "Instacart explore des techniques avancées de réduction de variance pour les tests A/B (CUPED, stratification) au niveau utilisateur/session, permettant de détecter des effets plus subtils avec une précision accrue.",
+                    "lien": "https://tech.instacart.com/variance-reduction-below-the-randomization-grain-31719f87a7d2?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Combler le fossé : Audit de données structurées et intelligence des politiques non structurées",
+                    "resume": "Automatisez les audits de conformité en combinant documents politiques non structurés et données structurées via un workflow agentique, utilisant LLM-Wiki et Text2SQL pour analyser et auto-corriger.",
+                    "lien": "https://blog.gopenai.com/bridging-the-gap-blending-structured-data-auditing-with-unstructured-policy-intelligence-17710e04c8de?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                }
+            ]
+        },
+        {
             "date": "2026-07-02",
             "articles": [
                 {
@@ -689,83 +766,6 @@
                     "titre": "Le meilleur de CPDP 2026",
                     "resume": "La conférence CPDP 2026 a souligné les défis réglementaires en matière de gouvernance des données et d'IA : vérification d'âge biométrique, données de santé, droits numériques des enfants et la divergence entre conformité formelle et application réelle.",
                     "lien": "https://www.zeropartydata.es/p/61-the-best-of-cpdp-2026?utm_source=tldrdata",
-                    "categorie": "News"
-                }
-            ]
-        },
-        {
-            "date": "2026-05-28",
-            "articles": [
-                {
-                    "titre": "Groupes de Partage Kafka et Parallélisation de la Consommation — Réglage de max.poll.records",
-                    "resume": "Avec les Groupes de Partage Kafka, le goulot d'étranglement principal passe du nombre de partitions à la combinaison de `max.record.locks` et `max.poll.records`. La valeur par défaut de 500 est souvent trop élevée, provoquant une 'capture gourmande'. Le réglage recommandé est `max.record.locks / consommateurs-par-partition` pour un débit stable.",
-                    "lien": "https://jack-vanlightly.com/blog/2026/5/25/kafka-share-groups-and-parallelizing-consumption-part-1-tuning-maxpollrecords?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Comment CockroachDB a Conçu l'Indexation Vectorielle à Grande Échelle",
-                    "resume": "CockroachDB a développé son système d'indexation vectorielle, C-SPANN, pour le search vectoriel scalable, car les approches existantes étaient inadaptées à son architecture distribuée. C-SPANN utilise un arbre K-means hiérarchique, gère les insertions/suppressions en temps réel et s'intègre au sharding de CockroachDB.",
-                    "lien": "https://blog.bytebytego.com/p/how-cockroachdb-built-vector-indexing?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Concevoir un Stockage Objet S3 comme un Ingénieur Senior",
-                    "resume": "Le stockage objet à l'échelle S3 repose sur un namespace plat et immuable. À grande échelle (~100 Po, des millions d'objets), la conception nécessite le sharding distribué des métadonnées, la fusion des fichiers segments sur disque et le découpage des objets volumineux pour des lectures parallèles.",
-                    "lien": "https://levelup.gitconnected.com/design-s3-object-storage-like-a-senior-engineer-f3b938ab700d?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "J'ai Testé 5 Agents d'Analyse Open Source",
-                    "resume": "Cinq 'agents d'analyse' open source (LangChain, Wren AI, nao, LibreChat, Vercel) sont souvent regroupés, mais résolvent des problèmes très différents, peu étant réellement conçus pour l'analyse. La fiabilité dépend plus du contexte métier que de l'interface de l'agent.",
-                    "lien": "https://thenewaiorder.substack.com/p/i-battletested-5-open-source-analytics?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "J'ai Hérité d'une Facture Snowflake de 140K$ — Trois Mois Plus Tard Elle Était de 38K$. Voici Tout Ce Que J'ai Appris",
-                    "resume": "Les coûts et performances de Snowflake dépendent du stockage, du calcul et des services cloud. Les économies majeures proviennent du dimensionnement des entrepôts, de l'auto-suspension agressive et de la réduction du volume de stockage. L'optimisation clé réside dans la disposition physique des données et la conception des requêtes.",
-                    "lien": "https://levelup.gitconnected.com/i-inherited-a-140k-snowflake-bill-three-months-later-it-was-38k-heres-everything-i-learned-70acc2806e41?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
-                },
-                {
-                    "titre": "Le Risque de l'IA est un Problème d'Architecture",
-                    "resume": "Le risque de l'IA doit être évalué au niveau du système. Les risques (exposition des données, sortie incorrecte, action non intentionnelle) correspondent à des préjudices commerciaux. Le contrôle le plus important est l'architecture : ce que l'IA peut voir, ce que ses sorties alimentent et ce qu'elle peut faire sans vérification. La revue humaine et les permissions restreintes réduisent les risques.",
-                    "lien": "https://appliedingenuity.substack.com/p/ai-risk-is-an-architecture-problem?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Scaler les Processus Marketing Pilotés par l'IA avec PostgreSQL",
-                    "resume": "Les équipes marketing peuvent scaler les workflows IA en utilisant PostgreSQL comme couche de données centrale. Cela inclut la gestion d'état, la combinaison de tables relationnelles et JSONB, la connexion des données de campagne et l'exploitation de la recherche plein texte et pgvector pour le contexte sémantique.",
-                    "lien": "https://www.cybertec-postgresql.com/en/scaling-ai-driven-marketing-processes-with-postgresql/?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
-                },
-                {
-                    "titre": "RushDB 2.0: Infrastructure Mémoire pour l'Ère Agentique",
-                    "resume": "RushDB 2.0 est une infrastructure de mémoire pour agents qui combine stockage de graphes, recherche sémantique, découverte d'ontologie/schéma, accès MCP et intégration Neo4j. Elle fournit une mémoire structurée et un contexte fiable, évitant l'assemblage manuel de diverses bases de données.",
-                    "lien": "https://rushdb.com/blog/rushdb-2-0-release?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "Auditer le Biais des Modèles avec des Datasets Équilibrés grâce à Mimesis",
-                    "resume": "La bibliothèque Mimesis permet de créer des jeux de données synthétiques et équilibrés pour tester les biais cachés (genre, âge, ethnie) dans un modèle, tout en maintenant les autres caractéristiques cohérentes. Cela aide à mesurer les changements de prédiction et à détecter les biais indésirables de manière sûre.",
-                    "lien": "https://www.kdnuggets.com/auditing-model-bias-with-balanced-datasets-with-mimesis?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "MurrDB (Dépôt GitHub)",
-                    "resume": "MurrDB est un cache de service rapide, soutenu par NVMe/S3, pour l'inférence ML/IA. Il est conçu pour les lectures/écritures par lots sur de grandes données tabulaires sans tout conserver en RAM. C'est une alternative à Redis moins chère et à faible latence pour la récupération d'attributs.",
-                    "lien": "https://github.com/murrdb/murr?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "Déconstruire les 'Data Sketches'",
-                    "resume": "Les 'data sketches' estiment des métriques coûteuses (comme les comptes distincts) en stockant un petit échantillon probabiliste au lieu de scanner chaque ligne. Ils échangent une précision parfaite contre d'énormes gains en vitesse et en calcul, utiles pour les tableaux de bord et l'agrégation distribuée à grande échelle.",
-                    "lien": "https://lezwon.substack.com/p/deconstructing-data-sketches?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Open Data Product SDK: Transformer des Idées de Produits de Données en YAML Standard avec des Modèles d'IA",
-                    "resume": "L'Open Data Product SDK supporte désormais la conversion assistée par l'IA de texte libre et Markdown en YAML standardisé pour les catalogues de produits de données. Le workflow génère du YAML ODPC Catalog à partir des descriptions et objectifs, remplaçant l'édition manuelle de métadonnées par une approche automatisée et standardisée.",
-                    "lien": "https://blog.opendataproducts.org/open-data-product-sdk-turning-data-product-ideas-into-standard-yaml-with-ai-models-1a50782a9983?utm_source=tldrdata",
                     "categorie": "News"
                 }
             ]
