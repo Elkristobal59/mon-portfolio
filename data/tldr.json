@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-07-09",
+            "articles": [
+                {
+                    "titre": "Le Type Variant d'Apache Iceberg : Transformer le JSON en Analyse Rapide",
+                    "resume": "Le type Variant d'Iceberg v3 résout le problème du JSON semi-structuré en le stockant dans un format binaire compact et en \"déchiquetant\" les champs communs en colonnes Parquet, optimisant les performances d'analyse tout en conservant la flexibilité du schéma.",
+                    "lien": "https://iceberglakehouse.com/posts/iceberg-v3-variant-type-ai-json-payloads/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Algorithmes sur graphes à l'échelle du milliard avec 10 Go de RAM grâce à DataFusion",
+                    "resume": "Apache DataFusion exécute efficacement des algorithmes de graphes massifs (milliards d'arêtes) sur des machines à faible RAM, en exploitant des scans sur disque et des opérations optimisées.",
+                    "lien": "https://semyonsinchenko.github.io/ssinchenko/post/datafusion-graphs-cc-2/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Construire l'Infrastructure de Récupération IA pour plus de 20 Milliards de Vecteurs chez HubSpot",
+                    "resume": "HubSpot a mis à l'échelle sa plateforme Vector-as-a-Service, gérant plus de 20 milliards de vecteurs pour la recherche sémantique en production, en automatisant les opérations via des opérateurs Kubernetes.",
+                    "lien": "https://product.hubspot.com/blog/building-the-ai-retrieval-infrastructure-behind-20-billion-vectors-at-hubspot?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "La Place des Agents IA en Ingénierie des Données : La Couche de Correction",
+                    "resume": "Les agents IA peuvent aider en ingénierie des données, mais un travail de production fiable exige une couche de correction déterministe pour valider SQL, schémas et lignage, plutôt que de se fier uniquement à la confiance du modèle.",
+                    "lien": "https://www.ssp.sh/blog/where-agents-belong-in-de/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Les 3 Couches de Construction d'Agents",
+                    "resume": "Cadre pour construire des agents IA fiables en trois couches : le modèle, le moteur d'agent (boucles d'outils, contexte, mémoire, observabilité) et la configuration du moteur (contexte d'usage, outils, permissions).",
+                    "lien": "https://medium.com/data-from-the-trenches/the-3-layers-of-agent-building-db45b52178ec?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Comment Construire des Pipelines de Données Robustes avec l'IA",
+                    "resume": "Pour des pipelines générés par IA fiables, il faut adhérer aux fondamentaux (paramétrisation, idempotence), laisser l'agent inspecter les schémas réels, valider la sortie (Write-Audit-Publish) et utiliser des compétences réutilisables.",
+                    "lien": "https://motherduck.com/blog/robust-data-pipelines-with-ai/?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                },
+                {
+                    "titre": "Apache Ossie (Incubating) : Le Standard Universel pour les Données Sémantiques",
+                    "resume": "Apache Ossie est un nouveau projet d'incubation Apache qui vise à établir un standard universel pour modéliser les données sémantiques (datasets, métriques, relations), assurant la cohérence des définitions et un contexte métier gouverné pour les agents IA.",
+                    "lien": "https://ossie.apache.org/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Intégrer la Recherche Vectorielle au Lakehouse avec Apache Hudi",
+                    "resume": "Apache Hudi intègre des capacités de recherche vectorielle natives au lakehouse, permettant la recherche sémantique et les applications RAG directement sur les tables Hudi sans base de données vectorielle séparée.",
+                    "lien": "https://hudi.apache.org/blog/2026/07/06/bringing-vector-search-to-the-lakehouse-with-apache-hudi/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Malloyyo (Référentiel GitHub)",
+                    "resume": "Malloyyo est un serveur MCP léger et une application web permettant aux outils IA d'interroger des modèles de données publiés, d'exécuter des analyses et de partager les résultats, avec une CLI et une interface utilisateur.",
+                    "lien": "https://github.com/malloydata/malloyyo?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Performance Apache Kafka #1 - linger.ms",
+                    "resume": "Le paramètre `linger.ms` de Kafka est crucial pour la performance du producteur, influençant le débit et la latence en contrôlant la durée d'attente avant l'envoi des lots de messages.",
+                    "lien": "https://jack-vanlightly.com/blog/2026/7/7/apache-kafka-performance-1-lingerms?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "La Grammaire des Données : Définir une Fois, Exécuter Partout",
+                    "resume": "La \"Grammaire pour l'Ingénierie des Données\" propose de traiter les pipelines de données comme un langage formel, améliorant la déclarativité, la réutilisabilité et la maintenabilité des workflows.",
+                    "lien": "https://xorq.dev/blog/grammar-for-data-engineering/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Pourquoi Votre Couche Sémantique est Plus Importante que Votre Agent IA",
+                    "resume": "Une couche sémantique robuste est essentielle pour guider l'IA, transformant l'intention utilisateur en requêtes fiables plutôt que de générer du SQL potentiellement erroné ; le modèle sémantique est le produit clé, pas l'agent.",
+                    "lien": "https://narendradevarasetty.com/articles/why-your-semantic-layer-matters?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                }
+            ]
+        },
+        {
             "date": "2026-07-06",
             "articles": [
                 {
@@ -690,83 +767,6 @@
                     "resume": "Présente les modèles d'identité, de politique et d'audit nécessaires pour faire respecter les appels d'agents avec le principe du moindre privilège, en vue de la future réglementation de l'EU AI Act.",
                     "lien": "https://cerbos.dev/blog/authorization-for-ai-agents-what-to-build-before-eu-ai-act-deadline?utm_source=tldrdata",
                     "categorie": "Tutoriel"
-                }
-            ]
-        },
-        {
-            "date": "2026-06-01",
-            "articles": [
-                {
-                    "titre": "Une application de données live à coût zéro : DuckDB, Astro, sans outil BI",
-                    "resume": "Créez une application de données personnalisée à coût nul avec DuckDB, Astro et l'hébergement statique. L'IA rend ces produits plus flexibles et économiques que les outils BI classiques pour des besoins spécifiques.",
-                    "lien": "https://spicydata.ai/blog/zero-dollar-data-app/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "SilverTorch: 'Index as Model' – Nouveau paradigme de récupération pour les systèmes de recommandation",
-                    "resume": "SilverTorch est le nouveau système de Meta pour les moteurs de recommandation. Il unifie le pipeline de récupération (embedding, recherche ANN, filtrage, reranking, scoring) en un modèle PyTorch unique, optimisé GPU.",
-                    "lien": "https://engineering.fb.com/2026/05/26/ml-applications/silvertorch-index-as-model-new-retrieval-paradigm-recommendation-systems/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Optimiser l'intelligence des données : Framework de profilage de données chez Halodoc",
-                    "resume": "Halodoc a créé un framework de profilage de données basé sur Airflow pour remplacer le SQL ad hoc. Il offre un profilage par colonne, une intelligence de jointure et une analyse des tables sources, fournissant une vue en self-service de la qualité des données.",
-                    "lien": "https://blogs.halodoc.io/enabling-data-intelligence-data-profiling-framework-at-halodoc/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Guide des compromis des index vectoriels pour développeurs Postgres",
-                    "resume": "La recherche vectorielle dans Postgres implique des choix d'index (HNSW, IVFFlat, StreamingDiskANN) selon la taille des données, la mémoire et les compromis rappel/latence. La recherche hybride (BM25 + vecteurs) améliore la pertinence.",
-                    "lien": "https://www.tigerdata.com/blog/the-postgres-developers-guide-to-vector-index-tradeoffs?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
-                },
-                {
-                    "titre": "Architectures pilotées par événement vs. par polling pour les déclencheurs d'agents",
-                    "resume": "Les architectures de déclenchement d'agents doivent considérer les contrats de livraison. Les systèmes robustes combinent événements, polling de réconciliation, clés d'idempotence et runtimes durables pour gérer les incertitudes.",
-                    "lien": "https://agentblueprint.substack.com/p/event-driven-vs-polling-architectures?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "SQLite suffit pour des workflows durables",
-                    "resume": "Les workflows d'IA durables peuvent s'appuyer sur SQLite local et Litestream pour une gestion d'état simple et économique, sauf si une haute disponibilité ou une scalabilité partagée sont requises (où Postgres est préférable).",
-                    "lien": "https://obeli.sk/blog/sqlite-is-all-you-need-for-durable-workflows/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "MOR n'est pas une optimisation de stockage, c'est un changement architectural",
-                    "resume": "Le MOR (Merge-On-Read) diffère la fusion des données, append les changements et gère la compaction en arrière-plan. Cela supporte mieux les mises à jour fréquentes en streaming, avec des compromis sur la lecture et la gestion de la compaction.",
-                    "lien": "https://medium.com/@simpsons/mor-isnt-a-storage-optimization-it-s-an-architectural-shift-75b3e46d39d2?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "ktx (Dépôt GitHub)",
-                    "resume": "ktx est une couche de contexte local qui aide les agents de données à interroger les entrepôts plus précisément, en consolidant métriques, logique de jointure et métadonnées pour que les agents réutilisent des définitions fiables.",
-                    "lien": "https://github.com/Kaelio/ktx?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "Apache Iceberg 1.11.0 ajoute 'registerView' : combler un manque de migration de catalogue",
-                    "resume": "Apache Iceberg 1.11.0 introduit 'registerView' pour enregistrer des vues existantes depuis des fichiers de métadonnées, facilitant la migration entre catalogues sans recréation, et ajoute un endpoint REST pour une meilleure gestion.",
-                    "lien": "https://medium.com/%40ajanthabhat/apache-iceberg-1-11-0-adds-registerview-closing-a-catalog-migration-gap-ca21aa81695f?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Présentation de CostBench : un benchmark ouvert pour la performance-coût des entrepôts de données",
-                    "resume": "CostBench est un nouveau benchmark open-source de ClickHouse pour évaluer les entrepôts de données cloud sur leur rapport performance-prix, testant la performance des requêtes et l'ingestion de données sur diverses plateformes.",
-                    "lien": "https://clickhouse.com/blog/costbench-data-warehouse-cost-performance?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "Comment nous avons construit un laboratoire pour évaluer les agents de données",
-                    "resume": "Hex a développé Shoebox, un laboratoire d'évaluation interne pour agents de données, permettant de comparer des exécutions candidates et d'évaluer les améliorations. Ils ont aussi créé une entreprise fictive avec des données complexes pour simuler des scénarios réels.",
-                    "lien": "https://hex.tech/blog/evaluate-data-agents/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Le meilleur de CPDP 2026",
-                    "resume": "La conférence CPDP 2026 a souligné les défis réglementaires en matière de gouvernance des données et d'IA : vérification d'âge biométrique, données de santé, droits numériques des enfants et la divergence entre conformité formelle et application réelle.",
-                    "lien": "https://www.zeropartydata.es/p/61-the-best-of-cpdp-2026?utm_source=tldrdata",
-                    "categorie": "News"
                 }
             ]
         }
