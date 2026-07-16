@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,112 +8,44 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        html { scroll-behavior: smooth; }
-        body { background-color: #0a0f1e; color: #f8fafc; font-family: 'Inter', sans-serif; opacity: 0; transition: opacity 0.8s ease-in-out; }
-        body.loaded { opacity: 1; }
-        .nav-blur { backdrop-filter: blur(16px); background: rgba(10,15,30,0.85); border-bottom: 1px solid rgba(255,255,255,0.06); }
-        .avatar { width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#60a5fa,#34d399);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.95rem;color:#0a0f1e;flex-shrink:0; }
-        .nav-link { color:#94a3b8;transition:color 0.2s;font-size:.875rem;font-weight:500; }
-        .nav-link:hover { color:#f8fafc; }
-        .tag { background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:6px;padding:3px 10px;font-size:.72rem;color:#94a3b8; }
-        .iframe-container {
-            position: relative;
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid rgba(139, 92, 246, 0.3);
-            box-shadow: 0 0 60px rgba(139, 92, 246, 0.1);
-        }
-        .iframe-container iframe {
-            display: block;
-            width: 100%;
-            height: 700px;
-            border: none;
-            background: #1e1b2e;
-        }
-
-        /* --- Progress Bar --- */
-        #progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(to right, #60a5fa, #34d399); z-index: 100; width: 0%; transition: width 0.1s ease-out; }
-
-        /* --- Back to Top --- */
-        #back-to-top { position: fixed; bottom: 30px; right: 30px; width: 44px; height: 44px; background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(8px); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #f8fafc; cursor: pointer; z-index: 40; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
-        #back-to-top.show { opacity: 1; visibility: visible; }
-        #back-to-top:hover { transform: translateY(-5px); border-color: #60a5fa; color: #60a5fa; }
-
-        /* --- Reveal Animations --- */
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-
-        /* --- Micro-animations boutons --- */
-        .btn-hover { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
-        .btn-hover:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); }
+        :root{--bg-deep:#050505;--bg-card:rgba(255,255,255,0.03);--border-glass:rgba(255,255,255,0.08);--border-glass-hover:rgba(255,255,255,0.15);--text-primary:#f0f0f0;--text-secondary:#8a8f98;--text-tertiary:#555a63;--accent-cyan:#00e5ff;--accent-emerald:#00ffab;--accent-cyan-dim:rgba(0,229,255,0.12);--accent-emerald-dim:rgba(0,255,171,0.12);--glow-cyan:0 0 20px rgba(0,229,255,0.15);--ease-out-strong:cubic-bezier(0.23,1,0.32,1);--project-color:#8b5cf6;--project-color-dim:rgba(139,92,246,0.12);}
+        html{scroll-behavior:smooth;}body{background-color:var(--bg-deep);color:var(--text-primary);font-family:'Inter',sans-serif;opacity:0;transition:opacity 0.6s ease-out;-webkit-font-smoothing:antialiased;}body.loaded{opacity:1;}
+        .nav-blur{backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);background:rgba(5,5,5,0.75);border-bottom:1px solid var(--border-glass);}
+        .avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--accent-cyan),var(--accent-emerald));display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;color:var(--bg-deep);flex-shrink:0;}
+        .nav-link{color:var(--text-secondary);transition:color 0.2s ease;font-size:0.875rem;font-weight:500;}.nav-link:hover{color:var(--text-primary);}
+        .glass-card{background:var(--bg-card);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid var(--border-glass);border-radius:20px;transition:border-color 0.25s ease-out;}.glass-card:hover{border-color:var(--border-glass-hover);}
+        .tag{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:6px;padding:3px 10px;font-size:0.72rem;color:var(--text-secondary);transition:border-color 0.2s ease,box-shadow 0.2s ease,color 0.2s ease;}.tag:hover{border-color:rgba(139,92,246,0.3);color:var(--project-color);box-shadow:0 0 20px rgba(139,92,246,0.15);}
+        .iframe-container{position:relative;border-radius:16px;overflow:hidden;border:1px solid rgba(139,92,246,0.2);box-shadow:0 0 40px rgba(139,92,246,0.05);margin-bottom:2rem;transition:border-color 0.3s ease;}.iframe-container:hover{border-color:rgba(139,92,246,0.4);box-shadow:0 0 40px rgba(139,92,246,0.15);}
+        .iframe-container iframe{display:block;width:100%;height:700px;border:none;background:var(--bg-deep);}
+        #progress-bar{position:fixed;top:0;left:0;height:2px;background:linear-gradient(to right,var(--project-color),var(--accent-cyan));z-index:100;width:0%;transition:width 0.1s ease-out;}
+        #back-to-top{position:fixed;bottom:30px;right:30px;width:44px;height:44px;background:rgba(5,5,5,0.8);border:1px solid var(--border-glass);backdrop-filter:blur(12px);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--text-primary);cursor:pointer;z-index:40;opacity:0;visibility:hidden;transition:opacity 0.3s ease-out,visibility 0.3s ease-out,transform 0.2s var(--ease-out-strong),border-color 0.2s ease;}
+        #back-to-top.show{opacity:1;visibility:visible;}#back-to-top:hover{transform:translateY(-3px);border-color:var(--project-color);color:var(--project-color);}#back-to-top:active{transform:scale(0.95);}
+        .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s var(--ease-out-strong),transform 0.7s var(--ease-out-strong);}.reveal.active{opacity:1;transform:translateY(0);}
+        .btn-hover{transition:transform 0.2s var(--ease-out-strong),box-shadow 0.2s ease;}.btn-hover:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.3);}.btn-hover:active{transform:scale(0.97);}
+        .hamburger-line{display:block;width:20px;height:2px;background:var(--text-secondary);transition:transform 0.3s var(--ease-out-strong),opacity 0.2s ease;}
+        .hamburger.active .hamburger-line:nth-child(1){transform:translateY(6px) rotate(45deg);}.hamburger.active .hamburger-line:nth-child(2){opacity:0;}.hamburger.active .hamburger-line:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+        .mobile-menu{position:fixed;top:64px;left:0;right:0;bottom:0;background:rgba(5,5,5,0.95);backdrop-filter:blur(24px);z-index:45;transform:translateX(100%);transition:transform 0.35s var(--ease-out-strong);overflow-y:auto;}.mobile-menu.open{transform:translateX(0);}
+        @media(prefers-reduced-motion:reduce){.reveal{transition:opacity 0.3s ease;transform:none !important;}.reveal.active{opacity:1;}.mobile-menu{transition:opacity 0.2s ease;transform:none !important;}}
     </style>
 </head>
-
 <body class="relative">
     <div id="progress-bar"></div>
     <!-- ===== NAVBAR ===== -->
-    <nav class="nav-blur fixed top-0 left-0 right-0 z-50">
-        <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-            <a href="index.html" class="flex items-center gap-3 no-underline">
-                <div class="avatar">CG</div>
-                <div class="flex flex-col">
-                    <span class="font-bold text-white hidden sm:block">Christopher Gilleron</span>
-                    <span class="text-[10px] text-slate-500 hidden sm:block">Data Scientist & IA</span>
-                </div>
-            </a>
-            <div class="flex items-center gap-3 sm:gap-5">
-                <a href="index.html" class="nav-link">Accueil</a>
-                
-                <!-- Dropdown Projets -->
-                <div class="relative group">
-                    <button class="nav-link flex items-center gap-1 focus:outline-none py-2" aria-label="Menu Projets">
-                        Projets
-                        <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
-                        </svg>
-                    </button>
-                    <!-- Dropdown Menu -->
-                    <div class="absolute right-0 mt-1 w-56 rounded-xl bg-slate-950/95 border border-slate-800 backdrop-blur-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 p-2 space-y-0.5">
-                        <a href="projet-rag.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">🤖 Assistant RAG V7</a>
-                        <a href="projet-proxmox.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">🏗️ Cloud Privé Proxmox</a>
-                        <a href="projet-immich.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">🖥️ Cloud Immich & NAS</a>
-                        <a href="projet-tesla.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">⚡ Tesla Inventory Bot</a>
-                        <a href="projet-chrisflix.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">🍿 Chrisflix Media Hub</a>
-                        <a href="projet-jedha.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">📊 GDM Ticket Router</a>
-                        <a href="projet-getaround.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">🚗 GetAround Price Predictor</a>
-                    </div>
-                </div>
-
-                <a href="veille.html" class="btn-hover text-emerald-400 text-[10px] sm:text-sm font-semibold hover:text-emerald-300 transition-colors flex items-center gap-1 border border-emerald-500/30 bg-emerald-500/10 px-2 sm:px-3 py-1 rounded-full">
-                    <span>📰</span> TLDR
-                </a>
-                <a href="https://github.com/Elkristobal59" target="_blank" rel="noopener noreferrer"
-                    class="btn-hover px-2 sm:px-3.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-[10px] sm:text-sm font-medium hover:bg-blue-500/20 transition-all">
-                    GitHub
-                </a>
-                <a href="https://www.linkedin.com/in/christophergilleron/" target="_blank" rel="noopener noreferrer"
-                    class="btn-hover px-2 sm:px-3.5 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-[10px] sm:text-sm font-medium hover:bg-sky-500/20 transition-all">
-                    LinkedIn
-                </a>
-            </div>
-        </div>
-    </nav>
+    <nav class="nav-blur fixed top-0 left-0 right-0 z-50"><div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between"><a href="index.html" class="flex items-center gap-3 no-underline"><div class="avatar">CG</div><div class="flex flex-col"><span class="font-bold text-white hidden sm:block" style="font-size:0.9rem;">Christopher Gilleron</span><span class="text-[10px] hidden sm:block" style="color:var(--text-tertiary);">Data & IA Ops</span></div></a><div class="hidden md:flex items-center gap-3 lg:gap-5"><a href="index.html" class="nav-link">Accueil</a><div class="relative group"><button class="nav-link flex items-center gap-1 focus:outline-none py-2" style="color:var(--project-color);font-weight:600;">Projets <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg></button><div class="absolute right-0 mt-1 w-56 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 p-2 space-y-0.5" style="background:rgba(10,10,10,0.95);border:1px solid var(--border-glass);backdrop-filter:blur(20px);"><a href="projet-rag.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">🤖 Assistant RAG V7</a><a href="projet-proxmox.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">🏗️ Cloud Privé Proxmox</a><a href="projet-immich.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">🖥️ Cloud Immich & NAS</a><a href="projet-tesla.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">⚡ Tesla Inventory Bot</a><a href="projet-chrisflix.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">🍿 Chrisflix Media Hub</a><a href="projet-jedha.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">📊 GDM Ticket Router</a><a href="projet-getaround.html" class="block px-3 py-2 rounded-lg text-xs font-semibold no-underline" style="color:var(--project-color);background:var(--project-color-dim);">🚗 GetAround Price Predictor</a><a href="projet-finance.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">💰 Finance App</a></div></div><a href="veille.html" class="btn-hover text-xs font-semibold flex items-center gap-1 px-3 py-1 rounded-full no-underline" style="color:var(--accent-emerald);border:1px solid rgba(0,255,171,0.25);background:rgba(0,255,171,0.06);"><span>📰</span> TLDR</a><a href="https://github.com/Elkristobal59" target="_blank" rel="noopener noreferrer" class="btn-hover px-3 py-1 rounded-full text-xs font-medium no-underline" style="background:var(--accent-cyan-dim);border:1px solid rgba(0,229,255,0.25);color:var(--accent-cyan);">GitHub</a><a href="https://www.linkedin.com/in/christophergilleron/" target="_blank" rel="noopener noreferrer" class="btn-hover px-3 py-1 rounded-full text-xs font-medium no-underline" style="background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.25);color:#38bdf8;">LinkedIn</a></div><button class="hamburger md:hidden flex flex-col gap-1 p-2 focus:outline-none" aria-label="Menu" id="hamburger-btn"><span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span></button></div></nav>
+    <div class="mobile-menu md:hidden" id="mobile-menu"><div class="flex flex-col p-6 gap-4"><a href="index.html" class="text-lg font-semibold no-underline" style="color:var(--text-primary);">Accueil</a><div class="border-t" style="border-color:var(--border-glass);"></div><p class="text-xs font-mono uppercase tracking-widest" style="color:var(--text-tertiary);">Projets</p><a href="projet-rag.html" class="text-sm no-underline" style="color:var(--text-secondary);">🤖 Assistant RAG V7</a><a href="projet-proxmox.html" class="text-sm no-underline" style="color:var(--text-secondary);">🏗️ Cloud Privé Proxmox</a><a href="projet-immich.html" class="text-sm no-underline" style="color:var(--text-secondary);">🖥️ Cloud Immich & NAS</a><a href="projet-tesla.html" class="text-sm no-underline" style="color:var(--text-secondary);">⚡ Tesla Inventory Bot</a><a href="projet-chrisflix.html" class="text-sm no-underline" style="color:var(--text-secondary);">🍿 Chrisflix Media Hub</a><a href="projet-jedha.html" class="text-sm no-underline" style="color:var(--text-secondary);">📊 GDM Ticket Router</a><a href="projet-getaround.html" class="text-sm font-semibold no-underline" style="color:var(--project-color);">🚗 GetAround Price Predictor</a><a href="projet-finance.html" class="text-sm no-underline" style="color:var(--text-secondary);">💰 Finance App</a><div class="border-t" style="border-color:var(--border-glass);"></div><a href="veille.html" class="text-sm font-semibold no-underline" style="color:var(--accent-emerald);">📰 Veille TLDR</a><div class="flex gap-3 mt-4"><a href="https://github.com/Elkristobal59" target="_blank" class="px-4 py-2 rounded-full text-xs font-medium no-underline" style="background:var(--accent-cyan-dim);border:1px solid rgba(0,229,255,0.25);color:var(--accent-cyan);">GitHub</a><a href="https://www.linkedin.com/in/christophergilleron/" target="_blank" class="px-4 py-2 rounded-full text-xs font-medium no-underline" style="background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.25);color:#38bdf8;">LinkedIn</a></div></div></div>
 
     <div class="max-w-4xl mx-auto px-6 pt-32 pb-28">
-
-        <a href="index.html" class="inline-flex items-center gap-2 text-slate-500 text-sm hover:text-slate-300 transition-colors mb-10 no-underline">
-            ← Retour au portfolio
-        </a>
+        <a href="index.html" class="inline-flex items-center gap-2 text-sm transition-colors mb-10 no-underline" style="color:var(--text-tertiary);" onmouseover="this.style.color='var(--text-primary)'" onmouseout="this.style.color='var(--text-tertiary)'">← Retour au portfolio</a>
 
         <!-- Header -->
-        <div class="mb-12">
-            <div class="w-14 h-14 rounded-2xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center text-3xl mb-6">🚗</div>
-            <div class="text-xs text-violet-400 font-mono mb-3 tracking-widest">PROJET ÉCOLE — DATA SCIENCE</div>
-            <h1 class="text-4xl font-extrabold text-white mb-4 leading-tight">GetAround — Analyse & Prédiction de Prix</h1>
-            <p class="text-slate-400 text-lg leading-relaxed">
+        <header class="mb-16 reveal">
+            <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl mb-6" style="background:var(--project-color-dim);border:1px solid rgba(139,92,246,0.2);">🚗</div>
+            <div class="text-xs font-mono mb-3 tracking-widest uppercase" style="color:var(--project-color);">PROJET ÉCOLE — DATA SCIENCE</div>
+            <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-6 leading-tight" style="letter-spacing:-0.02em;">GetAround — Analyse & Prédiction de Prix</h1>
+            <p class="text-lg leading-relaxed mb-8" style="color:var(--text-secondary);">
                 Dashboard interactif d'analyse tarifaire sur la plateforme de location de voitures GetAround. Exploration des données, identification des facteurs de prix et modèle de prédiction de loyer journalier.
             </p>
-            <div class="flex flex-wrap gap-2 mt-6">
+            <div class="flex flex-wrap gap-2">
                 <span class="tag">Python</span>
                 <span class="tag">Streamlit</span>
                 <span class="tag">Pandas</span>
@@ -123,38 +54,36 @@
                 <span class="tag">Machine Learning</span>
                 <span class="tag">Hugging Face Spaces</span>
             </div>
-        </div>
-
-        <hr class="border-slate-800 mb-12">
+        </header>
 
         <!-- Contexte -->
-        <section class="mb-12 reveal">
-            <h2 class="text-xl font-bold text-white mb-4">🎯 Contexte & Objectif</h2>
-            <p class="text-slate-400 leading-relaxed mb-4">
+        <section class="mb-20 reveal">
+            <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3"><span style="color:var(--project-color);">🎯</span> Contexte & Objectif</h2>
+            <p class="text-sm leading-relaxed mb-8" style="color:var(--text-secondary);">
                 GetAround est la version européenne d'Airbnb pour les voitures. Le projet avait pour but d'analyser les facteurs influençant le prix de location journalier des véhicules, puis de construire un modèle de Machine Learning permettant de recommander un prix optimal à un propriétaire.
             </p>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4 text-center">
-                    <div class="text-2xl font-extrabold text-violet-400 mb-1">+10k</div>
-                    <div class="text-slate-500 text-xs">Locations analysées</div>
+                <div class="glass-card p-6 text-center">
+                    <div class="text-3xl font-extrabold mb-2" style="color:var(--project-color);">+10k</div>
+                    <div class="text-xs" style="color:var(--text-secondary);">Locations analysées</div>
                 </div>
-                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4 text-center">
-                    <div class="text-2xl font-extrabold text-violet-400 mb-1">15+</div>
-                    <div class="text-slate-500 text-xs">Variables explorées</div>
+                <div class="glass-card p-6 text-center">
+                    <div class="text-3xl font-extrabold mb-2" style="color:var(--project-color);">15+</div>
+                    <div class="text-xs" style="color:var(--text-secondary);">Variables explorées</div>
                 </div>
-                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4 text-center">
-                    <div class="text-2xl font-extrabold text-violet-400 mb-1">R²</div>
-                    <div class="text-slate-500 text-xs">Score de régression ML</div>
+                <div class="glass-card p-6 text-center">
+                    <div class="text-3xl font-extrabold mb-2" style="color:var(--project-color);">R²</div>
+                    <div class="text-xs" style="color:var(--text-secondary);">Score de régression ML</div>
                 </div>
             </div>
         </section>
 
         <!-- Dashboard -->
-        <section class="mb-12 reveal">
-            <div class="flex items-center justify-between mb-4">
-                <h2 class="text-xl font-bold text-white">📊 Dashboard Interactif</h2>
+        <section class="mb-20 reveal">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-2xl font-bold text-white">📊 Dashboard Interactif</h2>
                 <a href="https://elkristobal59-getaround-analysis-dashboard.hf.space/" target="_blank"
-                   class="text-xs text-violet-400 border border-violet-500/30 px-3 py-1.5 rounded-full hover:bg-violet-500/10 transition-all no-underline">
+                   class="btn-hover text-xs font-medium px-4 py-2 rounded-full no-underline transition-colors" style="color:var(--project-color);border:1px solid rgba(139,92,246,0.3);background:var(--project-color-dim);">
                     ↗ Ouvrir en plein écran
                 </a>
             </div>
@@ -166,78 +95,50 @@
                     allow="fullscreen">
                 </iframe>
             </div>
-            <p class="text-slate-600 text-xs text-center mt-3">
+            <p class="text-xs text-center mt-4 italic" style="color:var(--text-tertiary);">
                 Dashboard hébergé sur Hugging Face Spaces — chargement possible sous quelques secondes
             </p>
         </section>
 
         <!-- Stack -->
-        <section class="mb-12 reveal">
-            <h2 class="text-xl font-bold text-white mb-6">🛠️ Méthodologie</h2>
-            <div class="space-y-3 text-slate-400 text-sm">
-                <div class="flex gap-3 bg-slate-900/50 border border-slate-800 rounded-xl p-4">
-                    <span class="text-violet-400 font-bold text-lg leading-none">1.</span>
-                    <div><span class="text-white font-semibold">Exploration & nettoyage</span> — Analyse des distributions, gestion des valeurs manquantes, outliers sur le prix journalier.</div>
+        <section class="mb-20 reveal">
+            <h2 class="text-2xl font-bold text-white mb-8">🛠️ Méthodologie</h2>
+            <div class="space-y-4">
+                <div class="glass-card p-5 flex gap-4">
+                    <span class="font-bold text-xl leading-none" style="color:var(--project-color);">1.</span>
+                    <div class="text-sm" style="color:var(--text-secondary);"><span class="text-white font-semibold block mb-1">Exploration & nettoyage</span> Analyse des distributions, gestion des valeurs manquantes, outliers sur le prix journalier.</div>
                 </div>
-                <div class="flex gap-3 bg-slate-900/50 border border-slate-800 rounded-xl p-4">
-                    <span class="text-violet-400 font-bold text-lg leading-none">2.</span>
-                    <div><span class="text-white font-semibold">Feature Engineering</span> — Encodage des variables catégorielles (marque, modèle, carburant), normalisation.</div>
+                <div class="glass-card p-5 flex gap-4">
+                    <span class="font-bold text-xl leading-none" style="color:var(--project-color);">2.</span>
+                    <div class="text-sm" style="color:var(--text-secondary);"><span class="text-white font-semibold block mb-1">Feature Engineering</span> Encodage des variables catégorielles (marque, modèle, carburant), normalisation.</div>
                 </div>
-                <div class="flex gap-3 bg-slate-900/50 border border-slate-800 rounded-xl p-4">
-                    <span class="text-violet-400 font-bold text-lg leading-none">3.</span>
-                    <div><span class="text-white font-semibold">Modélisation</span> — Comparaison LinearRegression, Ridge, RandomForest. Sélection par validation croisée.</div>
+                <div class="glass-card p-5 flex gap-4">
+                    <span class="font-bold text-xl leading-none" style="color:var(--project-color);">3.</span>
+                    <div class="text-sm" style="color:var(--text-secondary);"><span class="text-white font-semibold block mb-1">Modélisation</span> Comparaison LinearRegression, Ridge, RandomForest. Sélection par validation croisée.</div>
                 </div>
-                <div class="flex gap-3 bg-slate-900/50 border border-slate-800 rounded-xl p-4">
-                    <span class="text-violet-400 font-bold text-lg leading-none">4.</span>
-                    <div><span class="text-white font-semibold">Dashboard Streamlit</span> — Visualisations interactives Plotly + UI de prédiction de prix à la demande.</div>
+                <div class="glass-card p-5 flex gap-4">
+                    <span class="font-bold text-xl leading-none" style="color:var(--project-color);">4.</span>
+                    <div class="text-sm" style="color:var(--text-secondary);"><span class="text-white font-semibold block mb-1">Dashboard Streamlit</span> Visualisations interactives Plotly + UI de prédiction de prix à la demande.</div>
                 </div>
             </div>
         </section>
 
     </div>
 
-    <footer class="text-center py-10 border-t border-slate-800/60 text-slate-600 text-sm">
-        Christopher Gilleron · Hébergé sur Vercel
+    <!-- ===== FOOTER ===== -->
+    <footer class="text-center py-12 mt-20" style="border-top:1px solid var(--border-glass);background:rgba(255,255,255,0.01);">
+        <p class="text-[10px] mb-2" style="color:var(--text-tertiary);">© 2026 Christopher Gilleron · Tous droits réservés</p>
+        <p class="text-[10px]" style="color:var(--text-secondary);">Développé avec passion à Lille · Hébergé sur Vercel</p>
     </footer>
 
-    <!-- ===== BOUTON RETOUR EN HAUT ===== -->
-    <div id="back-to-top" title="Retour en haut">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
-        </svg>
-    </div>
+    <div id="back-to-top" title="Retour en haut"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg></div>
 
     <script>
-        function handleScroll() {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            document.getElementById("progress-bar").style.width = scrolled + "%";
-
-            const btt = document.getElementById("back-to-top");
-            if (winScroll > 400) { btt.classList.add("show"); } else { btt.classList.remove("show"); }
-        }
-
-        const revealCallback = (entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    observer.unobserve(entry.target);
-                }
-            });
-        };
-
-        const revealObserver = new IntersectionObserver(revealCallback, { threshold: 0.1 });
-
-        document.addEventListener('DOMContentLoaded', () => {
-            document.body.classList.add('loaded'); // Activation du fondu au chargement
-            document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-            document.getElementById("back-to-top").addEventListener("click", () => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        });
-
-        window.onscroll = handleScroll;
+        function handleScroll(){const w=document.body.scrollTop||document.documentElement.scrollTop;const h=document.documentElement.scrollHeight-document.documentElement.clientHeight;document.getElementById("progress-bar").style.width=(w/h)*100+"%";const b=document.getElementById("back-to-top");w>400?b.classList.add("show"):b.classList.remove("show");}
+        const revealObserver=new IntersectionObserver((entries,observer)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('active');observer.unobserve(e.target);}});},{threshold:0.1});
+        function initHamburger(){const btn=document.getElementById('hamburger-btn');const menu=document.getElementById('mobile-menu');if(!btn||!menu)return;btn.addEventListener('click',()=>{btn.classList.toggle('active');menu.classList.toggle('open');document.body.style.overflow=menu.classList.contains('open')?'hidden':'';});menu.querySelectorAll('a').forEach(l=>{l.addEventListener('click',()=>{btn.classList.remove('active');menu.classList.remove('open');document.body.style.overflow='';});});}
+        document.addEventListener('DOMContentLoaded',()=>{document.body.classList.add('loaded');document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));document.getElementById("back-to-top").addEventListener("click",()=>{window.scrollTo({top:0,behavior:'smooth'});});initHamburger();});
+        window.onscroll=handleScroll;
     </script>
 </body>
 </html>

@@ -1,194 +1,127 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tesla Inventory Monitor : Bot Anti-Akamai — Christopher Gilleron</title>
-    <meta name="description"
-        content="Bot de monitoring d'inventaire Tesla avec contournement Akamai, notifications Telegram en temps réel et déploiement Docker sur serveur Proxmox.">
+    <meta name="description" content="Bot de monitoring d'inventaire Tesla avec contournement Akamai, notifications Telegram en temps réel et déploiement Docker sur serveur Proxmox.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { background-color: #0a0f1e; color: #f8fafc; font-family: 'Inter', sans-serif; opacity: 0; transition: opacity 0.8s ease-in-out; }
-        body.loaded { opacity: 1; }
-        html { scroll-behavior: smooth; }
-        .nav-blur { backdrop-filter: blur(16px); background: rgba(10, 15, 30, 0.85); border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
-        .avatar { width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, #60a5fa, #34d399); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: .95rem; color: #0a0f1e; flex-shrink: 0; }
-        .nav-link { color: #94a3b8; transition: color 0.2s; font-size: .875rem; font-weight: 500; }
-        .nav-link:hover { color: #f8fafc; }
-        .tag { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 6px; padding: 3px 10px; font-size: .72rem; color: #94a3b8; }
-        .feature-card { background: rgba(16, 24, 48, 0.6); border: 1px solid rgba(255, 255, 255, 0.07); border-radius: 16px; padding: 24px; transition: all 0.3s ease; }
-        .feature-card:hover { border-color: rgba(239, 68, 68, 0.3); background: rgba(16, 24, 48, 0.8); transform: translateY(-4px); }
-        .tesla-red { color: #e31937; }
-        .tesla-glow { border-color: rgba(227, 25, 55, 0.3); }
-        .timeline-dot { width: 14px; height: 14px; border-radius: 50%; border: 3px solid #e31937; background: #0a0f1e; flex-shrink: 0; z-index: 1; }
-        .timeline-line { position: absolute; left: 6px; top: 14px; bottom: 0; width: 2px; background: linear-gradient(to bottom, #e31937, transparent); }
-        #progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(to right, #e31937, #ff6b6b); z-index: 100; width: 0%; transition: width 0.1s ease-out; }
-        #back-to-top { position: fixed; bottom: 30px; right: 30px; width: 44px; height: 44px; background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(8px); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #f8fafc; cursor: pointer; z-index: 40; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
-        #back-to-top.show { opacity: 1; visibility: visible; }
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-        .code-block { background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 20px; font-family: 'Courier New', monospace; font-size: 0.78rem; color: #94a3b8; overflow-x: auto; line-height: 1.7; }
-        .code-block .comment { color: #4a5568; }
-        .code-block .keyword { color: #e31937; }
-        .code-block .string { color: #34d399; }
-        .code-block .emoji { font-family: 'Inter', sans-serif; }
+        :root{--bg-deep:#050505;--bg-card:rgba(255,255,255,0.03);--border-glass:rgba(255,255,255,0.08);--border-glass-hover:rgba(255,255,255,0.15);--text-primary:#f0f0f0;--text-secondary:#8a8f98;--text-tertiary:#555a63;--accent-cyan:#00e5ff;--accent-emerald:#00ffab;--accent-cyan-dim:rgba(0,229,255,0.12);--accent-emerald-dim:rgba(0,255,171,0.12);--glow-cyan:0 0 20px rgba(0,229,255,0.15);--ease-out-strong:cubic-bezier(0.23,1,0.32,1);--tesla-red:#e31937;--tesla-red-dim:rgba(227,25,55,0.12);}
+        html{scroll-behavior:smooth;}body{background-color:var(--bg-deep);color:var(--text-primary);font-family:'Inter',sans-serif;opacity:0;transition:opacity 0.6s ease-out;-webkit-font-smoothing:antialiased;}body.loaded{opacity:1;}
+        .nav-blur{backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);background:rgba(5,5,5,0.75);border-bottom:1px solid var(--border-glass);}
+        .avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--accent-cyan),var(--accent-emerald));display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;color:var(--bg-deep);flex-shrink:0;}
+        .nav-link{color:var(--text-secondary);transition:color 0.2s ease;font-size:0.875rem;font-weight:500;}.nav-link:hover{color:var(--text-primary);}
+        .glass-card{background:var(--bg-card);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid var(--border-glass);border-radius:20px;transition:border-color 0.25s ease-out;}.glass-card:hover{border-color:var(--border-glass-hover);}
+        .tag{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:6px;padding:3px 10px;font-size:0.72rem;color:var(--text-secondary);transition:border-color 0.2s ease,box-shadow 0.2s ease,color 0.2s ease;}.tag:hover{border-color:rgba(227,25,55,0.3);color:var(--tesla-red);box-shadow:0 0 20px rgba(227,25,55,0.15);}
+        .feature-card{background:var(--bg-card);backdrop-filter:blur(24px);border:1px solid var(--border-glass);border-radius:16px;padding:24px;transition:border-color 0.25s ease-out;}.feature-card:hover{border-color:rgba(227,25,55,0.2);}
+        .timeline-dot{width:14px;height:14px;border-radius:50%;border:3px solid var(--tesla-red);background:var(--bg-deep);flex-shrink:0;z-index:1;}
+        .timeline-line{position:absolute;left:6px;top:14px;bottom:0;width:2px;background:linear-gradient(to bottom,var(--tesla-red),transparent);}
+        .code-block{background:rgba(0,0,0,0.4);border:1px solid var(--border-glass);border-radius:12px;padding:20px;font-family:'Courier New',monospace;font-size:0.78rem;color:var(--text-secondary);overflow-x:auto;line-height:1.7;}
+        .code-block .comment{color:var(--text-tertiary);}.code-block .keyword{color:var(--tesla-red);}.code-block .string{color:var(--accent-emerald);}
+        #progress-bar{position:fixed;top:0;left:0;height:2px;background:linear-gradient(to right,var(--tesla-red),#ff6b6b);z-index:100;width:0%;transition:width 0.1s ease-out;}
+        #back-to-top{position:fixed;bottom:30px;right:30px;width:44px;height:44px;background:rgba(5,5,5,0.8);border:1px solid var(--border-glass);backdrop-filter:blur(12px);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--text-primary);cursor:pointer;z-index:40;opacity:0;visibility:hidden;transition:opacity 0.3s ease-out,visibility 0.3s ease-out,transform 0.2s var(--ease-out-strong),border-color 0.2s ease;}
+        #back-to-top.show{opacity:1;visibility:visible;}#back-to-top:hover{transform:translateY(-3px);border-color:var(--tesla-red);color:var(--tesla-red);}#back-to-top:active{transform:scale(0.95);}
+        .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s var(--ease-out-strong),transform 0.7s var(--ease-out-strong);}.reveal.active{opacity:1;transform:translateY(0);}
+        .btn-hover{transition:transform 0.2s var(--ease-out-strong),box-shadow 0.2s ease;}.btn-hover:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.3);}.btn-hover:active{transform:scale(0.97);}
+        .hamburger-line{display:block;width:20px;height:2px;background:var(--text-secondary);transition:transform 0.3s var(--ease-out-strong),opacity 0.2s ease;}
+        .hamburger.active .hamburger-line:nth-child(1){transform:translateY(6px) rotate(45deg);}.hamburger.active .hamburger-line:nth-child(2){opacity:0;}.hamburger.active .hamburger-line:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+        .mobile-menu{position:fixed;top:64px;left:0;right:0;bottom:0;background:rgba(5,5,5,0.95);backdrop-filter:blur(24px);z-index:45;transform:translateX(100%);transition:transform 0.35s var(--ease-out-strong);overflow-y:auto;}.mobile-menu.open{transform:translateX(0);}
+        @media(prefers-reduced-motion:reduce){.reveal{transition:opacity 0.3s ease;transform:none !important;}.reveal.active{opacity:1;}.mobile-menu{transition:opacity 0.2s ease;transform:none !important;}}
     </style>
 </head>
-
 <body class="relative">
     <div id="progress-bar"></div>
-
-    <!-- Navigation -->
-    <nav class="nav-blur fixed top-0 left-0 right-0 z-50">
-        <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-            <a href="index.html" class="flex items-center gap-3 no-underline">
-                <div class="avatar">CG</div>
-                <span class="font-bold text-white hidden sm:block">Christopher Gilleron</span>
-            </a>
-            <div class="flex items-center gap-6">
-                <a href="index.html" class="nav-link">Accueil</a>
-                <!-- Dropdown Projets -->
-                <div class="relative group">
-                    <button class="nav-link flex items-center gap-1 tesla-red font-semibold">
-                        Projets
-                        <svg class="w-3.5 h-3.5 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                    </button>
-                    <div class="absolute top-full right-0 mt-2 w-52 py-2 rounded-xl bg-slate-900/95 border border-slate-700/60 backdrop-blur-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                        <a href="projet-proxmox.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors">🏗️ Proxmox Homelab</a>
-                        <a href="projet-rag.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors">🤖 Assistant RAG</a>
-                        <a href="projet-tesla.html" class="flex items-center gap-3 px-4 py-2.5 text-sm font-semibold bg-red-500/10" style="color:#e31937;">🚗 Tesla Monitor</a>
-                        <a href="projet-chrisflix.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors">🎬 Chrisflix</a>
-                        <a href="projet-immich.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors">📸 Immich</a>
-                        <a href="projet-getaround.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors">🚀 GetAround</a>
-                        <a href="projet-jedha.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors">🎓 JEDHA</a>
-                    </div>
-                </div>
-                <a href="veille.html" class="nav-link">Veille</a>
-                <a href="https://www.linkedin.com/in/christophergilleron/" target="_blank" class="px-4 py-1.5 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-sm font-medium hover:bg-sky-500/20 transition-all">LinkedIn</a>
-            </div>
-        </div>
-    </nav>
+    <!-- ===== NAVBAR ===== -->
+    <nav class="nav-blur fixed top-0 left-0 right-0 z-50"><div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between"><a href="index.html" class="flex items-center gap-3 no-underline"><div class="avatar">CG</div><div class="flex flex-col"><span class="font-bold text-white hidden sm:block" style="font-size:0.9rem;">Christopher Gilleron</span><span class="text-[10px] hidden sm:block" style="color:var(--text-tertiary);">Data & IA Ops</span></div></a><div class="hidden md:flex items-center gap-3 lg:gap-5"><a href="index.html" class="nav-link">Accueil</a><div class="relative group"><button class="nav-link flex items-center gap-1 focus:outline-none py-2" style="color:var(--tesla-red);font-weight:600;">Projets <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg></button><div class="absolute right-0 mt-1 w-56 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 p-2 space-y-0.5" style="background:rgba(10,10,10,0.95);border:1px solid var(--border-glass);backdrop-filter:blur(20px);"><a href="projet-rag.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">🤖 Assistant RAG V7</a><a href="projet-proxmox.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">🏗️ Cloud Privé Proxmox</a><a href="projet-immich.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">🖥️ Cloud Immich & NAS</a><a href="projet-tesla.html" class="block px-3 py-2 rounded-lg text-xs font-semibold no-underline" style="color:var(--tesla-red);background:var(--tesla-red-dim);">⚡ Tesla Inventory Bot</a><a href="projet-chrisflix.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">🍿 Chrisflix Media Hub</a><a href="projet-jedha.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">📊 GDM Ticket Router</a><a href="projet-getaround.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">🚗 GetAround Price Predictor</a><a href="projet-finance.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">💰 Finance App</a></div></div><a href="veille.html" class="btn-hover text-xs font-semibold flex items-center gap-1 px-3 py-1 rounded-full no-underline" style="color:var(--accent-emerald);border:1px solid rgba(0,255,171,0.25);background:rgba(0,255,171,0.06);"><span>📰</span> TLDR</a><a href="https://github.com/Elkristobal59" target="_blank" rel="noopener noreferrer" class="btn-hover px-3 py-1 rounded-full text-xs font-medium no-underline" style="background:var(--accent-cyan-dim);border:1px solid rgba(0,229,255,0.25);color:var(--accent-cyan);">GitHub</a><a href="https://www.linkedin.com/in/christophergilleron/" target="_blank" rel="noopener noreferrer" class="btn-hover px-3 py-1 rounded-full text-xs font-medium no-underline" style="background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.25);color:#38bdf8;">LinkedIn</a></div><button class="hamburger md:hidden flex flex-col gap-1 p-2 focus:outline-none" aria-label="Menu" id="hamburger-btn"><span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span></button></div></nav>
+    <div class="mobile-menu md:hidden" id="mobile-menu"><div class="flex flex-col p-6 gap-4"><a href="index.html" class="text-lg font-semibold no-underline" style="color:var(--text-primary);">Accueil</a><div class="border-t" style="border-color:var(--border-glass);"></div><p class="text-xs font-mono uppercase tracking-widest" style="color:var(--text-tertiary);">Projets</p><a href="projet-rag.html" class="text-sm no-underline" style="color:var(--text-secondary);">🤖 Assistant RAG V7</a><a href="projet-proxmox.html" class="text-sm no-underline" style="color:var(--text-secondary);">🏗️ Cloud Privé Proxmox</a><a href="projet-immich.html" class="text-sm no-underline" style="color:var(--text-secondary);">🖥️ Cloud Immich & NAS</a><a href="projet-tesla.html" class="text-sm font-semibold no-underline" style="color:var(--tesla-red);">⚡ Tesla Inventory Bot</a><a href="projet-chrisflix.html" class="text-sm no-underline" style="color:var(--text-secondary);">🍿 Chrisflix Media Hub</a><a href="projet-jedha.html" class="text-sm no-underline" style="color:var(--text-secondary);">📊 GDM Ticket Router</a><a href="projet-getaround.html" class="text-sm no-underline" style="color:var(--text-secondary);">🚗 GetAround Price Predictor</a><a href="projet-finance.html" class="text-sm no-underline" style="color:var(--text-secondary);">💰 Finance App</a><div class="border-t" style="border-color:var(--border-glass);"></div><a href="veille.html" class="text-sm font-semibold no-underline" style="color:var(--accent-emerald);">📰 Veille TLDR</a><div class="flex gap-3 mt-4"><a href="https://github.com/Elkristobal59" target="_blank" class="px-4 py-2 rounded-full text-xs font-medium no-underline" style="background:var(--accent-cyan-dim);border:1px solid rgba(0,229,255,0.25);color:var(--accent-cyan);">GitHub</a><a href="https://www.linkedin.com/in/christophergilleron/" target="_blank" class="px-4 py-2 rounded-full text-xs font-medium no-underline" style="background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.25);color:#38bdf8;">LinkedIn</a></div></div></div>
 
     <div class="max-w-4xl mx-auto px-6 pt-32 pb-28">
-
-        <a href="index.html"
-            class="inline-flex items-center gap-2 text-slate-500 text-sm hover:text-slate-300 transition-colors mb-10 no-underline">
-            ← Retour au portfolio
-        </a>
+        <a href="index.html" class="inline-flex items-center gap-2 text-sm transition-colors mb-10 no-underline" style="color:var(--text-tertiary);" onmouseover="this.style.color='var(--text-primary)'" onmouseout="this.style.color='var(--text-tertiary)'">← Retour au portfolio</a>
 
         <!-- Header -->
         <header class="mb-16 reveal">
-            <div class="w-14 h-14 rounded-2xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-3xl mb-6">
-                🚗</div>
-            <div class="text-xs tesla-red font-mono mb-3 tracking-widest uppercase">Web Scraping · Anti-Bot Bypass · Automation · DevOps</div>
-            <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-6 leading-tight">Tesla Inventory Monitor :<br>Le Bot qui ne Rate Aucune Opportunité</h1>
-            <p class="text-slate-400 text-lg leading-relaxed mb-8">
+            <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl mb-6" style="background:var(--tesla-red-dim);border:1px solid rgba(227,25,55,0.2);">🚗</div>
+            <div class="text-xs font-mono mb-3 tracking-widest uppercase" style="color:var(--tesla-red);">Web Scraping · Anti-Bot Bypass · Automation · DevOps</div>
+            <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-6 leading-tight" style="letter-spacing:-0.02em;">Tesla Inventory Monitor :<br>Le Bot qui ne Rate Aucune Opportunité</h1>
+            <p class="text-lg leading-relaxed mb-8" style="color:var(--text-secondary);">
                 Je cherche à acheter une Tesla. Le problème ? Les véhicules en stock disparaissent en quelques heures, souvent avant même que je ne rafraîchisse la page.
-                Ma solution : un bot de monitoring autonome qui surveille l'inventaire Tesla France 24h/24 depuis mon serveur Proxmox, 
+                Ma solution : un bot de monitoring autonome qui surveille l'inventaire Tesla France 24h/24 depuis mon serveur Proxmox,
                 contourne les protections anti-bot d'Akamai, et m'envoie une notification Telegram instantanée dès qu'un nouveau véhicule apparaît.
             </p>
             <div class="flex flex-wrap gap-2">
-                <span class="tag">Python 3.11</span>
-                <span class="tag">nodriver (CDP)</span>
-                <span class="tag">Playwright</span>
-                <span class="tag">curl_cffi</span>
-                <span class="tag">Docker Compose</span>
-                <span class="tag">Xvfb</span>
-                <span class="tag">Telegram Bot API</span>
-                <span class="tag">Proxmox</span>
+                <span class="tag">Python 3.11</span><span class="tag">nodriver (CDP)</span><span class="tag">Playwright</span><span class="tag">curl_cffi</span><span class="tag">Docker Compose</span><span class="tag">Xvfb</span><span class="tag">Telegram Bot API</span><span class="tag">Proxmox</span>
             </div>
         </header>
 
         <!-- Le Défi -->
         <section class="mb-20 reveal">
-            <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                <span class="tesla-red">⚡</span> Le Défi : Pourquoi c'est Difficile
-            </h2>
-            <p class="text-slate-400 text-sm leading-relaxed mb-8">
-                Surveiller l'inventaire Tesla ne se résume pas à un simple <code class="text-red-400">requests.get()</code>. Le site est protégé par <strong class="text-white">Akamai Bot Manager</strong>, 
-                l'un des systèmes anti-bot les plus sophistiqués au monde. Chaque requête est analysée en temps réel : empreinte TLS, fingerprint JavaScript, cohérence des headers, 
+            <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3"><span style="color:var(--tesla-red);">⚡</span> Le Défi : Pourquoi c'est Difficile</h2>
+            <p class="text-sm leading-relaxed mb-8" style="color:var(--text-secondary);">
+                Surveiller l'inventaire Tesla ne se résume pas à un simple <code style="color:var(--tesla-red);">requests.get()</code>. Le site est protégé par <strong class="text-white">Akamai Bot Manager</strong>,
+                l'un des systèmes anti-bot les plus sophistiqués au monde. Chaque requête est analysée en temps réel : empreinte TLS, fingerprint JavaScript, cohérence des headers,
                 type d'IP (résidentielle vs. datacenter), et même les mouvements de souris.
             </p>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div class="feature-card text-center">
-                    <div class="text-3xl mb-3">🛡️</div>
-                    <h4 class="text-white font-bold text-sm mb-2">Akamai Bot Manager</h4>
-                    <p class="text-slate-500 text-xs">Analyse TLS, JavaScript fingerprinting, détection de headless browser, challenge cookies en temps réel.</p>
-                </div>
-                <div class="feature-card text-center">
-                    <div class="text-3xl mb-3">🌐</div>
-                    <h4 class="text-white font-bold text-sm mb-2">IPv6 vs IPv4</h4>
-                    <p class="text-slate-500 text-xs">Le serveur sortait en IPv6 par défaut, une famille d'IP traitée différemment par Akamai. Invisible depuis un PC classique.</p>
-                </div>
-                <div class="feature-card text-center">
-                    <div class="text-3xl mb-3">👻</div>
-                    <h4 class="text-white font-bold text-sm mb-2">Headless Detection</h4>
-                    <p class="text-slate-500 text-xs">Même le mode <code>--headless=new</code> de Chrome est détecté par les capteurs Akamai dans un environnement serveur.</p>
-                </div>
+                <div class="feature-card text-center"><div class="text-3xl mb-3">🛡️</div><h4 class="text-white font-bold text-sm mb-2">Akamai Bot Manager</h4><p class="text-xs" style="color:var(--text-tertiary);">Analyse TLS, JavaScript fingerprinting, détection de headless browser, challenge cookies en temps réel.</p></div>
+                <div class="feature-card text-center"><div class="text-3xl mb-3">🌐</div><h4 class="text-white font-bold text-sm mb-2">IPv6 vs IPv4</h4><p class="text-xs" style="color:var(--text-tertiary);">Le serveur sortait en IPv6 par défaut, une famille d'IP traitée différemment par Akamai. Invisible depuis un PC classique.</p></div>
+                <div class="feature-card text-center"><div class="text-3xl mb-3">👻</div><h4 class="text-white font-bold text-sm mb-2">Headless Detection</h4><p class="text-xs" style="color:var(--text-tertiary);">Même le mode <code>--headless=new</code> de Chrome est détecté par les capteurs Akamai dans un environnement serveur.</p></div>
             </div>
         </section>
 
         <!-- Architecture Multicouche -->
         <section class="mb-20 reveal">
             <h2 class="text-2xl font-bold text-white mb-8">🏗️ Architecture Anti-Détection Multicouche</h2>
-            <p class="text-slate-400 text-sm leading-relaxed mb-8">
-                Le bot utilise une stratégie en cascade : si la méthode principale échoue, il bascule automatiquement sur la suivante. Cette résilience garantit une disponibilité maximale.
-            </p>
+            <p class="text-sm leading-relaxed mb-8" style="color:var(--text-secondary);">Le bot utilise une stratégie en cascade : si la méthode principale échoue, il bascule automatiquement sur la suivante. Cette résilience garantit une disponibilité maximale.</p>
             <div class="space-y-4">
-                <!-- Méthode 1 -->
-                <div class="bg-gradient-to-r from-red-500/5 to-transparent border border-red-500/20 rounded-2xl p-6">
+                <div class="glass-card p-6" style="border-color:rgba(227,25,55,0.2);background:linear-gradient(135deg,rgba(227,25,55,0.03),transparent);">
                     <div class="flex items-center gap-4 mb-3">
-                        <span class="bg-red-500/20 text-red-400 text-xs font-bold px-3 py-1 rounded-full">PRIORITÉ 1</span>
+                        <span class="text-xs font-bold px-3 py-1 rounded-full" style="background:var(--tesla-red-dim);color:var(--tesla-red);">PRIORITÉ 1</span>
                         <h3 class="text-white font-bold">nodriver — Contrôle Chrome via CDP</h3>
                     </div>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
-                        <strong class="text-slate-200">nodriver</strong> pilote Google Chrome directement via le Chrome DevTools Protocol, sans laisser les traces détectables de Playwright ou Selenium. 
-                        Combiné à <strong class="text-slate-200">Xvfb</strong> (un écran virtuel), Chrome tourne en mode fenêtré complet sur le serveur — 
+                    <p class="text-sm leading-relaxed mb-4" style="color:var(--text-secondary);">
+                        <strong class="text-white">nodriver</strong> pilote Google Chrome directement via le Chrome DevTools Protocol, sans laisser les traces détectables de Playwright ou Selenium.
+                        Combiné à <strong class="text-white">Xvfb</strong> (un écran virtuel), Chrome tourne en mode fenêtré complet sur le serveur —
                         une empreinte identique à un utilisateur réel sur un PC Windows.
                     </p>
                     <div class="code-block mb-4">
                         <span class="comment"># Simulation du comportement humain pour bypasser Akamai</span><br>
-                        <span class="keyword">async def</span> <span class="text-blue-400">_fetch</span>():<br>
+                        <span class="keyword">async def</span> <span style="color:var(--accent-cyan);">_fetch</span>():<br>
                         &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"># Étape 1 : Page d'accueil pour validation cookies</span><br>
                         &nbsp;&nbsp;&nbsp;&nbsp;page = <span class="keyword">await</span> browser.get(<span class="string">"https://www.tesla.com/fr_FR"</span>)<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">for</span> _ <span class="keyword">in</span> <span class="text-blue-400">range</span>(<span class="text-orange-400">3</span>):<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">await</span> page.mouse_move(random.randint(<span class="text-orange-400">100</span>, <span class="text-orange-400">800</span>), random.randint(<span class="text-orange-400">100</span>, <span class="text-orange-400">600</span>))<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">await</span> asyncio.sleep(random.uniform(<span class="text-orange-400">0.5</span>, <span class="text-orange-400">1.5</span>))<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">await</span> page.scroll_down(random.randint(<span class="text-orange-400">200</span>, <span class="text-orange-400">500</span>))<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">for</span> _ <span class="keyword">in</span> <span style="color:var(--accent-cyan);">range</span>(<span style="color:#f59e0b;">3</span>):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">await</span> page.mouse_move(random.randint(<span style="color:#f59e0b;">100</span>, <span style="color:#f59e0b;">800</span>), random.randint(<span style="color:#f59e0b;">100</span>, <span style="color:#f59e0b;">600</span>))<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">await</span> asyncio.sleep(random.uniform(<span style="color:#f59e0b;">0.5</span>, <span style="color:#f59e0b;">1.5</span>))<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">await</span> page.scroll_down(random.randint(<span style="color:#f59e0b;">200</span>, <span style="color:#f59e0b;">500</span>))<br>
                         &nbsp;&nbsp;&nbsp;&nbsp;<br>
                         &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"># Étape 2 : Navigation vers l'inventaire</span><br>
                         &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">await</span> page.get(TESLA_URL)<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">for</span> _ <span class="keyword">in</span> <span class="text-blue-400">range</span>(<span class="text-orange-400">5</span>):<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">await</span> page.mouse_move(random.randint(<span class="text-orange-400">0</span>, <span class="text-orange-400">1000</span>), random.randint(<span class="text-orange-400">0</span>, <span class="text-orange-400">800</span>))<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span> random.random() > <span class="text-orange-400">0.5</span>: <span class="keyword">await</span> page.scroll_down(random.randint(<span class="text-orange-400">100</span>, <span class="text-orange-400">300</span>))<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">await</span> asyncio.sleep(random.uniform(<span class="text-orange-400">0.8</span>, <span class="text-orange-400">2.5</span>))<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">for</span> _ <span class="keyword">in</span> <span style="color:var(--accent-cyan);">range</span>(<span style="color:#f59e0b;">5</span>):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">await</span> page.mouse_move(random.randint(<span style="color:#f59e0b;">0</span>, <span style="color:#f59e0b;">1000</span>), random.randint(<span style="color:#f59e0b;">0</span>, <span style="color:#f59e0b;">800</span>))<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span> random.random() > <span style="color:#f59e0b;">0.5</span>: <span class="keyword">await</span> page.scroll_down(random.randint(<span style="color:#f59e0b;">100</span>, <span style="color:#f59e0b;">300</span>))<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">await</span> asyncio.sleep(random.uniform(<span style="color:#f59e0b;">0.8</span>, <span style="color:#f59e0b;">2.5</span>))<br>
                         &nbsp;&nbsp;&nbsp;&nbsp;<br>
                         &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"># Vérification blocage & Appel API XHR</span><br>
                         &nbsp;&nbsp;&nbsp;&nbsp;title = <span class="keyword">await</span> page.evaluate(<span class="string">"document.title"</span>)<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span> <span class="string">"Access Denied"</span> <span class="keyword">in</span> <span class="text-blue-400">str</span>(title): <span class="keyword">return</span> <span class="text-blue-400">None</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span> <span class="string">"Access Denied"</span> <span class="keyword">in</span> <span style="color:var(--accent-cyan);">str</span>(title): <span class="keyword">return</span> <span style="color:var(--accent-cyan);">None</span><br>
                         &nbsp;&nbsp;&nbsp;&nbsp;raw = <span class="keyword">await</span> page.evaluate(<span class="string">"const xhr = new XMLHttpRequest(); xhr.open('GET', path, false); xhr.send(); return xhr.responseText;"</span>)
                     </div>
-                    <p class="text-slate-500 text-xs mt-3 italic">
-                        💡 Astuce clé : après avoir établi la session via simulation, le bot appelle l'API Tesla via un XHR synchrone (evaluate) depuis le contexte du navigateur pour récupérer le JSON brut proprement, contournant les bugs d'interception CDP.
-                    </p>
+                    <p class="text-xs mt-3 italic" style="color:var(--text-tertiary);">💡 Astuce clé : après avoir établi la session via simulation, le bot appelle l'API Tesla via un XHR synchrone (evaluate) depuis le contexte du navigateur pour récupérer le JSON brut proprement, contournant les bugs d'interception CDP.</p>
                 </div>
-                <!-- Méthode 2 -->
-                <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-6">
+                <div class="glass-card p-6">
                     <div class="flex items-center gap-4 mb-3">
-                        <span class="bg-slate-700 text-slate-300 text-xs font-bold px-3 py-1 rounded-full">FALLBACK 2</span>
+                        <span class="text-xs font-bold px-3 py-1 rounded-full" style="background:rgba(255,255,255,0.05);border:1px solid var(--border-glass);color:var(--text-secondary);">FALLBACK 2</span>
                         <h3 class="text-white font-bold">curl_cffi — Empreinte TLS Chrome</h3>
                     </div>
-                    <p class="text-slate-400 text-sm">Appel API direct imitant parfaitement la signature TLS de Chrome 124, sans navigateur. Ultra-rapide (~200ms).</p>
+                    <p class="text-sm" style="color:var(--text-secondary);">Appel API direct imitant parfaitement la signature TLS de Chrome 124, sans navigateur. Ultra-rapide (~200ms).</p>
                 </div>
-                <!-- Méthode 3 -->
-                <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-6">
+                <div class="glass-card p-6">
                     <div class="flex items-center gap-4 mb-3">
-                        <span class="bg-slate-700 text-slate-300 text-xs font-bold px-3 py-1 rounded-full">FALLBACK 3</span>
+                        <span class="text-xs font-bold px-3 py-1 rounded-full" style="background:rgba(255,255,255,0.05);border:1px solid var(--border-glass);color:var(--text-secondary);">FALLBACK 3</span>
                         <h3 class="text-white font-bold">Playwright + Stealth — Navigation complète</h3>
                     </div>
-                    <p class="text-slate-400 text-sm">Navigateur automatisé avec injection stealth, interception réseau et simulation d'attente humaine.</p>
+                    <p class="text-sm" style="color:var(--text-secondary);">Navigateur automatisé avec injection stealth, interception réseau et simulation d'attente humaine.</p>
                 </div>
             </div>
         </section>
@@ -197,61 +130,17 @@
         <section class="mb-20 reveal">
             <h2 class="text-2xl font-bold text-white mb-8">🔧 Les Obstacles Techniques (et leurs Solutions)</h2>
             <div class="space-y-8">
-                <div class="flex gap-5">
-                    <div class="relative flex flex-col items-center">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-line"></div>
-                    </div>
-                    <div class="pb-8">
-                        <h4 class="text-white font-bold mb-1">Blocage IPv6 invisible</h4>
-                        <p class="text-slate-400 text-sm">Le serveur Proxmox sortait en IPv6 (<code class="text-red-400">2a02:8429:...</code>) au lieu de l'IPv4 résidentielle. Akamai bloquait silencieusement cette famille d'IP.</p>
-                        <p class="text-emerald-400 text-xs mt-2 font-semibold">✅ Solution : <code>sysctls: net.ipv6.conf.all.disable_ipv6=1</code> dans Docker Compose.</p>
-                    </div>
-                </div>
-                <div class="flex gap-5">
-                    <div class="relative flex flex-col items-center">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-line"></div>
-                    </div>
-                    <div class="pb-8">
-                        <h4 class="text-white font-bold mb-1">Headless Chrome détecté</h4>
-                        <p class="text-slate-400 text-sm">Même le mode <code class="text-slate-300">--headless=new</code> de Chrome était repéré par les capteurs JavaScript d'Akamai (absence de plugins, screen dimensions, etc).</p>
-                        <p class="text-emerald-400 text-xs mt-2 font-semibold">✅ Solution : Xvfb (écran virtuel 1920×1080) + Chrome en mode fenêtré complet = empreinte identique à un vrai PC.</p>
-                    </div>
-                </div>
-                <div class="flex gap-5">
-                    <div class="relative flex flex-col items-center">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-line"></div>
-                    </div>
-                    <div class="pb-8">
-                        <h4 class="text-white font-bold mb-1">Bug CDP nodriver (sameParty)</h4>
-                        <p class="text-slate-400 text-sm">L'interception réseau via CDP crashait à cause d'un champ cookie supprimé dans Chrome 147 (<code class="text-slate-300">sameParty</code>), incompatible avec le parser de nodriver.</p>
-                        <p class="text-emerald-400 text-xs mt-2 font-semibold">✅ Solution : Appel XHR direct à l'API Tesla depuis le contexte navigateur — les cookies Akamai sont déjà validés.</p>
-                    </div>
-                </div>
-                <div class="flex gap-5">
-                    <div class="flex flex-col items-center">
-                        <div class="timeline-dot"></div>
-                    </div>
-                    <div>
-                        <h4 class="text-white font-bold mb-1">Boucle async incompatible</h4>
-                        <p class="text-slate-400 text-sm"><code class="text-slate-300">nodriver</code> est async, mais le script principal est synchrone. <code>asyncio.run()</code> échouait dans certains contextes.</p>
-                        <p class="text-emerald-400 text-xs mt-2 font-semibold">✅ Solution : <code>nest_asyncio.apply()</code> pour autoriser les boucles async imbriquées.</p>
-                    </div>
-                </div>
+                <div class="flex gap-5"><div class="relative flex flex-col items-center"><div class="timeline-dot"></div><div class="timeline-line"></div></div><div class="pb-8"><h4 class="text-white font-bold mb-1">Blocage IPv6 invisible</h4><p class="text-sm" style="color:var(--text-secondary);">Le serveur Proxmox sortait en IPv6 (<code style="color:var(--tesla-red);">2a02:8429:...</code>) au lieu de l'IPv4 résidentielle. Akamai bloquait silencieusement cette famille d'IP.</p><p class="text-xs mt-2 font-semibold" style="color:var(--accent-emerald);">✅ Solution : <code>sysctls: net.ipv6.conf.all.disable_ipv6=1</code> dans Docker Compose.</p></div></div>
+                <div class="flex gap-5"><div class="relative flex flex-col items-center"><div class="timeline-dot"></div><div class="timeline-line"></div></div><div class="pb-8"><h4 class="text-white font-bold mb-1">Headless Chrome détecté</h4><p class="text-sm" style="color:var(--text-secondary);">Même le mode <code class="text-white">--headless=new</code> de Chrome était repéré par les capteurs JavaScript d'Akamai (absence de plugins, screen dimensions, etc).</p><p class="text-xs mt-2 font-semibold" style="color:var(--accent-emerald);">✅ Solution : Xvfb (écran virtuel 1920×1080) + Chrome en mode fenêtré complet = empreinte identique à un vrai PC.</p></div></div>
+                <div class="flex gap-5"><div class="relative flex flex-col items-center"><div class="timeline-dot"></div><div class="timeline-line"></div></div><div class="pb-8"><h4 class="text-white font-bold mb-1">Bug CDP nodriver (sameParty)</h4><p class="text-sm" style="color:var(--text-secondary);">L'interception réseau via CDP crashait à cause d'un champ cookie supprimé dans Chrome 147 (<code class="text-white">sameParty</code>), incompatible avec le parser de nodriver.</p><p class="text-xs mt-2 font-semibold" style="color:var(--accent-emerald);">✅ Solution : Appel XHR direct à l'API Tesla depuis le contexte navigateur — les cookies Akamai sont déjà validés.</p></div></div>
+                <div class="flex gap-5"><div class="flex flex-col items-center"><div class="timeline-dot"></div></div><div><h4 class="text-white font-bold mb-1">Boucle async incompatible</h4><p class="text-sm" style="color:var(--text-secondary);"><code class="text-white">nodriver</code> est async, mais le script principal est synchrone. <code>asyncio.run()</code> échouait dans certains contextes.</p><p class="text-xs mt-2 font-semibold" style="color:var(--accent-emerald);">✅ Solution : <code>nest_asyncio.apply()</code> pour autoriser les boucles async imbriquées.</p></div></div>
             </div>
         </section>
 
         <!-- Déploiement Docker -->
         <section class="mb-20 reveal">
-            <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                <span class="text-sky-400">🐳</span> Déploiement Docker sur Proxmox
-            </h2>
-            <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                Le bot tourne 24h/24 dans un conteneur Docker sur mon serveur Proxmox, avec <code class="text-slate-300">restart: unless-stopped</code>. 
-                Il survit aux redémarrages du serveur et aux mises à jour automatiquement.
-            </p>
+            <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3"><span style="color:#38bdf8;">🐳</span> Déploiement Docker sur Proxmox</h2>
+            <p class="text-sm leading-relaxed mb-6" style="color:var(--text-secondary);">Le bot tourne 24h/24 dans un conteneur Docker sur mon serveur Proxmox, avec <code class="text-white">restart: unless-stopped</code>. Il survit aux redémarrages du serveur et aux mises à jour automatiquement.</p>
             <div class="code-block">
                 <span class="comment"># docker-compose.yml</span><br>
                 <span class="keyword">services</span>:<br>
@@ -276,29 +165,21 @@
 
         <!-- Notifications -->
         <section class="mb-20 reveal">
-            <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                <span>📱</span> Alertes Telegram en Temps Réel
-            </h2>
-            <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                Dès qu'un nouveau véhicule apparaît dans l'inventaire, je reçois instantanément une notification Telegram avec toutes les informations essentielles : 
-                modèle, prix, kilométrage, localisation et lien direct vers la page de commande Tesla.
-            </p>
-            <div class="bg-slate-900/60 border border-slate-700 rounded-2xl p-6 max-w-md mx-auto">
+            <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3"><span>📱</span> Alertes Telegram en Temps Réel</h2>
+            <p class="text-sm leading-relaxed mb-6" style="color:var(--text-secondary);">Dès qu'un nouveau véhicule apparaît dans l'inventaire, je reçois instantanément une notification Telegram avec toutes les informations essentielles : modèle, prix, kilométrage, localisation et lien direct vers la page de commande Tesla.</p>
+            <div class="glass-card p-6 max-w-md mx-auto">
                 <div class="flex items-center gap-3 mb-4">
-                    <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white text-lg">🤖</div>
-                    <div>
-                        <p class="text-white text-sm font-bold">Tesla Stock Bot</p>
-                        <p class="text-slate-500 text-[10px]">Aujourd'hui à 00:14</p>
-                    </div>
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center text-white text-lg" style="background:var(--accent-cyan);">🤖</div>
+                    <div><p class="text-white text-sm font-bold">Tesla Stock Bot</p><p class="text-[10px]" style="color:var(--text-tertiary);">Aujourd'hui à 00:14</p></div>
                 </div>
-                <div class="bg-slate-800/80 rounded-xl p-4 text-sm text-slate-300 space-y-1">
+                <div class="rounded-xl p-4 text-sm space-y-1" style="background:rgba(255,255,255,0.02);border:1px solid var(--border-glass);color:var(--text-secondary);">
                     <p>🚗 <strong class="text-white">Nouveau Model 3 disponible !</strong></p>
                     <p>➖ Trim: Model 3 Propulsion 2026</p>
                     <p>➖ Prix: 36 990 €</p>
                     <p>➖ Kilométrage: 0 km</p>
                     <p>➖ Localisation: Lille</p>
                     <p>➖ VIN: <code class="text-xs">LRW3190_7ddd...</code></p>
-                    <p class="pt-2">🔗 <a class="text-blue-400 underline text-xs">Lien vers le véhicule</a></p>
+                    <p class="pt-2">🔗 <a class="underline text-xs" style="color:var(--accent-cyan);">Lien vers le véhicule</a></p>
                 </div>
             </div>
         </section>
@@ -307,91 +188,44 @@
         <section class="mb-20 reveal">
             <h2 class="text-2xl font-bold text-white mb-8 text-center">🧰 Stack Technique Complète</h2>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-                <div class="bg-slate-900/40 border border-slate-800 rounded-xl p-4 text-center">
-                    <p class="text-2xl mb-2">🐍</p>
-                    <p class="text-white text-xs font-bold">Python 3.11</p>
-                    <p class="text-slate-500 text-[10px]">Moteur principal</p>
-                </div>
-                <div class="bg-slate-900/40 border border-slate-800 rounded-xl p-4 text-center">
-                    <p class="text-2xl mb-2">🥷</p>
-                    <p class="text-white text-xs font-bold">nodriver</p>
-                    <p class="text-slate-500 text-[10px]">Anti-détection CDP</p>
-                </div>
-                <div class="bg-slate-900/40 border border-slate-800 rounded-xl p-4 text-center">
-                    <p class="text-2xl mb-2">🐳</p>
-                    <p class="text-white text-xs font-bold">Docker</p>
-                    <p class="text-slate-500 text-[10px]">Conteneurisation</p>
-                </div>
-                <div class="bg-slate-900/40 border border-slate-800 rounded-xl p-4 text-center">
-                    <p class="text-2xl mb-2">📺</p>
-                    <p class="text-white text-xs font-bold">Xvfb</p>
-                    <p class="text-slate-500 text-[10px]">Écran virtuel</p>
-                </div>
-                <div class="bg-slate-900/40 border border-slate-800 rounded-xl p-4 text-center">
-                    <p class="text-2xl mb-2">🔐</p>
-                    <p class="text-white text-xs font-bold">curl_cffi</p>
-                    <p class="text-slate-500 text-[10px]">Empreinte TLS</p>
-                </div>
-                <div class="bg-slate-900/40 border border-slate-800 rounded-xl p-4 text-center">
-                    <p class="text-2xl mb-2">🎭</p>
-                    <p class="text-white text-xs font-bold">Playwright</p>
-                    <p class="text-slate-500 text-[10px]">Fallback stealth</p>
-                </div>
-                <div class="bg-slate-900/40 border border-slate-800 rounded-xl p-4 text-center">
-                    <p class="text-2xl mb-2">📡</p>
-                    <p class="text-white text-xs font-bold">Telegram API</p>
-                    <p class="text-slate-500 text-[10px]">Notifications</p>
-                </div>
-                <div class="bg-slate-900/40 border border-slate-800 rounded-xl p-4 text-center">
-                    <p class="text-2xl mb-2">🏗️</p>
-                    <p class="text-white text-xs font-bold">Proxmox</p>
-                    <p class="text-slate-500 text-[10px]">Hébergement 24/7</p>
-                </div>
+                <div class="glass-card p-4 text-center"><p class="text-2xl mb-2">🐍</p><p class="text-white text-xs font-bold">Python 3.11</p><p class="text-[10px]" style="color:var(--text-tertiary);">Moteur principal</p></div>
+                <div class="glass-card p-4 text-center"><p class="text-2xl mb-2">🥷</p><p class="text-white text-xs font-bold">nodriver</p><p class="text-[10px]" style="color:var(--text-tertiary);">Anti-détection CDP</p></div>
+                <div class="glass-card p-4 text-center"><p class="text-2xl mb-2">🐳</p><p class="text-white text-xs font-bold">Docker</p><p class="text-[10px]" style="color:var(--text-tertiary);">Conteneurisation</p></div>
+                <div class="glass-card p-4 text-center"><p class="text-2xl mb-2">📺</p><p class="text-white text-xs font-bold">Xvfb</p><p class="text-[10px]" style="color:var(--text-tertiary);">Écran virtuel</p></div>
+                <div class="glass-card p-4 text-center"><p class="text-2xl mb-2">🔐</p><p class="text-white text-xs font-bold">curl_cffi</p><p class="text-[10px]" style="color:var(--text-tertiary);">Empreinte TLS</p></div>
+                <div class="glass-card p-4 text-center"><p class="text-2xl mb-2">🎭</p><p class="text-white text-xs font-bold">Playwright</p><p class="text-[10px]" style="color:var(--text-tertiary);">Fallback stealth</p></div>
+                <div class="glass-card p-4 text-center"><p class="text-2xl mb-2">📡</p><p class="text-white text-xs font-bold">Telegram API</p><p class="text-[10px]" style="color:var(--text-tertiary);">Notifications</p></div>
+                <div class="glass-card p-4 text-center"><p class="text-2xl mb-2">🏗️</p><p class="text-white text-xs font-bold">Proxmox</p><p class="text-[10px]" style="color:var(--text-tertiary);">Hébergement 24/7</p></div>
             </div>
         </section>
 
-        <!-- Footer -->
-        <footer class="mb-12 reveal border-t border-slate-800 pt-12">
+        <!-- Footer section -->
+        <section class="mb-12 reveal pt-12" style="border-top:1px solid var(--border-glass);">
             <h2 class="text-xl font-bold text-white mb-6 italic">"Ne jamais rater une opportunité, c'est automatiser sa veille."</h2>
-            <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                Ce projet m'a confronté aux réalités du <strong>web scraping moderne</strong> : les protections anti-bot de niveau enterprise (Akamai, Cloudflare) 
-                ne se contournent pas avec de simples requêtes HTTP. Il faut comprendre le fonctionnement des <strong>empreintes TLS</strong>, 
-                du <strong>fingerprinting JavaScript</strong>, et maîtriser les subtilités réseau (IPv4/IPv6) qui passent inaperçues en développement local 
+            <p class="text-sm leading-relaxed mb-6" style="color:var(--text-secondary);">
+                Ce projet m'a confronté aux réalités du <strong>web scraping moderne</strong> : les protections anti-bot de niveau enterprise (Akamai, Cloudflare)
+                ne se contournent pas avec de simples requêtes HTTP. Il faut comprendre le fonctionnement des <strong>empreintes TLS</strong>,
+                du <strong>fingerprinting JavaScript</strong>, et maîtriser les subtilités réseau (IPv4/IPv6) qui passent inaperçues en développement local
                 mais deviennent critiques en production sur un serveur.
             </p>
-            <a href="index.html" class="tesla-red font-bold hover:underline">Découvrir mes autres projets →</a>
-        </footer>
-
+            <a href="index.html" class="font-bold no-underline hover:underline" style="color:var(--tesla-red);">Découvrir mes autres projets →</a>
+        </section>
     </div>
 
-    <!-- Back to top -->
-    <div id="back-to-top" title="Retour en haut">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
-        </svg>
-    </div>
+    <!-- ===== FOOTER ===== -->
+    <footer class="text-center py-12 mt-20" style="border-top:1px solid var(--border-glass);background:rgba(255,255,255,0.01);">
+        <p class="text-[10px] mb-2" style="color:var(--text-tertiary);">© 2026 Christopher Gilleron · Tous droits réservés</p>
+        <p class="text-[10px]" style="color:var(--text-secondary);">Développé avec passion à Lille · Hébergé sur Vercel</p>
+    </footer>
+
+    <div id="back-to-top" title="Retour en haut"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg></div>
 
     <script>
-        function handleScroll() {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            document.getElementById("progress-bar").style.width = (winScroll / height) * 100 + "%";
-            const btt = document.getElementById("back-to-top");
-            if (winScroll > 400) { btt.classList.add("show"); } else { btt.classList.remove("show"); }
-        }
-        const revealCallback = (entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) { entry.target.classList.add('active'); observer.unobserve(entry.target); }
-            });
-        };
-        const revealObserver = new IntersectionObserver(revealCallback, { threshold: 0.1 });
-        document.addEventListener('DOMContentLoaded', () => {
-            document.body.classList.add('loaded');
-            document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-            document.getElementById("back-to-top").addEventListener("click", () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
-        });
-        window.onscroll = handleScroll;
+        function handleScroll(){const w=document.body.scrollTop||document.documentElement.scrollTop;const h=document.documentElement.scrollHeight-document.documentElement.clientHeight;document.getElementById("progress-bar").style.width=(w/h)*100+"%";const b=document.getElementById("back-to-top");w>400?b.classList.add("show"):b.classList.remove("show");}
+        const revealObserver=new IntersectionObserver((entries,observer)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('active');observer.unobserve(e.target);}});},{threshold:0.1});
+        function initHamburger(){const btn=document.getElementById('hamburger-btn');const menu=document.getElementById('mobile-menu');if(!btn||!menu)return;btn.addEventListener('click',()=>{btn.classList.toggle('active');menu.classList.toggle('open');document.body.style.overflow=menu.classList.contains('open')?'hidden':'';});menu.querySelectorAll('a').forEach(l=>{l.addEventListener('click',()=>{btn.classList.remove('active');menu.classList.remove('open');document.body.style.overflow='';});});}
+        document.addEventListener('DOMContentLoaded',()=>{document.body.classList.add('loaded');document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));document.getElementById("back-to-top").addEventListener("click",()=>{window.scrollTo({top:0,behavior:'smooth'});});initHamburger();});
+        window.onscroll=handleScroll;
     </script>
 </body>
-
 </html>

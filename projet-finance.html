@@ -1,260 +1,53 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Finance App : Agrégateur Financier — Christopher Gilleron</title>
-    <meta name="description"
-        content="Projet infrastructure & data : déploiement d'un agrégateur financier personnel avec Actual Budget, synchronisation bancaire hybride, worker Python et tableaux de bord Metabase.">
+    <meta name="description" content="Projet infrastructure & data : déploiement d'un agrégateur financier personnel avec Actual Budget, synchronisation bancaire hybride, worker Python et tableaux de bord Metabase.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body {
-            background-color: #0a0f1e;
-            color: #f8fafc;
-            font-family: 'Inter', sans-serif;
-            opacity: 0;
-            transition: opacity 0.8s ease-in-out;
-        }
-
-        body.loaded {
-            opacity: 1;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        .nav-blur {
-            backdrop-filter: blur(16px);
-            background: rgba(10, 15, 30, 0.85);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-        }
-
-        .avatar {
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #60a5fa, #34d399);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: .95rem;
-            color: #0a0f1e;
-            flex-shrink: 0;
-        }
-
-        .nav-link {
-            color: #94a3b8;
-            transition: color 0.2s;
-            font-size: .875rem;
-            font-weight: 500;
-        }
-
-        .nav-link:hover {
-            color: #f8fafc;
-        }
-
-        .tag {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 6px;
-            padding: 3px 10px;
-            font-size: .72rem;
-            color: #94a3b8;
-        }
-
-        .service-card {
-            background: rgba(16, 24, 48, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.07);
-            border-radius: 16px;
-            padding: 20px;
-            transition: border-color 0.2s;
-        }
-
-        .service-card:hover {
-            border-color: rgba(52, 211, 153, 0.3);
-        }
-
-        /* Archi diagram */
-        .arch-box {
-            border-radius: 10px;
-            padding: 10px 16px;
-            font-size: 0.78rem;
-            font-weight: 600;
-            text-align: center;
-            border: 1px solid;
-        }
-
-        .arch-arrow {
-            color: #4b5563;
-            font-size: 1.2rem;
-        }
-
-        /* --- Progress Bar --- */
-        #progress-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 3px;
-            background: linear-gradient(to right, #60a5fa, #34d399);
-            z-index: 100;
-            width: 0%;
-            transition: width 0.1s ease-out;
-        }
-
-        /* --- Back to Top --- */
-        #back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 44px;
-            height: 44px;
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(8px);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #f8fafc;
-            cursor: pointer;
-            z-index: 40;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-
-        #back-to-top.show {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        #back-to-top:hover {
-            transform: translateY(-5px);
-            border-color: #34d399;
-            color: #34d399;
-        }
-
-        /* --- Reveal Animations --- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* --- Micro-animations boutons --- */
-        .btn-hover {
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .btn-hover:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
+        :root{--bg-deep:#050505;--bg-card:rgba(255,255,255,0.03);--border-glass:rgba(255,255,255,0.08);--border-glass-hover:rgba(255,255,255,0.15);--text-primary:#f0f0f0;--text-secondary:#8a8f98;--text-tertiary:#555a63;--accent-cyan:#00e5ff;--accent-emerald:#00ffab;--accent-cyan-dim:rgba(0,229,255,0.12);--accent-emerald-dim:rgba(0,255,171,0.12);--glow-cyan:0 0 20px rgba(0,229,255,0.15);--ease-out-strong:cubic-bezier(0.23,1,0.32,1);--project-color:#00ffab;--project-color-dim:rgba(0,255,171,0.12);}
+        html{scroll-behavior:smooth;}body{background-color:var(--bg-deep);color:var(--text-primary);font-family:'Inter',sans-serif;opacity:0;transition:opacity 0.6s ease-out;-webkit-font-smoothing:antialiased;}body.loaded{opacity:1;}
+        .nav-blur{backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);background:rgba(5,5,5,0.75);border-bottom:1px solid var(--border-glass);}
+        .avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--accent-cyan),var(--accent-emerald));display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;color:var(--bg-deep);flex-shrink:0;}
+        .nav-link{color:var(--text-secondary);transition:color 0.2s ease;font-size:0.875rem;font-weight:500;}.nav-link:hover{color:var(--text-primary);}
+        .glass-card{background:var(--bg-card);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid var(--border-glass);border-radius:20px;transition:border-color 0.25s ease-out;}.glass-card:hover{border-color:var(--border-glass-hover);}
+        .tag{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:6px;padding:3px 10px;font-size:0.72rem;color:var(--text-secondary);transition:border-color 0.2s ease,box-shadow 0.2s ease,color 0.2s ease;}.tag:hover{border-color:rgba(0,255,171,0.3);color:var(--project-color);box-shadow:0 0 20px rgba(0,255,171,0.15);}
+        .service-card{background:var(--bg-card);backdrop-filter:blur(24px);border:1px solid var(--border-glass);border-radius:16px;padding:24px;transition:border-color 0.25s ease-out;}.service-card:hover{border-color:rgba(0,255,171,0.3);}
+        .arch-box{border-radius:10px;padding:10px 16px;font-size:0.78rem;font-weight:600;text-align:center;border:1px solid;}
+        .arch-arrow{color:var(--text-tertiary);font-size:1.2rem;}
+        #progress-bar{position:fixed;top:0;left:0;height:2px;background:linear-gradient(to right,var(--accent-cyan),var(--project-color));z-index:100;width:0%;transition:width 0.1s ease-out;}
+        #back-to-top{position:fixed;bottom:30px;right:30px;width:44px;height:44px;background:rgba(5,5,5,0.8);border:1px solid var(--border-glass);backdrop-filter:blur(12px);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--text-primary);cursor:pointer;z-index:40;opacity:0;visibility:hidden;transition:opacity 0.3s ease-out,visibility 0.3s ease-out,transform 0.2s var(--ease-out-strong),border-color 0.2s ease;}
+        #back-to-top.show{opacity:1;visibility:visible;}#back-to-top:hover{transform:translateY(-3px);border-color:var(--project-color);color:var(--project-color);}#back-to-top:active{transform:scale(0.95);}
+        .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s var(--ease-out-strong),transform 0.7s var(--ease-out-strong);}.reveal.active{opacity:1;transform:translateY(0);}
+        .btn-hover{transition:transform 0.2s var(--ease-out-strong),box-shadow 0.2s ease;}.btn-hover:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.3);}.btn-hover:active{transform:scale(0.97);}
+        .hamburger-line{display:block;width:20px;height:2px;background:var(--text-secondary);transition:transform 0.3s var(--ease-out-strong),opacity 0.2s ease;}
+        .hamburger.active .hamburger-line:nth-child(1){transform:translateY(6px) rotate(45deg);}.hamburger.active .hamburger-line:nth-child(2){opacity:0;}.hamburger.active .hamburger-line:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+        .mobile-menu{position:fixed;top:64px;left:0;right:0;bottom:0;background:rgba(5,5,5,0.95);backdrop-filter:blur(24px);z-index:45;transform:translateX(100%);transition:transform 0.35s var(--ease-out-strong);overflow-y:auto;}.mobile-menu.open{transform:translateX(0);}
+        @media(prefers-reduced-motion:reduce){.reveal{transition:opacity 0.3s ease;transform:none !important;}.reveal.active{opacity:1;}.mobile-menu{transition:opacity 0.2s ease;transform:none !important;}}
     </style>
 </head>
-
 <body class="relative">
     <div id="progress-bar"></div>
     <!-- ===== NAVBAR ===== -->
-    <nav class="nav-blur fixed top-0 left-0 right-0 z-50">
-        <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-            <a href="index.html" class="flex items-center gap-3 no-underline">
-                <div class="avatar">CG</div>
-                <div class="flex flex-col">
-                    <span class="font-bold text-white hidden sm:block">Christopher Gilleron</span>
-                    <span class="text-[10px] text-slate-500 hidden sm:block">Data Scientist & IA</span>
-                </div>
-            </a>
-            <div class="flex items-center gap-3 sm:gap-5">
-                <a href="index.html" class="nav-link">Accueil</a>
+    <nav class="nav-blur fixed top-0 left-0 right-0 z-50"><div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between"><a href="index.html" class="flex items-center gap-3 no-underline"><div class="avatar">CG</div><div class="flex flex-col"><span class="font-bold text-white hidden sm:block" style="font-size:0.9rem;">Christopher Gilleron</span><span class="text-[10px] hidden sm:block" style="color:var(--text-tertiary);">Data & IA Ops</span></div></a><div class="hidden md:flex items-center gap-3 lg:gap-5"><a href="index.html" class="nav-link">Accueil</a><div class="relative group"><button class="nav-link flex items-center gap-1 focus:outline-none py-2" style="color:var(--project-color);font-weight:600;">Projets <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg></button><div class="absolute right-0 mt-1 w-56 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 p-2 space-y-0.5" style="background:rgba(10,10,10,0.95);border:1px solid var(--border-glass);backdrop-filter:blur(20px);"><a href="projet-rag.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">🤖 Assistant RAG V7</a><a href="projet-proxmox.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">🏗️ Cloud Privé Proxmox</a><a href="projet-immich.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">🖥️ Cloud Immich & NAS</a><a href="projet-tesla.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">⚡ Tesla Inventory Bot</a><a href="projet-chrisflix.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">🍿 Chrisflix Media Hub</a><a href="projet-jedha.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">📊 GDM Ticket Router</a><a href="projet-getaround.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">🚗 GetAround Price Predictor</a><a href="projet-finance.html" class="block px-3 py-2 rounded-lg text-xs font-semibold no-underline" style="color:var(--project-color);background:var(--project-color-dim);">💰 Finance App</a></div></div><a href="veille.html" class="btn-hover text-xs font-semibold flex items-center gap-1 px-3 py-1 rounded-full no-underline" style="color:var(--accent-emerald);border:1px solid rgba(0,255,171,0.25);background:rgba(0,255,171,0.06);"><span>📰</span> TLDR</a><a href="https://github.com/Elkristobal59" target="_blank" rel="noopener noreferrer" class="btn-hover px-3 py-1 rounded-full text-xs font-medium no-underline" style="background:var(--accent-cyan-dim);border:1px solid rgba(0,229,255,0.25);color:var(--accent-cyan);">GitHub</a><a href="https://www.linkedin.com/in/christophergilleron/" target="_blank" rel="noopener noreferrer" class="btn-hover px-3 py-1 rounded-full text-xs font-medium no-underline" style="background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.25);color:#38bdf8;">LinkedIn</a></div><button class="hamburger md:hidden flex flex-col gap-1 p-2 focus:outline-none" aria-label="Menu" id="hamburger-btn"><span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span></button></div></nav>
+    <div class="mobile-menu md:hidden" id="mobile-menu"><div class="flex flex-col p-6 gap-4"><a href="index.html" class="text-lg font-semibold no-underline" style="color:var(--text-primary);">Accueil</a><div class="border-t" style="border-color:var(--border-glass);"></div><p class="text-xs font-mono uppercase tracking-widest" style="color:var(--text-tertiary);">Projets</p><a href="projet-rag.html" class="text-sm no-underline" style="color:var(--text-secondary);">🤖 Assistant RAG V7</a><a href="projet-proxmox.html" class="text-sm no-underline" style="color:var(--text-secondary);">🏗️ Cloud Privé Proxmox</a><a href="projet-immich.html" class="text-sm no-underline" style="color:var(--text-secondary);">🖥️ Cloud Immich & NAS</a><a href="projet-tesla.html" class="text-sm no-underline" style="color:var(--text-secondary);">⚡ Tesla Inventory Bot</a><a href="projet-chrisflix.html" class="text-sm no-underline" style="color:var(--text-secondary);">🍿 Chrisflix Media Hub</a><a href="projet-jedha.html" class="text-sm no-underline" style="color:var(--text-secondary);">📊 GDM Ticket Router</a><a href="projet-getaround.html" class="text-sm no-underline" style="color:var(--text-secondary);">🚗 GetAround Price Predictor</a><a href="projet-finance.html" class="text-sm font-semibold no-underline" style="color:var(--project-color);">💰 Finance App</a><div class="border-t" style="border-color:var(--border-glass);"></div><a href="veille.html" class="text-sm font-semibold no-underline" style="color:var(--accent-emerald);">📰 Veille TLDR</a><div class="flex gap-3 mt-4"><a href="https://github.com/Elkristobal59" target="_blank" class="px-4 py-2 rounded-full text-xs font-medium no-underline" style="background:var(--accent-cyan-dim);border:1px solid rgba(0,229,255,0.25);color:var(--accent-cyan);">GitHub</a><a href="https://www.linkedin.com/in/christophergilleron/" target="_blank" class="px-4 py-2 rounded-full text-xs font-medium no-underline" style="background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.25);color:#38bdf8;">LinkedIn</a></div></div></div>
 
-                <!-- Dropdown Projets -->
-                <div class="relative group">
-                    <button class="nav-link flex items-center gap-1 focus:outline-none py-2" aria-label="Menu Projets">
-                        Projets
-                        <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </button>
-                    <!-- Dropdown Menu -->
-                    <div
-                        class="absolute right-0 mt-1 w-56 rounded-xl bg-slate-950/95 border border-slate-800 backdrop-blur-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 p-2 space-y-0.5">
-                        <a href="projet-rag.html"
-                            class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">🤖
-                            Assistant RAG V7</a>
-                        <a href="projet-proxmox.html"
-                            class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">🏗️
-                            Cloud Privé Proxmox</a>
-                        <a href="projet-immich.html"
-                            class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">🖥️
-                            Cloud Immich & NAS</a>
-                        <a href="projet-tesla.html"
-                            class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">⚡
-                            Tesla Inventory Bot</a>
-                        <a href="projet-chrisflix.html"
-                            class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">🍿
-                            Chrisflix Media Hub</a>
-                        <a href="projet-jedha.html"
-                            class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">📊
-                            GDM Ticket Router</a>
-                        <a href="projet-getaround.html"
-                            class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">🚗
-                            GetAround Price Predictor</a>
-                        <a href="projet-finance.html"
-                            class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">💰
-                            Finance App</a>
-                    </div>
-                </div>
-
-                <a href="veille.html"
-                    class="btn-hover text-emerald-400 text-[10px] sm:text-sm font-semibold hover:text-emerald-300 transition-colors flex items-center gap-1 border border-emerald-500/30 bg-emerald-500/10 px-2 sm:px-3 py-1 rounded-full">
-                    <span>📰</span> TLDR
-                </a>
-                <a href="https://github.com/Elkristobal59" target="_blank" rel="noopener noreferrer"
-                    class="btn-hover px-2 sm:px-3.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-[10px] sm:text-sm font-medium hover:bg-blue-500/20 transition-all">
-                    GitHub
-                </a>
-                <a href="https://www.linkedin.com/in/christophergilleron/" target="_blank" rel="noopener noreferrer"
-                    class="btn-hover px-2 sm:px-3.5 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-[10px] sm:text-sm font-medium hover:bg-sky-500/20 transition-all">
-                    LinkedIn
-                </a>
-            </div>
-        </div>
-    </nav>
-
-    <div class="max-w-3xl mx-auto px-6 pt-32 pb-28">
-
-        <a href="index.html"
-            class="inline-flex items-center gap-2 text-slate-500 text-sm hover:text-slate-300 transition-colors mb-10 no-underline">
-            ← Retour au portfolio
-        </a>
+    <div class="max-w-4xl mx-auto px-6 pt-32 pb-28">
+        <a href="index.html" class="inline-flex items-center gap-2 text-sm transition-colors mb-10 no-underline" style="color:var(--text-tertiary);" onmouseover="this.style.color='var(--text-primary)'" onmouseout="this.style.color='var(--text-tertiary)'">← Retour au portfolio</a>
 
         <!-- Header -->
-        <div class="mb-12">
-            <div
-                class="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-3xl mb-6">
-                💰</div>
-            <div class="text-xs text-emerald-400 font-mono mb-3 tracking-widest">DATA ENGINEERING — HOMELAB — FINANCE
-            </div>
-            <h1 class="text-4xl font-extrabold text-white mb-4 leading-tight">Finance App : Agrégateur Financier</h1>
-            <p class="text-slate-400 text-lg leading-relaxed">
-                Conception et déploiement d'une architecture 3-tiers pour agréger et analyser toutes mes données
-                financières personnelles.
-                Combine le budgeting d'Actual, des imports automatiques (API & CSV) et la puissance analytique de
-                Metabase.
+        <header class="mb-16 reveal">
+            <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl mb-6" style="background:var(--project-color-dim);border:1px solid rgba(0,255,171,0.2);">💰</div>
+            <div class="text-xs font-mono mb-3 tracking-widest uppercase" style="color:var(--project-color);">DATA ENGINEERING — HOMELAB — FINANCE</div>
+            <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-6 leading-tight" style="letter-spacing:-0.02em;">Finance App : Agrégateur Financier</h1>
+            <p class="text-lg leading-relaxed mb-8" style="color:var(--text-secondary);">
+                Conception et déploiement d'une architecture 3-tiers pour agréger et analyser toutes mes données financières personnelles.
+                Combine le budgeting d'Actual, des imports automatiques (API & CSV) et la puissance analytique de Metabase.
             </p>
-            <div class="flex flex-wrap gap-2 mt-6">
+            <div class="flex flex-wrap gap-2">
                 <span class="tag">Docker Compose</span>
                 <span class="tag">Python</span>
                 <span class="tag">Actual Budget</span>
@@ -262,18 +55,16 @@
                 <span class="tag">SQLite</span>
                 <span class="tag">CCXT API</span>
             </div>
-        </div>
+        </header>
 
-        <div class="mb-12 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl reveal">
-            <img src="images/actual-budget-reports.png" alt="Interface Dashboard Actual Budget" class="w-full h-auto">
+        <div class="mb-20 glass-card overflow-hidden p-1 reveal">
+            <img src="images/actual-budget-reports.png" alt="Interface Dashboard Actual Budget" class="w-full h-auto rounded-2xl" style="border:1px solid rgba(255,255,255,0.05);">
         </div>
-
-        <hr class="border-slate-800 mb-12">
 
         <!-- Contexte -->
-        <section class="mb-12 reveal">
-            <h2 class="text-xl font-bold text-white mb-4">🎯 Objectif du Projet</h2>
-            <p class="text-slate-400 leading-relaxed">
+        <section class="mb-20 reveal">
+            <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3"><span style="color:var(--project-color);">🎯</span> Objectif du Projet</h2>
+            <p class="text-sm leading-relaxed" style="color:var(--text-secondary);">
                 L'objectif était d'obtenir une vision consolidée de mes finances, réparties sur de multiples comptes
                 traditionnels (LCL, BoursoBank) et plateformes modernes (Binance, Revolut, Trade Republic, Wise). La
                 solution devait être sécurisée (données locales via Docker), automatisée au maximum, et fournir des
@@ -282,179 +73,126 @@
         </section>
 
         <!-- Architecture -->
-        <section class="mb-12 reveal">
-            <h2 class="text-xl font-bold text-white mb-6">🏗️ Architecture 3-Tiers</h2>
+        <section class="mb-20 reveal">
+            <h2 class="text-2xl font-bold text-white mb-8">🏗️ Architecture 3-Tiers</h2>
 
             <!-- Architecture Diagram -->
-            <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-6 mb-6">
-                <div class="flex flex-col items-center gap-3 text-center">
-                    <div class="bg-slate-800/60 border border-slate-700 rounded-xl p-4 w-full max-w-md">
-                        <div class="text-xs text-slate-500 font-mono mb-3">Réseau Docker Bridge (`finance-net`)</div>
+            <div class="glass-card p-8 mb-6">
+                <div class="flex flex-col items-center gap-4 text-center">
+                    <div class="rounded-xl p-5 w-full max-w-md" style="background:rgba(255,255,255,0.02);border:1px solid var(--border-glass);">
+                        <div class="text-xs font-mono mb-4 uppercase tracking-wider" style="color:var(--text-tertiary);">Réseau Docker Bridge (`finance-net`)</div>
 
                         <!-- UI Tiers -->
-                        <div class="mb-3">
-                            <div class="arch-box bg-blue-500/10 border-blue-500/30 text-blue-300 text-xs">📱 Actual
-                                Budget Server (Port 5006)<br><span class="font-normal opacity-70">UI Budget & SQLite
-                                    Live</span></div>
+                        <div class="mb-4 flex justify-center">
+                            <div class="arch-box text-xs w-full max-w-xs" style="background:rgba(59,130,246,0.1);border-color:rgba(59,130,246,0.3);color:#3b82f6;">📱 Actual Budget Server (Port 5006)<br><span class="font-normal opacity-70" style="color:var(--text-secondary);">UI Budget & SQLite Live</span></div>
                         </div>
 
                         <!-- Sync Worker Tiers -->
-                        <div class="mb-3 flex flex-col gap-2 items-center">
+                        <div class="mb-4 flex flex-col items-center gap-2">
                             <div class="arch-arrow">↑↓</div>
-                            <div
-                                class="arch-box bg-emerald-500/10 border-emerald-500/30 text-emerald-300 text-xs w-full">
-                                ⚙️ Sync-Worker Python<br>
-                                <span class="font-normal opacity-70">Agrégation CCXT (Binance) & Parsers CSV
-                                    Automatiques</span>
-                            </div>
+                            <div class="arch-box text-xs w-full max-w-xs" style="background:var(--project-color-dim);border-color:rgba(0,255,171,0.3);color:var(--project-color);">⚙️ Sync-Worker Python<br><span class="font-normal opacity-70" style="color:var(--text-secondary);">Agrégation CCXT & Parsers CSV</span></div>
                         </div>
 
                         <!-- Backup / DB -->
-                        <div class="mb-3 flex flex-col gap-2 items-center">
+                        <div class="mb-4 flex flex-col items-center gap-2">
                             <div class="arch-arrow">↓ sqlite3 .backup</div>
-                            <div
-                                class="arch-box bg-yellow-500/10 border-yellow-500/30 text-yellow-300 text-[0.65rem] w-full">
-                                📁 Snapshot Cohérent (Read-Only)</div>
+                            <div class="arch-box text-[0.65rem] w-full max-w-xs" style="background:rgba(250,204,21,0.1);border-color:rgba(250,204,21,0.3);color:#facc15;">📁 Snapshot Cohérent (Read-Only)</div>
                         </div>
 
                         <!-- BI Tiers -->
-                        <div class="mt-3">
-                            <div class="arch-box bg-indigo-500/10 border-indigo-500/30 text-indigo-300 text-xs">📊
-                                Metabase (Port 3000)<br><span class="font-normal opacity-70">Dashboards Analytiques
-                                    BI</span></div>
+                        <div class="mt-4 flex justify-center">
+                            <div class="arch-box text-xs w-full max-w-xs" style="background:rgba(167,139,250,0.1);border-color:rgba(167,139,250,0.3);color:#a78bfa;">📊 Metabase (Port 3000)<br><span class="font-normal opacity-70" style="color:var(--text-secondary);">Dashboards Analytiques BI</span></div>
                         </div>
                     </div>
                 </div>
             </div>
-            <p class="text-slate-500 text-xs text-center">Une architecture conteneurisée robuste protégeant la base en
-                production via un snapshot SQLite pour l'analytique.</p>
+            <p class="text-xs text-center italic" style="color:var(--text-tertiary);">Une architecture conteneurisée robuste protégeant la base en production via un snapshot SQLite pour l'analytique.</p>
         </section>
 
         <!-- Stack Services -->
-        <section class="mb-12 reveal">
-            <h2 class="text-xl font-bold text-white mb-6">📦 Stratégie d'Agrégation Hybride</h2>
+        <section class="mb-20 reveal">
+            <h2 class="text-2xl font-bold text-white mb-8">📦 Stratégie d'Agrégation Hybride</h2>
             <div class="space-y-4">
                 <div class="service-card">
-                    <div class="flex items-center gap-3 mb-2">
-                        <span class="text-xl">🏦</span>
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="text-2xl">🏦</span>
                         <div class="font-bold text-white">Banques FR (LCL, BoursoBank, Revolut)</div>
-                        <span class="tag ml-auto">Native PSD2</span>
+                        <span class="tag ml-auto" style="border-color:rgba(0,255,171,0.3);color:var(--project-color);">Native PSD2</span>
                     </div>
-                    <p class="text-slate-400 text-sm">Intégration via Enable Banking PSD2 directement dans l'interface
-                        d'Actual Budget. Aucune ligne de code requise, synchronisation robuste et native.</p>
+                    <p class="text-sm" style="color:var(--text-secondary);">Intégration via Enable Banking PSD2 directement dans l'interface d'Actual Budget. Aucune ligne de code requise, synchronisation robuste et native.</p>
                 </div>
                 <div class="service-card">
-                    <div class="flex items-center gap-3 mb-2">
-                        <span class="text-xl">₿</span>
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="text-2xl">₿</span>
                         <div class="font-bold text-white">Binance via API</div>
-                        <span class="tag ml-auto">Python CCXT</span>
+                        <span class="tag ml-auto" style="border-color:rgba(0,255,171,0.3);color:var(--project-color);">Python CCXT</span>
                     </div>
-                    <p class="text-slate-400 text-sm">Le worker Python intègre la librairie CCXT pour se connecter en
-                        mode read-only à l'API Binance et synchroniser automatiquement les soldes et transactions.</p>
+                    <p class="text-sm" style="color:var(--text-secondary);">Le worker Python intègre la librairie CCXT pour se connecter en mode read-only à l'API Binance et synchroniser automatiquement les soldes et transactions.</p>
                 </div>
                 <div class="service-card">
-                    <div class="flex items-center gap-3 mb-2">
-                        <span class="text-xl">📁</span>
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="text-2xl">📁</span>
                         <div class="font-bold text-white">Imports Manuels (Trade Republic, Wise...)</div>
-                        <span class="tag ml-auto">CSV Parsing</span>
+                        <span class="tag ml-auto" style="border-color:rgba(0,255,171,0.3);color:var(--project-color);">CSV Parsing</span>
                     </div>
-                    <p class="text-slate-400 text-sm">Pour les institutions sans API ouverte, le worker écoute le
-                        répertoire local `./imports/
-                        <source>/`. Lorsqu'un export CSV est déposé, il est parsé et injecté automatiquement.
-                    </p>
+                    <p class="text-sm" style="color:var(--text-secondary);">Pour les institutions sans API ouverte, le worker écoute le répertoire local <code class="text-white">./imports/&lt;source&gt;/</code>. Lorsqu'un export CSV est déposé, il est parsé et injecté automatiquement.</p>
                 </div>
             </div>
         </section>
 
-        <div class="mb-12 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl reveal">
-            <img src="images/actual%202.webp" alt="Vue détaillée Finance App" class="w-full h-auto">
+        <div class="mb-20 glass-card overflow-hidden p-1 reveal">
+            <img src="images/actual%202.webp" alt="Vue détaillée Finance App" class="w-full h-auto rounded-2xl" style="border:1px solid rgba(255,255,255,0.05);">
         </div>
 
         <!-- Securite & Infra -->
-        <section class="mb-12 reveal">
-            <h2 class="text-xl font-bold text-white mb-6">🛡️ Sécurité & Infrastructure (DevSecOps)</h2>
-            <div class="space-y-4">
+        <section class="mb-20 reveal">
+            <h2 class="text-2xl font-bold text-white mb-8">🛡️ Sécurité & Infrastructure (DevSecOps)</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div class="service-card">
-                    <div class="flex items-center gap-3 mb-2">
-                        <span class="text-xl">🔒</span>
-                        <div class="font-bold text-white">Gestion des Secrets (Secret Zero)</div>
-                        <span class="tag ml-auto">Doppler</span>
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="text-2xl">🔒</span>
+                        <div class="font-bold text-white">Gestion des Secrets</div>
+                        <span class="tag ml-auto" style="border-color:rgba(0,255,171,0.3);color:var(--project-color);">Doppler</span>
                     </div>
-                    <p class="text-slate-400 text-sm">Élimination totale des fichiers <code>.env</code> contenant des données en clair sur le serveur. Utilisation d'un Secret Manager centralisé qui injecte les variables (clés API, accès DB) directement dans la mémoire vive (RAM) des conteneurs via un jeton révocable en lecture seule.</p>
+                    <p class="text-sm" style="color:var(--text-secondary);">Élimination totale des fichiers <code class="text-white">.env</code> contenant des données en clair sur le serveur. Utilisation d'un Secret Manager centralisé qui injecte les variables (clés API, accès DB) directement dans la RAM des conteneurs via un jeton révocable.</p>
                 </div>
                 <div class="service-card">
-                    <div class="flex items-center gap-3 mb-2">
-                        <span class="text-xl">🛡️</span>
-                        <div class="font-bold text-white">Hardening & Réseau Zero Trust</div>
-                        <span class="tag ml-auto">UFW / Fail2Ban / Tailscale</span>
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="text-2xl">🛡️</span>
+                        <div class="font-bold text-white">Réseau Zero Trust</div>
+                        <span class="tag ml-auto" style="border-color:rgba(0,255,171,0.3);color:var(--project-color);">UFW / Tailscale</span>
                     </div>
-                    <p class="text-slate-400 text-sm">Administration du serveur sécurisée par une architecture réseau Zero Trust (VPN Mesh). Durcissement de l'OS avec fermeture des ports standards, règles de pare-feu strictes, déploiement d'un IPS, et authentification exclusivement par clés cryptographiques asymétriques robustes (Ed25519).</p>
+                    <p class="text-sm" style="color:var(--text-secondary);">Administration du serveur sécurisée par une architecture réseau Zero Trust (VPN Mesh). Durcissement de l'OS avec fermeture des ports standards, règles de pare-feu strictes et authentification par clés cryptographiques (Ed25519).</p>
                 </div>
             </div>
         </section>
 
         <!-- Learnings -->
-        <section class="mb-12 reveal">
-            <h2 class="text-xl font-bold text-white mb-4">💡 Défis Techniques & Bonnes Pratiques</h2>
-            <ul class="space-y-3 text-slate-400 text-sm">
-                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> **Intégrité de la Base
-                    (Isolation)** : L'outil BI (Metabase) ne lit pas la base de production pour éviter les "database
-                    locks". Un processus génère un snapshot cohérent à chaque cycle d'agrégation.
-                </li>
-                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> **Réseau Bridge Interne** : Les
-                    conteneurs Docker communiquent via un réseau privé `finance-net` en résolution DNS par nom de
-                    conteneur, minimisant les ports exposés sur la machine hôte.</li>
-                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> **Evolutivité** : Des placeholders
-                    structurés (ex: connecteur Oldubil) sont déjà en place pour intégrer facilement de nouvelles sources
-                    de données à l'avenir.</li>
+        <section class="mb-12 reveal pt-12" style="border-top:1px solid var(--border-glass);">
+            <h2 class="text-xl font-bold text-white mb-6">💡 Défis Techniques & Bonnes Pratiques</h2>
+            <ul class="space-y-4 text-sm" style="color:var(--text-secondary);">
+                <li class="flex gap-4"><span class="mt-0.5" style="color:var(--project-color);">✓</span> <div><strong class="text-white font-medium">Intégrité de la Base (Isolation)</strong> : L'outil BI (Metabase) ne lit pas la base de production pour éviter les "database locks". Un processus génère un snapshot cohérent à chaque cycle d'agrégation.</div></li>
+                <li class="flex gap-4"><span class="mt-0.5" style="color:var(--project-color);">✓</span> <div><strong class="text-white font-medium">Réseau Bridge Interne</strong> : Les conteneurs Docker communiquent via un réseau privé <code class="text-white">finance-net</code> en résolution DNS par nom de conteneur, minimisant les ports exposés sur la machine hôte.</div></li>
+                <li class="flex gap-4"><span class="mt-0.5" style="color:var(--project-color);">✓</span> <div><strong class="text-white font-medium">Evolutivité</strong> : Des placeholders structurés sont déjà en place pour intégrer facilement de nouvelles sources de données à l'avenir.</div></li>
             </ul>
         </section>
 
     </div>
 
-    <footer class="text-center py-10 border-t border-slate-800/60 text-slate-600 text-sm">
-        Christopher Gilleron · Projet Homelab 2026
+    <!-- ===== FOOTER ===== -->
+    <footer class="text-center py-12 mt-20" style="border-top:1px solid var(--border-glass);background:rgba(255,255,255,0.01);">
+        <p class="text-[10px] mb-2" style="color:var(--text-tertiary);">© 2026 Christopher Gilleron · Tous droits réservés</p>
+        <p class="text-[10px]" style="color:var(--text-secondary);">Projet Homelab 2026</p>
     </footer>
 
-    <!-- ===== BOUTON RETOUR EN HAUT ===== -->
-    <div id="back-to-top" title="Retour en haut">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
-        </svg>
-    </div>
+    <div id="back-to-top" title="Retour en haut"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg></div>
 
     <script>
-        function handleScroll() {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            document.getElementById("progress-bar").style.width = scrolled + "%";
-
-            const btt = document.getElementById("back-to-top");
-            if (winScroll > 400) { btt.classList.add("show"); } else { btt.classList.remove("show"); }
-        }
-
-        const revealCallback = (entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    observer.unobserve(entry.target);
-                }
-            });
-        };
-
-        const revealObserver = new IntersectionObserver(revealCallback, { threshold: 0.1 });
-
-        document.addEventListener('DOMContentLoaded', () => {
-            document.body.classList.add('loaded');
-            document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-            document.getElementById("back-to-top").addEventListener("click", () => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        });
-
-        window.onscroll = handleScroll;
+        function handleScroll(){const w=document.body.scrollTop||document.documentElement.scrollTop;const h=document.documentElement.scrollHeight-document.documentElement.clientHeight;document.getElementById("progress-bar").style.width=(w/h)*100+"%";const b=document.getElementById("back-to-top");w>400?b.classList.add("show"):b.classList.remove("show");}
+        const revealObserver=new IntersectionObserver((entries,observer)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('active');observer.unobserve(e.target);}});},{threshold:0.1});
+        function initHamburger(){const btn=document.getElementById('hamburger-btn');const menu=document.getElementById('mobile-menu');if(!btn||!menu)return;btn.addEventListener('click',()=>{btn.classList.toggle('active');menu.classList.toggle('open');document.body.style.overflow=menu.classList.contains('open')?'hidden':'';});menu.querySelectorAll('a').forEach(l=>{l.addEventListener('click',()=>{btn.classList.remove('active');menu.classList.remove('open');document.body.style.overflow='';});});}
+        document.addEventListener('DOMContentLoaded',()=>{document.body.classList.add('loaded');document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));document.getElementById("back-to-top").addEventListener("click",()=>{window.scrollTo({top:0,behavior:'smooth'});});initHamburger();});
+        window.onscroll=handleScroll;
     </script>
 </body>
-
 </html>

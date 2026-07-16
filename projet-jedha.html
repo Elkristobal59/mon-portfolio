@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,115 +8,44 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        html { scroll-behavior: smooth; }
-        body { background-color: #0a0f1e; color: #f8fafc; font-family: 'Inter', sans-serif; opacity: 0; transition: opacity 0.8s ease-in-out; }
-        body.loaded { opacity: 1; }
-        .nav-blur { backdrop-filter: blur(16px); background: rgba(10,15,30,0.85); border-bottom: 1px solid rgba(255,255,255,0.06); }
-        .avatar { width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#60a5fa,#34d399);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.95rem;color:#0a0f1e;flex-shrink:0; }
-        .nav-link { color:#94a3b8;transition:color 0.2s;font-size:.875rem;font-weight:500; }
-        .nav-link:hover { color:#f8fafc; }
-        .tag { background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:6px;padding:3px 10px;font-size:.72rem;color:#94a3b8; }
-        
-        /* --- Iframe Dashboard --- */
-        .iframe-container {
-            position: relative;
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            box-shadow: 0 0 60px rgba(59, 130, 246, 0.1);
-            margin-bottom: 2rem;
-        }
-        .iframe-container iframe {
-            display: block;
-            width: 100%;
-            height: 700px;
-            border: none;
-            background: #1e1b2e;
-        }
-
-        /* --- Progress Bar --- */
-        #progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(to right, #60a5fa, #34d399); z-index: 100; width: 0%; transition: width 0.1s ease-out; }
-
-        /* --- Back to Top --- */
-        #back-to-top { position: fixed; bottom: 30px; right: 30px; width: 44px; height: 44px; background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(8px); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #f8fafc; cursor: pointer; z-index: 40; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
-        #back-to-top.show { opacity: 1; visibility: visible; }
-        #back-to-top:hover { transform: translateY(-5px); border-color: #60a5fa; color: #60a5fa; }
-
-        /* --- Reveal Animations --- */
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-
-        /* --- Micro-animations boutons --- */
-        .btn-hover { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
-        .btn-hover:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); }
+        :root{--bg-deep:#050505;--bg-card:rgba(255,255,255,0.03);--border-glass:rgba(255,255,255,0.08);--border-glass-hover:rgba(255,255,255,0.15);--text-primary:#f0f0f0;--text-secondary:#8a8f98;--text-tertiary:#555a63;--accent-cyan:#00e5ff;--accent-emerald:#00ffab;--accent-cyan-dim:rgba(0,229,255,0.12);--accent-emerald-dim:rgba(0,255,171,0.12);--glow-cyan:0 0 20px rgba(0,229,255,0.15);--ease-out-strong:cubic-bezier(0.23,1,0.32,1);--project-color:#3b82f6;--project-color-dim:rgba(59,130,246,0.12);}
+        html{scroll-behavior:smooth;}body{background-color:var(--bg-deep);color:var(--text-primary);font-family:'Inter',sans-serif;opacity:0;transition:opacity 0.6s ease-out;-webkit-font-smoothing:antialiased;}body.loaded{opacity:1;}
+        .nav-blur{backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);background:rgba(5,5,5,0.75);border-bottom:1px solid var(--border-glass);}
+        .avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--accent-cyan),var(--accent-emerald));display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;color:var(--bg-deep);flex-shrink:0;}
+        .nav-link{color:var(--text-secondary);transition:color 0.2s ease;font-size:0.875rem;font-weight:500;}.nav-link:hover{color:var(--text-primary);}
+        .glass-card{background:var(--bg-card);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid var(--border-glass);border-radius:20px;transition:border-color 0.25s ease-out;}.glass-card:hover{border-color:var(--border-glass-hover);}
+        .tag{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:6px;padding:3px 10px;font-size:0.72rem;color:var(--text-secondary);transition:border-color 0.2s ease,box-shadow 0.2s ease,color 0.2s ease;}.tag:hover{border-color:rgba(59,130,246,0.3);color:var(--project-color);box-shadow:0 0 20px rgba(59,130,246,0.15);}
+        .iframe-container{position:relative;border-radius:16px;overflow:hidden;border:1px solid rgba(59,130,246,0.2);box-shadow:0 0 40px rgba(59,130,246,0.05);margin-bottom:2rem;transition:border-color 0.3s ease;}.iframe-container:hover{border-color:rgba(59,130,246,0.4);box-shadow:0 0 40px rgba(59,130,246,0.15);}
+        .iframe-container iframe{display:block;width:100%;height:700px;border:none;background:var(--bg-deep);}
+        #progress-bar{position:fixed;top:0;left:0;height:2px;background:linear-gradient(to right,var(--project-color),var(--accent-cyan));z-index:100;width:0%;transition:width 0.1s ease-out;}
+        #back-to-top{position:fixed;bottom:30px;right:30px;width:44px;height:44px;background:rgba(5,5,5,0.8);border:1px solid var(--border-glass);backdrop-filter:blur(12px);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--text-primary);cursor:pointer;z-index:40;opacity:0;visibility:hidden;transition:opacity 0.3s ease-out,visibility 0.3s ease-out,transform 0.2s var(--ease-out-strong),border-color 0.2s ease;}
+        #back-to-top.show{opacity:1;visibility:visible;}#back-to-top:hover{transform:translateY(-3px);border-color:var(--project-color);color:var(--project-color);}#back-to-top:active{transform:scale(0.95);}
+        .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s var(--ease-out-strong),transform 0.7s var(--ease-out-strong);}.reveal.active{opacity:1;transform:translateY(0);}
+        .btn-hover{transition:transform 0.2s var(--ease-out-strong),box-shadow 0.2s ease;}.btn-hover:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.3);}.btn-hover:active{transform:scale(0.97);}
+        .hamburger-line{display:block;width:20px;height:2px;background:var(--text-secondary);transition:transform 0.3s var(--ease-out-strong),opacity 0.2s ease;}
+        .hamburger.active .hamburger-line:nth-child(1){transform:translateY(6px) rotate(45deg);}.hamburger.active .hamburger-line:nth-child(2){opacity:0;}.hamburger.active .hamburger-line:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+        .mobile-menu{position:fixed;top:64px;left:0;right:0;bottom:0;background:rgba(5,5,5,0.95);backdrop-filter:blur(24px);z-index:45;transform:translateX(100%);transition:transform 0.35s var(--ease-out-strong);overflow-y:auto;}.mobile-menu.open{transform:translateX(0);}
+        @media(prefers-reduced-motion:reduce){.reveal{transition:opacity 0.3s ease;transform:none !important;}.reveal.active{opacity:1;}.mobile-menu{transition:opacity 0.2s ease;transform:none !important;}}
     </style>
 </head>
-
 <body class="relative">
     <div id="progress-bar"></div>
     <!-- ===== NAVBAR ===== -->
-    <nav class="nav-blur fixed top-0 left-0 right-0 z-50">
-        <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-            <a href="index.html" class="flex items-center gap-3 no-underline">
-                <div class="avatar">CG</div>
-                <div class="flex flex-col">
-                    <span class="font-bold text-white hidden sm:block">Christopher Gilleron</span>
-                    <span class="text-[10px] text-slate-500 hidden sm:block">Data Scientist & IA</span>
-                </div>
-            </a>
-            <div class="flex items-center gap-3 sm:gap-5">
-                <a href="index.html" class="nav-link">Accueil</a>
-                
-                <!-- Dropdown Projets -->
-                <div class="relative group">
-                    <button class="nav-link flex items-center gap-1 focus:outline-none py-2" aria-label="Menu Projets">
-                        Projets
-                        <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
-                        </svg>
-                    </button>
-                    <!-- Dropdown Menu -->
-                    <div class="absolute right-0 mt-1 w-56 rounded-xl bg-slate-950/95 border border-slate-800 backdrop-blur-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 p-2 space-y-0.5">
-                        <a href="projet-rag.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">🤖 Assistant RAG V7</a>
-                        <a href="projet-proxmox.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">🏗️ Cloud Privé Proxmox</a>
-                        <a href="projet-immich.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">🖥️ Cloud Immich & NAS</a>
-                        <a href="projet-tesla.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">⚡ Tesla Inventory Bot</a>
-                        <a href="projet-chrisflix.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">🍿 Chrisflix Media Hub</a>
-                        <a href="projet-jedha.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">📊 GDM Ticket Router</a>
-                        <a href="projet-getaround.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">🚗 GetAround Price Predictor</a>
-                    </div>
-                </div>
-
-                <a href="veille.html" class="btn-hover text-emerald-400 text-[10px] sm:text-sm font-semibold hover:text-emerald-300 transition-colors flex items-center gap-1 border border-emerald-500/30 bg-emerald-500/10 px-2 sm:px-3 py-1 rounded-full">
-                    <span>📰</span> TLDR
-                </a>
-                <a href="https://github.com/Elkristobal59" target="_blank" rel="noopener noreferrer"
-                    class="btn-hover px-2 sm:px-3.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-[10px] sm:text-sm font-medium hover:bg-blue-500/20 transition-all">
-                    GitHub
-                </a>
-                <a href="https://www.linkedin.com/in/christophergilleron/" target="_blank" rel="noopener noreferrer"
-                    class="btn-hover px-2 sm:px-3.5 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-[10px] sm:text-sm font-medium hover:bg-sky-500/20 transition-all">
-                    LinkedIn
-                </a>
-            </div>
-        </div>
-    </nav>
+    <nav class="nav-blur fixed top-0 left-0 right-0 z-50"><div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between"><a href="index.html" class="flex items-center gap-3 no-underline"><div class="avatar">CG</div><div class="flex flex-col"><span class="font-bold text-white hidden sm:block" style="font-size:0.9rem;">Christopher Gilleron</span><span class="text-[10px] hidden sm:block" style="color:var(--text-tertiary);">Data & IA Ops</span></div></a><div class="hidden md:flex items-center gap-3 lg:gap-5"><a href="index.html" class="nav-link">Accueil</a><div class="relative group"><button class="nav-link flex items-center gap-1 focus:outline-none py-2" style="color:var(--project-color);font-weight:600;">Projets <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg></button><div class="absolute right-0 mt-1 w-56 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 p-2 space-y-0.5" style="background:rgba(10,10,10,0.95);border:1px solid var(--border-glass);backdrop-filter:blur(20px);"><a href="projet-rag.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">🤖 Assistant RAG V7</a><a href="projet-proxmox.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">🏗️ Cloud Privé Proxmox</a><a href="projet-immich.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">🖥️ Cloud Immich & NAS</a><a href="projet-tesla.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">⚡ Tesla Inventory Bot</a><a href="projet-chrisflix.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">🍿 Chrisflix Media Hub</a><a href="projet-jedha.html" class="block px-3 py-2 rounded-lg text-xs font-semibold no-underline" style="color:var(--project-color);background:var(--project-color-dim);">📊 GDM Ticket Router</a><a href="projet-getaround.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">🚗 GetAround Price Predictor</a><a href="projet-finance.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">💰 Finance App</a></div></div><a href="veille.html" class="btn-hover text-xs font-semibold flex items-center gap-1 px-3 py-1 rounded-full no-underline" style="color:var(--accent-emerald);border:1px solid rgba(0,255,171,0.25);background:rgba(0,255,171,0.06);"><span>📰</span> TLDR</a><a href="https://github.com/Elkristobal59" target="_blank" rel="noopener noreferrer" class="btn-hover px-3 py-1 rounded-full text-xs font-medium no-underline" style="background:var(--accent-cyan-dim);border:1px solid rgba(0,229,255,0.25);color:var(--accent-cyan);">GitHub</a><a href="https://www.linkedin.com/in/christophergilleron/" target="_blank" rel="noopener noreferrer" class="btn-hover px-3 py-1 rounded-full text-xs font-medium no-underline" style="background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.25);color:#38bdf8;">LinkedIn</a></div><button class="hamburger md:hidden flex flex-col gap-1 p-2 focus:outline-none" aria-label="Menu" id="hamburger-btn"><span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span></button></div></nav>
+    <div class="mobile-menu md:hidden" id="mobile-menu"><div class="flex flex-col p-6 gap-4"><a href="index.html" class="text-lg font-semibold no-underline" style="color:var(--text-primary);">Accueil</a><div class="border-t" style="border-color:var(--border-glass);"></div><p class="text-xs font-mono uppercase tracking-widest" style="color:var(--text-tertiary);">Projets</p><a href="projet-rag.html" class="text-sm no-underline" style="color:var(--text-secondary);">🤖 Assistant RAG V7</a><a href="projet-proxmox.html" class="text-sm no-underline" style="color:var(--text-secondary);">🏗️ Cloud Privé Proxmox</a><a href="projet-immich.html" class="text-sm no-underline" style="color:var(--text-secondary);">🖥️ Cloud Immich & NAS</a><a href="projet-tesla.html" class="text-sm no-underline" style="color:var(--text-secondary);">⚡ Tesla Inventory Bot</a><a href="projet-chrisflix.html" class="text-sm no-underline" style="color:var(--text-secondary);">🍿 Chrisflix Media Hub</a><a href="projet-jedha.html" class="text-sm font-semibold no-underline" style="color:var(--project-color);">📊 GDM Ticket Router</a><a href="projet-getaround.html" class="text-sm no-underline" style="color:var(--text-secondary);">🚗 GetAround Price Predictor</a><a href="projet-finance.html" class="text-sm no-underline" style="color:var(--text-secondary);">💰 Finance App</a><div class="border-t" style="border-color:var(--border-glass);"></div><a href="veille.html" class="text-sm font-semibold no-underline" style="color:var(--accent-emerald);">📰 Veille TLDR</a><div class="flex gap-3 mt-4"><a href="https://github.com/Elkristobal59" target="_blank" class="px-4 py-2 rounded-full text-xs font-medium no-underline" style="background:var(--accent-cyan-dim);border:1px solid rgba(0,229,255,0.25);color:var(--accent-cyan);">GitHub</a><a href="https://www.linkedin.com/in/christophergilleron/" target="_blank" class="px-4 py-2 rounded-full text-xs font-medium no-underline" style="background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.25);color:#38bdf8;">LinkedIn</a></div></div></div>
 
     <div class="max-w-4xl mx-auto px-6 pt-32 pb-28">
-
-        <a href="index.html" class="inline-flex items-center gap-2 text-slate-500 text-sm hover:text-slate-300 transition-colors mb-10 no-underline">
-            ← Retour au portfolio
-        </a>
+        <a href="index.html" class="inline-flex items-center gap-2 text-sm transition-colors mb-10 no-underline" style="color:var(--text-tertiary);" onmouseover="this.style.color='var(--text-primary)'" onmouseout="this.style.color='var(--text-tertiary)'">← Retour au portfolio</a>
 
         <!-- Header -->
-        <div class="mb-12">
-            <div class="w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-3xl mb-6">🎫</div>
-            <div class="text-xs text-blue-400 font-mono mb-3 tracking-widest">PROJET FINAL JEDHA — DATA SCIENCE & ARCHITECTURE IA</div>
-            <h1 class="text-4xl font-extrabold text-white mb-4 leading-tight">GDM Aide RUN — AI Ticket Router</h1>
-            <p class="text-slate-400 text-lg leading-relaxed">
+        <header class="mb-16 reveal">
+            <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl mb-6" style="background:var(--project-color-dim);border:1px solid rgba(59,130,246,0.2);">🎫</div>
+            <div class="text-xs font-mono mb-3 tracking-widest uppercase" style="color:var(--project-color);">PROJET FINAL JEDHA — DATA SCIENCE & ARCHITECTURE IA</div>
+            <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-6 leading-tight" style="letter-spacing:-0.02em;">GDM Aide RUN — AI Ticket Router</h1>
+            <p class="text-lg leading-relaxed mb-8" style="color:var(--text-secondary);">
                 Développement d'une application d'intelligence artificielle NLP pour le triage automatisé des tickets de support de la DOSI chez Grain de Malice.
             </p>
-            <div class="flex flex-wrap gap-2 mt-6">
+            <div class="flex flex-wrap gap-2">
                 <span class="tag">Python</span>
                 <span class="tag">Streamlit</span>
                 <span class="tag">NLP</span>
@@ -126,38 +54,36 @@
                 <span class="tag">MLOps</span>
                 <span class="tag">Docker</span>
             </div>
-        </div>
-
-        <hr class="border-slate-800 mb-12">
+        </header>
 
         <!-- Contexte -->
-        <section class="mb-12 reveal">
-            <h2 class="text-xl font-bold text-white mb-4">🎯 Contexte & Objectif</h2>
-            <p class="text-slate-400 leading-relaxed mb-4">
+        <section class="mb-20 reveal">
+            <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3"><span style="color:var(--project-color);">🎯</span> Contexte & Objectif</h2>
+            <p class="text-sm leading-relaxed mb-8" style="color:var(--text-secondary);">
                 En tant que technicien RUN chez Grain de Malice, j'ai constaté le volume important de tickets de support. Dans le cadre de mon projet final pour la double certification Jedha (Data Scientist & Architecte IA), j'ai conçu un modèle NLP capable d'analyser le texte des tickets et de prédire le pôle de résolution adéquat parmi 5 départements métiers, optimisant ainsi le temps de traitement (MTTR).
             </p>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4 text-center">
-                    <div class="text-2xl font-extrabold text-blue-400 mb-1">84%</div>
-                    <div class="text-slate-500 text-xs">Accuracy Globale du modèle</div>
+                <div class="glass-card p-6 text-center">
+                    <div class="text-3xl font-extrabold mb-2" style="color:var(--project-color);">84%</div>
+                    <div class="text-xs" style="color:var(--text-secondary);">Accuracy Globale du modèle</div>
                 </div>
-                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4 text-center">
-                    <div class="text-2xl font-extrabold text-blue-400 mb-1">97%</div>
-                    <div class="text-slate-500 text-xs">Précision sur le Monitoring</div>
+                <div class="glass-card p-6 text-center">
+                    <div class="text-3xl font-extrabold mb-2" style="color:var(--project-color);">97%</div>
+                    <div class="text-xs" style="color:var(--text-secondary);">Précision sur le Monitoring</div>
                 </div>
-                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4 text-center">
-                    <div class="text-2xl font-extrabold text-blue-400 mb-1">5</div>
-                    <div class="text-slate-500 text-xs">Pôles d'expertise métiers couverts</div>
+                <div class="glass-card p-6 text-center">
+                    <div class="text-3xl font-extrabold mb-2" style="color:var(--project-color);">5</div>
+                    <div class="text-xs" style="color:var(--text-secondary);">Pôles d'expertise couverts</div>
                 </div>
             </div>
         </section>
 
         <!-- Dashboard -->
-        <section class="mb-12 reveal">
-            <div class="flex items-center justify-between mb-4">
-                <h2 class="text-xl font-bold text-white">📊 Démo Interactive (Streamlit)</h2>
+        <section class="mb-20 reveal">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-2xl font-bold text-white">📊 Démo Interactive (Streamlit)</h2>
                 <a href="https://huggingface.co/spaces/Elkristobal59/GDM-Aide-RUN-V2" target="_blank"
-                   class="text-xs text-blue-400 border border-blue-500/30 px-3 py-1.5 rounded-full hover:bg-blue-500/10 transition-all no-underline">
+                   class="btn-hover text-xs font-medium px-4 py-2 rounded-full no-underline transition-colors" style="color:var(--project-color);border:1px solid rgba(59,130,246,0.3);background:var(--project-color-dim);">
                     ↗ Ouvrir sur Hugging Face
                 </a>
             </div>
@@ -169,18 +95,18 @@
                     allow="fullscreen">
                 </iframe>
             </div>
-            <p class="text-slate-600 text-xs text-center mt-3">
+            <p class="text-xs text-center mt-4 italic" style="color:var(--text-tertiary);">
                 L'application est hébergée sur Hugging Face Spaces. Le chargement peut prendre quelques secondes.
             </p>
         </section>
 
         <!-- Choix Stratégiques -->
-        <section class="mb-12 reveal">
-            <h2 class="text-xl font-bold text-white mb-4">💡 Choix Stratégiques : Réalisme Métier vs. "Vanity Metrics"</h2>
-            <p class="text-slate-400 leading-relaxed mb-4">
-                Une accuracy globale de <strong>84%</strong> a été obtenue, avec de fortes disparités selon les pôles (ex: <strong>97% pour le Monitoring</strong>, mais ~45% pour Commerce, Data et Finance). Un profil junior pourrait être tenté de fusionner ces dernières classes pour afficher un score flatteur &gt;90% ("Vanity Metrics"). Voici pourquoi j'ai choisi de maintenir les 5 pôles :
+        <section class="mb-20 reveal">
+            <h2 class="text-2xl font-bold text-white mb-6">💡 Choix Stratégiques : Réalisme Métier vs. "Vanity Metrics"</h2>
+            <p class="text-sm leading-relaxed mb-6" style="color:var(--text-secondary);">
+                Une accuracy globale de <strong class="text-white">84%</strong> a été obtenue, avec de fortes disparités selon les pôles (ex: <strong class="text-white">97% pour le Monitoring</strong>, mais ~45% pour Commerce, Data et Finance). Un profil junior pourrait être tenté de fusionner ces dernières classes pour afficher un score flatteur >90% ("Vanity Metrics"). Voici pourquoi j'ai choisi de maintenir les 5 pôles :
             </p>
-            <ul class="text-slate-400 space-y-3 pl-5 list-disc">
+            <ul class="space-y-4 pl-5 list-disc text-sm" style="color:var(--text-secondary);">
                 <li>
                     <strong class="text-white">Valeur Métier :</strong> L'objectif est de faire gagner du temps au support N1. Si l'IA route tout vers un pôle générique "Support", l'équipe devra toujours trier manuellement. Conserver les classes métier garde le produit pertinent.
                 </li>
@@ -191,169 +117,141 @@
         </section>
 
         <!-- Storytelling Diagnostic -->
-        <section class="mb-12 reveal">
-            <h2 class="text-xl font-bold text-white mb-6">🔬 Chronique d'un Diagnostic : Le Sauvetage des Classes Minoritaires</h2>
+        <section class="mb-20 reveal">
+            <h2 class="text-2xl font-bold text-white mb-8">🔬 Chronique d'un Diagnostic : Le Sauvetage des Classes Minoritaires</h2>
             
             <div class="space-y-6">
                 <!-- Constat -->
-                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 relative overflow-hidden transition-all hover:bg-slate-800/50">
-                    <div class="absolute top-0 left-0 w-1 h-full bg-red-500/60"></div>
+                <div class="glass-card p-6 relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-1 h-full" style="background:rgba(239,68,68,0.8);"></div>
                     <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
-                        <span class="text-red-400">1.</span> Le Constat : L'illusion d'un modèle parfait
+                        <span style="color:#ef4444;">1.</span> Le Constat : L'illusion d'un modèle parfait
                     </h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">
-                        Lors du premier passage en production (V3), un ticket explicitement "MONITORING" a été classé en "RUN" avec 100% de confiance. L'analyse a révélé un biais systémique sévère : le modèle prédisait "RUN" pour la majorité des cas, ignorant presque totalement les 4 autres classes métier, malgré l'utilisation de <code>class_weight='balanced'</code>.
+                    <p class="text-sm leading-relaxed" style="color:var(--text-secondary);">
+                        Lors du premier passage en production (V3), un ticket explicitement "MONITORING" a été classé en "RUN" avec 100% de confiance. L'analyse a révélé un biais systémique sévère : le modèle prédisait "RUN" pour la majorité des cas, ignorant presque totalement les 4 autres classes métier, malgré l'utilisation de <code class="text-white">class_weight='balanced'</code>.
                     </p>
                 </div>
 
                 <!-- L'Enquête -->
-                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 relative overflow-hidden transition-all hover:bg-slate-800/50">
-                    <div class="absolute top-0 left-0 w-1 h-full bg-blue-500/60"></div>
+                <div class="glass-card p-6 relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-1 h-full" style="background:rgba(59,130,246,0.8);"></div>
                     <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
-                        <span class="text-blue-400">2.</span> L'Enquête : Le piège du déséquilibre (Imbalanced Data)
+                        <span style="color:var(--project-color);">2.</span> L'Enquête : Le piège du déséquilibre (Imbalanced Data)
                     </h3>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                    <p class="text-sm leading-relaxed mb-4" style="color:var(--text-secondary);">
                         L'exploration des données (EDA) a permis de lever le voile sur le problème :
                     </p>
-                    <ul class="text-slate-400 text-sm space-y-3 pl-5 list-disc">
-                        <li>La distribution des classes présentait un <strong>déséquilibre massif de 13:1</strong> entre les catégories les plus et moins représentées.</li>
+                    <ul class="text-sm space-y-3 pl-5 list-disc" style="color:var(--text-secondary);">
+                        <li>La distribution des classes présentait un <strong class="text-white">déséquilibre massif de 13:1</strong> entre les catégories les plus et moins représentées.</li>
                         <li>Les classes minoritaires comme "DATA" ou "FINANCE" étaient écrasées par le volume des tickets plus courants.</li>
                         <li>L'algorithme de classification (LightGBM) finissait par minimiser son erreur en prédisant mathématiquement les classes dominantes.</li>
                     </ul>
                 </div>
 
                 <!-- La Solution -->
-                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 relative overflow-hidden transition-all hover:bg-slate-800/50">
-                    <div class="absolute top-0 left-0 w-1 h-full bg-emerald-500/60"></div>
+                <div class="glass-card p-6 relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-1 h-full" style="background:rgba(16,185,129,0.8);"></div>
                     <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
-                        <span class="text-emerald-400">3.</span> Le Tour de Force : SMOTE & Embeddings DistilBERT
+                        <span style="color:var(--accent-emerald);">3.</span> Le Tour de Force : SMOTE & Embeddings DistilBERT
                     </h3>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
-                        La solution technique (V4) a consisté à intégrer <strong>SMOTE (Synthetic Minority Over-sampling Technique)</strong>. 
-                        <strong>Comment ça marche ?</strong> Au lieu de simplement dupliquer les tickets existants (oversampling naïf), SMOTE génère de nouveaux exemples synthétiques en interpolant les caractéristiques des tickets des classes minoritaires directement dans l'espace vectoriel dense créé par notre modèle de langage NLP (<strong>DistilBERT</strong>).
+                    <p class="text-sm leading-relaxed mb-4" style="color:var(--text-secondary);">
+                        La solution technique (V4) a consisté à intégrer <strong class="text-white">SMOTE (Synthetic Minority Over-sampling Technique)</strong>. 
+                        <strong class="text-white">Comment ça marche ?</strong> Au lieu de simplement dupliquer les tickets existants (oversampling naïf), SMOTE génère de nouveaux exemples synthétiques en interpolant les caractéristiques des tickets des classes minoritaires directement dans l'espace vectoriel dense créé par notre modèle de langage NLP (<strong class="text-white">DistilBERT</strong>).
                     </p>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                        Ce rééquilibrage mathématique a permis de passer de 10 668 exemples biaisés à plus de <strong>31 310 exemples parfaitement équilibrés</strong> pour l'entraînement. En parallèle, j'ai implémenté un système de <strong>Garde-fous (Guardrails) MLOps</strong> qui divise le score de validation par deux si une classe tombe sous les 10% de rappel (Recall), interdisant ainsi au modèle de sacrifier un pôle métier pour gonfler son score de précision.
+                    <p class="text-sm leading-relaxed mb-6" style="color:var(--text-secondary);">
+                        Ce rééquilibrage mathématique a permis de passer de 10 668 exemples biaisés à plus de <strong class="text-white">31 310 exemples parfaitement équilibrés</strong> pour l'entraînement. En parallèle, j'ai implémenté un système de <strong class="text-white">Garde-fous (Guardrails) MLOps</strong> qui divise le score de validation par deux si une classe tombe sous les 10% de rappel (Recall), interdisant ainsi au modèle de sacrifier un pôle métier pour gonfler son score de précision.
                     </p>
                     
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="bg-slate-950/50 rounded-lg p-4 border border-slate-800/80">
-                            <div class="text-xs text-slate-500 uppercase tracking-wider mb-1 font-semibold">Sans SMOTE (V3)</div>
-                            <div class="text-xl font-bold text-red-400/90 tracking-tight">Recall Monitoring : ~0%</div>
+                        <div class="p-4 rounded-xl" style="background:rgba(0,0,0,0.4);border:1px solid rgba(239,68,68,0.2);">
+                            <div class="text-xs font-mono mb-1 uppercase tracking-wider font-semibold" style="color:var(--text-tertiary);">Sans SMOTE (V3)</div>
+                            <div class="text-xl font-bold tracking-tight" style="color:#ef4444;">Recall Monitoring : ~0%</div>
                         </div>
-                        <div class="bg-slate-950/50 rounded-lg p-4 border border-slate-800/80">
-                            <div class="text-xs text-slate-500 uppercase tracking-wider mb-1 font-semibold">Avec SMOTE (V4)</div>
-                            <div class="text-xl font-bold text-emerald-400 tracking-tight">Recall Monitoring : 98.7%</div>
+                        <div class="p-4 rounded-xl" style="background:rgba(0,0,0,0.4);border:1px solid rgba(16,185,129,0.2);">
+                            <div class="text-xs font-mono mb-1 uppercase tracking-wider font-semibold" style="color:var(--text-tertiary);">Avec SMOTE (V4)</div>
+                            <div class="text-xl font-bold tracking-tight" style="color:var(--accent-emerald);">Recall Monitoring : 98.7%</div>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <div class="mt-6 flex items-start gap-3 bg-blue-500/5 border border-blue-500/10 rounded-xl p-4 text-sm text-slate-400">
+            <div class="mt-6 flex items-start gap-4 rounded-xl p-5" style="background:var(--project-color-dim);border:1px solid rgba(59,130,246,0.2);">
                 <div class="text-xl">💡</div>
-                <p>
+                <p class="text-sm leading-relaxed" style="color:var(--text-primary);">
                     L'amélioration des frontières de décision a légèrement augmenté l'empreinte du modèle exporté (de 2 Mo à 8.7 Mo). Un compromis assumé et parfaitement acceptable face aux 540 Mo d'un pipeline non optimisé.
                 </p>
             </div>
         </section>
 
         <!-- Stack -->
-        <section class="mb-12 reveal">
-            <h2 class="text-xl font-bold text-white mb-6">🛠️ Architecture & Pipeline IA</h2>
-            <div class="space-y-3 text-slate-400 text-sm">
-                <div class="flex gap-3 bg-slate-900/50 border border-slate-800 rounded-xl p-4">
-                    <span class="text-blue-400 font-bold text-lg leading-none">1.</span>
-                    <div><span class="text-white font-semibold">Extraction Sémantique (DistilBERT)</span> — Finie l'époque du TF-IDF basique. Les textes des tickets sont vectorisés par le Transformer DistilBERT (Multilingual) via l'extraction du tenseur <code>[CLS]</code>, permettant de capturer le contexte et le sens profond de la phrase, au-delà de la simple présence de mots-clés.</div>
+        <section class="mb-20 reveal">
+            <h2 class="text-2xl font-bold text-white mb-8">🛠️ Architecture & Pipeline IA</h2>
+            <div class="space-y-4">
+                <div class="glass-card p-5 flex gap-4">
+                    <span class="font-bold text-xl leading-none" style="color:var(--project-color);">1.</span>
+                    <div class="text-sm" style="color:var(--text-secondary);"><span class="text-white font-semibold block mb-1">Extraction Sémantique (DistilBERT)</span> Finie l'époque du TF-IDF basique. Les textes des tickets sont vectorisés par le Transformer DistilBERT (Multilingual) via l'extraction du tenseur <code class="text-white">[CLS]</code>, permettant de capturer le contexte et le sens profond de la phrase, au-delà de la simple présence de mots-clés.</div>
                 </div>
-                <div class="flex gap-3 bg-slate-900/50 border border-slate-800 rounded-xl p-4">
-                    <span class="text-blue-400 font-bold text-lg leading-none">2.</span>
-                    <div><span class="text-white font-semibold">Rééquilibrage (SMOTE)</span> — Application de l'algorithme SMOTE sur l'espace d'embeddings généré. Cette étape corrige l'Imbalanced Data en générant synthétiquement des points de données afin d'égaliser la représentation de tous les départements (classes de tickets) avant l'apprentissage.</div>
+                <div class="glass-card p-5 flex gap-4">
+                    <span class="font-bold text-xl leading-none" style="color:var(--project-color);">2.</span>
+                    <div class="text-sm" style="color:var(--text-secondary);"><span class="text-white font-semibold block mb-1">Rééquilibrage (SMOTE)</span> Application de l'algorithme SMOTE sur l'espace d'embeddings généré. Cette étape corrige l'Imbalanced Data en générant synthétiquement des points de données afin d'égaliser la représentation de tous les départements (classes de tickets) avant l'apprentissage.</div>
                 </div>
-                <div class="flex gap-3 bg-slate-900/50 border border-slate-800 rounded-xl p-4">
-                    <span class="text-blue-400 font-bold text-lg leading-none">3.</span>
-                    <div><span class="text-white font-semibold">Classification (LightGBM)</span> — Les vecteurs rééquilibrés nourrissent un classifieur gradient boosting LightGBM, un modèle très puissant choisi pour sa rapidité d'inférence exceptionnelle et sa robustesse sur des frontières de décision complexes, produisant des probabilités d'appartenance claires via Softmax.</div>
+                <div class="glass-card p-5 flex gap-4">
+                    <span class="font-bold text-xl leading-none" style="color:var(--project-color);">3.</span>
+                    <div class="text-sm" style="color:var(--text-secondary);"><span class="text-white font-semibold block mb-1">Classification (LightGBM)</span> Les vecteurs rééquilibrés nourrissent un classifieur gradient boosting LightGBM, un modèle très puissant choisi pour sa rapidité d'inférence exceptionnelle et sa robustesse sur des frontières de décision complexes, produisant des probabilités d'appartenance claires via Softmax.</div>
                 </div>
-                <div class="flex gap-3 bg-slate-900/50 border border-slate-800 rounded-xl p-4">
-                    <span class="text-blue-400 font-bold text-lg leading-none">4.</span>
-                    <div><span class="text-white font-semibold">Déploiement MLOps (Streamlit / Docker)</span> — L'application a été encapsulée dans un conteneur Docker. Une surcharge intelligente de la sérialisation Python permet de limiter la taille de l'artefact en mémoire à seulement 8.7 Mo, le rendant prêt pour un hébergement cloud fluide.</div>
+                <div class="glass-card p-5 flex gap-4">
+                    <span class="font-bold text-xl leading-none" style="color:var(--project-color);">4.</span>
+                    <div class="text-sm" style="color:var(--text-secondary);"><span class="text-white font-semibold block mb-1">Déploiement MLOps (Streamlit / Docker)</span> L'application a été encapsulée dans un conteneur Docker. Une surcharge intelligente de la sérialisation Python permet de limiter la taille de l'artefact en mémoire à seulement 8.7 Mo, le rendant prêt pour un hébergement cloud fluide.</div>
                 </div>
             </div>
         </section>
 
         <!-- Perspectives d'Amélioration -->
-        <section class="mb-12 reveal">
-            <h2 class="text-xl font-bold text-white mb-6">🚀 Perspectives & Axes d'Amélioration</h2>
-            <p class="text-slate-400 leading-relaxed mb-6">
+        <section class="mb-12 reveal pt-12" style="border-top:1px solid var(--border-glass);">
+            <h2 class="text-2xl font-bold text-white mb-6">🚀 Perspectives & Axes d'Amélioration</h2>
+            <p class="text-sm leading-relaxed mb-8" style="color:var(--text-secondary);">
                 Bien que cette V4 rééquilibrée représente un produit industriellement viable et déployable (MVP), la posture du Data Scientist est d'itérer. Plusieurs pistes permettraient de franchir la barrière des 84% d'Accuracy, notamment sur le triage des tickets fonctionnels :
             </p>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-5 hover:border-slate-600 transition-all">
-                    <div class="text-2xl mb-3">🧬</div>
+                <div class="glass-card p-6">
+                    <div class="text-2xl mb-4">🧬</div>
                     <h3 class="text-white font-bold mb-2">Features Engineering Hybride</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Le texte a ses limites sémantiques. Injecter des métadonnées structurées dans le modèle LightGBM (département du créateur, ancienneté, heure de création) permettrait de facilement départager "Commerce" et "Finance" en cas de texte ambigu.</p>
+                    <p class="text-sm leading-relaxed" style="color:var(--text-secondary);">Le texte a ses limites sémantiques. Injecter des métadonnées structurées dans le modèle LightGBM (département du créateur, ancienneté, heure de création) permettrait de facilement départager "Commerce" et "Finance" en cas de texte ambigu.</p>
                 </div>
-                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-5 hover:border-slate-600 transition-all">
-                    <div class="text-2xl mb-3">🔄</div>
+                <div class="glass-card p-6">
+                    <div class="text-2xl mb-4">🔄</div>
                     <h3 class="text-white font-bold mb-2">Feedback Loop (Active Learning)</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Créer une boucle de rétroaction dans l'interface de l'ITSM : si un technicien support corrige la prédiction de l'IA (ex: reclasse de Data vers Finance), ce ticket est flaggué et vient enrichir le dataset du prochain cycle de réentraînement.</p>
+                    <p class="text-sm leading-relaxed" style="color:var(--text-secondary);">Créer une boucle de rétroaction dans l'interface de l'ITSM : si un technicien support corrige la prédiction de l'IA (ex: reclasse de Data vers Finance), ce ticket est flaggué et vient enrichir le dataset du prochain cycle de réentraînement.</p>
                 </div>
-                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-5 hover:border-slate-600 transition-all">
-                    <div class="text-2xl mb-3">🤖</div>
+                <div class="glass-card p-6">
+                    <div class="text-2xl mb-4">🤖</div>
                     <h3 class="text-white font-bold mb-2">Fine-Tuning du LLM (LoRA)</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Actuellement, DistilBERT est utilisé "sur étagère" comme extracteur de traits. En appliquant un Fine-Tuning paramétrique (PEFT/LoRA) directement sur le vocabulaire ultra-spécifique de l'entreprise, les embeddings générés seraient beaucoup plus distinctifs.</p>
+                    <p class="text-sm leading-relaxed" style="color:var(--text-secondary);">Actuellement, DistilBERT est utilisé "sur étagère" comme extracteur de traits. En appliquant un Fine-Tuning paramétrique (PEFT/LoRA) directement sur le vocabulaire ultra-spécifique de l'entreprise, les embeddings générés seraient beaucoup plus distinctifs.</p>
                 </div>
-                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-5 hover:border-slate-600 transition-all">
-                    <div class="text-2xl mb-3">🎯</div>
+                <div class="glass-card p-6">
+                    <div class="text-2xl mb-4">🎯</div>
                     <h3 class="text-white font-bold mb-2">Classification Hiérarchique</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Séparer le problème : un Modèle A "binaire" très simple (Machine vs Humain) pour isoler le Monitoring avec 99.9% de précision. Puis un Modèle B, spécialisé uniquement sur le vocabulaire humain pour séparer RUN, Commerce, Data et Finance.</p>
+                    <p class="text-sm leading-relaxed" style="color:var(--text-secondary);">Séparer le problème : un Modèle A "binaire" très simple (Machine vs Humain) pour isoler le Monitoring avec 99.9% de précision. Puis un Modèle B, spécialisé uniquement sur le vocabulaire humain pour séparer RUN, Commerce, Data et Finance.</p>
                 </div>
             </div>
         </section>
 
     </div>
 
-    <footer class="text-center py-10 border-t border-slate-800/60 text-slate-600 text-sm">
-        Christopher Gilleron · Hébergé sur Vercel
+    <!-- ===== FOOTER ===== -->
+    <footer class="text-center py-12 mt-20" style="border-top:1px solid var(--border-glass);background:rgba(255,255,255,0.01);">
+        <p class="text-[10px] mb-2" style="color:var(--text-tertiary);">© 2026 Christopher Gilleron · Tous droits réservés</p>
+        <p class="text-[10px]" style="color:var(--text-secondary);">Développé avec passion à Lille · Hébergé sur Vercel</p>
     </footer>
 
-    <!-- ===== BOUTON RETOUR EN HAUT ===== -->
-    <div id="back-to-top" title="Retour en haut">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
-        </svg>
-    </div>
+    <div id="back-to-top" title="Retour en haut"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg></div>
 
     <script>
-        function handleScroll() {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            document.getElementById("progress-bar").style.width = scrolled + "%";
-
-            const btt = document.getElementById("back-to-top");
-            if (winScroll > 400) { btt.classList.add("show"); } else { btt.classList.remove("show"); }
-        }
-
-        const revealCallback = (entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    observer.unobserve(entry.target);
-                }
-            });
-        };
-
-        const revealObserver = new IntersectionObserver(revealCallback, { threshold: 0.1 });
-
-        document.addEventListener('DOMContentLoaded', () => {
-            document.body.classList.add('loaded');
-            document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-            document.getElementById("back-to-top").addEventListener("click", () => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        });
-
-        window.onscroll = handleScroll;
+        function handleScroll(){const w=document.body.scrollTop||document.documentElement.scrollTop;const h=document.documentElement.scrollHeight-document.documentElement.clientHeight;document.getElementById("progress-bar").style.width=(w/h)*100+"%";const b=document.getElementById("back-to-top");w>400?b.classList.add("show"):b.classList.remove("show");}
+        const revealObserver=new IntersectionObserver((entries,observer)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('active');observer.unobserve(e.target);}});},{threshold:0.1});
+        function initHamburger(){const btn=document.getElementById('hamburger-btn');const menu=document.getElementById('mobile-menu');if(!btn||!menu)return;btn.addEventListener('click',()=>{btn.classList.toggle('active');menu.classList.toggle('open');document.body.style.overflow=menu.classList.contains('open')?'hidden':'';});menu.querySelectorAll('a').forEach(l=>{l.addEventListener('click',()=>{btn.classList.remove('active');menu.classList.remove('open');document.body.style.overflow='';});});}
+        document.addEventListener('DOMContentLoaded',()=>{document.body.classList.add('loaded');document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));document.getElementById("back-to-top").addEventListener("click",()=>{window.scrollTo({top:0,behavior:'smooth'});});initHamburger();});
+        window.onscroll=handleScroll;
     </script>
 </body>
 </html>

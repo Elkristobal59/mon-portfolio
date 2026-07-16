@@ -1,976 +1,578 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- SEO & Méta-données -->
-    <title>Christopher Gilleron | Data Scientist & Architecte IA — Lille</title>
-    <meta name="description" content="Portfolio de Christopher Gilleron, Data Scientist et Architecte IA basé à Lille (Hauts-de-France). Découvrez mes projets en Machine Learning, IA générative (RAG), MLOps, architecture Cloud et mon expérience chez Grain de Malice.">
-    <meta name="keywords" content="Christopher Gilleron, Data Scientist Lille, Architecte IA, Alternance Data, MLOps, Python, Machine Learning, Data Engineer, Intelligence Artificielle">
-    <meta name="author" content="Christopher Gilleron">
-    <meta name="robots" content="index, follow">
-
-    <!-- Open Graph (Pour un bel affichage sur LinkedIn, Twitter, Slack...) -->
-    <meta property="og:title" content="Christopher Gilleron | Data Scientist & Architecte IA — Lille">
-    <meta property="og:description" content="Portfolio de Christopher Gilleron, Data Scientist basé à Lille. Projets ML, IA générative, Architecture et MLOps.">
-    <meta property="og:type" content="profile">
-    <meta property="og:locale" content="fr_FR">
-
-    <!-- Données Structurées Google (JSON-LD Google Search) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org/",
-      "@type": "Person",
-      "name": "Christopher Gilleron",
-      "jobTitle": "Data Scientist & Architecte IA",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Lille",
-        "addressRegion": "Hauts-de-France",
-        "addressCountry": "FR"
-      },
-      "sameAs": [
-        "https://www.linkedin.com/in/christophergilleron/",
-        "https://github.com/Elkristobal59"
-      ]
-    }
-    </script>
+    <title>Christopher Gilleron | Data Scientist & Architecte IA</title>
+    <meta name="description" content="Portfolio de Christopher Gilleron, Data Scientist et Architecte IA. Découvrez mes projets en Machine Learning, IA générative (RAG), MLOps et architecture Cloud.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        html { scroll-behavior: smooth; }
-        body { background-color: #0a0f1e; color: #f8fafc; font-family: 'Inter', sans-serif; opacity: 0; transition: opacity 0.8s ease-in-out; }
+        :root {
+            /* Adoucissement du fond: passage de #050505 à un gris très sombre élégant */
+            --bg-deep: #0d0d12;
+            --bg-card: rgba(255,255,255,0.03);
+            --border-glass: rgba(255,255,255,0.08);
+            --border-glass-hover: rgba(255,255,255,0.15);
+            --text-primary: #f5f5f7;
+            --text-secondary: #a1a1aa;
+            --text-tertiary: #71717a;
+            --accent-cyan: #00e5ff;
+            --accent-emerald: #00ffab;
+            --ease-apple: cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-primary);
+            font-family: 'Inter', -apple-system, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
         body.loaded { opacity: 1; }
 
+        /* NAVBAR */
         .nav-blur {
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            background: rgba(10, 15, 30, 0.85);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            background: rgba(13, 13, 18, 0.75);
+            border-bottom: 1px solid var(--border-glass);
         }
-
-        .card-hover {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        .nav-link { color: var(--text-secondary); transition: color 0.2s; font-size: 0.875rem; font-weight: 500; }
+        .nav-link:hover { color: var(--text-primary); }
+        .avatar {
+            width: 40px; height: 40px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-emerald));
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 800; font-size: 0.85rem; color: #050505;
         }
+        .btn-hover { transition: transform 0.2s, box-shadow 0.2s; }
+        .btn-hover:hover { transform: translateY(-2px); }
 
-        .card-hover:hover {
-            transform: translateY(-6px);
-        }
-
-        .gradient-text {
-            background: linear-gradient(135deg, #60a5fa, #34d399);
+        /* APPLE TYPOGRAPHY */
+        .hero-title {
+            font-size: clamp(3rem, 10vw, 8rem);
+            font-weight: 900;
+            letter-spacing: -0.04em;
+            line-height: 1.05;
+            background: linear-gradient(180deg, #fff 0%, #a1a1aa 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
+            transform: scale(0.95);
+            opacity: 0;
+            animation: heroIn 1.5s var(--ease-apple) forwards;
         }
+        @keyframes heroIn { to { transform: scale(1); opacity: 1; } }
 
-        .hero-glow {
-            background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(96, 165, 250, 0.15), transparent);
+        /* SCROLLYTELLING TEXT */
+        .scrolly-text-container {
+            height: 250vh; 
         }
-
-        .tag {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 6px;
-            padding: 3px 10px;
-            font-size: 0.72rem;
-            color: #94a3b8;
-        }
-
-        .avatar {
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #60a5fa, #34d399);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 0.95rem;
-            color: #0a0f1e;
-            flex-shrink: 0;
-        }
-
-        .nav-link {
-            color: #94a3b8;
-            transition: color 0.2s;
-            font-size: 0.875rem;
-            font-weight: 500;
-        }
-
-        .nav-link:hover {
-            color: #f8fafc;
-        }
-
-        /* --- Progress Bar --- */
-        #progress-bar {
-            position: fixed;
+        .scrolly-sticky {
+            position: sticky;
             top: 0;
-            left: 0;
-            height: 3px;
-            background: linear-gradient(to right, #60a5fa, #34d399);
-            z-index: 100;
-            width: 0%;
-            transition: width 0.1s ease-out;
-        }
-
-        /* --- Back to Top --- */
-        #back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 44px;
-            height: 44px;
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(8px);
-            border-radius: 50%;
+            height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #f8fafc;
-            cursor: pointer;
-            z-index: 40;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
+            padding: 0 5%;
         }
-
-        #back-to-top.show {
-            opacity: 1;
-            visibility: visible;
+        .scrolly-word {
+            /* Gris très foncé pour le texte non lu (au lieu d'opacité qui rend noir) */
+            color: #3f3f46;
+            transition: color 0.4s var(--ease-apple), transform 0.4s var(--ease-apple);
+            display: inline-block;
+            transform: translateY(10px);
+            margin-right: 0.22em; /* Corrige le problème d'espace manquant */
+            margin-bottom: -0.1em;
         }
-
-        #back-to-top:hover {
-            transform: translateY(-5px);
-            border-color: #60a5fa;
-            color: #60a5fa;
-        }
-
-        /* --- Reveal Animations --- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .reveal.active {
-            opacity: 1;
+        .scrolly-word.lit {
+            /* Blanc doux Apple */
+            color: #f5f5f7;
             transform: translateY(0);
         }
 
-        /* --- Project Filtering --- */
-        .filter-btn {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            color: #94a3b8;
-            padding: 6px 16px;
-            border-radius: 9999px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            transition: all 0.2s;
-            cursor: pointer;
+        /* BENTO BOX GRID */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 24px;
+            max-w: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        @media (min-width: 768px) {
+            .bento-grid { grid-template-columns: repeat(4, 1fr); }
         }
 
-        .filter-btn.active {
-            background: rgba(96, 165, 250, 0.1);
-            border-color: #60a5fa;
-            color: #60a5fa;
-        }
-
-        .project-card {
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        .bento-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border-glass);
+            border-radius: 32px;
+            padding: 40px;
             position: relative;
             overflow: hidden;
-        }
-
-        .project-card::after {
-            content: "";
-            position: absolute;
-            top: 0; left: -100%;
-            width: 50%; height: 100%;
-            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.05), transparent);
-            transform: skewX(-25deg);
-            transition: 0.7s;
-            pointer-events: none;
-        }
-
-        .project-card:hover::after {
-            left: 150%;
-        }
-
-        .project-card:hover {
-            transform: translateY(-8px) scale(1.01);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-        }
-
-        .project-card.hidden {
-            display: none;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.5s var(--ease-apple), background 0.5s ease;
+            transform: translateY(40px) scale(0.98);
             opacity: 0;
-            transform: scale(0.95);
+        }
+        .bento-card.reveal { transform: translateY(0) scale(1); opacity: 1; }
+        .bento-card:hover {
+            transform: scale(1.02) !important;
+            background: rgba(255,255,255,0.04);
+            border-color: rgba(255,255,255,0.15);
+        }
+        /* Spécial pour les cartes avec beaucoup de texte (on annule le scale on hover pour que ce soit lisible) */
+        .bento-card.text-heavy:hover { transform: scale(1) !important; cursor: default; }
+
+        .bento-large { grid-column: span 1; }
+        .bento-medium { grid-column: span 1; }
+        @media (min-width: 768px) {
+            .bento-large { grid-column: span 4; }
+            .bento-medium { grid-column: span 2; }
         }
 
-        /* --- Micro-animations boutons --- */
-        .btn-hover { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
-        .btn-hover:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); }
+        .bento-icon { font-size: 3rem; margin-bottom: 24px; }
+        .bento-title {
+            font-size: 1.75rem; font-weight: 700; letter-spacing: -0.02em;
+            color: #fff; margin-bottom: 12px;
+        }
+        .bento-desc {
+            color: var(--text-secondary); font-size: 1.1rem; line-height: 1.5; font-weight: 500;
+        }
+        .bento-image-bg {
+            position: absolute; top: 0; right: 0; bottom: 0; left: 0;
+            background-size: cover; background-position: center;
+            opacity: 0.1; transition: opacity 0.5s ease; z-index: 0;
+        }
+        .bento-card:hover .bento-image-bg { opacity: 0.2; }
+        .bento-content { position: relative; z-index: 1; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; }
+        
+        .glow-orb {
+            position: absolute; width: 300px; height: 300px; border-radius: 50%;
+            filter: blur(80px); opacity: 0.4; pointer-events: none; z-index: 0;
+        }
+        
+        /* Mobile menu */
+        .mobile-menu{position:fixed;top:64px;left:0;right:0;bottom:0;background:rgba(13,13,18,0.95);backdrop-filter:blur(24px);z-index:45;transform:translateX(100%);transition:transform 0.35s var(--ease-apple);overflow-y:auto;}
+        .mobile-menu.open{transform:translateX(0);}
+        .hamburger-line{display:block;width:20px;height:2px;background:var(--text-secondary);transition:transform 0.3s var(--ease-apple),opacity 0.2s ease;}
+        .hamburger.active .hamburger-line:nth-child(1){transform:translateY(6px) rotate(45deg);}.hamburger.active .hamburger-line:nth-child(2){opacity:0;}.hamburger.active .hamburger-line:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+
+        .footer-divider { border-top: 1px solid var(--border-glass); margin-top: 120px; }
     </style>
 </head>
+<body>
 
-<body class="relative">
-    <div id="progress-bar"></div>
-
-    <!-- ===== NAVBAR ===== -->
+    <!-- NAVBAR -->
     <nav class="nav-blur fixed top-0 left-0 right-0 z-50">
-        <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
             <a href="index.html" class="flex items-center gap-3 no-underline">
                 <div class="avatar">CG</div>
                 <div class="flex flex-col">
-                    <span class="font-bold text-white hidden sm:block">Christopher Gilleron</span>
-                    <span class="text-[10px] text-slate-500 hidden sm:block">Data Scientist & IA</span>
+                    <span class="font-bold text-white hidden sm:block" style="font-size:0.9rem;">Christopher Gilleron</span>
+                    <span class="text-[10px] hidden sm:block" style="color:var(--text-tertiary);">Data & IA Ops</span>
                 </div>
             </a>
-            <div class="flex items-center gap-3 sm:gap-5">
-                <a href="index.html" class="nav-link">Accueil</a>
-                
-                <!-- Dropdown Projets -->
+            <div class="hidden md:flex items-center gap-3 lg:gap-5">
+                <a href="index.html" class="nav-link" style="color:white;">Accueil</a>
                 <div class="relative group">
-                    <button class="nav-link flex items-center gap-1 focus:outline-none py-2" aria-label="Menu Projets">
-                        Projets
-                        <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
-                        </svg>
+                    <button class="nav-link flex items-center gap-1 py-2">
+                        Projets <svg class="w-3 h-3 group-hover:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
                     </button>
-                    <!-- Dropdown Menu -->
-                    <div class="absolute right-0 mt-1 w-56 rounded-xl bg-slate-950/95 border border-slate-800 backdrop-blur-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 p-2 space-y-0.5">
-                        <a href="projet-rag.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">🤖 Assistant RAG V7</a>
-                        <a href="projet-proxmox.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">🏗️ Cloud Privé Proxmox</a>
-                        <a href="projet-immich.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">🖥️ Cloud Immich & NAS</a>
-                        <a href="projet-tesla.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">⚡ Tesla Inventory Bot</a>
-                        <a href="projet-chrisflix.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">🍿 Chrisflix Media Hub</a>
-                        <a href="projet-jedha.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">📊 GDM Ticket Router</a>
-                        <a href="projet-getaround.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">🚗 GetAround Price Predictor</a>
-                        <a href="projet-finance.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">💰 Finance App</a>
+                    <div class="absolute right-0 mt-1 w-56 rounded-2xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 p-2 space-y-0.5" style="background:rgba(20,20,25,0.95); border:1px solid var(--border-glass); backdrop-filter:blur(24px);">
+                        <a href="projet-rag.html" class="block px-4 py-2.5 rounded-xl text-sm font-medium hover:bg-white/10 text-white transition-colors">🤖 Assistant RAG V7</a>
+                        <a href="projet-proxmox.html" class="block px-4 py-2.5 rounded-xl text-sm font-medium hover:bg-white/10 text-white transition-colors">🏗️ Cloud Proxmox</a>
+                        <a href="projet-immich.html" class="block px-4 py-2.5 rounded-xl text-sm font-medium hover:bg-white/10 text-white transition-colors">🖥️ Cloud Immich</a>
+                        <a href="projet-tesla.html" class="block px-4 py-2.5 rounded-xl text-sm font-medium hover:bg-white/10 text-white transition-colors">⚡ Tesla Bot</a>
+                        <a href="projet-chrisflix.html" class="block px-4 py-2.5 rounded-xl text-sm font-medium hover:bg-white/10 text-white transition-colors">🍿 Chrisflix</a>
+                        <a href="projet-jedha.html" class="block px-4 py-2.5 rounded-xl text-sm font-medium hover:bg-white/10 text-white transition-colors">📊 Ticket Router</a>
+                        <a href="projet-getaround.html" class="block px-4 py-2.5 rounded-xl text-sm font-medium hover:bg-white/10 text-white transition-colors">🚗 Price Predictor</a>
+                        <a href="projet-finance.html" class="block px-4 py-2.5 rounded-xl text-sm font-medium hover:bg-white/10 text-white transition-colors">💰 Finance App</a>
                     </div>
                 </div>
-
-                <a href="veille.html" class="btn-hover text-emerald-400 text-[10px] sm:text-sm font-semibold hover:text-emerald-300 transition-colors flex items-center gap-1 border border-emerald-500/30 bg-emerald-500/10 px-2 sm:px-3 py-1 rounded-full">
-                    <span>📰</span> TLDR
+                <a href="veille.html" class="btn-hover text-xs font-semibold flex items-center gap-1 px-4 py-1.5 rounded-full" style="color:var(--accent-emerald); border:1px solid rgba(0,255,171,0.25); background:rgba(0,255,171,0.06);">
+                    <span>📰</span> TLDR Data
                 </a>
+                
+                <!-- Retour des liens sociaux en Desktop -->
                 <a href="https://github.com/Elkristobal59" target="_blank" rel="noopener noreferrer"
-                    class="btn-hover px-2 sm:px-3.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-[10px] sm:text-sm font-medium hover:bg-blue-500/20 transition-all">
+                    class="btn-hover px-3 py-1.5 rounded-full text-xs font-medium no-underline ml-2"
+                    style="background:var(--accent-cyan-dim); border:1px solid rgba(0,229,255,0.25); color:var(--accent-cyan);">
                     GitHub
                 </a>
                 <a href="https://www.linkedin.com/in/christophergilleron/" target="_blank" rel="noopener noreferrer"
-                    class="btn-hover px-2 sm:px-3.5 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-[10px] sm:text-sm font-medium hover:bg-sky-500/20 transition-all">
+                    class="btn-hover px-3 py-1.5 rounded-full text-xs font-medium no-underline"
+                    style="background:rgba(56,189,248,0.08); border:1px solid rgba(56,189,248,0.25); color:#38bdf8;">
                     LinkedIn
                 </a>
             </div>
+            <button class="hamburger md:hidden flex flex-col gap-1 p-2 focus:outline-none" aria-label="Menu" id="hamburger-btn">
+                <span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span>
+            </button>
         </div>
     </nav>
-
-
-
-    <!-- ===== HERO ===== -->
-    <header class="hero-glow pt-36 pb-20 px-6 text-center">
-        <div class="max-w-4xl mx-auto">
-            <div
-                class="inline-block px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono mb-6 tracking-wide">
-                DATA SCIENTIST · ARCHITECTE IA
-            </div>
-            <h1 class="text-5xl sm:text-6xl font-extrabold gradient-text mb-5 leading-tight">
-                Christopher Gilleron
-            </h1>
-            <p class="text-xl text-slate-400 mb-10 max-w-xl mx-auto leading-relaxed">
-                Data Scientist en spécialisation Architecture IA, j'accompagne le cycle de vie de la donnée, de
-                l'ingénierie jusqu'au déploiement de solutions d'Intelligence Artificielle.
-            </p>
-            <div class="flex flex-wrap justify-center gap-3">
-                <span class="tag">Python</span>
-                <span class="tag">SQL</span>
-                <span class="tag">Machine Learning</span>
-                <span class="tag">Deep Learning</span>
-                <span class="tag">LLM</span>
-                <span class="tag">LangChain</span>
-                <span class="tag">Snowflake</span>
-                <span class="tag">Streamlit</span>
-                <span class="tag">Big data</span>
-                <span class="tag">Git</span>
-                <span class="tag">Github</span>
-                <span class="tag">HuggingFace</span>
-                <span class="tag">MLFlow</span>
-                <span class="tag">AWS</span>
-                <span class="tag">FastAPI</span>
+    <div class="mobile-menu md:hidden" id="mobile-menu">
+        <div class="flex flex-col p-6 gap-4">
+            <a href="veille.html" class="text-lg font-bold" style="color:var(--accent-emerald);">📰 Veille TLDR</a>
+            <a href="projet-rag.html" class="text-white font-medium text-lg">🤖 Assistant RAG V7</a>
+            <a href="projet-proxmox.html" class="text-white font-medium text-lg">🏗️ Cloud Privé Proxmox</a>
+            <!-- Retour des liens sociaux en Mobile -->
+            <div class="flex gap-3 mt-4">
+                <a href="https://github.com/Elkristobal59" target="_blank" class="px-4 py-2 rounded-full text-xs font-medium" style="background:var(--accent-cyan-dim);border:1px solid rgba(0,229,255,0.25);color:var(--accent-cyan);">GitHub</a>
+                <a href="https://www.linkedin.com/in/christophergilleron/" target="_blank" class="px-4 py-2 rounded-full text-xs font-medium" style="background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.25);color:#38bdf8;">LinkedIn</a>
             </div>
         </div>
-    </header>
-
-    <!-- ===== CONTENU PRINCIPAL ===== -->
-    <main class="max-w-5xl mx-auto px-6 pb-28">
-
-        <!-- ===== VEILLE DATA (BANNER) ===== -->
-        <section class="mb-16 reveal">
-            <a href="veille.html" id="veille-banner" class="group block relative overflow-hidden rounded-3xl no-underline"
-               style="background: linear-gradient(135deg, rgba(15,23,42,0.95) 0%, rgba(6,22,38,0.98) 100%); border: 1px solid rgba(52,211,153,0.18);">
-
-                <!-- Fond décoratif -->
-                <div class="absolute inset-0 pointer-events-none" 
-                     style="background: radial-gradient(circle at center, rgba(52,211,153,0.08) 0%, transparent 70%);"></div>
-                
-                <!-- Grilles subtiles -->
-                <div class="absolute inset-0 pointer-events-none opacity-[0.03]"
-                     style="background-image: radial-gradient(rgba(255,255,255,0.2) 1px, transparent 1px); background-size: 20px 20px;"></div>
-
-                <div class="relative z-10 flex flex-col items-center text-center p-8 md:p-12">
-                    
-                    <!-- Badge Badge -->
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full mb-6 text-[10px] font-mono tracking-widest uppercase" 
-                         style="background: rgba(52,211,153,0.05); border: 1px solid rgba(52,211,153,0.2); color: #34d399;">
-                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                        Projet Automatisé · Live
-                    </div>
-
-                    <!-- Titre Principal -->
-                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-black text-white mb-4 leading-tight group-hover:scale-[1.02] transition-transform duration-500">
-                        Les News <span style="color:#34d399;">Data & IA</span> de la semaine
-                    </h2>
-
-                    <!-- Description -->
-                    <p class="text-sm md:text-base max-w-2xl mx-auto mb-8 leading-relaxed px-4" style="color:#94a3b8;">
-                        Chaque lundi et jeudi, un pipeline intelligent extrait, traduit et catégorise l'actualité mondiale de 
-                        <span class="text-white font-medium">TLDR Data</span> via <span class="text-white font-medium">Gemini AI</span>. 
-                        Restez à la pointe sans quitter ce portfolio.
-                    </p>
-
-                    <!-- Bouton CTA Central -->
-                    <div class="flex flex-col items-center gap-4">
-                        <div class="btn-hover inline-flex items-center gap-3 px-8 py-3.5 rounded-full bg-emerald-500 text-slate-950 font-bold text-sm transition-all shadow-lg shadow-emerald-500/20 group-hover:shadow-emerald-500/40">
-                            Consulter la veille
-                            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-                            </svg>
-                        </div>
-                        
-                        <!-- Mini Stack -->
-                        <div class="flex items-center gap-4 mt-2 opacity-60">
-                            <span class="text-[10px] font-mono uppercase tracking-tighter" style="color:#64748b;">Powered by</span>
-                            <div class="flex gap-3">
-                                <span class="text-[10px] font-bold" style="color:#60a5fa;">Python</span>
-                                <span class="text-[10px] font-bold" style="color:#a78bfa;">Gemini 3</span>
-                                <span class="text-[10px] font-bold" style="color:#34d399;">GitHub</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Attribution fine en bas -->
-                    <div class="mt-10 pt-6 border-t border-slate-800/50 w-full max-w-lg">
-                        <p class="text-[10px] leading-relaxed italic" style="color:#475569;">
-                            Remerciements à <a href="https://tldr.tech/data" target="_blank" rel="noopener noreferrer" class="underline hover:text-emerald-400 decoration-slate-700" onclick="event.stopPropagation()">TLDR Data</a> pour la curation originale.
-                        </p>
-                    </div>
-                </div>
-            </a>
-        </section>
-
-        <!-- ===== À PROPOS ===== -->
-        <section class="mb-24 reveal">
-            <h2 class="text-sm font-mono text-slate-500 uppercase tracking-widest mb-8">// Mon Parcours & Mon Rôle</h2>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-
-                <!-- Colonne Expérience Professionnelle -->
-                <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-8 relative overflow-hidden group hover:border-blue-500/30 transition-colors">
-                    <!-- Logo Grain de Malice en fond -->
-                    <div class="absolute inset-0 z-0 pointer-events-none opacity-[0.12] grayscale invert group-hover:opacity-[0.2] transition-opacity" 
-                         style="background-image: url('images/Monogramme-logo_Vertical_Noir.webp'); background-size: contain; background-repeat: no-repeat; background-position: center;">
-                    </div>
-                    
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 rounded-full blur-3xl -mr-10 -mt-10">
-                    </div>
-                    
-                    <div class="relative z-10">
-                        <div class="flex items-center gap-4 mb-6">
-                        <div
-                            class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-2xl">
-                            🏢</div>
-                        <div>
-                            <h3 class="text-xl font-bold text-white">
-                                <a href="https://www.graindemalice.fr" target="_blank" class="hover:text-blue-400 transition-colors inline-flex items-center gap-1.5 no-underline">Grain de Malice <span class="text-xs opacity-50 mt-0.5">↗</span></a> 
-                                <span class="text-sm font-normal text-slate-400 ml-1">· Villeneuve-d'Ascq</span>
-                            </h3>
-                            <div class="text-blue-400 font-medium text-sm mt-1">Data Scientist & Technicien RUN</div>
-                        </div>
-                    </div>
-                    <p class="text-slate-300 text-sm leading-relaxed mb-6">
-                        Depuis octobre 2025, j'interviens en alternance avec une double casquette au sein de la DOSI
-                        (équipe RUN et pôle Data/IA), ce qui m'offre une vision à 360° de la donnée et de la fiabilité
-                        applicative :
-                    </p>
-
-                    <div class="space-y-4">
-                        <div
-                            class="bg-slate-800/40 rounded-xl p-4 border border-slate-700/50 transition-colors hover:border-sky-500/30">
-                            <div class="flex items-center justify-between mb-2">
-                                <h4 class="text-white font-semibold text-sm flex items-center gap-2"><span
-                                        class="text-sky-400">🔄</span> Projet Data : Transferts Inter-magasins</h4>
-                                <span
-                                    class="text-[10px] uppercase font-mono text-sky-400 bg-sky-400/10 px-2 py-0.5 rounded border border-sky-400/20 hidden sm:block">Phase
-                                    1</span>
-                            </div>
-                            <p class="text-slate-400 text-xs leading-relaxed mb-4">
-                                Rôle moteur dans l'automatisation de la gestion des stocks de 240 magasins via
-                                <b>Snowflake</b>. L'objectif est d'automatiser pour l'équipe Supply le transfert de stock
-                                dormant vers les zones de forte demande.
-                            </p>
-
-                            <div class="space-y-3">
-                                <div>
-                                    <h5 class="text-white text-[11px] font-semibold mb-1.5 flex items-center gap-1.5">
-                                        <span class="w-1 h-1 rounded-full bg-sky-400"></span> Architecture & Data
-                                        Engineering</h5>
-                                    <ul
-                                        class="text-slate-400 text-[11px] space-y-1.5 leading-relaxed pl-2.5 border-l border-slate-700/50 ml-1">
-                                        <li><b>Création d'une Vue Gold :</b> Socle unique combinant stocks, ventes et
-                                            référentiels produits.</li>
-                                        <li><b>Base dédiée :</b> Migration structurelle vers la base <i>supply app</i>
-                                            pour la mise en production.</li>
-                                    </ul>
-                                </div>
-
-                                <div>
-                                    <h5 class="text-white text-[11px] font-semibold mb-1.5 flex items-center gap-1.5">
-                                        <span class="w-1 h-1 rounded-full bg-sky-400"></span> Modélisation Python &
-                                        Logique Logistique</h5>
-                                    <ul
-                                        class="text-slate-400 text-[11px] space-y-1.5 leading-relaxed pl-2.5 border-l border-slate-700/50 ml-1">
-                                        <li><b>Moteur de croisement analytique :</b> Algorithme de "mariage" entre
-                                            magasins donneurs (rotation lente) et zones de rupture (fort potentiel avant
-                                            décote).</li>
-                                        <li><b>Filtres d'éligibilité dynamiques :</b> Gestion granulaire des catalogues
-                                            (familles stratégiques, accessoires), exclusions saisonnières et calcul de
-                                            la "fenêtre de tir" en magasin.</li>
-                                        <li><b>Anticipation des flux :</b> L'outil intègre intelligemment les commandes
-                                            de réapprovisionnement imminentes tout en jaugeant la profondeur des stocks
-                                            de dépôt.</li>
-                                        <li><b>Optimisation Supply Chain :</b> Implémentation directe de contraintes
-                                            métiers logistiques de terrain (colisage de rentabilité transport minimum,
-                                            vidage de stocks inactifs isolés).</li>
-                                    </ul>
-                                </div>
-
-                                <div>
-                                    <h5 class="text-white text-[11px] font-semibold mb-1.5 flex items-center gap-1.5">
-                                        <span class="w-1 h-1 rounded-full bg-sky-400"></span> Solution & Restitution
-                                    </h5>
-                                    <ul
-                                        class="text-slate-400 text-[11px] space-y-1.5 leading-relaxed pl-2.5 border-l border-slate-700/50 ml-1">
-                                        <li>Dashboard interactif développé en <b>Streamlit</b> pour piloter l'outil,
-                                            automatiser les envois d'emails et l'export CSV.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div
-                            class="bg-slate-800/40 rounded-xl p-4 border border-slate-700/50 transition-colors hover:border-emerald-500/30">
-                            <h4 class="text-white font-semibold text-sm mb-2 flex items-center gap-2"><span
-                                    class="text-emerald-400">⚡</span> Support Applicatif & Fiabilisation</h4>
-                            <p class="text-slate-400 text-xs leading-relaxed mb-3">
-                                Interventions critiques (Fresh Service, Jira) pour assurer l'intégrité des systèmes
-                                E-commerce et Caisse :
-                            </p>
-                            <ul class="text-slate-400 text-[11px] space-y-2 leading-relaxed pl-1">
-                                <li class="flex gap-2"><span class="text-emerald-500 mt-0.5">▹</span> <span><b>Centrik /
-                                            DataPlatform :</b> Identification, correction d'urgence et traitement de
-                                        fond (Jira) des anomalies de flux du PIM vers la Data.</span></li>
-                                <li class="flex gap-2"><span class="text-emerald-500 mt-0.5">▹</span> <span><b>Storeland
-                                            :</b> Requêtes <b>SQL</b> avancées pour certifier l'intégration quotidienne
-                                        et la qualité des ventes de nos affiliés ou Succursales.</span></li>
-                                <li class="flex gap-2"><span class="text-emerald-500 mt-0.5">▹</span> <span><b>Web &
-                                            Fidélité :</b> Supervision proactive d'environnements (Apizr, OneStock,
-                                        Salesforce, Crossmod...).</span></li>
-                            </ul>
-                        </div>
-
-                        <div
-                            class="bg-slate-800/40 rounded-xl p-4 border border-slate-700/50 transition-colors hover:border-purple-500/30">
-                            <h4 class="text-white font-semibold text-sm mb-2 flex items-center gap-2"><span
-                                    class="text-purple-400">🤝</span> Gestion Transverse & Opérationnelle</h4>
-                            <p class="text-slate-400 text-xs leading-relaxed">
-                                Rôle central impliquant une forte collaboration du Run avec l'Offre, la Supply, la Finance et le contrôle de gestion. Prise
-                                en charge autonome de processus récurrents financiers et opérationnels tels que la gestion d'anomalies de
-                                remboursements de cartes cadeaux ou le traitement des commandes tablettes bloquées.
-                            </p>
-                        </div>
-                        </div> <!-- Fin space-y-4 -->
-                    </div> <!-- Fin relative z-10 -->
-                </div> <!-- Fin Colonne Expérience -->
-
-                <!-- Colonne Formation -->
-                <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-8 relative overflow-hidden group hover:border-emerald-500/30 transition-colors">
-                    <!-- Logo JEDHA en fond -->
-                    <div class="absolute inset-0 z-0 pointer-events-none opacity-[0.2] transition-opacity group-hover:opacity-[0.3]" 
-                         style="background-image: url('images/68c2e5378ea7ebd20bb86d79_logo-jedha.webp'); background-size: contain; background-repeat: no-repeat; background-position: center;">
-                    </div>
-                    
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-full blur-3xl -mr-10 -mt-10">
-                    </div>
-
-                    <div class="relative z-10">
-                        <div class="flex items-center gap-4 mb-6">
-                        <div
-                            class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-2xl">
-                            🎓</div>
-                        <div>
-                            <h3 class="text-xl font-bold text-white">
-                                <a href="https://www.jedha.co/formations/formation-data-scientist" target="_blank" class="hover:text-emerald-400 transition-colors inline-flex items-center gap-1.5 no-underline">Jedha Bootcamp <span class="text-xs opacity-50 mt-0.5">↗</span></a>
-                            </h3>
-                            <div class="text-emerald-400 font-medium text-sm mt-1">Formations Data Scientist & Architecte IA
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mb-6 relative pl-4 border-l-2 border-slate-800">
-                        <div class="absolute w-3 h-3 bg-blue-500/40 rounded-full -left-[7px] top-1"></div>
-                        <div class="text-xs font-mono text-blue-400/80 mb-1">OCT 2025 — AOÛT 2026</div>
-                        <h4 class="text-white font-semibold text-sm mb-2">Fullstack Data Scientist (Jedha)</h4>
-                        <p class="text-slate-400 text-[11px] leading-relaxed mb-4">
-                            Formation immersive et technique de <b>450 heures</b> pour maîtriser un projet AI/Data de bout en bout : de l'extraction et l'EDA brutes, jusqu'à la conteneurisation industrielle en Cloud (Demo Day sur jury final).
-                        </p>
-
-                        <div class="space-y-3">
-                            <div class="bg-slate-800/30 rounded-lg p-3 border border-slate-700/50 hover:border-blue-500/30 transition-colors">
-                                <h5 class="text-white text-[11px] font-semibold mb-1 flex items-center gap-1.5"><span class="text-blue-400">📊</span> Data Analysis & Machine Learning</h5>
-                                <p class="text-slate-400 text-[10px] leading-relaxed">Extraction SQL et Web Scraping (<i>BeautifulSoup</i>). Maîtrise des implémentations ML algorithmiques complexes : supervisées (<i>Random Forest, XGBoost</i>) et non-supervisées (<i>KMeans, DBSCAN</i>) via Scikit-Learn.</p>
-                            </div>
-
-                            <div class="bg-slate-800/30 rounded-lg p-3 border border-slate-700/50 hover:border-blue-500/30 transition-colors">
-                                <h5 class="text-white text-[11px] font-semibold mb-1 flex items-center gap-1.5"><span class="text-blue-400">🧠</span> Deep Learning & Intelligence Artificielle</h5>
-                                <p class="text-slate-400 text-[10px] leading-relaxed">Création de réseaux de neurones (Deep Learning) poussés sur <b>TensorFlow/Keras</b> et <b>PyTorch</b>. Implémentation fonctionnelle en traitement d'images (Computer Vision) et en NLP (génération RAG).</p>
-                            </div>
-
-                            <div class="bg-slate-800/30 rounded-lg p-3 border border-slate-700/50 hover:border-blue-500/30 transition-colors">
-                                <h5 class="text-white text-[11px] font-semibold mb-1 flex items-center gap-1.5"><span class="text-blue-400">🚀</span> Engineering Cloud & Déploiement industriel</h5>
-                                <p class="text-slate-400 text-[10px] leading-relaxed">Prise en main des volumes Big Data (<b>Spark</b>). Pilotage Cloud hébergé en <b>AWS</b> (S3, EC2), puis encapsulation MLOps des modèles en APIs sous <b>FastAPI</b>, mises en production et distribuées via <b>Docker</b>.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mb-6 relative pl-4 border-l-2 border-slate-800">
-                        <div class="absolute w-3 h-3 bg-emerald-500/40 rounded-full -left-[7px] top-1"></div>
-                        <div class="text-xs font-mono text-emerald-500/70 mb-1">SEPT 2026 — OCT 2026</div>
-                        <h4 class="text-white font-semibold text-sm mb-2">Spécialisation Architecte IA / IA LEAD (Jedha)</h4>
-                        <p class="text-slate-400 text-[11px] leading-relaxed mb-4">
-                            Programme intensif de <b>150 heures</b> pour ingénieurs Data expérimentés, préparant au leadership en <b>AI Engineering</b> : concevoir, déployer et piloter des systèmes distribués à grande échelle en maîtrisant coûts, conformité et fiabilité.
-                        </p>
-
-                        <div class="space-y-3">
-                            <div class="bg-slate-800/30 rounded-lg p-3 border border-slate-700/50 hover:border-emerald-500/30 transition-colors">
-                                <h5 class="text-white text-[11px] font-semibold mb-1 flex items-center gap-1.5"><span class="text-emerald-400">🏗️</span> Architecture & Infrastructure As Code</h5>
-                                <p class="text-slate-400 text-[10px] leading-relaxed">Conception d'architectures distribuées et scalables. Optimisation du Computing (inférence CPU/GPU, gestion mémoire de gros volumes) et déploiement de workloads sur clusters (<b>AWS, Proxmox, Kubernetes</b>).</p>
-                            </div>
-
-                            <div class="bg-slate-800/30 rounded-lg p-3 border border-slate-700/50 hover:border-emerald-500/30 transition-colors">
-                                <h5 class="text-white text-[11px] font-semibold mb-1 flex items-center gap-1.5"><span class="text-emerald-400">⚙️</span> MLOps & Gouvernance LLM</h5>
-                                <p class="text-slate-400 text-[10px] leading-relaxed">Mise en place de pipelines <b>CI/CD</b> (Jenkins, pytest) et d'entraînement continu (<b>MLflow</b>). Monitoring en production, fiabilisation de l'IA générative (qualité du RAG, sécurisation anti <i>prompt-injection</i>).</p>
-                            </div>
-
-                            <div class="bg-slate-800/30 rounded-lg p-3 border border-slate-700/50 hover:border-emerald-500/30 transition-colors">
-                                <h5 class="text-white text-[11px] font-semibold mb-1 flex items-center gap-1.5"><span class="text-emerald-400">⚖️</span> Stratégie & Soutenance Décideurs</h5>
-                                <p class="text-slate-400 text-[10px] leading-relaxed">Intégration drastique de l'<b>AI Act</b> et du RGPD au design. Pilotage budgétaire <b>FinOps</b> (<i>Buy vs Build</i>). Conception finale d'une architecture complexe défendue devant un jury de décideurs techniques.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="relative pl-4 border-l-2 border-slate-800">
-                        <div class="absolute w-3 h-3 bg-blue-500/40 rounded-full -left-[7px] top-1"></div>
-                        <div class="text-xs font-mono text-blue-400/80 mb-1">OCT / NOV 2026</div>
-                        <h4 class="text-white font-semibold text-sm mb-2">Double Certification d'État</h4>
-                        <p class="text-slate-400 text-xs leading-relaxed mb-3">
-                            Validation et passage de deux titres professionnels reconnus par l'État :
-                        </p>
-                        <ul class="text-slate-400 text-xs space-y-3 leading-relaxed">
-                            <li class="flex flex-col">
-                                <span class="text-slate-200 font-medium flex items-center gap-1.5"><span
-                                        class="text-blue-400">🎓</span> Data Scientist (RNCP35288 Titre Niv. 6)</span>
-                                <span
-                                    class="text-[11px] mt-1 border-l border-slate-700 pl-3 ml-2 text-slate-500">Conception,
-                                    développement et industrialisation de modèles analytiques, Machine Learning, Deep
-                                    learning et architectures Big Data.</span>
-                            </li>
-                            <li class="flex flex-col">
-                                <span class="text-slate-200 font-medium flex items-center gap-1.5"><span
-                                        class="text-blue-400">🎓</span> Architecte en Intelligence Artificielle
-                                    (RNCP38777 Titre Niv. 7)</span>
-                                <span class="text-[11px] mt-1 border-l border-slate-700 pl-3 ml-2 text-slate-500">Design
-                                    de systèmes d'IA complexes, MLOps, déploiement as a service, gouvernance, sécurité
-                                    et optimisation des coûts.</span>
-                            </li>
-                        </ul>
-                    </div> 
-
-                    </div> <!-- Fin relative z-10 -->
-                </div> <!-- Fin Colonne Formation -->
-            </div>
-        </section>
-
-        <!-- ===== PROJETS ===== -->
-        <section id="projets" class="reveal scroll-mt-24">
-            <h2 class="text-sm font-mono text-slate-500 uppercase tracking-widest mb-6">// Mes Projets</h2>
-
-            <!-- Barre de filtrage -->
-            <div class="flex flex-wrap gap-2 mb-10">
-                <button class="filter-btn active" data-filter="all">Tous</button>
-                <button class="filter-btn" data-filter="ia">IA Générative</button>
-                <button class="filter-btn" data-filter="ml">Data & ML</button>
-                <button class="filter-btn" data-filter="infra">Infrastructures</button>
-                <button class="filter-btn" data-filter="scraping">Web Scraping</button>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-
-                <!-- Card Proxmox Migration (NEW) -->
-                <a href="projet-proxmox.html" data-category="infra"
-                    class="project-card card-hover flex flex-col bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden hover:border-emerald-500/50 group no-underline">
-                    <div class="h-40 w-full relative">
-                        <img src="images/lenovo.jpeg" alt="Proxmox Cloud infrastructure" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity drop-shadow-lg">
-                        <div class="absolute inset-0 bg-gradient-to-t from-[#0a0f1e] via-transparent to-transparent"></div>
-                        <div class="absolute -bottom-5 left-6 w-12 h-12 rounded-xl bg-slate-900/50 backdrop-blur-md border border-slate-700/50 flex items-center justify-center text-2xl z-10 shadow-xl">
-                            🏗️</div>
-                    </div>
-                    <div class="p-6 pt-8 flex flex-col flex-1">
-                        <div class="text-xs text-emerald-400 font-mono mb-2 tracking-wide">INFRASTRUCTURE — HOMELAB PRO</div>
-                        <h3 class="text-lg font-bold text-white mb-3 group-hover:text-emerald-300 transition-colors">Migration Cloud Privé & Proxmox</h3>
-                        <p class="text-slate-400 text-sm mb-5 leading-relaxed flex-1">
-                            Modernisation complète de l'infrastructure : passage d'un environnement hybride vers un hyperviseur **Proxmox** dédié. Virtualisation, snapshots et backups automatisés vers NAS.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="tag">Proxmox VE</span>
-                            <span class="tag">Virtualisation</span>
-                            <span class="tag">Docker</span>
-                            <span class="tag">Tailscale Mesh</span>
-                        </div>
-                        <div class="mt-auto text-emerald-400 text-sm font-medium group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
-                            Voir l'infrastructure →
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Card RAG -->
-                <a href="projet-rag.html" data-category="ia"
-                    class="project-card card-hover flex flex-col bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden hover:border-blue-500/50 group no-underline">
-                    <div class="h-40 w-full relative">
-                        <img src="images/cover_rag.png" alt="RAG System Architecture" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity drop-shadow-lg">
-                        <div class="absolute inset-0 bg-gradient-to-t from-[#0a0f1e] via-transparent to-transparent"></div>
-                        <div class="absolute -bottom-5 left-6 w-12 h-12 rounded-xl bg-slate-900/50 backdrop-blur-md border border-slate-700/50 flex items-center justify-center text-2xl z-10 shadow-xl">
-                            🤖</div>
-                    </div>
-                    <div class="p-6 pt-8 flex flex-col flex-1">
-                        <div class="text-xs text-blue-400 font-mono mb-2 tracking-wide">PROJET PERSO — MON RAG IA</div>
-                        <h3 class="text-lg font-bold text-white mb-3 group-hover:text-blue-300 transition-colors">Assistant Documentaire RAG</h3>
-                        <p class="text-slate-400 text-sm mb-5 leading-relaxed flex-1">
-                            Pipeline RAG auto-alimentée. <b>Phase initiale (GPU/MSI)</b> pour l'ingestion massive, puis <b>Migration (CPU/Proxmox)</b> pour une maintenance continue économe et stable.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="tag">Ollama / Mistral</span>
-                            <span class="tag">LangChain</span>
-                            <span class="tag">ChromaDB</span>
-                            <span class="tag">HyDE + Reranker</span>
-                            <span class="tag">Gradio</span>
-                        </div>
-                        <div class="mt-auto text-blue-400 text-sm font-medium group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
-                            Voir le projet →
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Card Immich -->
-                <a href="projet-immich.html" data-category="infra"
-                    class="project-card card-hover flex flex-col bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden hover:border-emerald-500/50 group no-underline">
-                    <div class="h-40 w-full relative">
-                        <img src="images/cover_immich.png" alt="Private Cloud Storage" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity drop-shadow-lg">
-                        <div class="absolute inset-0 bg-gradient-to-t from-[#0a0f1e] via-transparent to-transparent"></div>
-                        <div class="absolute -bottom-5 left-6 w-12 h-12 rounded-xl bg-slate-900/50 backdrop-blur-md border border-slate-700/50 flex items-center justify-center text-2xl z-10 shadow-xl">
-                            🖥️</div>
-                    </div>
-                    <div class="p-6 pt-8 flex flex-col flex-1">
-                        <div class="text-xs text-emerald-400 font-mono mb-2 tracking-wide">PROJET PERSO 'MY GOOGLE PHOTOS'</div>
-                        <h3 class="text-lg font-bold text-white mb-3 group-hover:text-emerald-300 transition-colors">Cloud Privé (NAS Syno + Immich)</h3>
-                        <p class="text-slate-400 text-sm mb-5 leading-relaxed flex-1">
-                            Stack Docker hébergeant 22 ans de souvenirs personnels : plus de <b>300 000 photos</b> et <b>9
-                            000 vidéos</b>, représentant 2 To de stockage. Un véritable "Google Photos" auto-hébergé,
-                            accessible et sécurisé en tout temps via le VPN mesh Tailscale.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="tag">Docker Compose</span>
-                            <span class="tag">Tailscale</span>
-                            <span class="tag">NAS</span>
-                        </div>
-                        <div class="mt-auto text-emerald-400 text-sm font-medium group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
-                            Voir le projet →
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Card Chrisflix -->
-                <a href="projet-chrisflix.html" data-category="infra"
-                    class="project-card card-hover flex flex-col bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden hover:border-blue-500/50 group no-underline">
-                    <div class="h-40 w-full relative">
-                        <img src="images/cover_chrisflix.png" alt="Chrisflix streaming hub dashboard" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity drop-shadow-lg">
-                        <div class="absolute inset-0 bg-gradient-to-t from-[#0a0f1e] via-transparent to-transparent"></div>
-                        <div class="absolute -bottom-5 left-6 w-12 h-12 rounded-xl bg-slate-900/50 backdrop-blur-md border border-slate-700/50 flex items-center justify-center text-2xl z-10 shadow-xl">
-                            🍿</div>
-                    </div>
-                    <div class="p-6 pt-8 flex flex-col flex-1">
-                        <div class="text-xs text-blue-400 font-mono mb-2 tracking-wide">PROJET PERSO — DEVOPS</div>
-                        <h3 class="text-lg font-bold text-white mb-3 group-hover:text-blue-300 transition-colors">Chrisflix : Hub Streaming Automatisé</h3>
-                        <p class="text-slate-400 text-sm mb-5 leading-relaxed flex-1">
-                            Déploiement hybride (Serveur MSI + NAS Synology) d'une stack multimédia orchestrée par Docker. Automatisation complète du cycle de vie des médias.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="tag">Docker Compose</span>
-                            <span class="tag">Jellyfin</span>
-                            <span class="tag">Arrs Stack</span>
-                        </div>
-                        <div class="mt-auto text-blue-400 text-sm font-medium group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
-                            Voir le projet →
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Card Tesla Monitor -->
-                <a href="projet-tesla.html" data-category="scraping"
-                    class="project-card card-hover flex flex-col bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden hover:border-red-500/50 group no-underline">
-                    <div class="h-40 w-full relative">
-                        <img src="images/cover_tesla.png" alt="Tesla inventory monitor bot dashboard" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity drop-shadow-lg">
-                        <div class="absolute inset-0 bg-gradient-to-t from-[#0a0f1e] via-transparent to-transparent"></div>
-                        <div class="absolute -bottom-5 left-6 w-12 h-12 rounded-xl bg-slate-900/50 backdrop-blur-md border border-slate-700/50 flex items-center justify-center text-2xl z-10 shadow-xl">
-                            ⚡</div>
-                    </div>
-                    <div class="p-6 pt-8 flex flex-col flex-1">
-                        <div class="text-xs font-mono mb-2 tracking-wide" style="color:#e31937;">PROJET PERSO — AUTOMATION & ANTI-BOT</div>
-                        <h3 class="text-lg font-bold text-white mb-3 group-hover:text-red-300 transition-colors">Tesla Inventory Monitor</h3>
-                        <p class="text-slate-400 text-sm mb-5 leading-relaxed flex-1">
-                            Bot de surveillance 24/7 de l'inventaire Tesla France. Contourne Akamai Bot Manager via Chrome piloté (nodriver + Xvfb) et notifications Telegram instantanées.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="tag">nodriver</span>
-                            <span class="tag">Akamai Bypass</span>
-                            <span class="tag">Docker</span>
-                            <span class="tag">Telegram</span>
-                        </div>
-                        <div class="mt-auto text-sm font-medium group-hover:translate-x-1 transition-transform inline-flex items-center gap-1" style="color:#e31937;">
-                            Voir le projet →
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Card GDM -->
-                <a href="projet-jedha.html" data-category="ml"
-                    class="project-card card-hover flex flex-col bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden hover:border-blue-500/50 group no-underline">
-                    <div class="h-40 w-full relative">
-                        <img src="images/logo_gdm_bg.png" alt="Grain de Malice automated ticket router" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity drop-shadow-lg">
-                        <div class="absolute inset-0 bg-gradient-to-t from-[#0a0f1e] via-transparent to-transparent"></div>
-                        <div class="absolute -bottom-5 left-6 w-12 h-12 rounded-xl bg-slate-900/50 backdrop-blur-md border border-slate-700/50 flex items-center justify-center text-2xl z-10 shadow-xl">
-                            📊</div>
-                    </div>
-                    <div class="p-6 pt-8 flex flex-col flex-1">
-                        <div class="text-xs text-blue-400 font-mono mb-2 tracking-wide">PROJET JEDHA — DATA / IA</div>
-                        <h3 class="text-lg font-bold text-white mb-3 group-hover:text-blue-300 transition-colors">GDM Aide RUN — AI Ticket Router</h3>
-                        <p class="text-slate-400 text-sm mb-5 leading-relaxed flex-1">
-                            Application IA NLP pour le triage automatisé des tickets de support. Modèle LightGBM optimisant le MTTR des équipes de Grain de Malice.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="tag">NLP</span>
-                            <span class="tag">MLOps</span>
-                            <span class="tag">Streamlit</span>
-                        </div>
-                        <div class="mt-auto text-blue-400 text-sm font-medium group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
-                            Voir le projet →
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Card GetAround -->
-                <a href="projet-getaround.html" data-category="ml"
-                    class="project-card card-hover flex flex-col bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden hover:border-violet-500/50 group no-underline">
-                    <div class="h-40 w-full relative">
-                        <img src="images/cover_getaround.png" alt="GetAround Analytics" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity drop-shadow-lg">
-                        <div class="absolute inset-0 bg-gradient-to-t from-[#0a0f1e] via-transparent to-transparent"></div>
-                        <div class="absolute -bottom-5 left-6 w-12 h-12 rounded-xl bg-slate-900/50 backdrop-blur-md border border-slate-700/50 flex items-center justify-center text-2xl z-10 shadow-xl">
-                            🚗</div>
-                    </div>
-                    <div class="p-6 pt-8 flex flex-col flex-1">
-                        <div class="text-xs text-violet-400 font-mono mb-2 tracking-wide">PROJET ÉCOLE — DATA</div>
-                        <h3 class="text-lg font-bold text-white mb-3 group-hover:text-violet-300 transition-colors">GetAround — Analyse de Prix</h3>
-                        <p class="text-slate-400 text-sm mb-5 leading-relaxed flex-1">
-                            Dashboard interactif d'analyse tarifaire et de prédiction de prix de location de véhicules.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="tag">Streamlit</span>
-                            <span class="tag">ML</span>
-                            <span class="tag">Pandas</span>
-                        </div>
-                        <div class="mt-auto text-violet-400 text-sm font-medium group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
-                            Voir le projet →
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Card Finance App -->
-                <a href="projet-finance.html" data-category="infra"
-                    class="project-card card-hover flex flex-col bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden hover:border-emerald-500/50 group no-underline">
-                    <div class="h-40 w-full relative">
-                        <img src="images/actual-budget-reports.png" alt="Finance App Dashboard" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity drop-shadow-lg">
-                        <div class="absolute inset-0 bg-emerald-900/20 group-hover:bg-emerald-900/40 transition-colors"></div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-[#0a0f1e] via-transparent to-transparent"></div>
-                        <div class="absolute -bottom-5 left-6 w-12 h-12 rounded-xl bg-slate-900/50 backdrop-blur-md border border-slate-700/50 flex items-center justify-center text-2xl z-10 shadow-xl">
-                            💰</div>
-                    </div>
-                    <div class="p-6 pt-8 flex flex-col flex-1">
-                        <div class="text-xs text-emerald-400 font-mono mb-2 tracking-wide">PROJET PERSO — FINANCE & DATA</div>
-                        <h3 class="text-lg font-bold text-white mb-3 group-hover:text-emerald-300 transition-colors">Finance App (Agrégateur)</h3>
-                        <p class="text-slate-400 text-sm mb-5 leading-relaxed flex-1">
-                            Agrégateur financier personnel. Architecture 3-tiers avec budgeting (Actual), worker de synchronisation Python et BI Analytics (Metabase).
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="tag">Actual Budget</span>
-                            <span class="tag">Python CCXT</span>
-                            <span class="tag">Metabase</span>
-                            <span class="tag">Docker</span>
-                        </div>
-                        <div class="mt-auto text-emerald-400 text-sm font-medium group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
-                            Voir le projet →
-                        </div>
-                    </div>
-                </a>
-
-            </div>
-    </main>
-
-    <!-- ===== FOOTER ===== -->
-    <footer class="text-center py-12 border-t border-slate-800/60 mt-20 bg-slate-900/20">
-        <p class="text-[10px] text-slate-600 mb-2">© 2026 Christopher Gilleron · Tous droits réservés</p>
-        <p class="text-[10px] text-slate-500 mb-4 italic max-w-xl mx-auto px-6">
-            Ce site est un projet personnel de veille technologique. Les résumés sont traduits et adaptés à partir de la newsletter <a href="https://tldr.tech" target="_blank" class="underline hover:text-slate-300">TLDR.tech</a>. Soutenez leur travail en vous abonnant à l'original.
-        </p>
-        <p class="text-[10px] text-slate-500">Développé avec passion à Lille · Hébergé sur Vercel · 
-            <span class="inline-flex items-center gap-1.5">
-                <span class="w-1 h-1 rounded-full bg-emerald-500/80 animate-pulse"></span>
-                <span id="view-count" class="font-medium text-slate-400">...</span> vues
-            </span>
-        </p>
-    </footer>
-
-    <!-- ===== BOUTON RETOUR EN HAUT ===== -->
-    <div id="back-to-top" title="Retour en haut">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
-        </svg>
     </div>
 
+    <!-- 1. HERO MASSIF -->
+    <header class="h-screen flex flex-col justify-center items-center text-center relative px-6">
+        <div class="glow-orb" style="background:var(--accent-cyan); top:20%; left:20%;"></div>
+        <div class="glow-orb" style="background:var(--accent-emerald); bottom:20%; right:20%;"></div>
+        
+        <p class="font-mono text-xs uppercase tracking-[0.2em] mb-4 text-white/50" style="animation: heroIn 1s var(--ease-apple) 0.5s both;">
+            Data Scientist · Architecte IA
+        </p>
+        <h1 class="hero-title">Christopher<br>Gilleron</h1>
+        <p class="text-xl md:text-2xl mt-8 font-medium text-white/50 max-w-2xl mx-auto" style="animation: heroIn 1s var(--ease-apple) 0.7s both;">
+            Ingénierie Data & IA pragmatique : concevoir, déployer et fiabiliser des solutions au service direct des métiers.
+        </p>
+    </header>
+
+    <!-- 2. SCROLLYTELLING TEXT -->
+    <section class="scrolly-text-container" id="scrolly-section">
+        <div class="scrolly-sticky">
+            <h2 class="text-4xl md:text-6xl font-bold text-center tracking-tight leading-tight max-w-5xl mx-auto" id="scrolly-text">
+                Double certification d'État en Data Science et Architecture IA. Mon rôle de Product Data Analyst & Coordinateur Support Applicatif ? Garantir l'excellence opérationnelle de notre écosystème retail et déployer des infrastructures intelligentes, toujours au plus proche des équipes métiers.
+            </h2>
+        </div>
+    </section>
+
+    <!-- 3. BENTO BOX GRID PROJETS & EXPERIENCES -->
+    <section class="pt-32 pb-32">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-black text-white tracking-tight mb-4">Parcours & Projets.</h2>
+        </div>
+
+        <div class="bento-grid" id="bento-container">
+            
+            <!-- GRAIN DE MALICE (Bento Large - FULL TEXT) -->
+            <div class="bento-card bento-large text-heavy">
+                <div class="glow-orb" style="background:var(--accent-cyan); top:-100px; left:-100px; opacity:0.1;"></div>
+                <div class="bento-content justify-start">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl" style="background:var(--accent-cyan-dim); border:1px solid rgba(0,229,255,0.2);">🏢</div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-white"><a href="https://www.graindemalice.fr" target="_blank" class="hover:opacity-80 transition-opacity text-white no-underline">Grain de Malice ↗</a></h3>
+                            <div class="text-cyan-400 font-medium mt-1">Product Data Analyst & Coordinateur Support Applicatif</div>
+                        </div>
+                    </div>
+
+                    <p class="text-base text-gray-400 mb-8 leading-relaxed max-w-4xl">
+                        Rôle hybride stratégique au sein de la DOSI (Data, Organisation et Systèmes d'Information). Un équilibre parfait à 50/50 : "Facilitateur" pour l'excellence opérationnelle retail (RUN), et "Bâtisseur" pour valoriser notre patrimoine de données (BUILD).
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- RUN -->
+                        <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <h4 class="text-white font-semibold flex items-center gap-2"><span class="text-emerald-400">⚡</span> Support Applicatif (Run)</h4>
+                            </div>
+                            <p class="text-sm text-gray-400 mb-4 leading-relaxed">
+                                Garant du bon fonctionnement des outils de l'écosystème retail (SAP, Salesforce, Logys, Storeland). Gestion sur <b>FreshService</b>.
+                            </p>
+                            <ul class="text-xs text-gray-400 space-y-2 border-l border-white/10 pl-3">
+                                <li><b>Résolution d'incidents N1 :</b> Point de contact privilégié pour assurer la continuité des opérations en magasin et au siège.</li>
+                                <li><b>SLA & Qualité :</b> Suivi et qualification rigoureuse des tickets de support.</li>
+                                <li><b>Accompagnement :</b> Formation des utilisateurs, rédaction de FAQ et bases de connaissances.</li>
+                                <li><b>Transversalité :</b> Pont technique entre l'équipe RUN et la Data pour la montée en compétence.</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- BUILD -->
+                        <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <h4 class="text-white font-semibold flex items-center gap-2"><span class="text-cyan-400">📊</span> Product Data (Build)</h4>
+                            </div>
+                            <p class="text-sm text-gray-400 mb-4 leading-relaxed">
+                                Véritable traducteur de la donnée pour les métiers, de l'ingestion à la restitution. Gestion des sprints sur <b>Jira</b>.
+                            </p>
+                            <ul class="text-xs text-gray-400 space-y-2 border-l border-white/10 pl-3">
+                                <li><b>Transformation Data :</b> Modélisation de l'état brut jusqu'à la couche "Gold" via <b>Snowflake</b> et <b>dbt</b>.</li>
+                                <li><b>Mini-Apps Métiers :</b> Développement d'applications légères et interactives en <b>Streamlit</b>.</li>
+                                <li><b>Gouvernance & Lineage :</b> Traçabilité des flux et documentation dans <b>Data Galaxy</b>.</li>
+                                <li><b>Data Pipeline :</b> Participation technique ponctuelle à l'ingestion des données.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- JEDHA BOOTCAMP (Bento Large - FULL TEXT) -->
+            <div class="bento-card bento-large text-heavy">
+                <div class="glow-orb" style="background:var(--accent-emerald); bottom:-100px; right:-100px; opacity:0.1;"></div>
+                <div class="bento-content justify-start">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl" style="background:var(--accent-emerald-dim); border:1px solid rgba(0,255,171,0.2);">🎓</div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-white"><a href="https://www.jedha.co/" target="_blank" class="hover:opacity-80 transition-opacity text-white no-underline">Jedha Bootcamp ↗</a></h3>
+                            <div class="text-emerald-400 font-medium mt-1">Formations Data Scientist & Architecte IA</div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Fullstack DS -->
+                        <div class="border-l-2 border-slate-800 pl-4 relative">
+                            <div class="absolute w-3 h-3 bg-blue-500 rounded-full -left-[7px] top-1"></div>
+                            <div class="text-xs font-mono text-blue-400 mb-1">OCT 2025 — AOÛT 2026</div>
+                            <h4 class="text-white font-semibold text-lg mb-2">Fullstack Data Scientist</h4>
+                            <p class="text-sm text-gray-400 mb-4">450 heures (extraction, EDA, conteneurisation Cloud).</p>
+                            
+                            <div class="space-y-3">
+                                <div class="bg-white/5 rounded-xl p-3 border border-white/10">
+                                    <h5 class="text-white text-xs font-semibold mb-1">📊 Data Analysis & ML</h5>
+                                    <p class="text-xs text-gray-400">SQL, BeautifulSoup. Random Forest, XGBoost, KMeans, DBSCAN (Scikit-Learn).</p>
+                                </div>
+                                <div class="bg-white/5 rounded-xl p-3 border border-white/10">
+                                    <h5 class="text-white text-xs font-semibold mb-1">🧠 Deep Learning & IA</h5>
+                                    <p class="text-xs text-gray-400">TensorFlow/Keras et PyTorch. Computer Vision et NLP (Génération RAG).</p>
+                                </div>
+                                <div class="bg-white/5 rounded-xl p-3 border border-white/10">
+                                    <h5 class="text-white text-xs font-semibold mb-1">🚀 Cloud & Déploiement</h5>
+                                    <p class="text-xs text-gray-400">Big Data (Spark). AWS (S3, EC2). MLOps via FastAPI et Docker.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Architecte IA & RNCP -->
+                        <div class="flex flex-col gap-6">
+                            <div class="border-l-2 border-slate-800 pl-4 relative">
+                                <div class="absolute w-3 h-3 bg-emerald-500 rounded-full -left-[7px] top-1"></div>
+                                <div class="text-xs font-mono text-emerald-400 mb-1">SEPT 2026 — OCT 2026</div>
+                                <h4 class="text-white font-semibold text-lg mb-2">Architecte IA Lead</h4>
+                                <p class="text-sm text-gray-400 mb-4">150 heures (systèmes distribués, MLOps, gouvernance).</p>
+                                
+                                <div class="space-y-3">
+                                    <div class="bg-white/5 rounded-xl p-3 border border-white/10">
+                                        <h5 class="text-white text-xs font-semibold mb-1">🏗️ Infrastructure As Code</h5>
+                                        <p class="text-xs text-gray-400">AWS, Proxmox, Kubernetes. Inférence CPU/GPU.</p>
+                                    </div>
+                                    <div class="bg-white/5 rounded-xl p-3 border border-white/10">
+                                        <h5 class="text-white text-xs font-semibold mb-1">⚙️ MLOps & LLM</h5>
+                                        <p class="text-xs text-gray-400">CI/CD (Jenkins), MLflow. Fiabilisation RAG, sécurité anti prompt-injection.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="border-l-2 border-slate-800 pl-4 relative">
+                                <div class="absolute w-3 h-3 bg-indigo-500 rounded-full -left-[7px] top-1"></div>
+                                <div class="text-xs font-mono text-indigo-400 mb-1">OCT / NOV 2026</div>
+                                <h4 class="text-white font-semibold text-lg mb-2">Double Certification d'État</h4>
+                                <ul class="text-xs text-gray-400 space-y-3">
+                                    <li><b>Data Scientist (RNCP35288 Niv. 6) :</b> Conception et industrialisation Big Data.</li>
+                                    <li><b>Architecte IA (RNCP38777 Niv. 7) :</b> Design MLOps, sécurité et coûts.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div> <!-- End of first bento grid -->
+
+        <!-- VEILLE AUTOMATISÉE (Transition Apple-like centerpiece) -->
+        <div class="my-32 px-6 relative flex justify-center items-center">
+            <div class="absolute w-[800px] h-[800px] rounded-full filter blur-[120px] opacity-20 pointer-events-none" style="background:radial-gradient(circle, var(--accent-emerald) 0%, transparent 70%);"></div>
+            
+            <a href="veille.html" class="bento-card text-heavy relative z-10 w-full max-w-5xl mx-auto rounded-[40px] p-12 md:p-24 text-center transition-all duration-700 ease-out hover:scale-[1.02] no-underline block" style="background:rgba(255,255,255,0.02); border:1px solid var(--border-glass); backdrop-filter:blur(24px);">
+                
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-8 text-xs font-mono tracking-widest uppercase mx-auto"
+                     style="background:rgba(0,255,171,0.1); border:1px solid rgba(0,255,171,0.3); color:var(--accent-emerald);">
+                    <span class="w-2 h-2 rounded-full animate-pulse" style="background:var(--accent-emerald);"></span> Live Pipeline
+                </div>
+                
+                <h3 class="text-5xl md:text-7xl font-black text-white mb-8 tracking-tight" style="letter-spacing: -0.03em;">Veille Data & IA.</h3>
+                
+                <p class="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto leading-relaxed font-medium">
+                    Pipeline automatisé de curation technologique. Scraping quotidien des newsletters TLDR en Python, traduction ciblée par l'IA Gemini, et déploiement web continu via GitHub Actions.
+                </p>
+                
+                <div class="mt-12 text-emerald-400 font-semibold text-lg inline-flex items-center gap-2 hover:gap-4 transition-all justify-center">
+                    Découvrir le flux en direct <span>&rarr;</span>
+                </div>
+            </a>
+        </div>
+
+        <div class="bento-grid">
+
+            <!-- RAG V7 (Bento Medium) -->
+            <a href="projet-rag.html" class="bento-card bento-medium group">
+                <div class="bento-image-bg" style="background-image:url('images/Capture_decran_2024-03-31_170701-min.webp');"></div>
+                <div class="glow-orb" style="background:var(--accent-cyan); bottom:-100px; left:-100px; opacity:0.2;"></div>
+                <div class="bento-content">
+                    <div class="bento-icon">🤖</div>
+                    <h3 class="bento-title">Assistant RAG V7.</h3>
+                    <p class="bento-desc">Moteur conversationnel avancé capable de synthétiser des bases de connaissances locales. Stack LangChain, Mistral & ChromaDB.</p>
+                </div>
+            </a>
+
+            <!-- CLOUD PROXMOX (Bento Medium) -->
+            <a href="projet-proxmox.html" class="bento-card bento-medium group">
+                <div class="bento-image-bg" style="background-image:url('images/1_LwzYnJzZ_tV8fT3ZgZzX6w.webp');"></div>
+                <div class="bento-content">
+                    <div class="bento-icon">🏗️</div>
+                    <h3 class="bento-title">Cloud Proxmox.</h3>
+                    <p class="bento-desc">Infrastructure virtuelle haute dispo avec cluster Docker & K3s. Infrastructure As Code et monitoring réseau complet.</p>
+                </div>
+            </a>
+
+            <!-- IMMICH (Bento Medium) -->
+            <a href="projet-immich.html" class="bento-card bento-medium group">
+                <div class="bento-image-bg" style="background-image:url('images/immich.webp');"></div>
+                <div class="bento-content">
+                    <div class="bento-icon">🖥️</div>
+                    <h3 class="bento-title">Cloud Immich.</h3>
+                    <p class="bento-desc">Google Photos Open Source auto-hébergé avec ML intégré pour la reconnaissance faciale.</p>
+                </div>
+            </a>
+
+            <!-- TESLA BOT (Bento Medium) -->
+            <a href="projet-tesla.html" class="bento-card bento-medium group">
+                <div class="bento-content">
+                    <div class="bento-icon">⚡</div>
+                    <h3 class="bento-title">Tesla Bot.</h3>
+                    <p class="bento-desc">Bot d'inventaire asynchrone surveillant les baisses de prix des Tesla via Selenium & API Telegram.</p>
+                </div>
+            </a>
+
+            <!-- CHRISFLIX (Bento Medium) -->
+            <a href="projet-chrisflix.html" class="bento-card bento-medium group">
+                <div class="bento-image-bg" style="background-image:url('images/cover_chrisflix.png');"></div>
+                <div class="glow-orb" style="background:var(--accent-cyan); top:-100px; left:-100px; opacity:0.1;"></div>
+                <div class="bento-content">
+                    <div class="bento-icon">🍿</div>
+                    <h3 class="bento-title">Chrisflix.</h3>
+                    <p class="bento-desc">Déploiement hybride d'une stack multimédia orchestrée par Docker. Automatisation du cycle de vie des médias.</p>
+                </div>
+            </a>
+
+            <!-- GDM TICKET ROUTER (Bento Medium) -->
+            <a href="projet-jedha.html" class="bento-card bento-medium group">
+                <div class="bento-image-bg" style="background-image:url('images/logo_gdm_bg.png');"></div>
+                <div class="bento-content">
+                    <div class="bento-icon">📊</div>
+                    <h3 class="bento-title">GDM Ticket Router.</h3>
+                    <p class="bento-desc">Application IA NLP (LightGBM) pour le triage automatisé des tickets de support de Grain de Malice.</p>
+                </div>
+            </a>
+
+            <!-- GETAROUND (Bento Medium) -->
+            <a href="projet-getaround.html" class="bento-card bento-medium group">
+                <div class="bento-image-bg" style="background-image:url('images/cover_getaround.png');"></div>
+                <div class="glow-orb" style="background:var(--accent-emerald); bottom:-100px; right:-100px; opacity:0.1;"></div>
+                <div class="bento-content">
+                    <div class="bento-icon">🚗</div>
+                    <h3 class="bento-title">GetAround Analysis.</h3>
+                    <p class="bento-desc">Dashboard interactif Streamlit d'analyse tarifaire et de prédiction de prix de location de véhicules.</p>
+                </div>
+            </a>
+
+            <!-- FINANCE APP (Bento Medium) -->
+            <a href="projet-finance.html" class="bento-card bento-medium group">
+                <div class="bento-image-bg" style="background-image:url('images/actual-budget-reports.png');"></div>
+                <div class="bento-content">
+                    <div class="bento-icon">💰</div>
+                    <h3 class="bento-title">Finance App.</h3>
+                    <p class="bento-desc">Agrégateur financier personnel. Budgeting (Actual), worker Python et BI Analytics (Metabase).</p>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer-divider py-12 text-center">
+        <p class="text-sm font-medium text-white/40 mb-2">© 2026 Christopher Gilleron. Conçu avec précision.</p>
+        <div class="flex justify-center gap-6 mt-6">
+            <a href="https://github.com/Elkristobal59" target="_blank" class="text-white/40 hover:text-white transition-colors">GitHub</a>
+            <a href="https://www.linkedin.com/in/christophergilleron/" target="_blank" class="text-white/40 hover:text-white transition-colors">LinkedIn</a>
+        </div>
+    </footer>
+
     <script>
-        // --- 1. Compteur de vues ---
-        async function updateViewCount() {
-            const counterId = 'christopher-gilleron-portfolio';
-            const apiUrl = `https://api.counterapi.dev/v1/${counterId}/index/up`;
+        // INIT ON LOAD
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.add('loaded');
 
-            try {
-                const response = await fetch(apiUrl);
-                const data = await response.json();
-                if (data && data.count) {
-                    const formattedCount = new Intl.NumberFormat('fr-FR').format(data.count);
-                    document.getElementById('view-count').innerText = formattedCount;
-                }
-            } catch (error) {
-                console.error('Erreur vues:', error);
-                document.getElementById('view-count').innerText = '--';
-            }
-        }
-
-        // --- 2. Barre de progression & Retour en haut ---
-        function handleScroll() {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            document.getElementById("progress-bar").style.width = scrolled + "%";
-
-            // Affichage bouton retour en haut
-            const btt = document.getElementById("back-to-top");
-            if (winScroll > 500) {
-                btt.classList.add("show");
-            } else {
-                btt.classList.remove("show");
-            }
-        }
-
-        // --- 3. Scroll Reveal (Intersection Observer) ---
-        const revealCallback = (entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    observer.unobserve(entry.target); // Une seule fois
-                }
+            // 1. Setup Scrollytelling Text
+            const textContainer = document.getElementById('scrolly-text');
+            const words = textContainer.innerText.split(' ');
+            textContainer.innerHTML = '';
+            words.forEach(word => {
+                if (word.trim() === '') return; // éviter les spans vides
+                const span = document.createElement('span');
+                span.innerText = word;
+                span.className = 'scrolly-word';
+                textContainer.appendChild(span);
             });
-        };
 
-        const revealObserver = new IntersectionObserver(revealCallback, {
-            threshold: 0.1
-        });
+            const scrollySpans = document.querySelectorAll('.scrolly-word');
+            const section = document.getElementById('scrolly-section');
 
-        // --- 4. Filtrage des projets ---
-        function initProjectFilter() {
-            const buttons = document.querySelectorAll('.filter-btn');
-            const projects = document.querySelectorAll('.project-card');
-
-            buttons.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const filter = btn.getAttribute('data-filter');
-
-                    // Update buttons UI
-                    buttons.forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-
-                    // Filter projects
-                    projects.forEach(project => {
-                        const cat = project.getAttribute('data-category');
-                        if (filter === 'all' || cat === filter) {
-                            project.classList.remove('hidden');
-                        } else {
-                            project.classList.add('hidden');
-                        }
-                    });
+            // 2. Scroll Listener for Scrollytelling
+            window.addEventListener('scroll', () => {
+                const rect = section.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                
+                // Calculate progress through the section
+                const totalScroll = rect.height - windowHeight;
+                let progress = -rect.top / totalScroll;
+                
+                // Clamp between 0 and 1
+                progress = Math.max(0, Math.min(1, progress));
+                
+                // Lit words based on progress
+                const wordsToLit = Math.floor(progress * scrollySpans.length);
+                
+                scrollySpans.forEach((span, index) => {
+                    if (index < wordsToLit) {
+                        span.classList.add('lit');
+                    } else {
+                        span.classList.remove('lit');
+                    }
                 });
             });
-        }
 
-        // --- 5. Greeting Dynamique ---
-        function updateGreeting() {
-            const hour = new Date().getHours();
-            const greeting = hour >= 5 && hour < 18 ? "Bonjour et bienvenue 👋" : "Bonsoir et bienvenue 👋";
-            const el = document.getElementById('greeting');
-            if (el) el.innerText = greeting;
-        }
+            // 3. Bento Grid Reveal (Intersection Observer)
+            const bentoCards = document.querySelectorAll('.bento-card');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('reveal');
+                        }, Array.from(bentoCards).indexOf(entry.target) * 100);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.05 });
 
-        // --- Initialisation ---
-        document.addEventListener('DOMContentLoaded', () => {
-            document.body.classList.add('loaded'); // Activation du fondu au chargement
-            updateViewCount();
-            initProjectFilter();
-            updateGreeting();
-            
-            // Observer pour les sections reveal
-            document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-            
-            // Retour en haut click
-            document.getElementById("back-to-top").addEventListener("click", () => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+            bentoCards.forEach(card => observer.observe(card));
+
+            // Mobile menu
+            const btn = document.getElementById('hamburger-btn');
+            const menu = document.getElementById('mobile-menu');
+            btn.addEventListener('click', () => {
+                btn.classList.toggle('active');
+                menu.classList.toggle('open');
+                document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
             });
         });
-
-        window.onscroll = handleScroll;
     </script>
 </body>
-
 </html>

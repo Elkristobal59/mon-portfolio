@@ -9,83 +9,139 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg-deep: #0d0d12;
+            --bg-card: rgba(255,255,255,0.03);
+            --border-glass: rgba(255,255,255,0.08);
+            --border-glass-hover: rgba(255,255,255,0.15);
+            --text-primary: #f0f0f0;
+            --text-secondary: #8a8f98;
+            --text-tertiary: #555a63;
+            --accent-cyan: #00e5ff;
+            --accent-emerald: #00ffab;
+            --accent-cyan-dim: rgba(0,229,255,0.12);
+            --accent-emerald-dim: rgba(0,255,171,0.12);
+            --glow-cyan: 0 0 20px rgba(0,229,255,0.15);
+            --glow-emerald: 0 0 20px rgba(0,255,171,0.15);
+            --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+        }
         html { scroll-behavior: smooth; }
-        body { background-color: #0a0f1e; color: #f8fafc; font-family: 'Inter', sans-serif; opacity: 0; transition: opacity 0.8s ease-in-out; }
+        body { background-color: var(--bg-deep); color: var(--text-primary); font-family: 'Inter', sans-serif; opacity: 0; transition: opacity 0.6s ease-out; -webkit-font-smoothing: antialiased; }
         body.loaded { opacity: 1; }
-        .nav-blur { backdrop-filter: blur(16px); background: rgba(10,15,30,0.85); border-bottom: 1px solid rgba(255,255,255,0.06); }
-        .avatar { width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#60a5fa,#34d399);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.95rem;color:#0a0f1e;flex-shrink:0; }
-        .nav-link { color:#94a3b8;transition:color 0.2s;font-size:.875rem;font-weight:500; }
-        .nav-link:hover { color:#f8fafc; }
-        .tag { background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:6px;padding:3px 10px;font-size:.72rem;color:#94a3b8; }
+        .nav-blur { backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); background: rgba(5,5,5,0.75); border-bottom: 1px solid var(--border-glass); }
+        .avatar { width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--accent-cyan),var(--accent-emerald));display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;color:var(--bg-deep);flex-shrink:0; }
+        .nav-link { color:var(--text-secondary);transition:color 0.2s ease;font-size:0.875rem;font-weight:500; }
+        .nav-link:hover { color:var(--text-primary); }
+        .glass-card { background:var(--bg-card);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid var(--border-glass);border-radius:20px; }
+        .tag { background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:6px;padding:3px 10px;font-size:0.72rem;color:var(--text-secondary);transition:border-color 0.2s ease,box-shadow 0.2s ease,color 0.2s ease; }
+        .tag:hover { border-color:rgba(0,229,255,0.3);color:var(--accent-cyan);box-shadow:var(--glow-cyan); }
         .step { counter-increment: step-counter; }
-        .step::before { content: counter(step-counter); display: inline-flex; width: 28px; height: 28px; border-radius: 50%; background: rgba(96,165,250,0.15); border: 1px solid rgba(96,165,250,0.3); color: #60a5fa; font-weight: 700; font-size: 0.8rem; align-items: center; justify-content: center; margin-right: 12px; flex-shrink: 0; }
+        .step::before { content: counter(step-counter); display: inline-flex; width: 28px; height: 28px; border-radius: 50%; background: var(--accent-cyan-dim); border: 1px solid rgba(0,229,255,0.3); color: var(--accent-cyan); font-weight: 700; font-size: 0.8rem; align-items: center; justify-content: center; margin-right: 12px; flex-shrink: 0; }
         .steps { counter-reset: step-counter; }
         .infra-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
-
-        /* --- Progress Bar --- */
-        #progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(to right, #60a5fa, #34d399); z-index: 100; width: 0%; transition: width 0.1s ease-out; }
-
-        /* --- Back to Top --- */
-        #back-to-top { position: fixed; bottom: 30px; right: 30px; width: 44px; height: 44px; background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(8px); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #f8fafc; cursor: pointer; z-index: 40; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
-        #back-to-top.show { opacity: 1; visibility: visible; }
-        #back-to-top:hover { transform: translateY(-5px); border-color: #60a5fa; color: #60a5fa; }
-
-        /* --- Reveal Animations --- */
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-
-        /* --- Micro-animations boutons --- */
-        .btn-hover { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
-        .btn-hover:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); }
+        #progress-bar { position:fixed;top:0;left:0;height:2px;background:linear-gradient(to right,var(--accent-cyan),var(--accent-emerald));z-index:100;width:0%;transition:width 0.1s ease-out; }
+        #back-to-top { position:fixed;bottom:30px;right:30px;width:44px;height:44px;background:rgba(5,5,5,0.8);border:1px solid var(--border-glass);backdrop-filter:blur(12px);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--text-primary);cursor:pointer;z-index:40;opacity:0;visibility:hidden;transition:opacity 0.3s ease-out,visibility 0.3s ease-out,transform 0.2s var(--ease-out-strong),border-color 0.2s ease; }
+        #back-to-top.show { opacity:1;visibility:visible; }
+        #back-to-top:hover { transform:translateY(-3px);border-color:var(--accent-cyan);color:var(--accent-cyan); }
+        #back-to-top:active { transform:scale(0.95); }
+        .reveal { opacity:0;transform:translateY(24px);transition:opacity 0.7s var(--ease-out-strong),transform 0.7s var(--ease-out-strong); }
+        .reveal.active { opacity:1;transform:translateY(0); }
+        .btn-hover { transition:transform 0.2s var(--ease-out-strong),box-shadow 0.2s ease; }
+        .btn-hover:hover { transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.3); }
+        .btn-hover:active { transform:scale(0.97); }
+        .hamburger-line { display:block;width:20px;height:2px;background:var(--text-secondary);transition:transform 0.3s var(--ease-out-strong),opacity 0.2s ease; }
+        .hamburger.active .hamburger-line:nth-child(1) { transform:translateY(6px) rotate(45deg); }
+        .hamburger.active .hamburger-line:nth-child(2) { opacity:0; }
+        .hamburger.active .hamburger-line:nth-child(3) { transform:translateY(-6px) rotate(-45deg); }
+        .mobile-menu { position:fixed;top:64px;left:0;right:0;bottom:0;background:rgba(5,5,5,0.95);backdrop-filter:blur(24px);z-index:45;transform:translateX(100%);transition:transform 0.35s var(--ease-out-strong);overflow-y:auto; }
+        .mobile-menu.open { transform:translateX(0); }
+        .section-divider { border:none;height:1px;background:linear-gradient(90deg,transparent,var(--border-glass),transparent);margin:3rem 0; }
+        @media (prefers-reduced-motion: reduce) {
+            .reveal { transition:opacity 0.3s ease;transform:none !important; }
+            .reveal.active { opacity:1; }
+            .mobile-menu { transition:opacity 0.2s ease;transform:none !important; }
+        }
     </style>
 </head>
 
 <body class="relative">
     <div id="progress-bar"></div>
+
+    <!-- ===== NAVBAR ===== -->
     <nav class="nav-blur fixed top-0 left-0 right-0 z-50">
         <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
             <a href="index.html" class="flex items-center gap-3 no-underline">
                 <div class="avatar">CG</div>
-                <span class="font-bold text-white hidden sm:block">Christopher Gilleron</span>
+                <div class="flex flex-col">
+                    <span class="font-bold text-white hidden sm:block" style="font-size:0.9rem;">Christopher Gilleron</span>
+                    <span class="text-[10px] hidden sm:block" style="color:var(--text-tertiary);">Data & IA Ops</span>
+                </div>
             </a>
-            <div class="flex items-center gap-6">
+            <div class="hidden md:flex items-center gap-3 lg:gap-5">
                 <a href="index.html" class="nav-link">Accueil</a>
-                <!-- Dropdown Projets -->
                 <div class="relative group">
-                    <button class="nav-link flex items-center gap-1 text-blue-400 font-semibold">
+                    <button class="nav-link flex items-center gap-1 focus:outline-none py-2" style="color:var(--accent-cyan);font-weight:600;">
                         Projets
-                        <svg class="w-3.5 h-3.5 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
                     </button>
-                    <div class="absolute top-full right-0 mt-2 w-52 py-2 rounded-xl bg-slate-900/95 border border-slate-700/60 backdrop-blur-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                        <a href="projet-proxmox.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors">🏗️ Proxmox Homelab</a>
-                        <a href="projet-rag.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-blue-400 font-semibold bg-blue-500/10">🤖 Assistant RAG</a>
-                        <a href="projet-tesla.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors">🚗 Tesla Monitor</a>
-                        <a href="projet-chrisflix.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors">🎬 Chrisflix</a>
-                        <a href="projet-immich.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors">📸 Immich</a>
-                        <a href="projet-getaround.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors">🚀 GetAround</a>
-                        <a href="projet-jedha.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors">🎓 JEDHA</a>
+                    <div class="absolute right-0 mt-1 w-56 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 p-2 space-y-0.5" style="background:rgba(10,10,10,0.95);border:1px solid var(--border-glass);backdrop-filter:blur(20px);">
+                        <a href="projet-rag.html" class="block px-3 py-2 rounded-lg text-xs font-semibold no-underline" style="color:var(--accent-cyan);background:var(--accent-cyan-dim);">🤖 Assistant RAG V7</a>
+                        <a href="projet-proxmox.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">🏗️ Cloud Privé Proxmox</a>
+                        <a href="projet-immich.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">🖥️ Cloud Immich & NAS</a>
+                        <a href="projet-tesla.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">⚡ Tesla Inventory Bot</a>
+                        <a href="projet-chrisflix.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">🍿 Chrisflix Media Hub</a>
+                        <a href="projet-jedha.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">📊 GDM Ticket Router</a>
+                        <a href="projet-getaround.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">🚗 GetAround Price Predictor</a>
+                        <a href="projet-finance.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">💰 Finance App</a>
                     </div>
                 </div>
-                <a href="veille.html" class="nav-link">Veille</a>
-                <a href="https://www.linkedin.com/in/christophergilleron/" target="_blank" class="btn-hover px-4 py-1.5 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-sm font-medium hover:bg-sky-500/20 transition-all">LinkedIn</a>
+                <a href="veille.html" class="btn-hover text-xs font-semibold flex items-center gap-1 px-3 py-1 rounded-full no-underline" style="color:var(--accent-emerald);border:1px solid rgba(0,255,171,0.25);background:rgba(0,255,171,0.06);">
+                    <span>📰</span> TLDR
+                </a>
+                <a href="https://github.com/Elkristobal59" target="_blank" rel="noopener noreferrer" class="btn-hover px-3 py-1 rounded-full text-xs font-medium no-underline" style="background:var(--accent-cyan-dim);border:1px solid rgba(0,229,255,0.25);color:var(--accent-cyan);">GitHub</a>
+                <a href="https://www.linkedin.com/in/christophergilleron/" target="_blank" rel="noopener noreferrer" class="btn-hover px-3 py-1 rounded-full text-xs font-medium no-underline" style="background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.25);color:#38bdf8;">LinkedIn</a>
             </div>
+            <button class="hamburger md:hidden flex flex-col gap-1 p-2 focus:outline-none" aria-label="Menu" id="hamburger-btn">
+                <span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span>
+            </button>
         </div>
     </nav>
+    <div class="mobile-menu md:hidden" id="mobile-menu">
+        <div class="flex flex-col p-6 gap-4">
+            <a href="index.html" class="text-lg font-semibold no-underline" style="color:var(--text-primary);">Accueil</a>
+            <div class="border-t" style="border-color:var(--border-glass);"></div>
+            <p class="text-xs font-mono uppercase tracking-widest" style="color:var(--text-tertiary);">Projets</p>
+            <a href="projet-rag.html" class="text-sm font-semibold no-underline" style="color:var(--accent-cyan);">🤖 Assistant RAG V7</a>
+            <a href="projet-proxmox.html" class="text-sm no-underline" style="color:var(--text-secondary);">🏗️ Cloud Privé Proxmox</a>
+            <a href="projet-immich.html" class="text-sm no-underline" style="color:var(--text-secondary);">🖥️ Cloud Immich & NAS</a>
+            <a href="projet-tesla.html" class="text-sm no-underline" style="color:var(--text-secondary);">⚡ Tesla Inventory Bot</a>
+            <a href="projet-chrisflix.html" class="text-sm no-underline" style="color:var(--text-secondary);">🍿 Chrisflix Media Hub</a>
+            <a href="projet-jedha.html" class="text-sm no-underline" style="color:var(--text-secondary);">📊 GDM Ticket Router</a>
+            <a href="projet-getaround.html" class="text-sm no-underline" style="color:var(--text-secondary);">🚗 GetAround Price Predictor</a>
+            <a href="projet-finance.html" class="text-sm no-underline" style="color:var(--text-secondary);">💰 Finance App</a>
+            <div class="border-t" style="border-color:var(--border-glass);"></div>
+            <a href="veille.html" class="text-sm font-semibold no-underline" style="color:var(--accent-emerald);">📰 Veille TLDR</a>
+            <div class="flex gap-3 mt-4">
+                <a href="https://github.com/Elkristobal59" target="_blank" class="px-4 py-2 rounded-full text-xs font-medium no-underline" style="background:var(--accent-cyan-dim);border:1px solid rgba(0,229,255,0.25);color:var(--accent-cyan);">GitHub</a>
+                <a href="https://www.linkedin.com/in/christophergilleron/" target="_blank" class="px-4 py-2 rounded-full text-xs font-medium no-underline" style="background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.25);color:#38bdf8;">LinkedIn</a>
+            </div>
+        </div>
+    </div>
 
     <div class="max-w-3xl mx-auto px-6 pt-32 pb-28">
 
         <!-- Back -->
-        <a href="index.html" class="inline-flex items-center gap-2 text-slate-500 text-sm hover:text-slate-300 transition-colors mb-10 no-underline">
+        <a href="index.html" class="inline-flex items-center gap-2 text-sm transition-colors mb-10 no-underline" style="color:var(--text-tertiary);" onmouseover="this.style.color='var(--text-primary)'" onmouseout="this.style.color='var(--text-tertiary)'">
             ← Retour au portfolio
         </a>
 
         <!-- Header -->
-        <div class="mb-12">
-            <div class="w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-3xl mb-6">🤖</div>
-            <div class="text-xs text-blue-400 font-mono mb-3 tracking-widest">PROJET PERSONNEL — IA GÉNÉRATIVE</div>
-            <h1 class="text-4xl font-extrabold text-white mb-4 leading-tight">Assistant Documentaire RAG V7</h1>
-            <p class="text-slate-400 text-lg leading-relaxed">
-                Un système avancé de question-réponse sur corpus documentaire privé (PDF et Word), désormais migré sur un serveur dédié <strong class="text-slate-300">Proxmox</strong> pour une disponibilité 24h/24. L'architecture est entièrement containerisée via <strong class="text-slate-300">Docker</strong>, incorporant un Contextual Retrieval asynchrone, un hot-swap de configuration, et un moteur <strong class="text-slate-300">Ollama local</strong> intégré à la stack. La base vectorielle s'auto-alimente en continu via Watchdog en surveillant un partage réseau NAS.
+        <div class="mb-12 reveal">
+            <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl mb-6" style="background:var(--accent-cyan-dim);border:1px solid rgba(0,229,255,0.2);">🤖</div>
+            <div class="text-xs font-mono mb-3 tracking-widest" style="color:var(--accent-cyan);">PROJET PERSONNEL — IA GÉNÉRATIVE</div>
+            <h1 class="text-4xl font-extrabold text-white mb-4 leading-tight" style="letter-spacing:-0.02em;">Assistant Documentaire RAG V7</h1>
+            <p class="text-lg leading-relaxed" style="color:var(--text-secondary);">
+                Un système avancé de question-réponse sur corpus documentaire privé (PDF et Word), désormais migré sur un serveur dédié <strong class="text-white">Proxmox</strong> pour une disponibilité 24h/24. L'architecture est entièrement containerisée via <strong class="text-white">Docker</strong>, incorporant un Contextual Retrieval asynchrone, un hot-swap de configuration, et un moteur <strong class="text-white">Ollama local</strong> intégré à la stack. La base vectorielle s'auto-alimente en continu via Watchdog en surveillant un partage réseau NAS.
             </p>
             <div class="flex flex-wrap gap-2 mt-6">
                 <span class="tag">Python</span>
@@ -103,12 +159,12 @@
             </div>
         </div>
 
-        <hr class="border-slate-800 mb-12">
+        <hr class="section-divider">
 
         <!-- Contexte -->
         <section class="mb-12 reveal">
             <h2 class="text-xl font-bold text-white mb-4">🎯 Contexte & Objectif</h2>
-            <p class="text-slate-400 leading-relaxed">
+            <p class="leading-relaxed" style="color:var(--text-secondary);">
                 J'ai conçu un assistant documentaire intelligent capable de répondre à des questions en langage naturel sur un corpus de documents personnels (bulletins de paie, avis d'imposition, baux, quittances, contrats d'assurance…). Le défi : rendre des centaines de PDF et fichiers Word « interrogeables » sans hallucinations, en s'appuyant uniquement sur les passages réellement présents dans les documents — le tout en 100% local, sans aucune API cloud, pour garantir la confidentialité totale des données.
             </p>
         </section>
@@ -117,219 +173,221 @@
         <section class="mb-12 reveal">
             <h2 class="text-xl font-bold text-white mb-6">🖥️ Infrastructure Complète</h2>
             <div class="space-y-4">
-                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-5 flex gap-4">
-                    <div class="infra-icon bg-amber-500/10 border border-amber-500/20">📁</div>
+                <div class="glass-card p-5 flex gap-4">
+                    <div class="infra-icon" style="background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.2);">📁</div>
                     <div class="flex-1">
                         <div class="font-semibold text-white mb-1">Source documentaire — NAS Synology</div>
-                        <p class="text-slate-400 text-sm">Les documents sont stockés sur un NAS Synology en réseau local (SMB). Le système accède au partage réseau <code class="text-blue-300">\\IP_NAS_LOCAL\homes\...\Graph_Project</code> pour scanner les dossiers et sous-dossiers automatiquement.</p>
+                        <p class="text-sm" style="color:var(--text-secondary);">Les documents sont stockés sur un NAS Synology en réseau local (SMB). Le système accède au partage réseau <code style="color:var(--accent-cyan);">\\IP_NAS_LOCAL\homes\...\Graph_Project</code> pour scanner les dossiers et sous-dossiers automatiquement.</p>
                     </div>
                 </div>
-                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-5 flex gap-4">
-                    <div class="infra-icon bg-green-500/10 border border-green-500/20">🖥️</div>
+                <div class="glass-card p-5 flex gap-4">
+                    <div class="infra-icon" style="background:var(--accent-emerald-dim);border:1px solid rgba(0,255,171,0.2);">🖥️</div>
                     <div class="flex-1">
                         <div class="font-semibold text-white mb-1">Compute — Lenovo M80q (Proxmox)</div>
-                        <p class="text-slate-400 text-sm">Le pipeline tourne dans une VM Debian isolée. Les embeddings <code class="text-blue-300">bge-m3</code> sont optimisés pour l'exécution **CPU** sur l'Intel i5, tandis qu'un container Ollama dédié fournit la puissance LLM en local.</p>
+                        <p class="text-sm" style="color:var(--text-secondary);">Le pipeline tourne dans une VM Debian isolée. Les embeddings <code style="color:var(--accent-cyan);">bge-m3</code> sont optimisés pour l'exécution **CPU** sur l'Intel i5, tandis qu'un container Ollama dédié fournit la puissance LLM en local.</p>
                     </div>
                 </div>
-                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-5 flex gap-4">
-                    <div class="infra-icon bg-purple-500/10 border border-purple-500/20">👁️</div>
+                <div class="glass-card p-5 flex gap-4">
+                    <div class="infra-icon" style="background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.2);">👁️</div>
                     <div class="flex-1">
                         <div class="font-semibold text-white mb-1">Watchdog — Indexation temps réel</div>
-                        <p class="text-slate-400 text-sm">Un observateur de fichiers (<code class="text-blue-300">watchdog</code>) surveille en permanence le dossier source. Tout nouveau document déposé ou modifié est automatiquement ingéré et indexé sans intervention manuelle.</p>
+                        <p class="text-sm" style="color:var(--text-secondary);">Un observateur de fichiers (<code style="color:var(--accent-cyan);">watchdog</code>) surveille en permanence le dossier source. Tout nouveau document déposé ou modifié est automatiquement ingéré et indexé sans intervention manuelle.</p>
                     </div>
                 </div>
-                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-5 flex gap-4">
-                    <div class="infra-icon bg-cyan-500/10 border border-cyan-500/20">🔒</div>
+                <div class="glass-card p-5 flex gap-4">
+                    <div class="infra-icon" style="background:var(--accent-cyan-dim);border:1px solid rgba(0,229,255,0.2);">🔒</div>
                     <div class="flex-1">
                         <div class="font-semibold text-white mb-1">Hashing MD5 — Indexation incrémentale</div>
-                        <p class="text-slate-400 text-sm">Chaque fichier est hashé (MD5). Seuls les fichiers nouveaux ou modifiés sont réindexés, évitant tout traitement superflu. L'ancienne version d'un document est automatiquement purgée de ChromaDB avant réindexation.</p>
+                        <p class="text-sm" style="color:var(--text-secondary);">Chaque fichier est hashé (MD5). Seuls les fichiers nouveaux ou modifiés sont réindexés, évitant tout traitement superflu. L'ancienne version d'un document est automatiquement purgée de ChromaDB avant réindexation.</p>
                     </div>
                 </div>
-                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-5 flex gap-4">
-                    <div class="infra-icon bg-rose-500/10 border border-rose-500/20">🏠</div>
+                <div class="glass-card p-5 flex gap-4">
+                    <div class="infra-icon" style="background:rgba(244,63,94,0.1);border:1px solid rgba(244,63,94,0.2);">🏠</div>
                     <div class="flex-1">
                         <div class="font-semibold text-white mb-1">100% Local — Zéro cloud</div>
-                        <p class="text-slate-400 text-sm">Aucune donnée ne quitte le réseau local. Pas de Gemini API, pas d'OpenAI, pas de service tiers. Le LLM (Mistral via Ollama), les embeddings et le reranker tournent intégralement sur la machine locale.</p>
+                        <p class="text-sm" style="color:var(--text-secondary);">Aucune donnée ne quitte le réseau local. Pas de Gemini API, pas d'OpenAI, pas de service tiers. Le LLM (Mistral via Ollama), les embeddings et le reranker tournent intégralement sur la machine locale.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <hr class="border-slate-800 mb-12">
+        <hr class="section-divider">
 
         <!-- Architecture -->
         <section class="mb-12 reveal">
             <h2 class="text-xl font-bold text-white mb-6">🏗️ Pipeline RAG Avancé</h2>
             <ol class="steps space-y-4">
-                <li class="step flex items-start bg-slate-900/50 border border-slate-800 rounded-xl p-4">
+                <li class="step flex items-start glass-card p-4">
                     <div class="flex-1">
                         <div class="font-semibold text-white mb-1">Ingestion & Contextual Retrieval Asynchrone</div>
-                        <p class="text-slate-400 text-sm">Les PDF sont parsés via <code class="text-blue-300">PyMuPDFLoader</code> (préservation du layout spatial des tableaux), les fichiers Word via <code class="text-blue-300">UnstructuredWordDocumentLoader</code>. Le <strong class="text-slate-300">Contextual Retrieval</strong> (méthode Anthropic) enrichit chaque chunk d'un résumé LLM contextuel — désormais exécuté en <strong class="text-slate-300">mode asynchrone</strong> avec <code class="text-blue-300">asyncio.gather()</code> et batching (5 appels Ollama simultanés). Gain de vitesse : ~5× par rapport à la version synchrone précédente.</p>
+                        <p class="text-sm" style="color:var(--text-secondary);">Les PDF sont parsés via <code style="color:var(--accent-cyan);">PyMuPDFLoader</code> (préservation du layout spatial des tableaux), les fichiers Word via <code style="color:var(--accent-cyan);">UnstructuredWordDocumentLoader</code>. Le <strong class="text-white">Contextual Retrieval</strong> (méthode Anthropic) enrichit chaque chunk d'un résumé LLM contextuel — désormais exécuté en <strong class="text-white">mode asynchrone</strong> avec <code style="color:var(--accent-cyan);">asyncio.gather()</code> et batching (5 appels Ollama simultanés). Gain de vitesse : ~5× par rapport à la version synchrone précédente.</p>
                     </div>
                 </li>
-                <li class="step flex items-start bg-slate-900/50 border border-slate-800 rounded-xl p-4">
+                <li class="step flex items-start glass-card p-4">
                     <div class="flex-1">
                         <div class="font-semibold text-white mb-1">Extraction de métadonnées multi-couches</div>
-                        <p class="text-slate-400 text-sm">Extraction en deux passes : <strong class="text-slate-300">1) nom de fichier</strong> (regex multi-formats : AAAA-MM, MM/AAAA, DDMMAAAA, mois en lettres) puis <strong class="text-slate-300">2) contenu des premières pages</strong> en fallback si les données sont incomplètes. La détection du type de document utilise un <strong class="text-slate-300">scoring multi-mots-clés</strong> (seuil de score &gt; 0) plutôt qu'une simple correspondance — bien plus robuste pour les noms de fichiers génériques. Normalisation Unicode des accents via <code class="text-blue-300">unicodedata</code>.</p>
+                        <p class="text-sm" style="color:var(--text-secondary);">Extraction en deux passes : <strong class="text-white">1) nom de fichier</strong> (regex multi-formats : AAAA-MM, MM/AAAA, DDMMAAAA, mois en lettres) puis <strong class="text-white">2) contenu des premières pages</strong> en fallback si les données sont incomplètes. La détection du type de document utilise un <strong class="text-white">scoring multi-mots-clés</strong> (seuil de score &gt; 0) plutôt qu'une simple correspondance — bien plus robuste pour les noms de fichiers génériques. Normalisation Unicode des accents via <code style="color:var(--accent-cyan);">unicodedata</code>.</p>
                     </div>
                 </li>
-                <li class="step flex items-start bg-slate-900/50 border border-slate-800 rounded-xl p-4">
+                <li class="step flex items-start glass-card p-4">
                     <div class="flex-1">
                         <div class="font-semibold text-white mb-1">Chunking sémantique financier + Inférence CPU</div>
-                        <p class="text-slate-400 text-sm">Le découpage utilise des <strong class="text-slate-300">séparateurs sémantiques spécifiques</strong> aux documents financiers français (<code class="text-blue-300">\nNet à payer</code>, <code class="text-blue-300">\nCotisations salariales</code>, <code class="text-blue-300">\nRevenu fiscal</code>…) pour ne jamais couper un tableau de cotisations en plein milieu. Taille optimisée à <strong class="text-slate-300">800 caractères / 150 overlap</strong>. 
+                        <p class="text-sm" style="color:var(--text-secondary);">Le découpage utilise des <strong class="text-white">séparateurs sémantiques spécifiques</strong> aux documents financiers français (<code style="color:var(--accent-cyan);">\nNet à payer</code>, <code style="color:var(--accent-cyan);">\nCotisations salariales</code>, <code style="color:var(--accent-cyan);">\nRevenu fiscal</code>…) pour ne jamais couper un tableau de cotisations en plein milieu. Taille optimisée à <strong class="text-white">800 caractères / 150 overlap</strong>.
                         <br><br>
-                        <i class="text-slate-500 text-xs text-balance">Note : L'indexation initiale massive du corpus a été réalisée via laptop MSI (GPU NVIDIA) en amont, avant la migration sur le serveur Lenovo pour la maintenance continue en CPU optimisé.</i>
+                        <i class="text-xs" style="color:var(--text-tertiary);">Note : L'indexation initiale massive du corpus a été réalisée via laptop MSI (GPU NVIDIA) en amont, avant la migration sur le serveur Lenovo pour la maintenance continue en CPU optimisé.</i>
                         </p>
                     </div>
                 </li>
-                <li class="step flex items-start bg-slate-900/50 border border-slate-800 rounded-xl p-4">
+                <li class="step flex items-start glass-card p-4">
                     <div class="flex-1">
                         <div class="font-semibold text-white mb-1">HyDE & Recherche Sémantique à Fallback Progressif</div>
-                        <p class="text-slate-400 text-sm">La question utilisateur est transformée en « réponse hypothétique » par le LLM (<b>HyDE</b>) pour maximiser la similarité vectorielle. La recherche ChromaDB applique des filtres par métadonnées (année, mois, type, catégorie) avec un <b>fallback progressif</b> à 3 niveaux : filtre complet → relâchement du mois → relâchement de l'année → recherche globale.</p>
+                        <p class="text-sm" style="color:var(--text-secondary);">La question utilisateur est transformée en « réponse hypothétique » par le LLM (<b>HyDE</b>) pour maximiser la similarité vectorielle. La recherche ChromaDB applique des filtres par métadonnées (année, mois, type, catégorie) avec un <b>fallback progressif</b> à 3 niveaux : filtre complet → relâchement du mois → relâchement de l'année → recherche globale.</p>
                     </div>
                 </li>
-                <li class="step flex items-start bg-slate-900/50 border border-slate-800 rounded-xl p-4">
+                <li class="step flex items-start glass-card p-4">
                     <div class="flex-1">
                         <div class="font-semibold text-white mb-1">Cross-Encoder Reranking Neural</div>
-                        <p class="text-slate-400 text-sm">Les 20+ candidats initiaux sont réévalués en profondeur par le modèle <code class="text-blue-300">BAAI/bge-reranker-v2-m3</code> (CrossEncoder multilingue exécuté sur CPU). Les 5 extraits les mieux scorés sont injectés dans le prompt final.</p>
+                        <p class="text-sm" style="color:var(--text-secondary);">Les 20+ candidats initiaux sont réévalués en profondeur par le modèle <code style="color:var(--accent-cyan);">BAAI/bge-reranker-v2-m3</code> (CrossEncoder multilingue exécuté sur CPU). Les 5 extraits les mieux scorés sont injectés dans le prompt final.</p>
                     </div>
                 </li>
-                <li class="step flex items-start bg-slate-900/50 border border-slate-800 rounded-xl p-4">
+                <li class="step flex items-start glass-card p-4">
                     <div class="flex-1">
                         <div class="font-semibold text-white mb-1">Génération Anti-Hallucination (Mistral Local)</div>
-                        <p class="text-slate-400 text-sm">Le LLM <b>Mistral</b> (Ollama, température 0) génère la réponse avec un prompt engineering strict : directives par type de document (salaires → « NET A PAYER EN EUROS » uniquement, impôts → « Revenu Fiscal de Référence »), règles de validation anti-hallucination, et citation systématique des sources.</p>
+                        <p class="text-sm" style="color:var(--text-secondary);">Le LLM <b>Mistral</b> (Ollama, température 0) génère la réponse avec un prompt engineering strict : directives par type de document (salaires → « NET A PAYER EN EUROS » uniquement, impôts → « Revenu Fiscal de Référence »), règles de validation anti-hallucination, et citation systématique des sources.</p>
                     </div>
                 </li>
-                <li class="step flex items-start bg-slate-900/50 border border-slate-800 rounded-xl p-4">
+                <li class="step flex items-start glass-card p-4">
                     <div class="flex-1">
                         <div class="font-semibold text-white mb-1">Mémoire conversationnelle</div>
-                        <p class="text-slate-400 text-sm">L'interface conserve les 3 derniers échanges dans le contexte du prompt, permettant des questions de suivi naturelles (« Et pour le mois suivant ? », « Compare avec 2023 »).</p>
+                        <p class="text-sm" style="color:var(--text-secondary);">L'interface conserve les 3 derniers échanges dans le contexte du prompt, permettant des questions de suivi naturelles (« Et pour le mois suivant ? », « Compare avec 2023 »).</p>
                     </div>
                 </li>
             </ol>
         </section>
 
-        <hr class="border-slate-800 mb-12">
+        <hr class="section-divider">
 
         <!-- Stack Technique -->
         <section class="mb-12 reveal">
             <h2 class="text-xl font-bold text-white mb-6">🛠️ Stack Technique</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4">
-                    <div class="text-blue-400 text-sm font-mono mb-1">LLM Local</div>
+                <div class="glass-card p-4">
+                    <div class="text-sm font-mono mb-1" style="color:var(--accent-cyan);">LLM Local</div>
                     <div class="text-white font-semibold">Ollama — Mistral</div>
-                    <p class="text-slate-500 text-xs mt-1">Modèle open-weights 7B tournant à 100% en local. Température 0 pour une extraction factuelle maximale. Aucune API tierce.</p>
+                    <p class="text-xs mt-1" style="color:var(--text-tertiary);">Modèle open-weights 7B tournant à 100% en local. Température 0 pour une extraction factuelle maximale. Aucune API tierce.</p>
                 </div>
-                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4">
-                    <div class="text-blue-400 text-sm font-mono mb-1">Embeddings</div>
+                <div class="glass-card p-4">
+                    <div class="text-sm font-mono mb-1" style="color:var(--accent-cyan);">Embeddings</div>
                     <div class="text-white font-semibold">BAAI/bge-m3 (CPU Optimized)</div>
-                    <p class="text-slate-500 text-xs mt-1">Modèle d'embeddings multilingue state-of-the-art, optimisé pour l'inférence CPU hautement parallélisée.</p>
+                    <p class="text-xs mt-1" style="color:var(--text-tertiary);">Modèle d'embeddings multilingue state-of-the-art, optimisé pour l'inférence CPU hautement parallélisée.</p>
                 </div>
-                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4">
-                    <div class="text-blue-400 text-sm font-mono mb-1">Reranker</div>
+                <div class="glass-card p-4">
+                    <div class="text-sm font-mono mb-1" style="color:var(--accent-cyan);">Reranker</div>
                     <div class="text-white font-semibold">BAAI/bge-reranker-v2-m3</div>
-                    <p class="text-slate-500 text-xs mt-1">CrossEncoder multilingue sur CPU pour un scoring fin des résultats (passage de 20+ candidats à top-5).</p>
+                    <p class="text-xs mt-1" style="color:var(--text-tertiary);">CrossEncoder multilingue sur CPU pour un scoring fin des résultats (passage de 20+ candidats à top-5).</p>
                 </div>
-                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4">
-                    <div class="text-blue-400 text-sm font-mono mb-1">Orchestration</div>
+                <div class="glass-card p-4">
+                    <div class="text-sm font-mono mb-1" style="color:var(--accent-cyan);">Orchestration</div>
                     <div class="text-white font-semibold">LangChain</div>
-                    <p class="text-slate-500 text-xs mt-1">Pipeline RAG complète : loaders (PyMuPDF, Unstructured), text splitters, integration Chroma, Ollama et HuggingFace.</p>
+                    <p class="text-xs mt-1" style="color:var(--text-tertiary);">Pipeline RAG complète : loaders (PyMuPDF, Unstructured), text splitters, integration Chroma, Ollama et HuggingFace.</p>
                 </div>
-                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4">
-                    <div class="text-blue-400 text-sm font-mono mb-1">Stockage vectoriel</div>
+                <div class="glass-card p-4">
+                    <div class="text-sm font-mono mb-1" style="color:var(--accent-cyan);">Stockage vectoriel</div>
                     <div class="text-white font-semibold">ChromaDB</div>
-                    <p class="text-slate-500 text-xs mt-1">Base vectorielle persistante sur disque, avec filtrage par métadonnées (année, mois, type, catégorie) en temps réel.</p>
+                    <p class="text-xs mt-1" style="color:var(--text-tertiary);">Base vectorielle persistante sur disque, avec filtrage par métadonnées (année, mois, type, catégorie) en temps réel.</p>
                 </div>
-                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4">
-                    <div class="text-blue-400 text-sm font-mono mb-1">Parsing documents</div>
+                <div class="glass-card p-4">
+                    <div class="text-sm font-mono mb-1" style="color:var(--accent-cyan);">Parsing documents</div>
                     <div class="text-white font-semibold">PyMuPDF & Unstructured</div>
-                    <p class="text-slate-500 text-xs mt-1">PyMuPDFLoader pour les PDF (préservation du layout spatial des tableaux), UnstructuredWordDocumentLoader pour les .docx.</p>
+                    <p class="text-xs mt-1" style="color:var(--text-tertiary);">PyMuPDFLoader pour les PDF (préservation du layout spatial des tableaux), UnstructuredWordDocumentLoader pour les .docx.</p>
                 </div>
-                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4">
-                    <div class="text-blue-400 text-sm font-mono mb-1">Monitoring fichiers</div>
+                <div class="glass-card p-4">
+                    <div class="text-sm font-mono mb-1" style="color:var(--accent-cyan);">Monitoring fichiers</div>
                     <div class="text-white font-semibold">Watchdog</div>
-                    <p class="text-slate-500 text-xs mt-1">Surveillance en temps réel du dossier source (NAS Synology). Ingestion automatique à chaque ajout ou modification de fichier.</p>
+                    <p class="text-xs mt-1" style="color:var(--text-tertiary);">Surveillance en temps réel du dossier source (NAS Synology). Ingestion automatique à chaque ajout ou modification de fichier.</p>
                 </div>
-                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4">
-                    <div class="text-blue-400 text-sm font-mono mb-1">Interface utilisateur</div>
+                <div class="glass-card p-4">
+                    <div class="text-sm font-mono mb-1" style="color:var(--accent-cyan);">Interface utilisateur</div>
                     <div class="text-white font-semibold">Gradio 5</div>
-                    <p class="text-slate-500 text-xs mt-1">Console d'audit conversationnelle avec chatbot, filtre par catégorie, historique et affichage des sources documentaires.</p>
+                    <p class="text-xs mt-1" style="color:var(--text-tertiary);">Console d'audit conversationnelle avec chatbot, filtre par catégorie, historique et affichage des sources documentaires.</p>
                 </div>
             </div>
         </section>
 
-        <hr class="border-slate-800 mb-12">
+        <hr class="section-divider">
 
         <!-- Techniques IA avancées -->
         <section class="mb-12 reveal">
             <h2 class="text-xl font-bold text-white mb-6">🧠 Techniques IA Avancées</h2>
             <div class="space-y-4">
-                <div class="bg-gradient-to-r from-blue-500/5 to-transparent border border-blue-500/20 rounded-xl p-5">
-                    <div class="font-semibold text-blue-300 mb-2">HyDE (Hypothetical Document Embeddings)</div>
-                    <p class="text-slate-400 text-sm">Avant la recherche vectorielle, la question utilisateur est transformée par le LLM en une « réponse hypothétique » — un extrait de document fictif qui ressemblerait à la réponse idéale. L'embedding de ce document hypothétique est beaucoup plus proche des vrais résultats pertinents dans l'espace vectoriel que la question brute.</p>
+                <div class="glass-card p-5" style="border-color:rgba(0,229,255,0.15);background:linear-gradient(135deg,rgba(0,229,255,0.03),transparent);">
+                    <div class="font-semibold mb-2" style="color:var(--accent-cyan);">HyDE (Hypothetical Document Embeddings)</div>
+                    <p class="text-sm" style="color:var(--text-secondary);">Avant la recherche vectorielle, la question utilisateur est transformée par le LLM en une « réponse hypothétique » — un extrait de document fictif qui ressemblerait à la réponse idéale. L'embedding de ce document hypothétique est beaucoup plus proche des vrais résultats pertinents dans l'espace vectoriel que la question brute.</p>
                 </div>
-                <div class="bg-gradient-to-r from-emerald-500/5 to-transparent border border-emerald-500/20 rounded-xl p-5">
-                    <div class="font-semibold text-emerald-300 mb-2">Contextual Retrieval (inspiré Anthropic)</div>
-                    <p class="text-slate-400 text-sm">Pour les documents financiers critiques (bulletins de paie, avis d'imposition), chaque chunk est enrichi d'un mini-résumé contextuel généré par le LLM avant l'ingestion. Cela combat la perte de contexte inhérente au découpage, permettant au moteur de recherche de comprendre « ce chunk parle du salaire de mars 2024 » même si le chunk brut ne contient que des chiffres.</p>
+                <div class="glass-card p-5" style="border-color:rgba(0,255,171,0.15);background:linear-gradient(135deg,rgba(0,255,171,0.03),transparent);">
+                    <div class="font-semibold mb-2" style="color:var(--accent-emerald);">Contextual Retrieval (inspiré Anthropic)</div>
+                    <p class="text-sm" style="color:var(--text-secondary);">Pour les documents financiers critiques (bulletins de paie, avis d'imposition), chaque chunk est enrichi d'un mini-résumé contextuel généré par le LLM avant l'ingestion. Cela combat la perte de contexte inhérente au découpage, permettant au moteur de recherche de comprendre « ce chunk parle du salaire de mars 2024 » même si le chunk brut ne contient que des chiffres.</p>
                 </div>
-                <div class="bg-gradient-to-r from-violet-500/5 to-transparent border border-violet-500/20 rounded-xl p-5">
-                    <div class="font-semibold text-violet-300 mb-2">Prompt Engineering Anti-Hallucination</div>
-                    <p class="text-slate-400 text-sm">Le prompt système contient des directives métier par type de document : pour les salaires, seul le « NET A PAYER EN EUROS » (post prélèvement à la source) est retourné, jamais le net avant impôt ni le coût employeur. Si l'information exacte n'est pas explicitement présente dans le contexte, le système refuse de répondre plutôt que de deviner.</p>
+                <div class="glass-card p-5" style="border-color:rgba(167,139,250,0.15);background:linear-gradient(135deg,rgba(167,139,250,0.03),transparent);">
+                    <div class="font-semibold mb-2" style="color:#a78bfa;">Prompt Engineering Anti-Hallucination</div>
+                    <p class="text-sm" style="color:var(--text-secondary);">Le prompt système contient des directives métier par type de document : pour les salaires, seul le « NET A PAYER EN EUROS » (post prélèvement à la source) est retourné, jamais le net avant impôt ni le coût employeur. Si l'information exacte n'est pas explicitement présente dans le contexte, le système refuse de répondre plutôt que de deviner.</p>
                 </div>
             </div>
         </section>
 
-        <hr class="border-slate-800 mb-12">
+        <hr class="section-divider">
 
         <!-- Architecture Modulaire -->
         <section class="mb-12 reveal">
             <h2 class="text-xl font-bold text-white mb-6">⚙️ Architecture Modulaire</h2>
-            <p class="text-slate-400 text-sm mb-5">Le système est décomposé en 5 modules indépendants, chacun avec une responsabilité unique :</p>
+            <p class="text-sm mb-5" style="color:var(--text-secondary);">Le système est décomposé en 5 modules indépendants, chacun avec une responsabilité unique :</p>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4">
-                    <div class="text-amber-400 text-xs font-mono mb-1">hot_config.py</div>
+                <div class="glass-card p-4">
+                    <div class="text-xs font-mono mb-1" style="color:rgba(245,158,11,0.8);">hot_config.py</div>
                     <div class="text-white font-semibold text-sm mb-1">Hot Swap de Configuration</div>
-                    <p class="text-slate-500 text-xs">Thread daemon surveillant <code class="text-blue-300">config.json</code> toutes les 30s. Modifier le modèle Ollama, la taille des chunks ou le prompt sans redémarrer le pipeline ni perdre l'état Watchdog.</p>
+                    <p class="text-xs" style="color:var(--text-tertiary);">Thread daemon surveillant <code style="color:var(--accent-cyan);">config.json</code> toutes les 30s. Modifier le modèle Ollama, la taille des chunks ou le prompt sans redémarrer le pipeline ni perdre l'état Watchdog.</p>
                 </div>
-                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4">
-                    <div class="text-emerald-400 text-xs font-mono mb-1">metadata_extractor.py</div>
+                <div class="glass-card p-4">
+                    <div class="text-xs font-mono mb-1" style="color:var(--accent-emerald);">metadata_extractor.py</div>
                     <div class="text-white font-semibold text-sm mb-1">Extraction Multi-couches</div>
-                    <p class="text-slate-500 text-xs">Parsing du nom de fichier en priorité, fallback automatique sur le contenu des premières pages. Scoring multi-mots-clés pour la détection du type de document.</p>
+                    <p class="text-xs" style="color:var(--text-tertiary);">Parsing du nom de fichier en priorité, fallback automatique sur le contenu des premières pages. Scoring multi-mots-clés pour la détection du type de document.</p>
                 </div>
-                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4">
-                    <div class="text-blue-400 text-xs font-mono mb-1">context_enricher.py</div>
+                <div class="glass-card p-4">
+                    <div class="text-xs font-mono mb-1" style="color:var(--accent-cyan);">context_enricher.py</div>
                     <div class="text-white font-semibold text-sm mb-1">Contextual Retrieval Async</div>
-                    <p class="text-slate-500 text-xs">Batching asynchrone via <code class="text-blue-300">asyncio.gather()</code>. 5 appels Ollama simultanés par batch (~5× plus rapide). Fallback automatique sur préfixe statique pour les documents non prioritaires.</p>
+                    <p class="text-xs" style="color:var(--text-tertiary);">Batching asynchrone via <code style="color:var(--accent-cyan);">asyncio.gather()</code>. 5 appels Ollama simultanés par batch (~5× plus rapide). Fallback automatique sur préfixe statique pour les documents non prioritaires.</p>
                 </div>
-                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4">
-                    <div class="text-violet-400 text-xs font-mono mb-1">chunk_strategy.py</div>
+                <div class="glass-card p-4">
+                    <div class="text-xs font-mono mb-1" style="color:#a78bfa;">chunk_strategy.py</div>
                     <div class="text-white font-semibold text-sm mb-1">Chunking Sémantique</div>
-                    <p class="text-slate-500 text-xs">Séparateurs financiers prioritaires (<code class="text-blue-300">\nNet à payer</code>, <code class="text-blue-300">\nTotal cotisations</code>…) pour préserver la cohérence des lignes de tableau. Filtrage des micro-chunks (&lt; 40 caractères).</p>
+                    <p class="text-xs" style="color:var(--text-tertiary);">Séparateurs financiers prioritaires (<code style="color:var(--accent-cyan);">\nNet à payer</code>, <code style="color:var(--accent-cyan);">\nTotal cotisations</code>…) pour préserver la cohérence des lignes de tableau. Filtrage des micro-chunks (&lt; 40 caractères).</p>
                 </div>
             </div>
         </section>
 
-        <hr class="border-slate-800 mb-12">
+        <hr class="section-divider">
 
         <!-- Apprentissages -->
         <section class="mb-12 reveal">
             <h2 class="text-xl font-bold text-white mb-4">💡 Apprentissages Clés</h2>
-            <ul class="space-y-3 text-slate-400 text-sm">
-                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> <strong class="text-slate-300">800 caractères / 150 overlap</strong> est un meilleur réglage que 600/200 pour les documents financiers : les tableaux de cotisations tènent dans un seul chunk et l'overlap excessif (33%) ne polluait que les résultats.</li>
-                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> PyMuPDFLoader préserve le layout spatial des tableaux bien mieux que UnstructuredPDFLoader, qui casse les montants en éléments isolés incompréhensibles.</li>
-                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> Le reranking CrossEncoder après la recherche vectorielle améliore drastiquement la pertinence — les embeddings seuls ne suffisent pas pour des requêtes financières précises.</li>
-                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> Le Contextual Retrieval LLM synchrone bloquait ~40s pour 20 chunks. L'implémentation <strong class="text-slate-300">asyncio + batching (5 appels simultanés)</strong> ramène ce délai à ~8-10s sans changer la qualité du contexte généré.</li>
-                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> Le fallback progressif sur les filtres de métadonnées est indispensable : un filtre trop strict retourne zéro résultat, un filtre absent noie la réponse dans du bruit.</li>
-                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> L'extraction de métadonnées depuis le seul nom de fichier échoue pour les fichiers génériques (ex: <code class="text-blue-300">doc_0043.pdf</code>). Le <strong class="text-slate-300">fallback sur le contenu des premières pages</strong> réduit les cas <em>type=other</em> de ~40%.</li>
-                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> Le hot-swap de configuration via un thread de surveillance de <code class="text-blue-300">config.json</code> évite les redémarrages Watchdog — critique en production continue sur un NAS.</li>
-                <li class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span> Afficher les sources dans l'UI est essentiel pour établir la confiance utilisateur et permettre la vérification humaine.</li>
+            <ul class="space-y-3 text-sm" style="color:var(--text-secondary);">
+                <li class="flex gap-3"><span style="color:var(--accent-emerald);" class="mt-0.5">✓</span> <strong class="text-white">800 caractères / 150 overlap</strong> est un meilleur réglage que 600/200 pour les documents financiers : les tableaux de cotisations tènent dans un seul chunk et l'overlap excessif (33%) ne polluait que les résultats.</li>
+                <li class="flex gap-3"><span style="color:var(--accent-emerald);" class="mt-0.5">✓</span> PyMuPDFLoader préserve le layout spatial des tableaux bien mieux que UnstructuredPDFLoader, qui casse les montants en éléments isolés incompréhensibles.</li>
+                <li class="flex gap-3"><span style="color:var(--accent-emerald);" class="mt-0.5">✓</span> Le reranking CrossEncoder après la recherche vectorielle améliore drastiquement la pertinence — les embeddings seuls ne suffisent pas pour des requêtes financières précises.</li>
+                <li class="flex gap-3"><span style="color:var(--accent-emerald);" class="mt-0.5">✓</span> Le Contextual Retrieval LLM synchrone bloquait ~40s pour 20 chunks. L'implémentation <strong class="text-white">asyncio + batching (5 appels simultanés)</strong> ramène ce délai à ~8-10s sans changer la qualité du contexte généré.</li>
+                <li class="flex gap-3"><span style="color:var(--accent-emerald);" class="mt-0.5">✓</span> Le fallback progressif sur les filtres de métadonnées est indispensable : un filtre trop strict retourne zéro résultat, un filtre absent noie la réponse dans du bruit.</li>
+                <li class="flex gap-3"><span style="color:var(--accent-emerald);" class="mt-0.5">✓</span> L'extraction de métadonnées depuis le seul nom de fichier échoue pour les fichiers génériques (ex: <code style="color:var(--accent-cyan);">doc_0043.pdf</code>). Le <strong class="text-white">fallback sur le contenu des premières pages</strong> réduit les cas <em>type=other</em> de ~40%.</li>
+                <li class="flex gap-3"><span style="color:var(--accent-emerald);" class="mt-0.5">✓</span> Le hot-swap de configuration via un thread de surveillance de <code style="color:var(--accent-cyan);">config.json</code> évite les redémarrages Watchdog — critique en production continue sur un NAS.</li>
+                <li class="flex gap-3"><span style="color:var(--accent-emerald);" class="mt-0.5">✓</span> Afficher les sources dans l'UI est essentiel pour établir la confiance utilisateur et permettre la vérification humaine.</li>
             </ul>
         </section>
 
     </div>
 
-    <footer class="text-center py-10 border-t border-slate-800/60 text-slate-600 text-sm">
-        Christopher Gilleron · Hébergé sur Vercel
+    <!-- ===== FOOTER ===== -->
+    <footer class="text-center py-12 mt-20" style="border-top:1px solid var(--border-glass);background:rgba(255,255,255,0.01);">
+        <p class="text-[10px] mb-2" style="color:var(--text-tertiary);">© 2026 Christopher Gilleron · Tous droits réservés</p>
+        <p class="text-[10px]" style="color:var(--text-secondary);">Développé avec passion à Lille · Hébergé sur Vercel</p>
     </footer>
 
     <!-- ===== BOUTON RETOUR EN HAUT ===== -->
@@ -345,30 +403,33 @@
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             const scrolled = (winScroll / height) * 100;
             document.getElementById("progress-bar").style.width = scrolled + "%";
-
             const btt = document.getElementById("back-to-top");
             if (winScroll > 400) { btt.classList.add("show"); } else { btt.classList.remove("show"); }
         }
-
         const revealCallback = (entries, observer) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    observer.unobserve(entry.target);
-                }
+                if (entry.isIntersecting) { entry.target.classList.add('active'); observer.unobserve(entry.target); }
             });
         };
-
         const revealObserver = new IntersectionObserver(revealCallback, { threshold: 0.1 });
-
-        document.addEventListener('DOMContentLoaded', () => {
-            document.body.classList.add('loaded'); // Activation du fondu au chargement
-            document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-            document.getElementById("back-to-top").addEventListener("click", () => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+        function initHamburger() {
+            const btn = document.getElementById('hamburger-btn');
+            const menu = document.getElementById('mobile-menu');
+            if (!btn || !menu) return;
+            btn.addEventListener('click', () => {
+                btn.classList.toggle('active'); menu.classList.toggle('open');
+                document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
             });
+            menu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => { btn.classList.remove('active'); menu.classList.remove('open'); document.body.style.overflow = ''; });
+            });
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.add('loaded');
+            document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+            document.getElementById("back-to-top").addEventListener("click", () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+            initHamburger();
         });
-
         window.onscroll = handleScroll;
     </script>
 </body>

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,352 +8,141 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        /* ===== BASE ===== */
-        html { scroll-behavior: smooth; }
-        body {
-            background-color: #060b18;
-            color: #f8fafc;
-            font-family: 'Inter', sans-serif;
-            opacity: 0;
-            transition: opacity 0.7s ease-in-out;
-        }
-        body.loaded { opacity: 1; }
+        :root{--bg-deep:#050505;--bg-card:rgba(255,255,255,0.03);--border-glass:rgba(255,255,255,0.08);--border-glass-hover:rgba(255,255,255,0.15);--text-primary:#f0f0f0;--text-secondary:#8a8f98;--text-tertiary:#555a63;--accent-cyan:#00e5ff;--accent-emerald:#00ffab;--accent-cyan-dim:rgba(0,229,255,0.12);--accent-emerald-dim:rgba(0,255,171,0.12);--glow-cyan:0 0 20px rgba(0,229,255,0.15);--ease-out-strong:cubic-bezier(0.23,1,0.32,1);--project-color:#00ffab;--project-color-dim:rgba(0,255,171,0.12);}
+        html{scroll-behavior:smooth;}body{background-color:var(--bg-deep);color:var(--text-primary);font-family:'Inter',sans-serif;opacity:0;transition:opacity 0.6s ease-out;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column;}body.loaded{opacity:1;}
+        .nav-blur{backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);background:rgba(5,5,5,0.75);border-bottom:1px solid var(--border-glass);}
+        .avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--accent-cyan),var(--accent-emerald));display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;color:var(--bg-deep);flex-shrink:0;}
+        .nav-link{color:var(--text-secondary);transition:color 0.2s ease;font-size:0.875rem;font-weight:500;}.nav-link:hover{color:var(--text-primary);}
+        .glass-card{background:var(--bg-card);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid var(--border-glass);border-radius:20px;transition:border-color 0.25s ease-out;}.glass-card:hover{border-color:var(--border-glass-hover);}
+        .tag{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:6px;padding:3px 10px;font-size:0.72rem;color:var(--text-secondary);transition:border-color 0.2s ease,box-shadow 0.2s ease,color 0.2s ease;}.tag:hover{border-color:rgba(0,255,171,0.3);color:var(--project-color);box-shadow:0 0 20px rgba(0,255,171,0.15);}
+        #progress-bar{position:fixed;top:0;left:0;height:2px;background:linear-gradient(to right,var(--accent-cyan),var(--accent-emerald));z-index:100;width:0%;transition:width 0.1s ease-out;}
+        #back-to-top{position:fixed;bottom:30px;right:30px;width:44px;height:44px;background:rgba(5,5,5,0.8);border:1px solid var(--border-glass);backdrop-filter:blur(12px);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--text-primary);cursor:pointer;z-index:40;opacity:0;visibility:hidden;transition:opacity 0.3s ease-out,visibility 0.3s ease-out,transform 0.2s var(--ease-out-strong),border-color 0.2s ease;}
+        #back-to-top.show{opacity:1;visibility:visible;}#back-to-top:hover{transform:translateY(-3px);border-color:var(--accent-emerald);color:var(--accent-emerald);}#back-to-top:active{transform:scale(0.95);}
+        .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s var(--ease-out-strong),transform 0.7s var(--ease-out-strong);}.reveal.active{opacity:1;transform:translateY(0);}
+        .btn-hover{transition:transform 0.2s var(--ease-out-strong),box-shadow 0.2s ease;}.btn-hover:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.3);}.btn-hover:active{transform:scale(0.97);}
+        .hamburger-line{display:block;width:20px;height:2px;background:var(--text-secondary);transition:transform 0.3s var(--ease-out-strong),opacity 0.2s ease;}
+        .hamburger.active .hamburger-line:nth-child(1){transform:translateY(6px) rotate(45deg);}.hamburger.active .hamburger-line:nth-child(2){opacity:0;}.hamburger.active .hamburger-line:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+        .mobile-menu{position:fixed;top:64px;left:0;right:0;bottom:0;background:rgba(5,5,5,0.95);backdrop-filter:blur(24px);z-index:45;transform:translateX(100%);transition:transform 0.35s var(--ease-out-strong);overflow-y:auto;}.mobile-menu.open{transform:translateX(0);}
+        
+        /* VEILLE SPECIFIC STYLES */
+        .hero-bg{background:radial-gradient(ellipse 70% 55% at 50% -10%,rgba(0,255,171,0.1),transparent),radial-gradient(ellipse 50% 40% at 80% 60%,rgba(0,229,255,0.05),transparent);}
+        .gradient-text{background:linear-gradient(135deg,var(--accent-emerald) 0%,var(--accent-cyan) 60%,#a78bfa 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+        .pulse-dot{width:8px;height:8px;border-radius:50%;background:var(--accent-emerald);animation:pulse-anim 2s ease-in-out infinite;}
+        @keyframes pulse-anim{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(0.85);}}
+        
+        .pipeline-card{background:var(--bg-card);border:1px solid var(--border-glass);backdrop-filter:blur(12px);border-radius:16px;padding:24px;transition:all 0.35s var(--ease-out-strong);}
+        .pipeline-card:hover{border-color:rgba(0,255,171,0.3);transform:translateY(-5px);box-shadow:0 20px 40px rgba(0,0,0,0.3);background:rgba(255,255,255,0.05);}
+        .pipeline-number{width:36px;height:36px;border-radius:50%;background:var(--project-color-dim);border:1px solid rgba(0,255,171,0.3);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:0.8rem;color:var(--accent-emerald);flex-shrink:0;}
+        .pipeline-connector{flex:1;height:1px;background:linear-gradient(90deg,rgba(0,255,171,0.3),rgba(0,229,255,0.1));}
+        
+        .stack-pill{font-family:'JetBrains Mono',monospace;font-size:0.7rem;font-weight:500;padding:0.25rem 0.75rem;border-radius:9999px;border:1px solid;transition:all 0.2s;}
+        .stack-pill:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,0.2);}
+        .pill-python{color:#60a5fa;border-color:rgba(96,165,250,0.3);background:rgba(96,165,250,0.08);}
+        .pill-bs4{color:#f97316;border-color:rgba(249,115,22,0.3);background:rgba(249,115,22,0.08);}
+        .pill-gemini{color:#a78bfa;border-color:rgba(167,139,250,0.3);background:rgba(167,139,250,0.08);}
+        .pill-actions{color:#34d399;border-color:rgba(52,211,153,0.3);background:rgba(52,211,153,0.08);}
+        .pill-pages{color:#fbbf24;border-color:rgba(251,191,36,0.3);background:rgba(251,191,36,0.08);}
+        .pill-json{color:var(--text-secondary);border-color:var(--border-glass-hover);background:var(--bg-card);}
 
-        /* ===== NAVBAR ===== */
-        .nav-blur {
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            background: rgba(6, 11, 24, 0.88);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        .avatar {
-            width: 40px; height: 40px; border-radius: 50%;
-            background: linear-gradient(135deg, #60a5fa, #34d399);
-            display: flex; align-items: center; justify-content: center;
-            font-weight: 800; font-size: 0.85rem; color: #060b18; flex-shrink: 0;
-        }
+        .section-divider{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.06),transparent);}
+        
+        .date-select-wrapper{position:relative;display:inline-flex;align-items:center;}
+        #date-select{appearance:none;-webkit-appearance:none;background:var(--bg-deep);border:1px solid rgba(0,255,171,0.25);color:var(--accent-emerald);font-family:'JetBrains Mono',monospace;font-size:0.78rem;padding:0.5rem 2.5rem 0.5rem 0.9rem;border-radius:0.6rem;cursor:pointer;transition:all 0.2s;outline:none;}
+        #date-select:hover,#date-select:focus{border-color:var(--accent-emerald);box-shadow:var(--glow-cyan);}
+        #date-select option{background:var(--bg-deep);color:var(--text-primary);}
+        .select-chevron{position:absolute;right:0.7rem;pointer-events:none;color:var(--accent-emerald);}
 
-        /* ===== HERO ===== */
-        .hero-bg {
-            background:
-                radial-gradient(ellipse 70% 55% at 50% -10%, rgba(52, 211, 153, 0.12), transparent),
-                radial-gradient(ellipse 50% 40% at 80% 60%, rgba(96, 165, 250, 0.07), transparent);
-        }
-        .gradient-text {
-            background: linear-gradient(135deg, #34d399 0%, #60a5fa 60%, #a78bfa 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-        }
-        .pulse-dot {
-            width: 8px; height: 8px; border-radius: 50%; background: #34d399;
-            animation: pulse-anim 2s ease-in-out infinite;
-        }
-        @keyframes pulse-anim {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(0.85); }
-        }
+        .news-card{background:var(--bg-card);border:1px solid var(--border-glass);transition:all 0.3s var(--ease-out-strong);}
+        .news-card:hover{transform:translateY(-4px);border-color:rgba(0,255,171,0.3);box-shadow:0 12px 35px rgba(0,0,0,0.25);background:rgba(255,255,255,0.05);}
+        .news-card.fade-in{animation:fadeInUp 0.4s ease forwards;}
+        @keyframes fadeInUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
 
-        /* ===== PIPELINE SECTION ===== */
-        .pipeline-card {
-            background: rgba(15, 23, 42, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            backdrop-filter: blur(8px);
-            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .pipeline-card:hover {
-            border-color: rgba(52, 211, 153, 0.25);
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            background: rgba(15, 23, 42, 0.75);
-        }
-        .pipeline-number {
-            width: 36px; height: 36px; border-radius: 50%;
-            background: linear-gradient(135deg, rgba(52,211,153,0.2), rgba(96,165,250,0.2));
-            border: 1px solid rgba(52, 211, 153, 0.3);
-            display: flex; align-items: center; justify-content: center;
-            font-family: 'JetBrains Mono', monospace; font-weight: 700;
-            font-size: 0.8rem; color: #34d399; flex-shrink: 0;
-        }
-        .pipeline-connector {
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(90deg, rgba(52,211,153,0.3), rgba(96,165,250,0.1));
-        }
-        .stack-pill {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem; font-weight: 500;
-            padding: 0.25rem 0.75rem; border-radius: 9999px;
-            border: 1px solid; transition: all 0.2s;
-        }
-        .stack-pill:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
-        .pill-python   { color: #60a5fa; border-color: rgba(96,165,250,0.3);  background: rgba(96,165,250,0.08); }
-        .pill-bs4      { color: #f97316; border-color: rgba(249,115,22,0.3);  background: rgba(249,115,22,0.08); }
-        .pill-gemini   { color: #a78bfa; border-color: rgba(167,139,250,0.3); background: rgba(167,139,250,0.08); }
-        .pill-actions  { color: #34d399; border-color: rgba(52,211,153,0.3);  background: rgba(52,211,153,0.08); }
-        .pill-pages    { color: #fbbf24; border-color: rgba(251,191,36,0.3);  background: rgba(251,191,36,0.08); }
-        .pill-json     { color: #e2e8f0; border-color: rgba(226,232,240,0.2); background: rgba(226,232,240,0.05); }
+        .skeleton{background:linear-gradient(90deg,rgba(255,255,255,0.03) 25%,rgba(255,255,255,0.08) 50%,rgba(255,255,255,0.03) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;}
+        @keyframes shimmer{0%{background-position:-200% 0;}100%{background-position:200% 0;}}
 
-        /* ===== DIVIDER ===== */
-        .section-divider {
-            border: none; height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
-        }
+        .stat-box{background:var(--bg-card);border:1px solid var(--border-glass);border-radius:0.875rem;padding:1.1rem 1.5rem;text-align:center;}
+        .code-inline{font-family:'JetBrains Mono',monospace;font-size:0.78rem;background:rgba(0,229,255,0.1);border:1px solid rgba(0,229,255,0.2);color:var(--accent-cyan);padding:0.1rem 0.45rem;border-radius:0.3rem;}
+        .section-label{font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent-emerald);}
+        .arrow-icon{transition:transform 0.2s;}
+        .news-card:hover .arrow-icon{transform:translate(3px,-3px);}
 
-        /* ===== DATE SELECTOR ===== */
-        .date-select-wrapper {
-            position: relative;
-            display: inline-flex; align-items: center;
-        }
-        #date-select {
-            appearance: none; -webkit-appearance: none;
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px solid rgba(52, 211, 153, 0.25);
-            color: #34d399;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.78rem;
-            padding: 0.5rem 2.5rem 0.5rem 0.9rem;
-            border-radius: 0.6rem;
-            cursor: pointer;
-            transition: all 0.2s;
-            outline: none;
-        }
-        #date-select:hover, #date-select:focus {
-            border-color: rgba(52, 211, 153, 0.5);
-            box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.08);
-        }
-        #date-select option { background: #0f172a; color: #f8fafc; }
-        .select-chevron {
-            position: absolute; right: 0.7rem; pointer-events: none; color: #34d399;
-        }
-
-        /* ===== ARTICLES ===== */
-        .news-card {
-            background: rgba(15, 23, 42, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .news-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(52, 211, 153, 0.25);
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
-            background: rgba(15, 23, 42, 0.8);
-        }
-        .news-card.fade-in {
-            animation: fadeInUp 0.4s ease forwards;
-        }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(16px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ===== SKELETON ===== */
-        .skeleton {
-            background: linear-gradient(90deg,
-                rgba(255,255,255,0.03) 25%,
-                rgba(255,255,255,0.08) 50%,
-                rgba(255,255,255,0.03) 75%);
-            background-size: 200% 100%;
-            animation: shimmer 1.5s infinite;
-        }
-        @keyframes shimmer {
-            0%   { background-position: -200% 0; }
-            100% { background-position:  200% 0; }
-        }
-
-        /* ===== STATS BAR ===== */
-        .stat-box {
-            background: rgba(15,23,42,0.4);
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 0.875rem;
-            padding: 1.1rem 1.5rem;
-            text-align: center;
-        }
-
-        /* ===== MISC ===== */
-        .code-inline {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.78rem;
-            background: rgba(96,165,250,0.1);
-            border: 1px solid rgba(96,165,250,0.2);
-            color: #93c5fd;
-            padding: 0.1rem 0.45rem;
-            border-radius: 0.3rem;
-        }
-        .section-label {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.65rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: #34d399;
-        }
-        .arrow-icon { transition: transform 0.2s; }
-        .news-card:hover .arrow-icon { transform: translate(3px, -3px); }
-
-        /* ===== SEARCH BAR ===== */
-        #search-bar-wrapper {
-            position: relative;
-        }
-        #search-input {
-            width: 100%;
-            background: rgba(15, 23, 42, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 0.875rem;
-            color: #f8fafc;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.875rem;
-            padding: 0.75rem 1rem 0.75rem 2.75rem;
-            outline: none;
-            transition: all 0.25s ease;
-            backdrop-filter: blur(8px);
-        }
-        #search-input::placeholder { color: #475569; }
-        #search-input:focus {
-            border-color: rgba(52, 211, 153, 0.4);
-            box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.08);
-            background: rgba(15, 23, 42, 0.9);
-        }
-        #search-icon {
-            position: absolute; left: 0.875rem; top: 50%;
-            transform: translateY(-50%);
-            color: #475569;
-            pointer-events: none;
-            transition: color 0.2s;
-        }
-        #search-input:focus ~ #search-icon,
-        #search-bar-wrapper:focus-within #search-icon { color: #34d399; }
-        #clear-search {
-            position: absolute; right: 0.875rem; top: 50%;
-            transform: translateY(-50%);
-            color: #475569; cursor: pointer;
-            display: none;
-            transition: color 0.2s;
-        }
-        #clear-search:hover { color: #94a3b8; }
+        /* SEARCH BAR */
+        #search-bar-wrapper{position:relative;}
+        #search-input{width:100%;background:var(--bg-card);border:1px solid var(--border-glass);border-radius:0.875rem;color:var(--text-primary);font-family:'Inter',sans-serif;font-size:0.875rem;padding:0.75rem 1rem 0.75rem 2.75rem;outline:none;transition:all 0.25s ease;backdrop-filter:blur(8px);}
+        #search-input::placeholder{color:var(--text-tertiary);}
+        #search-input:focus{border-color:rgba(0,255,171,0.4);box-shadow:var(--glow-cyan);background:rgba(255,255,255,0.05);}
+        #search-icon{position:absolute;left:0.875rem;top:50%;transform:translateY(-50%);color:var(--text-tertiary);pointer-events:none;transition:color 0.2s;}
+        #search-input:focus ~ #search-icon,#search-bar-wrapper:focus-within #search-icon{color:var(--accent-emerald);}
+        #clear-search{position:absolute;right:0.875rem;top:50%;transform:translateY(-50%);color:var(--text-tertiary);cursor:pointer;display:none;transition:color 0.2s;}
+        #clear-search:hover{color:var(--text-secondary);}
+        
         /* Filter chips */
-        .filter-chip {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.68rem; font-weight: 600;
-            padding: 0.3rem 0.8rem;
-            border-radius: 9999px;
-            border: 1px solid;
-            cursor: pointer;
-            transition: all 0.2s;
-            white-space: nowrap;
-        }
-        .filter-chip:hover { transform: translateY(-1px); }
-        .filter-chip.active-all    { background: rgba(52,211,153,0.15); border-color: rgba(52,211,153,0.5); color: #34d399; }
-        .filter-chip.inactive-all  { background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.08); color: #64748b; }
-        .filter-chip.active-news   { background: rgba(249,115,22,0.15); border-color: rgba(249,115,22,0.5); color: #f97316; }
-        .filter-chip.inactive-news { background: rgba(249,115,22,0.04); border-color: rgba(249,115,22,0.15); color: #78350f; }
-        .filter-chip.active-tool   { background: rgba(52,211,153,0.15); border-color: rgba(52,211,153,0.5); color: #34d399; }
-        .filter-chip.inactive-tool { background: rgba(52,211,153,0.04); border-color: rgba(52,211,153,0.15); color: #065f46; }
-        .filter-chip.active-tuto   { background: rgba(167,139,250,0.15); border-color: rgba(167,139,250,0.5); color: #a78bfa; }
-        .filter-chip.inactive-tuto { background: rgba(167,139,250,0.04); border-color: rgba(167,139,250,0.15); color: #3b1f6b; }
-        .filter-chip.active-deep   { background: rgba(96,165,250,0.15); border-color: rgba(96,165,250,0.5); color: #60a5fa; }
-        .filter-chip.inactive-deep { background: rgba(96,165,250,0.04); border-color: rgba(96,165,250,0.15); color: #1e3a5f; }
-        #search-results-count {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem; color: #475569;
-            transition: color 0.2s;
-        }
-        .news-card.hidden-by-search { display: none !important; }
+        .filter-chip{font-family:'JetBrains Mono',monospace;font-size:0.68rem;font-weight:600;padding:0.3rem 0.8rem;border-radius:9999px;border:1px solid;cursor:pointer;transition:all 0.2s;white-space:nowrap;}
+        .filter-chip:hover{transform:translateY(-1px);}
+        .filter-chip.active-all{background:rgba(0,255,171,0.15);border-color:rgba(0,255,171,0.5);color:var(--accent-emerald);}
+        .filter-chip.inactive-all{background:rgba(255,255,255,0.03);border-color:rgba(255,255,255,0.08);color:var(--text-secondary);}
+        .filter-chip.active-news{background:rgba(249,115,22,0.15);border-color:rgba(249,115,22,0.5);color:#f97316;}
+        .filter-chip.inactive-news{background:rgba(249,115,22,0.04);border-color:rgba(249,115,22,0.15);color:#c2410c;}
+        .filter-chip.active-tool{background:rgba(0,255,171,0.15);border-color:rgba(0,255,171,0.5);color:var(--accent-emerald);}
+        .filter-chip.inactive-tool{background:rgba(0,255,171,0.04);border-color:rgba(0,255,171,0.15);color:#047857;}
+        .filter-chip.active-tuto{background:rgba(167,139,250,0.15);border-color:rgba(167,139,250,0.5);color:#a78bfa;}
+        .filter-chip.inactive-tuto{background:rgba(167,139,250,0.04);border-color:rgba(167,139,250,0.15);color:#6d28d9;}
+        .filter-chip.active-deep{background:rgba(96,165,250,0.15);border-color:rgba(96,165,250,0.5);color:#60a5fa;}
+        .filter-chip.inactive-deep{background:rgba(96,165,250,0.04);border-color:rgba(96,165,250,0.15);color:#1d4ed8;}
+        #search-results-count{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--text-tertiary);transition:color 0.2s;}
+        .news-card.hidden-by-search{display:none !important;}
+        @media(prefers-reduced-motion:reduce){.reveal{transition:opacity 0.3s ease;transform:none !important;}.reveal.active{opacity:1;}.mobile-menu{transition:opacity 0.2s ease;transform:none !important;}}
     </style>
 </head>
-
 <body class="relative min-h-screen flex flex-col">
-
+    <div id="progress-bar"></div>
+    
     <!-- ===== NAVBAR ===== -->
-    <nav class="nav-blur fixed top-0 left-0 right-0 z-50">
-        <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-            <a href="index.html" class="flex items-center gap-3 no-underline">
-                <div class="avatar">CG</div>
-                <div class="flex flex-col">
-                    <span class="font-bold text-white hidden sm:block">Christopher Gilleron</span>
-                    <span class="text-[10px] text-slate-500 hidden sm:block">Data Scientist & IA</span>
-                </div>
-            </a>
-            <div class="flex items-center gap-3 sm:gap-5">
-                <a href="index.html" class="nav-link">Accueil</a>
-                
-                <!-- Dropdown Projets -->
-                <div class="relative group">
-                    <button class="nav-link flex items-center gap-1 focus:outline-none py-2" aria-label="Menu Projets">
-                        Projets
-                        <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
-                        </svg>
-                    </button>
-                    <!-- Dropdown Menu -->
-                    <div class="absolute right-0 mt-1 w-56 rounded-xl bg-slate-950/95 border border-slate-800 backdrop-blur-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 p-2 space-y-0.5">
-                        <a href="projet-rag.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">🤖 Assistant RAG V7</a>
-                        <a href="projet-proxmox.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">🏗️ Cloud Privé Proxmox</a>
-                        <a href="projet-immich.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">🖥️ Cloud Immich & NAS</a>
-                        <a href="projet-tesla.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">⚡ Tesla Inventory Bot</a>
-                        <a href="projet-chrisflix.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">🍿 Chrisflix Media Hub</a>
-                        <a href="projet-jedha.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">📊 GDM Ticket Router</a>
-                        <a href="projet-getaround.html" class="block px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition-colors">🚗 GetAround Price Predictor</a>
-                    </div>
-                </div>
-
-                <a href="veille.html" class="btn-hover text-emerald-400 text-[10px] sm:text-sm font-semibold hover:text-emerald-300 transition-colors flex items-center gap-1 border border-emerald-500/30 bg-emerald-500/10 px-2 sm:px-3 py-1 rounded-full">
-                    <span>📰</span> TLDR
-                </a>
-                <a href="https://github.com/Elkristobal59" target="_blank" rel="noopener noreferrer"
-                    class="btn-hover px-2 sm:px-3.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-[10px] sm:text-sm font-medium hover:bg-blue-500/20 transition-all">
-                    GitHub
-                </a>
-                <a href="https://www.linkedin.com/in/christophergilleron/" target="_blank" rel="noopener noreferrer"
-                    class="btn-hover px-2 sm:px-3.5 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-[10px] sm:text-sm font-medium hover:bg-sky-500/20 transition-all">
-                    LinkedIn
-                </a>
-            </div>
-        </div>
-    </nav>
-
-
+    <nav class="nav-blur fixed top-0 left-0 right-0 z-50"><div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between"><a href="index.html" class="flex items-center gap-3 no-underline"><div class="avatar">CG</div><div class="flex flex-col"><span class="font-bold text-white hidden sm:block" style="font-size:0.9rem;">Christopher Gilleron</span><span class="text-[10px] hidden sm:block" style="color:var(--text-tertiary);">Data & IA Ops</span></div></a><div class="hidden md:flex items-center gap-3 lg:gap-5"><a href="index.html" class="nav-link">Accueil</a><div class="relative group"><button class="nav-link flex items-center gap-1 focus:outline-none py-2" style="font-weight:500;">Projets <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg></button><div class="absolute right-0 mt-1 w-56 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 p-2 space-y-0.5" style="background:rgba(10,10,10,0.95);border:1px solid var(--border-glass);backdrop-filter:blur(20px);"><a href="projet-rag.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">🤖 Assistant RAG V7</a><a href="projet-proxmox.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">🏗️ Cloud Privé Proxmox</a><a href="projet-immich.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">🖥️ Cloud Immich & NAS</a><a href="projet-tesla.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">⚡ Tesla Inventory Bot</a><a href="projet-chrisflix.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">🍿 Chrisflix Media Hub</a><a href="projet-jedha.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">📊 GDM Ticket Router</a><a href="projet-getaround.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">🚗 GetAround Price Predictor</a><a href="projet-finance.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">💰 Finance App</a></div></div><a href="veille.html" class="btn-hover text-xs font-semibold flex items-center gap-1 px-3 py-1 rounded-full no-underline" style="color:var(--accent-emerald);border:1px solid rgba(0,255,171,0.25);background:var(--project-color-dim);"><span>📰</span> TLDR</a><a href="https://github.com/Elkristobal59" target="_blank" rel="noopener noreferrer" class="btn-hover px-3 py-1 rounded-full text-xs font-medium no-underline" style="background:var(--accent-cyan-dim);border:1px solid rgba(0,229,255,0.25);color:var(--accent-cyan);">GitHub</a><a href="https://www.linkedin.com/in/christophergilleron/" target="_blank" rel="noopener noreferrer" class="btn-hover px-3 py-1 rounded-full text-xs font-medium no-underline" style="background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.25);color:#38bdf8;">LinkedIn</a></div><button class="hamburger md:hidden flex flex-col gap-1 p-2 focus:outline-none" aria-label="Menu" id="hamburger-btn"><span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span></button></div></nav>
+    <div class="mobile-menu md:hidden" id="mobile-menu"><div class="flex flex-col p-6 gap-4"><a href="index.html" class="text-lg font-semibold no-underline" style="color:var(--text-primary);">Accueil</a><div class="border-t" style="border-color:var(--border-glass);"></div><p class="text-xs font-mono uppercase tracking-widest" style="color:var(--text-tertiary);">Projets</p><a href="projet-rag.html" class="text-sm no-underline" style="color:var(--text-secondary);">🤖 Assistant RAG V7</a><a href="projet-proxmox.html" class="text-sm no-underline" style="color:var(--text-secondary);">🏗️ Cloud Privé Proxmox</a><a href="projet-immich.html" class="text-sm no-underline" style="color:var(--text-secondary);">🖥️ Cloud Immich & NAS</a><a href="projet-tesla.html" class="text-sm no-underline" style="color:var(--text-secondary);">⚡ Tesla Inventory Bot</a><a href="projet-chrisflix.html" class="text-sm no-underline" style="color:var(--text-secondary);">🍿 Chrisflix Media Hub</a><a href="projet-jedha.html" class="text-sm no-underline" style="color:var(--text-secondary);">📊 GDM Ticket Router</a><a href="projet-getaround.html" class="text-sm no-underline" style="color:var(--text-secondary);">🚗 GetAround Price Predictor</a><a href="projet-finance.html" class="text-sm no-underline" style="color:var(--text-secondary);">💰 Finance App</a><div class="border-t" style="border-color:var(--border-glass);"></div><a href="veille.html" class="text-sm font-semibold no-underline" style="color:var(--accent-emerald);">📰 Veille TLDR</a><div class="flex gap-3 mt-4"><a href="https://github.com/Elkristobal59" target="_blank" class="px-4 py-2 rounded-full text-xs font-medium no-underline" style="background:var(--accent-cyan-dim);border:1px solid rgba(0,229,255,0.25);color:var(--accent-cyan);">GitHub</a><a href="https://www.linkedin.com/in/christophergilleron/" target="_blank" class="px-4 py-2 rounded-full text-xs font-medium no-underline" style="background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.25);color:#38bdf8;">LinkedIn</a></div></div></div>
 
     <!-- ===== HERO ===== -->
-    <header class="hero-bg pt-32 pb-10 px-6 text-center">
+    <header class="hero-bg pt-32 pb-10 px-6 text-center reveal">
         <div class="max-w-3xl mx-auto">
-            <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-xs font-mono mb-7">
+            <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border mb-7" style="background:var(--project-color-dim);border-color:rgba(0,255,171,0.25);color:var(--accent-emerald);font-family:'JetBrains Mono',monospace;font-size:0.75rem;">
                 <div class="pulse-dot"></div>
                 VEILLE AUTOMATISÉE · TLDR DATA
             </div>
 
-            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-5 leading-tight tracking-tight">
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-5 leading-tight tracking-tight" style="letter-spacing:-0.02em;">
                 Les News <span class="gradient-text">Data & IA</span> <br class="hidden sm:block">de la semaine
             </h1>
 
-            <p class="text-slate-400 mb-8 leading-relaxed text-sm sm:text-base max-w-2xl mx-auto">
+            <p class="mb-8 leading-relaxed text-sm sm:text-base max-w-2xl mx-auto" style="color:var(--text-secondary);">
                 Chaque lundi et jeudi, un pipeline 100% automatisé extrait les meilleures actualités anglophones
                 de <span class="text-white font-medium">TLDR Data</span>, puis
                 <span class="text-white font-medium">Gemini AI</span> les traduit et les catégorise ici.
-                Les <span class="text-emerald-400 font-medium">10 dernières éditions</span> sont accessibles via le menu ci-dessous.
+                Les <span class="font-medium" style="color:var(--accent-emerald);">10 dernières éditions</span> sont accessibles via le menu ci-dessous.
             </p>
 
             <!-- Stats bar -->
             <div class="flex flex-wrap justify-center gap-4 mb-2">
                 <div class="stat-box">
                     <div class="text-2xl font-black text-white" id="stat-editions">—</div>
-                    <div class="text-[10px] text-slate-500 mt-0.5 font-mono uppercase tracking-wider">Éditions stockées</div>
+                    <div class="text-[10px] mt-0.5 font-mono uppercase tracking-wider" style="color:var(--text-tertiary);">Éditions stockées</div>
                 </div>
                 <div class="stat-box">
-                    <div class="text-2xl font-black text-emerald-400" id="stat-articles">—</div>
-                    <div class="text-[10px] text-slate-500 mt-0.5 font-mono uppercase tracking-wider">Articles traduits</div>
+                    <div class="text-2xl font-black" id="stat-articles" style="color:var(--accent-emerald);">—</div>
+                    <div class="text-[10px] mt-0.5 font-mono uppercase tracking-wider" style="color:var(--text-tertiary);">Articles traduits</div>
                 </div>
                 <div class="stat-box">
                     <div class="text-2xl font-black text-blue-400">0%</div>
-                    <div class="text-[10px] text-slate-500 mt-0.5 font-mono uppercase tracking-wider">Intervention humaine</div>
+                    <div class="text-[10px] mt-0.5 font-mono uppercase tracking-wider" style="color:var(--text-tertiary);">Intervention humaine</div>
                 </div>
             </div>
         </div>
     </header>
 
     <!-- ===== PIPELINE ===== -->
-    <section class="max-w-5xl mx-auto px-6 pt-12 pb-10 w-full">
-
+    <section class="max-w-5xl mx-auto px-6 pt-12 pb-10 w-full reveal">
         <div class="flex items-center gap-3 mb-7">
             <span class="section-label">Comment ça marche</span>
-            <div class="flex-1 h-px bg-slate-800"></div>
+            <div class="flex-1 h-px" style="background:var(--border-glass);"></div>
         </div>
 
         <!-- Connecteur visuel desktop -->
@@ -367,20 +155,19 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-
             <!-- Étape 1 : Scraping -->
-            <div class="pipeline-card rounded-2xl p-6">
+            <div class="pipeline-card">
                 <div class="flex items-center gap-3 mb-4">
                     <div class="text-2xl">🕷️</div>
                     <div>
-                        <div class="text-[10px] font-mono text-slate-500 uppercase tracking-widest">Étape 01</div>
+                        <div class="text-[10px] font-mono uppercase tracking-widest" style="color:var(--text-tertiary);">Étape 01</div>
                         <div class="font-bold text-white text-base">Scraping</div>
                     </div>
                 </div>
-                <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                <p class="text-sm leading-relaxed mb-4" style="color:var(--text-secondary);">
                     Le script Python visite <span class="code-inline">tldr.tech/data/YYYY-MM-DD</span>,
                     parse le HTML avec <span class="code-inline">BeautifulSoup</span> et extrait les articles
-                    en filtrant automatiquement les <span class="text-slate-300">sponsors</span>.
+                    en filtrant automatiquement les <span class="text-white opacity-70">sponsors</span>.
                 </p>
                 <div class="flex flex-wrap gap-2">
                     <span class="stack-pill pill-python">Python</span>
@@ -390,19 +177,19 @@
             </div>
 
             <!-- Étape 2 : IA -->
-            <div class="pipeline-card rounded-2xl p-6">
+            <div class="pipeline-card">
                 <div class="flex items-center gap-3 mb-4">
                     <div class="text-2xl">🤖</div>
                     <div>
-                        <div class="text-[10px] font-mono text-slate-500 uppercase tracking-widest">Étape 02</div>
+                        <div class="text-[10px] font-mono uppercase tracking-widest" style="color:var(--text-tertiary);">Étape 02</div>
                         <div class="font-bold text-white text-base">Traduction & Catégorisation</div>
                     </div>
                 </div>
-                <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                <p class="text-sm leading-relaxed mb-4" style="color:var(--text-secondary);">
                     Les articles bruts (EN) sont envoyés à l'API <span class="code-inline">Gemini</span> avec
                     un prompt structuré. Le modèle retourne un <span class="code-inline">tableau JSON</span> avec
                     titres traduits, résumés courts et catégories (<em>News, Tool, Tutoriel, Deep Dive</em>).
-                    Un <span class="text-slate-300">Hot Swap</span> bascule sur le modèle de secours si surcharge.
+                    Un <span class="text-white opacity-70">Hot Swap</span> bascule sur le modèle de secours si surcharge.
                 </p>
                 <div class="flex flex-wrap gap-2">
                     <span class="stack-pill pill-gemini">Gemini API</span>
@@ -411,15 +198,15 @@
             </div>
 
             <!-- Étape 3 : GitHub Actions -->
-            <div class="pipeline-card rounded-2xl p-6">
+            <div class="pipeline-card">
                 <div class="flex items-center gap-3 mb-4">
                     <div class="text-2xl">⚙️</div>
                     <div>
-                        <div class="text-[10px] font-mono text-slate-500 uppercase tracking-widest">Étape 03</div>
+                        <div class="text-[10px] font-mono uppercase tracking-widest" style="color:var(--text-tertiary);">Étape 03</div>
                         <div class="font-bold text-white text-base">Publication automatique</div>
                     </div>
                 </div>
-                <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                <p class="text-sm leading-relaxed mb-4" style="color:var(--text-secondary);">
                     Un workflow <span class="code-inline">GitHub Actions</span> déclenché chaque <strong class="text-white">lundi et jeudi</strong>
                     exécute le script, insère la nouvelle édition en tête du JSON
                     (<strong class="text-white">10 éditions max</strong>, FIFO), puis commit et push automatiquement
@@ -430,12 +217,11 @@
                     <span class="stack-pill pill-pages">GitHub Pages</span>
                 </div>
             </div>
-
         </div>
 
         <!-- Stack globale -->
         <div class="flex flex-wrap items-center gap-3">
-            <span class="text-[11px] text-slate-600 font-mono uppercase tracking-wider mr-1">Stack complète :</span>
+            <span class="text-[11px] font-mono uppercase tracking-wider mr-1" style="color:var(--text-tertiary);">Stack complète :</span>
             <span class="stack-pill pill-python">Python 3.11</span>
             <span class="stack-pill pill-bs4">BeautifulSoup4</span>
             <span class="stack-pill pill-gemini">Gemini 3 Flash</span>
@@ -448,16 +234,15 @@
     <hr class="section-divider mx-6">
 
     <!-- ===== NEWS SECTION ===== -->
-    <main class="max-w-5xl mx-auto px-6 flex-grow w-full pb-24 pt-10">
-
+    <main class="max-w-5xl mx-auto px-6 flex-grow w-full pb-24 pt-10 reveal">
         <!-- Barre de sélection -->
         <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
-            <h2 class="text-lg font-semibold text-white flex items-center gap-2">
+            <h2 class="text-lg font-bold text-white flex items-center gap-2">
                 <span>📰</span> Édition du jour
             </h2>
 
             <div class="flex items-center gap-3 flex-wrap">
-                <span class="text-xs text-slate-500 font-mono">Choisir une date :</span>
+                <span class="text-xs font-mono" style="color:var(--text-secondary);">Choisir une date :</span>
                 <div class="date-select-wrapper">
                     <select id="date-select" aria-label="Choisir l'édition à afficher">
                         <option value="">Chargement...</option>
@@ -466,7 +251,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
                     </svg>
                 </div>
-                <div id="edition-count" class="text-[11px] font-mono text-slate-600 bg-slate-800/40 px-2.5 py-1 rounded-md border border-slate-700/50"></div>
+                <div id="edition-count" class="text-[11px] font-mono px-2.5 py-1 rounded-md" style="color:var(--text-secondary);background:var(--bg-card);border:1px solid var(--border-glass);"></div>
             </div>
         </div>
 
@@ -527,14 +312,16 @@
     </main>
 
     <!-- ===== FOOTER ===== -->
-    <footer class="text-center py-10 border-t border-slate-800/50 bg-slate-900/20">
-        <p class="text-[11px] text-slate-500 mb-3 px-6 italic max-w-2xl mx-auto">
-            Ce site est un projet personnel de veille technologique. Les résumés sont traduits et adaptés à partir de la newsletter <a href="https://tldr.tech" target="_blank" class="underline hover:text-slate-300">TLDR.tech</a>. Soutenez leur travail en vous abonnant à l'original.
+    <footer class="text-center py-12 mt-auto" style="border-top:1px solid var(--border-glass);background:rgba(255,255,255,0.01);">
+        <p class="text-[11px] mb-3 px-6 italic max-w-2xl mx-auto" style="color:var(--text-secondary);">
+            Ce site est un projet personnel de veille technologique. Les résumés sont traduits et adaptés à partir de la newsletter <a href="https://tldr.tech" target="_blank" class="underline hover:text-white transition-colors">TLDR.tech</a>. Soutenez leur travail en vous abonnant à l'original.
         </p>
-        <p class="text-[11px] text-slate-500 font-mono">
-            Pipeline automatisé · <b class="text-slate-400">Gemini AI</b> + <b class="text-slate-400">GitHub Actions</b> + <b class="text-slate-400">GitHub Pages</b>
+        <p class="text-[11px] font-mono" style="color:var(--text-tertiary);">
+            Pipeline automatisé · <b class="text-white opacity-80">Gemini AI</b> + <b class="text-white opacity-80">GitHub Actions</b> + <b class="text-white opacity-80">GitHub Pages</b>
         </p>
     </footer>
+
+    <div id="back-to-top" title="Retour en haut"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg></div>
 
     <script>
         // =============================================
@@ -607,7 +394,7 @@
                         <h3 class="text-lg font-bold text-white mb-2.5 group-hover:text-${color}-300 transition-colors pr-8 leading-snug">
                             ${article.titre}
                         </h3>
-                        <p class="text-slate-400 text-sm leading-relaxed mb-3">
+                        <p class="text-sm leading-relaxed mb-3" style="color:var(--text-secondary);">
                             ${article.resume}
                         </p>
                         ${readMore}
@@ -637,7 +424,7 @@
 
                 if (!editions.length) {
                     document.getElementById('news-container').innerHTML =
-                        '<div class="text-center py-12 text-slate-500">Aucune édition disponible.</div>';
+                        '<div class="text-center py-12" style="color:var(--text-tertiary);">Aucune édition disponible.</div>';
                     return;
                 }
 
@@ -668,7 +455,7 @@
             } catch (error) {
                 console.error('Erreur de chargement:', error);
                 document.getElementById('news-container').innerHTML = `
-                    <div class="bg-red-500/10 border border-red-500/20 rounded-xl p-6 text-center">
+                    <div class="rounded-xl p-6 text-center" style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.2);">
                         <div class="text-red-400 text-3xl mb-2">⚠️</div>
                         <h3 class="text-red-400 font-medium mb-1">Impossible de charger les actualités</h3>
                         <p class="text-red-400/70 text-sm">Vérifiez que <code>data/tldr.json</code> existe et est valide.</p>
@@ -691,7 +478,6 @@
             }
 
             renderArticles(ed.articles);
-            // Réappliquer le filtre de recherche actif après le rendu
             if (typeof applySearch === 'function') applySearch();
         }
 
@@ -752,7 +538,6 @@
             chips.forEach(chip => {
                 chip.addEventListener('click', () => {
                     activeFilter = chip.dataset.filter;
-                    // Mise à jour visuelle des chips
                     chips.forEach(c => {
                         const f = c.dataset.filter;
                         if (c === chip) {
@@ -767,14 +552,22 @@
         }
 
         // =============================================
-        // INIT
+        // INIT & SCROLL
         // =============================================
+        
+        function handleScroll(){const w=document.body.scrollTop||document.documentElement.scrollTop;const h=document.documentElement.scrollHeight-document.documentElement.clientHeight;document.getElementById("progress-bar").style.width=(w/h)*100+"%";const b=document.getElementById("back-to-top");w>400?b.classList.add("show"):b.classList.remove("show");}
+        const revealObserver=new IntersectionObserver((entries,observer)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('active');observer.unobserve(e.target);}});},{threshold:0.1});
+        function initHamburger(){const btn=document.getElementById('hamburger-btn');const menu=document.getElementById('mobile-menu');if(!btn||!menu)return;btn.addEventListener('click',()=>{btn.classList.toggle('active');menu.classList.toggle('open');document.body.style.overflow=menu.classList.contains('open')?'hidden':'';});menu.querySelectorAll('a').forEach(l=>{l.addEventListener('click',()=>{btn.classList.remove('active');menu.classList.remove('open');document.body.style.overflow='';});});}
 
         document.addEventListener('DOMContentLoaded', () => {
             document.body.classList.add('loaded');
+            document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
+            document.getElementById("back-to-top").addEventListener("click",()=>{window.scrollTo({top:0,behavior:'smooth'});});
+            initHamburger();
             initSearch();
             setTimeout(loadNews, 600);
         });
+        window.onscroll=handleScroll;
     </script>
 </body>
 </html>

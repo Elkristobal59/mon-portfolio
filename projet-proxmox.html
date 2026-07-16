@@ -4,170 +4,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Migration Cloud Privé : Proxmox & Docker — Christopher Gilleron</title>
-    <meta name="description"
-        content="Projet d'infrastructure avancée : migration d'un environnement Docker Windows vers un serveur dédié Lenovo sous Proxmox. Virtualisation, sécurité et automatisation.">
+    <title>Cloud Privé Proxmox — Christopher Gilleron</title>
+    <meta name="description" content="Projet infrastructure : migration d'un homelab hybride vers un hyperviseur Proxmox VE dédié sur Lenovo M80q Tiny. Virtualisation, snapshots, backups automatisés vers NAS Synology et VPN mesh Tailscale.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body {
-            background-color: #0a0f1e;
-            color: #f8fafc;
-            font-family: 'Inter', sans-serif;
-            opacity: 0;
-            transition: opacity 0.8s ease-in-out;
-        }
-
-        body.loaded {
-            opacity: 1;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        .nav-blur {
-            backdrop-filter: blur(16px);
-            background: rgba(10, 15, 30, 0.85);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-        }
-
-        .avatar {
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #60a5fa, #34d399);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: .95rem;
-            color: #0a0f1e;
-            flex-shrink: 0;
-        }
-
-        .nav-link {
-            color: #94a3b8;
-            transition: color 0.2s;
-            font-size: .875rem;
-            font-weight: 500;
-        }
-
-        .nav-link:hover {
-            color: #f8fafc;
-        }
-
-        .tag {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 6px;
-            padding: 3px 10px;
-            font-size: .72rem;
-            color: #94a3b8;
-        }
-
-        .feature-card {
-            background: rgba(16, 24, 48, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.07);
-            border-radius: 16px;
-            padding: 24px;
-            transition: all 0.3s ease;
-        }
-
-        .feature-card:hover {
-            border-color: rgba(52, 211, 153, 0.3);
-            background: rgba(16, 24, 48, 0.8);
-            transform: translateY(-4px);
-        }
-
-        .gradient-border {
-            position: relative;
-            background: rgba(10, 15, 30, 0.9);
-            border-radius: 20px;
-        }
-
-        .gradient-border::before {
-            content: "";
-            position: absolute;
-            inset: -1px;
-            background: linear-gradient(135deg, #60a5fa, #34d399);
-            border-radius: 21px;
-            z-index: -1;
-            opacity: 0.3;
-        }
-
-        /* Archi diagram */
-        .arch-box {
-            border-radius: 10px;
-            padding: 10px 16px;
-            font-size: 0.78rem;
-            font-weight: 600;
-            text-align: center;
-            border: 1px solid;
-        }
-
-        /* --- Progress Bar --- */
-        #progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(to right, #60a5fa, #34d399); z-index: 100; width: 0%; transition: width 0.1s ease-out; }
-
-        /* --- Back to Top --- */
-        #back-to-top { position: fixed; bottom: 30px; right: 30px; width: 44px; height: 44px; background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(8px); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #f8fafc; cursor: pointer; z-index: 40; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
-        #back-to-top.show { opacity: 1; visibility: visible; }
-
-        /* --- Reveal Animations --- */
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+        :root{--bg-deep:#050505;--bg-card:rgba(255,255,255,0.03);--border-glass:rgba(255,255,255,0.08);--border-glass-hover:rgba(255,255,255,0.15);--text-primary:#f0f0f0;--text-secondary:#8a8f98;--text-tertiary:#555a63;--accent-cyan:#00e5ff;--accent-emerald:#00ffab;--accent-cyan-dim:rgba(0,229,255,0.12);--accent-emerald-dim:rgba(0,255,171,0.12);--glow-cyan:0 0 20px rgba(0,229,255,0.15);--glow-emerald:0 0 20px rgba(0,255,171,0.15);--ease-out-strong:cubic-bezier(0.23,1,0.32,1);}
+        html{scroll-behavior:smooth;}
+        body{background-color:var(--bg-deep);color:var(--text-primary);font-family:'Inter',sans-serif;opacity:0;transition:opacity 0.6s ease-out;-webkit-font-smoothing:antialiased;}
+        body.loaded{opacity:1;}
+        .nav-blur{backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);background:rgba(5,5,5,0.75);border-bottom:1px solid var(--border-glass);}
+        .avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--accent-cyan),var(--accent-emerald));display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;color:var(--bg-deep);flex-shrink:0;}
+        .nav-link{color:var(--text-secondary);transition:color 0.2s ease;font-size:0.875rem;font-weight:500;}
+        .nav-link:hover{color:var(--text-primary);}
+        .glass-card{background:var(--bg-card);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid var(--border-glass);border-radius:20px;transition:border-color 0.25s ease-out;}
+        .glass-card:hover{border-color:var(--border-glass-hover);}
+        .tag{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:6px;padding:3px 10px;font-size:0.72rem;color:var(--text-secondary);transition:border-color 0.2s ease,box-shadow 0.2s ease,color 0.2s ease;}
+        .tag:hover{border-color:rgba(0,229,255,0.3);color:var(--accent-cyan);box-shadow:var(--glow-cyan);}
+        .feature-card{background:var(--bg-card);backdrop-filter:blur(24px);border:1px solid var(--border-glass);border-radius:16px;padding:24px;transition:border-color 0.25s ease-out;}
+        #progress-bar{position:fixed;top:0;left:0;height:2px;background:linear-gradient(to right,var(--accent-cyan),var(--accent-emerald));z-index:100;width:0%;transition:width 0.1s ease-out;}
+        #back-to-top{position:fixed;bottom:30px;right:30px;width:44px;height:44px;background:rgba(5,5,5,0.8);border:1px solid var(--border-glass);backdrop-filter:blur(12px);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--text-primary);cursor:pointer;z-index:40;opacity:0;visibility:hidden;transition:opacity 0.3s ease-out,visibility 0.3s ease-out,transform 0.2s var(--ease-out-strong),border-color 0.2s ease;}
+        #back-to-top.show{opacity:1;visibility:visible;}
+        #back-to-top:hover{transform:translateY(-3px);border-color:var(--accent-cyan);color:var(--accent-cyan);}
+        #back-to-top:active{transform:scale(0.95);}
+        .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s var(--ease-out-strong),transform 0.7s var(--ease-out-strong);}
+        .reveal.active{opacity:1;transform:translateY(0);}
+        .btn-hover{transition:transform 0.2s var(--ease-out-strong),box-shadow 0.2s ease;}
+        .btn-hover:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.3);}
+        .btn-hover:active{transform:scale(0.97);}
+        .section-divider{border:none;height:1px;background:linear-gradient(90deg,transparent,var(--border-glass),transparent);margin:3rem 0;}
+        .hamburger-line{display:block;width:20px;height:2px;background:var(--text-secondary);transition:transform 0.3s var(--ease-out-strong),opacity 0.2s ease;}
+        .hamburger.active .hamburger-line:nth-child(1){transform:translateY(6px) rotate(45deg);}
+        .hamburger.active .hamburger-line:nth-child(2){opacity:0;}
+        .hamburger.active .hamburger-line:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+        .mobile-menu{position:fixed;top:64px;left:0;right:0;bottom:0;background:rgba(5,5,5,0.95);backdrop-filter:blur(24px);z-index:45;transform:translateX(100%);transition:transform 0.35s var(--ease-out-strong);overflow-y:auto;}
+        .mobile-menu.open{transform:translateX(0);}
+        @media(prefers-reduced-motion:reduce){.reveal{transition:opacity 0.3s ease;transform:none !important;}.reveal.active{opacity:1;}.mobile-menu{transition:opacity 0.2s ease;transform:none !important;}}
     </style>
 </head>
 
 <body class="relative">
     <div id="progress-bar"></div>
-    
-    <!-- Navigation -->
+
+    <!-- ===== NAVBAR ===== -->
     <nav class="nav-blur fixed top-0 left-0 right-0 z-50">
         <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
             <a href="index.html" class="flex items-center gap-3 no-underline">
                 <div class="avatar">CG</div>
-                <span class="font-bold text-white hidden sm:block">Christopher Gilleron</span>
+                <div class="flex flex-col">
+                    <span class="font-bold text-white hidden sm:block" style="font-size:0.9rem;">Christopher Gilleron</span>
+                    <span class="text-[10px] hidden sm:block" style="color:var(--text-tertiary);">Data & IA Ops</span>
+                </div>
             </a>
-            <div class="flex items-center gap-6">
+            <div class="hidden md:flex items-center gap-3 lg:gap-5">
                 <a href="index.html" class="nav-link">Accueil</a>
-                <!-- Dropdown Projets -->
                 <div class="relative group">
-                    <button class="nav-link flex items-center gap-1 text-emerald-400 font-semibold">
-                        Projets
-                        <svg class="w-3.5 h-3.5 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                    </button>
-                    <div class="absolute top-full right-0 mt-2 w-52 py-2 rounded-xl bg-slate-900/95 border border-slate-700/60 backdrop-blur-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                        <a href="projet-proxmox.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-emerald-400 font-semibold bg-emerald-500/10">🏗️ Proxmox Homelab</a>
-                        <a href="projet-rag.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors">🤖 Assistant RAG</a>
-                        <a href="projet-tesla.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors">🚗 Tesla Monitor</a>
-                        <a href="projet-chrisflix.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors">🎬 Chrisflix</a>
-                        <a href="projet-immich.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors">📸 Immich</a>
-                        <a href="projet-getaround.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors">🚀 GetAround</a>
-                        <a href="projet-jedha.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors">🎓 JEDHA</a>
+                    <button class="nav-link flex items-center gap-1 focus:outline-none py-2" style="color:var(--accent-emerald);font-weight:600;">Projets <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg></button>
+                    <div class="absolute right-0 mt-1 w-56 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 p-2 space-y-0.5" style="background:rgba(10,10,10,0.95);border:1px solid var(--border-glass);backdrop-filter:blur(20px);">
+                        <a href="projet-rag.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">🤖 Assistant RAG V7</a>
+                        <a href="projet-proxmox.html" class="block px-3 py-2 rounded-lg text-xs font-semibold no-underline" style="color:var(--accent-emerald);background:var(--accent-emerald-dim);">🏗️ Cloud Privé Proxmox</a>
+                        <a href="projet-immich.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">🖥️ Cloud Immich & NAS</a>
+                        <a href="projet-tesla.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">⚡ Tesla Inventory Bot</a>
+                        <a href="projet-chrisflix.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">🍿 Chrisflix Media Hub</a>
+                        <a href="projet-jedha.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">📊 GDM Ticket Router</a>
+                        <a href="projet-getaround.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">🚗 GetAround Price Predictor</a>
+                        <a href="projet-finance.html" class="block px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/5 transition-colors no-underline" style="color:var(--text-secondary);">💰 Finance App</a>
                     </div>
                 </div>
-                <a href="veille.html" class="nav-link">Veille</a>
-                <a href="https://www.linkedin.com/in/christophergilleron/" target="_blank" class="px-4 py-1.5 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-sm font-medium hover:bg-sky-500/20 transition-all">LinkedIn</a>
+                <a href="veille.html" class="btn-hover text-xs font-semibold flex items-center gap-1 px-3 py-1 rounded-full no-underline" style="color:var(--accent-emerald);border:1px solid rgba(0,255,171,0.25);background:rgba(0,255,171,0.06);"><span>📰</span> TLDR</a>
+                <a href="https://github.com/Elkristobal59" target="_blank" rel="noopener noreferrer" class="btn-hover px-3 py-1 rounded-full text-xs font-medium no-underline" style="background:var(--accent-cyan-dim);border:1px solid rgba(0,229,255,0.25);color:var(--accent-cyan);">GitHub</a>
+                <a href="https://www.linkedin.com/in/christophergilleron/" target="_blank" rel="noopener noreferrer" class="btn-hover px-3 py-1 rounded-full text-xs font-medium no-underline" style="background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.25);color:#38bdf8;">LinkedIn</a>
             </div>
+            <button class="hamburger md:hidden flex flex-col gap-1 p-2 focus:outline-none" aria-label="Menu" id="hamburger-btn"><span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span></button>
         </div>
     </nav>
+    <div class="mobile-menu md:hidden" id="mobile-menu">
+        <div class="flex flex-col p-6 gap-4">
+            <a href="index.html" class="text-lg font-semibold no-underline" style="color:var(--text-primary);">Accueil</a>
+            <div class="border-t" style="border-color:var(--border-glass);"></div>
+            <p class="text-xs font-mono uppercase tracking-widest" style="color:var(--text-tertiary);">Projets</p>
+            <a href="projet-rag.html" class="text-sm no-underline" style="color:var(--text-secondary);">🤖 Assistant RAG V7</a>
+            <a href="projet-proxmox.html" class="text-sm font-semibold no-underline" style="color:var(--accent-emerald);">🏗️ Cloud Privé Proxmox</a>
+            <a href="projet-immich.html" class="text-sm no-underline" style="color:var(--text-secondary);">🖥️ Cloud Immich & NAS</a>
+            <a href="projet-tesla.html" class="text-sm no-underline" style="color:var(--text-secondary);">⚡ Tesla Inventory Bot</a>
+            <a href="projet-chrisflix.html" class="text-sm no-underline" style="color:var(--text-secondary);">🍿 Chrisflix Media Hub</a>
+            <a href="projet-jedha.html" class="text-sm no-underline" style="color:var(--text-secondary);">📊 GDM Ticket Router</a>
+            <a href="projet-getaround.html" class="text-sm no-underline" style="color:var(--text-secondary);">🚗 GetAround Price Predictor</a>
+            <a href="projet-finance.html" class="text-sm no-underline" style="color:var(--text-secondary);">💰 Finance App</a>
+            <div class="border-t" style="border-color:var(--border-glass);"></div>
+            <a href="veille.html" class="text-sm font-semibold no-underline" style="color:var(--accent-emerald);">📰 Veille TLDR</a>
+            <div class="flex gap-3 mt-4">
+                <a href="https://github.com/Elkristobal59" target="_blank" class="px-4 py-2 rounded-full text-xs font-medium no-underline" style="background:var(--accent-cyan-dim);border:1px solid rgba(0,229,255,0.25);color:var(--accent-cyan);">GitHub</a>
+                <a href="https://www.linkedin.com/in/christophergilleron/" target="_blank" class="px-4 py-2 rounded-full text-xs font-medium no-underline" style="background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.25);color:#38bdf8;">LinkedIn</a>
+            </div>
+        </div>
+    </div>
 
     <div class="max-w-4xl mx-auto px-6 pt-32 pb-28">
 
-        <a href="index.html"
-            class="inline-flex items-center gap-2 text-slate-500 text-sm hover:text-slate-300 transition-colors mb-10 no-underline">
-            ← Retour au portfolio
-        </a>
+        <a href="index.html" class="inline-flex items-center gap-2 text-sm transition-colors mb-10 no-underline" style="color:var(--text-tertiary);" onmouseover="this.style.color='var(--text-primary)'" onmouseout="this.style.color='var(--text-tertiary)'">← Retour au portfolio</a>
 
         <!-- Header -->
         <header class="mb-16 reveal">
-            <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-3xl mb-6">
-                🏗️</div>
-            <div class="text-xs text-emerald-400 font-mono mb-3 tracking-widest uppercase">Infrastructure · Virtualisation · Homelab</div>
-            <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-6 leading-tight">Proxmox Homelab : L'Infrastructure comme Pilier de l'IA</h1>
-            <p class="text-slate-400 text-lg leading-relaxed mb-8">
-                Migration d'une infrastructure Docker hybride vers un environnement de virtualisation de type 1 (Proxmox VE). 
+            <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl mb-6" style="background:var(--accent-emerald-dim);border:1px solid rgba(0,255,171,0.2);">🏗️</div>
+            <div class="text-xs font-mono mb-3 tracking-widest uppercase" style="color:var(--accent-emerald);">Infrastructure · Virtualisation · Homelab</div>
+            <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-6 leading-tight" style="letter-spacing:-0.02em;">Proxmox Homelab : L'Infrastructure comme Pilier de l'IA</h1>
+            <p class="text-lg leading-relaxed mb-8" style="color:var(--text-secondary);">
+                Migration d'une infrastructure Docker hybride vers un environnement de virtualisation de type 1 (Proxmox VE).
                 L'objectif : garantir une haute disponibilité pour mes services IA et multimédia, tout en isolant les workloads critiques dans un serveur Tiny ultra-efficient.
             </p>
             <div class="flex flex-wrap gap-2">
@@ -185,29 +128,29 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
                 <div>
                     <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                        <span class="text-emerald-400">💻</span> Le Matériel
+                        <span style="color:var(--accent-emerald);">💻</span> Le Matériel
                     </h2>
                     <div class="space-y-4">
-                        <div class="bg-slate-900/40 border border-slate-800 p-5 rounded-xl">
+                        <div class="glass-card p-5">
                             <h3 class="text-white font-semibold text-sm mb-1 uppercase tracking-wider opacity-60">Serveur Principal</h3>
-                            <p class="text-slate-200 font-bold text-lg">Lenovo ThinkCentre M80q Tiny</p>
-                            <ul class="text-slate-400 text-sm mt-3 space-y-2">
+                            <p class="text-lg font-bold" style="color:var(--text-primary);">Lenovo ThinkCentre M80q Tiny</p>
+                            <ul class="text-sm mt-3 space-y-2" style="color:var(--text-secondary);">
                                 <li class="flex items-center gap-2 font-mono">▸ Intel Core i5-10500T (6C/12T) vPro</li>
                                 <li class="flex items-center gap-2 font-mono">▸ 16 Go de RAM DDR4</li>
                                 <li class="flex items-center gap-2 font-mono">▸ Silencieux & Consommation < 35W</li>
                             </ul>
                         </div>
-                        <div class="bg-slate-900/40 border border-slate-800 p-5 rounded-xl">
+                        <div class="glass-card p-5">
                             <h3 class="text-white font-semibold text-sm mb-1 uppercase tracking-wider opacity-60">Stockage Réseau</h3>
-                            <p class="text-slate-200 font-bold text-lg">NAS Synology DS218 Play</p>
-                            <p class="text-slate-400 text-sm mt-2">Dédié au stockage massif (Photos, Médias) et aux sauvegardes froides.</p>
+                            <p class="text-lg font-bold" style="color:var(--text-primary);">NAS Synology DS218 Play</p>
+                            <p class="text-sm mt-2" style="color:var(--text-secondary);">Dédié au stockage massif (Photos, Médias) et aux sauvegardes froides.</p>
                         </div>
                     </div>
                 </div>
                 <div class="relative group">
-                    <div class="absolute -inset-1 bg-gradient-to-r from-emerald-500 to-blue-500 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
-                    <img src="images/lenovo.jpeg" alt="Lenovo M80q Tiny" class="relative rounded-2xl border border-slate-800 object-cover w-full shadow-2xl">
-                    <p class="mt-4 text-center text-xs text-slate-500 italic">Le coeur de mon écosystème : Compact, puissant et stable.</p>
+                    <div class="absolute -inset-1 rounded-2xl blur opacity-20 group-hover:opacity-35 transition-opacity duration-700" style="background:linear-gradient(135deg,var(--accent-emerald),var(--accent-cyan));"></div>
+                    <img src="images/lenovo.jpeg" alt="Lenovo M80q Tiny" class="relative rounded-2xl object-cover w-full shadow-2xl" style="border:1px solid var(--border-glass);">
+                    <p class="mt-4 text-center text-xs italic" style="color:var(--text-tertiary);">Le coeur de mon écosystème : Compact, puissant et stable.</p>
                 </div>
             </div>
         </section>
@@ -216,25 +159,23 @@
         <section class="mb-20 reveal">
             <h2 class="text-2xl font-bold text-white mb-8">🔄 Transformation de l'Architecture</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Avant -->
-                <div class="feature-card border-red-500/10">
-                    <h3 class="text-red-400 font-bold mb-4 flex items-center gap-2">
+                <div class="feature-card" style="border-color:rgba(244,63,94,0.15);">
+                    <h3 class="font-bold mb-4 flex items-center gap-2" style="color:#f43f5e;">
                         <span>❌</span> Avant (Architecture Hybride)
                     </h3>
-                    <ul class="text-slate-400 text-sm space-y-3">
+                    <ul class="text-sm space-y-3" style="color:var(--text-secondary);">
                         <li class="flex gap-2"><span>•</span> Serveur tournant sur mon PC MSI Windows (instable).</li>
                         <li class="flex gap-2"><span>•</span> Dépendance aux mises à jour et redémarrages Windows.</li>
                         <li class="flex gap-2"><span>•</span> Risque de perte de données en cas de crash système.</li>
-                        <li class="flex gap-2 text-red-500/70"><span>•</span> Pas de sauvegarde automatisée centralisée.</li>
+                        <li class="flex gap-2" style="color:rgba(244,63,94,0.6);"><span>•</span> Pas de sauvegarde automatisée centralisée.</li>
                     </ul>
                 </div>
-                <!-- Après -->
-                <div class="feature-card border-emerald-500/20">
-                    <h3 class="text-emerald-400 font-bold mb-4 flex items-center gap-2">
+                <div class="feature-card" style="border-color:rgba(0,255,171,0.2);">
+                    <h3 class="font-bold mb-4 flex items-center gap-2" style="color:var(--accent-emerald);">
                         <span>✅</span> Maintenant (Architecture Proxmox)
                     </h3>
-                    <ul class="text-slate-400 text-sm space-y-3">
-                        <li class="flex gap-2 font-semibold text-slate-200"><span>•</span> Hyperviseur dédié (Type 1) tournant 24h/24.</li>
+                    <ul class="text-sm space-y-3" style="color:var(--text-secondary);">
+                        <li class="flex gap-2 font-semibold text-white"><span>•</span> Hyperviseur dédié (Type 1) tournant 24h/24.</li>
                         <li class="flex gap-2"><span>•</span> Isolation totale des services via VM Debian 13.</li>
                         <li class="flex gap-2"><span>•</span> <b>Snapshots</b> avant chaque mise à jour critique (Rollback).</li>
                         <li class="flex gap-2"><span>•</span> <b>Backups automatiques</b> de toute la VM vers le NAS.</li>
@@ -247,89 +188,89 @@
         <section class="mb-20 reveal">
             <h2 class="text-2xl font-bold text-white mb-10 text-center">📦 Un Écosystème de Services Orchestrés</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-900/30 border border-slate-800">
+                <div class="flex items-start gap-4 p-4 rounded-xl glass-card">
                     <div class="text-2xl">📸</div>
                     <div>
                         <h4 class="text-white font-bold text-sm">Immich Photos Stack</h4>
-                        <p class="text-slate-500 text-[11px] leading-relaxed">Ingestion initiale via GPU (MSI) sur plus de 300 000 photos, maintenant maintenu h24 sur le processeur du serveur Lenovo.</p>
+                        <p class="text-[11px] leading-relaxed" style="color:var(--text-tertiary);">Ingestion initiale via GPU (MSI) sur plus de 300 000 photos, maintenant maintenu h24 sur le processeur du serveur Lenovo.</p>
                     </div>
                 </div>
-                <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-900/30 border border-slate-800">
+                <div class="flex items-start gap-4 p-4 rounded-xl glass-card">
                     <div class="text-2xl">🎬</div>
                     <div>
                         <h4 class="text-white font-bold text-sm">Chrisflix Stack</h4>
-                        <p class="text-slate-500 text-[11px] leading-relaxed">Automatisation média totale : Jellyfin, Radarr, Prowlarr et son pipeline de téléchargement vers NAS.</p>
+                        <p class="text-[11px] leading-relaxed" style="color:var(--text-tertiary);">Automatisation média totale : Jellyfin, Radarr, Prowlarr et son pipeline de téléchargement vers NAS.</p>
                     </div>
                 </div>
-                <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-900/30 border border-slate-800">
+                <div class="flex items-start gap-4 p-4 rounded-xl glass-card">
                     <div class="text-2xl">🎸</div>
                     <div>
                         <h4 class="text-white font-bold text-sm">ChrisMusic (Navidrome)</h4>
-                        <p class="text-slate-500 text-[11px] leading-relaxed">Serveur de streaming "Bit-perfect" pour l'iPhone. Ma propre alternative à Spotify, sécurisée par Tailscale.</p>
+                        <p class="text-[11px] leading-relaxed" style="color:var(--text-tertiary);">Serveur de streaming "Bit-perfect" pour l'iPhone. Ma propre alternative à Spotify, sécurisée par Tailscale.</p>
                     </div>
                 </div>
-                <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-900/30 border border-slate-800">
+                <div class="flex items-start gap-4 p-4 rounded-xl glass-card">
                     <div class="text-2xl">🏠</div>
                     <div>
                         <h4 class="text-white font-bold text-sm">Home Assistant</h4>
-                        <p class="text-slate-500 text-[11px] leading-relaxed">Domotique centrale pilotant volets, chauffage et sécurité de l'appartement.</p>
+                        <p class="text-[11px] leading-relaxed" style="color:var(--text-tertiary);">Domotique centrale pilotant volets, chauffage et sécurité de l'appartement.</p>
                     </div>
                 </div>
-                <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-900/40 border border-emerald-500/30">
+                <div class="flex items-start gap-4 p-4 rounded-xl" style="background:rgba(0,255,171,0.03);border:1px solid rgba(0,255,171,0.15);">
                     <div class="text-2xl">🧠</div>
                     <div>
-                        <h4 class="text-white font-bold text-sm text-emerald-400">GraphRag V7 Stack</h4>
-                        <p class="text-slate-200 text-[11px] leading-relaxed">Pipeline d'IA documentaire. Ingestion lourde (GPU MSI) finalisée, maintenant en mode maintenance/inférence 24/7 sur CPU Lenovo.</p>
+                        <h4 class="text-sm font-bold" style="color:var(--accent-emerald);">GraphRag V7 Stack</h4>
+                        <p class="text-[11px] leading-relaxed text-white">Pipeline d'IA documentaire. Ingestion lourde (GPU MSI) finalisée, maintenant en mode maintenance/inférence 24/7 sur CPU Lenovo.</p>
                     </div>
                 </div>
-                <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-900/30 border border-slate-800">
+                <div class="flex items-start gap-4 p-4 rounded-xl glass-card">
                     <div class="text-2xl">🖨️</div>
                     <div>
                         <h4 class="text-white font-bold text-sm">AutoPrint Engine</h4>
-                        <p class="text-slate-500 text-[11px] leading-relaxed">Automatisation d'impression USB via IMAP/Gmail et USB-Passthrough Proxmox vers CUPS.</p>
+                        <p class="text-[11px] leading-relaxed" style="color:var(--text-tertiary);">Automatisation d'impression USB via IMAP/Gmail et USB-Passthrough Proxmox vers CUPS.</p>
                     </div>
                 </div>
             </div>
-            
+
             <!-- NAS Link visual -->
-            <div class="mt-12 p-8 bg-gradient-to-br from-slate-900 to-slate-950 rounded-2xl border border-slate-800 text-center relative overflow-hidden">
+            <div class="mt-12 p-8 rounded-2xl text-center relative overflow-hidden glass-card">
                  <div class="absolute top-0 right-0 p-4 opacity-10 text-6xl">🗄️</div>
                  <h3 class="text-lg font-bold text-white mb-4">Interconnexion Synology NAS</h3>
-                 <p class="text-slate-400 text-sm leading-relaxed max-w-2xl mx-auto">
-                    Tous les containers Docker sont reliés au NAS via des volumes **CIFS/SMB** sécurisés. 
+                 <p class="text-sm leading-relaxed max-w-2xl mx-auto" style="color:var(--text-secondary);">
+                    Tous les containers Docker sont reliés au NAS via des volumes **CIFS/SMB** sécurisés.
                     Le serveur traite la donnée (Cerveau) tandis que le Synology gère le stockage froid et les sauvegardes système (VZDump).
                  </p>
-                 <img src="images/lenovo nas.jpeg" alt="Synology NAS Setup" class="mt-8 rounded-xl max-w-md mx-auto border border-slate-800/50 shadow-xl opacity-80 group-hover:opacity-100 transition">
+                 <img src="images/lenovo nas.jpeg" alt="Synology NAS Setup" class="mt-8 rounded-xl max-w-md mx-auto shadow-xl opacity-80 hover:opacity-100 transition-opacity" style="border:1px solid var(--border-glass);">
             </div>
         </section>
 
         <!-- Security & Tailscale -->
         <section class="mb-20 reveal">
             <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                <span class="text-sky-400">🛡️</span> Sécurité & Accès Distant
+                <span style="color:#38bdf8;">🛡️</span> Sécurité & Accès Distant
             </h2>
-            <div class="bg-sky-500/5 border border-sky-500/20 rounded-2xl p-8 mb-8">
-                <h3 class="text-sky-300 font-bold text-lg mb-2">VPN Mesh Tailscale</h3>
-                <p class="text-slate-400 text-sm leading-relaxed">
-                    Au lieu d'ouvrir des ports dangereux sur ma box internet, j'utilise un réseau "Zero Trust" avec **Tailscale**. 
-                    Mon iPhone, mon MSI et mon serveur Proxmox communiquent dans un tunnel chiffré de bout en bout. 
+            <div class="glass-card p-8 mb-8" style="border-color:rgba(56,189,248,0.2);background:linear-gradient(135deg,rgba(56,189,248,0.03),transparent);">
+                <h3 class="text-lg font-bold mb-2" style="color:#38bdf8;">VPN Mesh Tailscale</h3>
+                <p class="text-sm leading-relaxed" style="color:var(--text-secondary);">
+                    Au lieu d'ouvrir des ports dangereux sur ma box internet, j'utilise un réseau "Zero Trust" avec **Tailscale**.
+                    Mon iPhone, mon MSI et mon serveur Proxmox communiquent dans un tunnel chiffré de bout en bout.
                     Cela me permet d'accéder à mes photos ou à la domotique partout dans le monde, en toute sécurité.
                 </p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="feature-card hover:border-emerald-500/30">
+                <div class="feature-card hover:border-emerald-500/20">
                     <h4 class="text-white font-bold mb-3 flex items-center gap-2">
-                        <span class="text-emerald-500">🔄</span> Automatisme de Sauvegarde
+                        <span style="color:var(--accent-emerald);">🔄</span> Automatisme de Sauvegarde
                     </h4>
-                    <p class="text-slate-500 text-xs">
+                    <p class="text-xs" style="color:var(--text-tertiary);">
                         Script de sauvegarde quotidienne de la VM envoyant un fichier compressé vers le NAS. 3 versions sont conservées (Retention policy 3).
                     </p>
                 </div>
-                <div class="feature-card hover:border-blue-500/30">
+                <div class="feature-card hover:border-cyan-500/20">
                     <h4 class="text-white font-bold mb-3 flex items-center gap-2">
-                        <span class="text-blue-500">🔙</span> Snapshots Instantanés
+                        <span style="color:var(--accent-cyan);">🔙</span> Snapshots Instantanés
                     </h4>
-                    <p class="text-slate-500 text-xs">
+                    <p class="text-xs" style="color:var(--text-tertiary);">
                         Avant chaque grosse modification sur Debian ou Docker, une "photo" de l'état du système est prise. Le retour en arrière prend moins de 10 secondes.
                     </p>
                 </div>
@@ -337,56 +278,33 @@
         </section>
 
         <!-- Learnings -->
-        <footer class="mb-12 reveal border-t border-slate-800 pt-12">
+        <section class="mb-12 reveal pt-12" style="border-top:1px solid var(--border-glass);">
             <h2 class="text-xl font-bold text-white mb-6 italic">"Passer du Desktop au Homelab, c'est professionnaliser sa gestion de la donnée."</h2>
-            <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                Ce projet m'a permis d'approfondir mes compétences en **administration système Linux**, en **virtualisation bas-niveau** et en **gestion de réseaux sécurisés**. 
+            <p class="text-sm leading-relaxed mb-6" style="color:var(--text-secondary);">
+                Ce projet m'a permis d'approfondir mes compétences en **administration système Linux**, en **virtualisation bas-niveau** et en **gestion de réseaux sécurisés**.
                 Avoir une infrastructure stable est la base indispensable pour n'importe quel projet de Data Science ou d'IA ambitieux.
             </p>
-            <a href="index.html" class="text-emerald-400 font-bold hover:underline">Découvrir mes autres projets →</a>
-        </footer>
+            <a href="index.html" class="font-bold no-underline hover:underline" style="color:var(--accent-emerald);">Découvrir mes autres projets →</a>
+        </section>
 
     </div>
 
-    <!-- Back to top -->
+    <!-- ===== FOOTER ===== -->
+    <footer class="text-center py-12 mt-20" style="border-top:1px solid var(--border-glass);background:rgba(255,255,255,0.01);">
+        <p class="text-[10px] mb-2" style="color:var(--text-tertiary);">© 2026 Christopher Gilleron · Tous droits réservés</p>
+        <p class="text-[10px]" style="color:var(--text-secondary);">Développé avec passion à Lille · Hébergé sur Vercel</p>
+    </footer>
+
     <div id="back-to-top" title="Retour en haut">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
-        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
     </div>
 
     <script>
-        function handleScroll() {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            document.getElementById("progress-bar").style.width = scrolled + "%";
-
-            const btt = document.getElementById("back-to-top");
-            if (winScroll > 400) { btt.classList.add("show"); } else { btt.classList.remove("show"); }
-        }
-
-        const revealCallback = (entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    observer.unobserve(entry.target);
-                }
-            });
-        };
-
-        const revealObserver = new IntersectionObserver(revealCallback, { threshold: 0.1 });
-
-        document.addEventListener('DOMContentLoaded', () => {
-            document.body.classList.add('loaded');
-            document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-            document.getElementById("back-to-top").addEventListener("click", () => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        });
-
-        window.onscroll = handleScroll;
+        function handleScroll(){const w=document.body.scrollTop||document.documentElement.scrollTop;const h=document.documentElement.scrollHeight-document.documentElement.clientHeight;document.getElementById("progress-bar").style.width=(w/h)*100+"%";const b=document.getElementById("back-to-top");w>400?b.classList.add("show"):b.classList.remove("show");}
+        const revealObserver=new IntersectionObserver((entries,observer)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('active');observer.unobserve(e.target);}});},{threshold:0.1});
+        function initHamburger(){const btn=document.getElementById('hamburger-btn');const menu=document.getElementById('mobile-menu');if(!btn||!menu)return;btn.addEventListener('click',()=>{btn.classList.toggle('active');menu.classList.toggle('open');document.body.style.overflow=menu.classList.contains('open')?'hidden':'';});menu.querySelectorAll('a').forEach(l=>{l.addEventListener('click',()=>{btn.classList.remove('active');menu.classList.remove('open');document.body.style.overflow='';});});}
+        document.addEventListener('DOMContentLoaded',()=>{document.body.classList.add('loaded');document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));document.getElementById("back-to-top").addEventListener("click",()=>{window.scrollTo({top:0,behavior:'smooth'});});initHamburger();});
+        window.onscroll=handleScroll;
     </script>
 </body>
-
 </html>
