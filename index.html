@@ -248,8 +248,8 @@
     <!-- 2. SCROLLYTELLING TEXT -->
     <section class="scrolly-text-container" id="scrolly-section">
         <div class="scrolly-sticky">
-            <h2 class="text-4xl md:text-6xl font-bold text-center tracking-tight leading-tight max-w-5xl mx-auto" id="scrolly-text">
-                Double certification d'État en Data Science et Architecture IA. Mon rôle de Product Data Analyst & Coordinateur Support Applicatif ? Garantir l'excellence opérationnelle de notre écosystème retail et déployer des infrastructures intelligentes, toujours au plus proche des équipes métiers.
+            <h2 class="text-3xl md:text-5xl font-bold text-center tracking-tight leading-tight max-w-5xl mx-auto" id="scrolly-text">
+                Double certification d'État en Data Science et Architecture IA.<br><br>Mon rôle de Product Data Analyst & Coordinateur Support Applicatif ?<br><br>Garantir l'excellence opérationnelle de notre écosystème retail et déployer des infrastructures intelligentes, toujours au plus proche des équipes métiers.
             </h2>
         </div>
     </section>
@@ -512,10 +512,18 @@
 
             // 1. Setup Scrollytelling Text
             const textContainer = document.getElementById('scrolly-text');
-            const words = textContainer.innerText.split(' ');
+            const processedHtml = textContainer.innerHTML.replace(/<br\s*\/?>/gi, ' __BR__ ');
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = processedHtml;
+            const words = tempDiv.innerText.split(/\s+/);
+            
             textContainer.innerHTML = '';
             words.forEach(word => {
-                if (word.trim() === '') return; // éviter les spans vides
+                if (word === '__BR__') {
+                    textContainer.appendChild(document.createElement('br'));
+                    return;
+                }
+                if (word.trim() === '') return;
                 const span = document.createElement('span');
                 span.innerText = word;
                 span.className = 'scrolly-word';
