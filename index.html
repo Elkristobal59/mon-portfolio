@@ -158,6 +158,20 @@
             position: absolute; width: 300px; height: 300px; border-radius: 50%;
             filter: blur(80px); opacity: 0.4; pointer-events: none; z-index: 0;
         }
+
+        .hero-orb {
+            position: absolute; width: 50vw; height: 50vw; max-width: 600px; max-height: 600px; border-radius: 50%;
+            filter: blur(120px); opacity: 0.35; pointer-events: none; z-index: 0;
+            mix-blend-mode: screen;
+            animation: floatOrb 15s ease-in-out infinite;
+        }
+
+        @keyframes floatOrb {
+            0% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(5%, -5%) scale(1.1); }
+            66% { transform: translate(-5%, 5%) scale(0.9); }
+            100% { transform: translate(0, 0) scale(1); }
+        }
         
         /* Mobile menu */
         .mobile-menu{position:fixed;top:64px;left:0;right:0;bottom:0;background:rgba(13,13,18,0.95);backdrop-filter:blur(24px);z-index:45;transform:translateX(100%);transition:transform 0.35s var(--ease-apple);overflow-y:auto;}
@@ -232,17 +246,20 @@
     </div>
 
     <!-- 1. HERO MASSIF -->
-    <header class="h-screen flex flex-col justify-center items-center text-center relative px-6">
-        <div class="glow-orb" style="background:var(--accent-cyan); top:20%; left:20%;"></div>
-        <div class="glow-orb" style="background:var(--accent-emerald); bottom:20%; right:20%;"></div>
+    <header class="h-screen flex flex-col justify-center items-center text-center relative px-6 overflow-hidden">
+        <div class="hero-orb" style="background:var(--accent-cyan); top:-10%; left:-10%; animation-delay: 0s;"></div>
+        <div class="hero-orb" style="background:var(--accent-emerald); bottom:-10%; right:-10%; animation-delay: -5s; animation-direction: reverse;"></div>
+        <div class="hero-orb" style="background:rgba(56,189,248,0.8); top:40%; left:40%; animation-delay: -10s; width: 40vw; height: 40vw;"></div>
         
-        <p class="font-mono text-xs uppercase tracking-[0.2em] mb-4 text-white/50" style="animation: heroIn 1s var(--ease-apple) 0.5s both;">
-            Data Scientist · Architecte IA
-        </p>
-        <h1 class="hero-title">Christopher<br>Gilleron</h1>
-        <p class="text-xl md:text-2xl mt-8 font-medium text-white/50 max-w-2xl mx-auto" style="animation: heroIn 1s var(--ease-apple) 0.7s both;">
-            Ingénierie Data & IA pragmatique : concevoir, déployer et fiabiliser des solutions au service direct des métiers.
-        </p>
+        <div class="relative z-10 flex flex-col items-center">
+            <p class="font-mono text-xs uppercase tracking-[0.2em] mb-4 text-white/50" style="animation: heroIn 1s var(--ease-apple) 0.5s both;">
+                Data Scientist · Architecte IA
+            </p>
+            <h1 class="hero-title">Christopher<br>Gilleron</h1>
+            <p class="text-xl md:text-2xl mt-8 font-medium text-white/50 max-w-2xl mx-auto" style="animation: heroIn 1s var(--ease-apple) 0.7s both;">
+                Ingénierie Data & IA pragmatique : concevoir, déployer et fiabiliser des solutions au service direct des métiers.
+            </p>
+        </div>
     </header>
 
     <!-- 2. SCROLLYTELLING TEXT -->
