@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-07-16",
+            "articles": [
+                {
+                    "titre": "Personne n'a craqué la mémoire des agents IA",
+                    "resume": "Construire la mémoire d'un agent comme un pipeline d'ontologie : stocker les données, extraire des objets graphiques avec un LLM, valider, dédupliquer, puis interroger via MongoDB qui gère texte, vecteur et graphe.",
+                    "lien": "https://www.decodingai.com/p/how-to-implement-a-unified-memory-from-scratch?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Construire une topologie de service à l'échelle : Architecture, défis et leçons de Netflix",
+                    "resume": "Netflix a développé un système de topologie de service à trois couches, utilisant eBPF, des métriques et des traces distribuées. Le défi principal, une variance de charge de 100x, a été résolu par une redistribution multi-étapes.",
+                    "lien": "https://netflixtechblog.com/building-service-topology-at-scale-architecture-challenges-and-lessons-learned-f4b792f3f0d8?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Mise à l'échelle du Data Lake de Grab : Notre parcours vers Apache Iceberg",
+                    "resume": "Grab a migré ses tables Hive Parquet vers Apache Iceberg, accélérant les requêtes par 10, réduisant les coûts S3 de 95% et les coûts de calcul ML de 50%. Ils ont aussi créé un UnifiedSparkCatalog personnalisé.",
+                    "lien": "https://engineering.grab.com/our-journey-to-apache-iceberg-adoption?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Comment Razorpay rafraîchit son entrepôt de données 10x plus vite avec des graphes et des index",
+                    "resume": "Razorpay a réduit de 90% le temps de rafraîchissement de son entrepôt de données en remplaçant les scans complets par une traversée de graphe incrémentale, des index secondaires et un traitement des lignes modifiées avec leurs dépendances.",
+                    "lien": "https://engineering.razorpay.com/how-we-refresh-razorpays-data-warehouse-10x-faster-with-graphs-and-indexes-538abc244703?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Qu'est-ce que l'ACID sur un Data Lake ?",
+                    "resume": "Hudi, Iceberg et Delta Lake ajoutent l'ACID au stockage d'objets via un log de métadonnées et une publication atomique. Les écritures multi-fichiers ne sont visibles qu'après publication du commit, garantissant une vue cohérente.",
+                    "lien": "https://hudi.apache.org/blog/2026/07/17/what-is-acid-on-a-data-lake/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Architecture des couches de cache : Guide pratique pour vitesse et échelle",
+                    "resume": "Les couches de cache peuvent échouer à l'échelle par \"stampedes\", clés chaudes, données périmées ou avalanches. Les défenses incluent le jitter TTL, la fusion de requêtes, le découpage de clés et le hachage cohérent.",
+                    "lien": "https://redis.io/blog/cache-layer-architecture-guide/?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                },
+                {
+                    "titre": "La règle des 90/90 pour les tableaux de bord obsolètes",
+                    "resume": "La prolifération des tableaux de bord coûte en confiance, calcul et artefacts inutiles. La règle des 90/90 propose d'archiver les tableaux sans vues après 90 jours, puis de les supprimer après 90 jours supplémentaires si aucune réponse.",
+                    "lien": "https://betterthanrandom.substack.com/p/the-9090-rule-for-the-dashboard-dumpster?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                },
+                {
+                    "titre": "Arroyo rejoint Cloudflare",
+                    "resume": "Cloudflare a acquis Arroyo, un processeur de flux SQL basé sur Rust, pour sa plateforme développeur. Il restera open source et intégrera d'abord le traitement SQL aux Cloudflare Pipelines.",
+                    "lien": "https://www.arroyo.dev/blog/arroyo-is-joining-cloudflare/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Prefect acquiert Dagster, un autre grand rival d'Airflow",
+                    "resume": "Prefect acquiert Dagster tout en conservant noms, prix et feuilles de route. L'acquisition vise à renforcer l'orchestration open source en combinant le suivi des résultats de Dagster avec l'exécution de Prefect.",
+                    "lien": "https://thenewstack.io/prefect-acquires-dagster-orchestrator/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Benchmark : Nœud unique vs distribué",
+                    "resume": "Un benchmark TPC-H de 1 To a montré que Polars distribué sur 32 nœuds surpassait légèrement un nœud unique pour les requêtes gourmandes en I/O grâce à la bande passante réseau, tandis que les jointures complexes étaient plus rapides sur un nœud unique à cause du surcoût réseau.",
+                    "lien": "https://pola.rs/posts/single-node-vs-distributed/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "G-Eval, expliqué",
+                    "resume": "G-Eval évalue le texte ouvert en faisant générer par un LLM ses propres étapes de notation via un raisonnement, puis en calculant une attente pondérée des probabilités au niveau du token, rendant le score plus stable. Utiliser un modèle de juge différent et calibrer les grilles améliore la fiabilité.",
+                    "lien": "https://arpitbhayani.me/blogs/g-eval/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Comment Expedia Group construit une IA durable à l'échelle",
+                    "resume": "Le cadre IA d'Expedia Group exige que chaque modèle soit lié à un objectif commercial mesurable, construit sur des fondations de plateforme partagées, et ait des propriétaires définis dans les domaines commercial, produit, IA et opérations.",
+                    "lien": "https://medium.com/expedia-group-tech/how-expedia-group-builds-ai-that-lasts-at-scale-434677770fe9?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                }
+            ]
+        },
+        {
             "date": "2026-07-13",
             "articles": [
                 {
@@ -689,83 +766,6 @@
                     "titre": "Mise à l'échelle du 'Zero Copy' chez Salesforce avec la fédération de fichiers",
                     "resume": "La stratégie 'Zero Copy' de Salesforce Data 360 a évolué vers la fédération de fichiers Iceberg pour gérer les charges de travail IA sur des données d'entreprise distribuées, réduisant les coûts de calcul et améliorant la gouvernance.",
                     "lien": "https://engineering.salesforce.com/scaling-zero-copy-from-1-trillion-to-120-trillion-rows-with-file-federation/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                }
-            ]
-        },
-        {
-            "date": "2026-06-08",
-            "articles": [
-                {
-                    "titre": "Comment Anthropic active l'analyse de données en libre-service avec Claude",
-                    "resume": "Anthropic explique que l'analyse en libre-service précise avec les LLM dépend de la gestion du contexte, de la gouvernance et de la vérification, non de la génération SQL. Les gains proviennent de la réduction de l'ambiguïté et de la validation continue.",
-                    "lien": "https://claude.com/blog/how-anthropic-enables-self-service-data-analytics-with-claude?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Repartitionnement dynamique pour les charges de travail de séries temporelles",
-                    "resume": "Netflix a développé un système de division dynamique des partitions dans Cassandra pour gérer les partitions larges dans les charges de travail de séries temporelles à volume élevé, divisant automatiquement les partitions chaudes ou surdimensionnées.",
-                    "lien": "https://netflixtechblog.com/dynamically-splitting-wide-partitions-in-cassandra-for-time-series-workloads-0eded064f456?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "L'écart des vues matérialisées conscientes des jointures",
-                    "resume": "Les vues matérialisées conscientes des jointures accélèrent le BI en schéma en étoile. StarRocks, BigQuery, Redshift et Oracle les supportent directement, tandis que d'autres comme Snowflake ont des solutions partielles ou complexes.",
-                    "lien": "https://eric-sun.medium.com/the-join-aware-materialized-view-query-rewrite-gap-bdcb248dbd18?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Le \"Vibe Coding\" est dangereux, pas l'ingénierie \"agentique\"",
-                    "resume": "Wes McKinney soutient que le \"vibe coding\" (développement rapide sans vérification) est risqué, tandis que l'ingénierie \"agentique\" (avec IA comme accélérateur sous supervision humaine) est efficace si l'humain reste impliqué dans l'architecture et les tests.",
-                    "lien": "https://motherduck.com/blog/vibe-coding-dangerous-agentic-engineering-wes-mckinney/?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Structure vs. Concept",
-                    "resume": "Cet article distingue taxonomies (organisation pour humains) et ontologies (définition logique pour systèmes). Il recommande de les lier mais de les maintenir séparées pour combiner curation métier et précision des modèles de données.",
-                    "lien": "https://ontologist.substack.com/p/structure-vs-concept?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "La vérité terrain est un processus, pas un ensemble de données",
-                    "resume": "Amazon a mis en place un protocole d'audit pour la vérification des faits par l'IA, permettant à l'IA de contester les labels de référence. Un auditeur humain valide ces contestations, améliorant la précision des données \"vérité terrain\".",
-                    "lien": "https://www.amazon.science/blog/ground-truth-is-a-process-not-a-dataset?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "PostgreSQL 19 Beta 1 est disponible !",
-                    "resume": "La première bêta de PostgreSQL 19 est sortie, offrant des améliorations majeures comme l'E/S asynchrone auto-évolutive, l'autovacuum parallèle, des insertions de clés étrangères plus rapides et des requêtes graphiques SQL/PGQ.",
-                    "lien": "https://www.postgresql.org/about/news/postgresql-19-beta-1-released-3313/?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Qu'est-ce qu'Apache Arrow Flight ?",
-                    "resume": "Apache Arrow Flight utilise Arrow et gRPC pour transférer rapidement de grands ensembles de données columnaires avec une copie zéro, agissant comme une infrastructure pour des services de données haute performance.",
-                    "lien": "https://www.confessionsofadataguy.com/what-is-apache-arrow-flight/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Votre coffre Obsidian peut désormais exécuter du SQL",
-                    "resume": "Un nouveau plugin DuckDB + MotherDuck pour Obsidian permet d'exécuter des blocs SQL directement dans les notes, d'interroger des fichiers locaux ou des tables cloud, et d'intégrer les résultats avec une planification de rafraîchissement.",
-                    "lien": "https://motherduck.com/blog/obsidian-vault-duckdb-ai-agents?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "L'exode de Tableau a commencé",
-                    "resume": "Les entreprises réduisent l'utilisation de Tableau, percevant le BI comme trop coûteux. L'article conseille de conserver les métriques critiques, d'explorer des plateformes moins chères et de repenser la valeur du BI à l'ère de l'IA.",
-                    "lien": "https://superdatablog.substack.com/p/the-tableau-exodus-has-begun?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Plongée dans la calibration des modèles linguistiques : Platt Scaling, Isotonic Regression, Temperature Scaling",
-                    "resume": "L'article explore les méthodes de calibration des LLM : Temperature Scaling (simple), Platt Scaling (efficace mais grossier) et Isotonic Regression (précis mais risque d'overfitting).",
-                    "lien": "https://www.kdnuggets.com/a-deep-dive-into-calibration-of-language-models-platt-scaling-isotonic-regression-temperature-scaling?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Parallélisme visible par le broker vs local au client",
-                    "resume": "Le parallélisme visible par le broker utilise plus de partitions ou de consommateurs, tandis que le parallélisme local au client emploie des tâches asynchrones ou des files d'attente internes avec moins de consommateurs.",
-                    "lien": "https://jack-vanlightly.com/blog/2026/6/3/broker-visible-vs-client-local-parallelism?utm_source=tldrdata",
                     "categorie": "Deep Dive"
                 }
             ]
