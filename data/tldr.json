@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-07-20",
+            "articles": [
+                {
+                    "titre": "Accélérer les requêtes Apache Spark (et le développement d'Iceberg Rust) avec Apache DataFusion Comet",
+                    "resume": "DataFusion Comet accélère les lectures Spark sur Iceberg de 40% en combinant la planification Java avec l'exécution native Arrow d'Iceberg Rust, validé par 102 requêtes sur 103 sur TPC-DS.",
+                    "lien": "https://iceberg.apache.org/blog/accelerating-iceberg-rust-development-with-datafusion-comet/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "D'OTEL aux SLM : Distiller le comportement des modèles de pointe à partir de la télémétrie de production",
+                    "resume": "Les traces OpenTelemetry peuvent convertir le feedback des agents IA en production en labels d'entraînement pour des modèles de codage locaux, atteignant 80-85% de la qualité des modèles de pointe avec moins de coûts et plus de confidentialité.",
+                    "lien": "https://www.infoq.com/presentations/otel-slm-ai/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Représentation hiérarchique des intérêts pour l'optimisation du funnel de publicité Meta",
+                    "resume": "Meta compresse des milliards d'entités utilisateurs/annonceurs en clusters d'intérêts latents, les enrichit avec du contenu traité par LLM et les intègre dans un espace partagé pour optimiser le classement des publicités.",
+                    "lien": "https://engineering.fb.com/2026/07/15/ai-research/exploring-hierarchical-interest-representation-for-meta-ads-deep-funnel-optimization/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "La modélisation des données n'est pas morte, vous avez juste cessé de la pratiquer (avec Joe Reis)",
+                    "resume": "La modélisation des données reste essentielle, surtout à l'ère de l'IA. Une approche flexible est nécessaire pour éviter les mauvaises données et le travail gaspillé, en utilisant le style de modélisation adapté à chaque problème.",
+                    "lien": "https://www.linkedin.com/events/7482821146388623361/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Les agents pensent en millisecondes, l'infrastructure legacy non : LinkedIn, Walmart, Zendesk partagent leurs solutions",
+                    "resume": "Les agents d'entreprise sont limités par l'infrastructure legacy. LinkedIn, Walmart et Zendesk ont résolu ce problème en pré-provisionnant des conteneurs, en gouvernant les agents dupliqués et en renforçant les pipelines de données.",
+                    "lien": "https://venturebeat.com/data/agents-think-in-milliseconds-legacy-infrastructure-doesnt-linkedin-walmart-and-zendesk-shared-how-they-closed-the-gap-at-vb-transform-2026?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Les agents IA ont besoin de contexte de produits de données, pas de plus de RAG",
+                    "resume": "Les agents IA d'entreprise nécessitent un contexte gouverné, pas seulement la recherche vectorielle, pour préserver les sources, le sens métier et les restrictions d'utilisation. L'approche proposée compile un modèle de produit de données gouverné en plusieurs représentations.",
+                    "lien": "https://blog.opendataproducts.org/ai-agents-need-data-product-context-not-more-rag-99fa4690f4c8?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Présentation d'Apache Spark 4.2",
+                    "resume": "Apache Spark 4.2 introduit les vues de métriques, la recherche de similarité vectorielle SQL, les types géospatiaux natifs et les requêtes de capture de données de changement, avec plus de 1 900 commits.",
+                    "lien": "https://www.databricks.com/blog/introducing-apache-spark-42?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Ontology Playground (Dépôt GitHub)",
+                    "resume": "Ontology Playground de Microsoft est un outil open source gratuit pour explorer, construire, importer et partager visuellement des ontologies pour Microsoft Fabric IQ.",
+                    "lien": "https://github.com/microsoft/Ontology-Playground?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Compression Postgres 19 : de pglz à LZ4",
+                    "resume": "Postgres 19 prévoit de passer la compression TOAST par défaut de pglz à LZ4. LZ4 est plus rapide, souvent plus efficace, et maintient un cadre de compression unifié pour les données et les index.",
+                    "lien": "https://www.crunchydata.com/blog/postgres-19-compression-from-pglz-to-lz4?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Graphes d'expérience : La fondation de données pour les agents auto-améliorants",
+                    "resume": "Trellis stocke les artefacts, récompenses et historique causal des agents sous forme de graphes d'expérience. Meta a constaté que la réutilisation de l'expérience passée accélérait les performances par 10 et réduisait les coûts de tokens de 52%.",
+                    "lien": "https://arxiv.org/html/2606.29823v1?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Service LLM interne chez Netflix",
+                    "resume": "Netflix gère son service LLM de bout en bout en interne avec une plateforme JVM unifiée (gRPC, API compatible OpenAI). La pile utilise vLLM via Triton pour le déploiement, avec des ajouts personnalisés comme les déploiements sans interruption.",
+                    "lien": "https://netflixtechblog.com/in-house-llm-serving-at-netflix-a5a8e799ea2c?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "De semaines à un jour : Comment nous avons accéléré l'évaluation des LLM chez Airbnb",
+                    "resume": "Airbnb a réduit les cycles d'évaluation LLM de semaines à moins d'une journée en cachant les références et les scores des juges. Les adaptateurs LoRA sont entraînés rapidement, et une validation finale utilise le trafic échantillonné.",
+                    "lien": "https://medium.com/airbnb-engineering/from-weeks-to-a-day-how-we-made-llm-evaluation-fast-enough-to-iterate-on-14e2d35198b4?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                }
+            ]
+        },
+        {
             "date": "2026-07-16",
             "articles": [
                 {
@@ -690,83 +767,6 @@
                     "resume": "Google Research a introduit les tests de noyaux de divergence f régularisée pour auditer le désapprentissage machine et les fuites de confidentialité de manière plus fiable que les méthodes de test à deux échantillons standards.",
                     "lien": "https://research.google/blog/new-framework-for-auditing-machine-unlearning/?utm_source=tldrdata",
                     "categorie": "News"
-                }
-            ]
-        },
-        {
-            "date": "2026-06-11",
-            "articles": [
-                {
-                    "titre": "Au cœur du moteur de requêtes de QuestDB",
-                    "resume": "Le moteur de requêtes séries temporelles de QuestDB combine exécution vectorisée, kernels SIMD C++, traitement Java, filtrage JIT et parallélisme. Des modifications SQL mineures peuvent impacter les performances de groupement, filtrage et agrégation.",
-                    "lien": "https://bcalza.b-cdn.net/blog/2026/06/08/inside-questdb-query-engine.html?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "L'évolution de l'architecture de données d'Airbnb pour le multiproduit",
-                    "resume": "Airbnb a fait évoluer son architecture de données offline avec un cadre de modélisation flexible. Ses principes incluent l'absence de modèles hybrides, des identifiants cohérents et des espaces de noms clairs pour séparer les modèles spécifiques aux produits des modèles monolithiques.",
-                    "lien": "https://medium.com/airbnb-engineering/scaling-beyond-one-how-airbnb-evolved-its-data-architecture-for-a-multi-product-world-6125645d470c?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Gérer Iceberg et Lance avec Gravitino : la réalité des architectures Lakehouse unifiées",
-                    "resume": "Apache Gravitino peut gouverner les tables Iceberg et les datasets Lance via une couche de métadonnées, un modèle RBAC et une surface d'audit unifiés. L'article détaille les différences de fonctionnement et les pièges entre les deux.",
-                    "lien": "https://mehulbatra.medium.com/parenting-iceberg-and-lance-with-gravitino-the-reality-behind-unified-lakehouse-architectures-22533b3ad19b?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Quand le temps d'événement rencontre la réalité : leçons de la facturation avec Apache Flink",
-                    "resume": "Gorgias a rencontré des problèmes d'agrégations incorrectes lors du traitement de données historiques avec Apache Flink pour sa pipeline de facturation. Ils ont résolu ces problèmes en alignant les clés et en ajoutant des délais conditionnels lors des relectures.",
-                    "lien": "https://medium.com/gorgias-engineering/when-event-time-meets-reality-lessons-from-building-billing-on-apache-flink-581ff895c60d?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Augmentation de prix de Dagster : la communauté réagit (Reddit)",
-                    "resume": "L'augmentation de prix des services managés de Dagster a provoqué un tollé, poussant les petits utilisateurs vers l'auto-hébergement, Airflow ou Prefect, tout en valorisant la version open source.",
-                    "lien": "https://www.reddit.com/r/dataengineering/comments/1tv5evp/dagster_price_increase_10x_insane_dont_ever_use/?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Évaluations personnalisées pour Claude Fable 5",
-                    "resume": "Claude Fable 5 excelle dans l'analyse de données complexes, surpassant d'autres modèles de pointe sur les évaluations de Hex, notamment pour les tâches nécessitant jugement et vérification des données brutes.",
-                    "lien": "https://hex.tech/blog/fable-evals/?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Pourquoi les métadonnées doivent être compatibles avec la mutation",
-                    "resume": "Dans les lakehouses à forte mise à jour, les métadonnées exigent une gestion des mutations. La table de métadonnées Merge-On-Read d'Apache Hudi optimise cela via des écritures 'append-first' et une compaction différée, surpassant les conceptions Copy-On-Write.",
-                    "lien": "https://hudi.apache.org/blog/2026/06/05/why-metadata-has-to-be-mutation-friendly/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Présentation de Streamling : un runtime de streaming de données performant",
-                    "resume": "Streamling est un runtime de streaming open source (Rust, Arrow, DataFusion) conçu pour les charges de travail transactionnelles. Il supporte des pipelines stateless mono-nœuds avec Kafka, Postgres, ClickHouse et des transformations TypeScript/WASM, avec livraison 'effectively-once'.",
-                    "lien": "https://www.streamingdata.tech/p/introducing-streamling?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "PostgreSQL Anonymizer 3.1 : Confidentialité Différentielle Locale",
-                    "resume": "PostgreSQL Anonymizer 3.1 étend le masquage des données sensibles avec six stratégies et intègre la Confidentialité Différentielle Locale via GRRM, offrant des garanties de confidentialité formelles pour les données d'enquête et catégoriques.",
-                    "lien": "https://www.postgresql.org/about/news/postgresql-anonymizer-31-introducing-local-differential-privacy-3311/?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "Présentation de Loon : un nouveau moteur de stockage pour les données vectorielles évolutives",
-                    "resume": "Loon, le moteur de stockage derrière Milvus 3.0 et Zilliz Vector Lakebase, gère l'évolution des datasets vectoriels grâce à des formats de fichiers hybrides et des manifestes versionnés, permettant des mises à jour indépendantes des scalaires, vecteurs et références d'objets.",
-                    "lien": "https://medium.com/@zilliz_learn/introducing-loon-a-new-storage-engine-for-vector-data-that-never-stops-changing-a7f7fc763ab4?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "DataAgents : de 9 mois à 10 jours d'analyse chez Capital One",
-                    "resume": "Le pattern DataAgent de Capital One a réduit l'analyse de dormance cloud de 6-9 mois à 10 jours pour 350 types de ressources. Il combine données d'actifs, SQL généré par IA, et validation humaine pour identifier des économies fiables.",
-                    "lien": "https://medium.com/capital-one-tech/dataagents-how-we-turned-9-months-of-analysis-into-10-days-8d6ed482f5d7?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Mise à l'échelle du 'Zero Copy' chez Salesforce avec la fédération de fichiers",
-                    "resume": "La stratégie 'Zero Copy' de Salesforce Data 360 a évolué vers la fédération de fichiers Iceberg pour gérer les charges de travail IA sur des données d'entreprise distribuées, réduisant les coûts de calcul et améliorant la gouvernance.",
-                    "lien": "https://engineering.salesforce.com/scaling-zero-copy-from-1-trillion-to-120-trillion-rows-with-file-federation/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
                 }
             ]
         }
