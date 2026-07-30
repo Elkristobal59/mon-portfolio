@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-07-30",
+            "articles": [
+                {
+                    "titre": "Développement axé sur l'évaluation : leçons de l'évaluation de la GenAI à grande échelle",
+                    "resume": "Airbnb évalue la GenAI en examinant les prototypes pour identifier les modes de défaillance réels avant les évaluations automatisées. Leur système utilise des vérifications programmatiques et des juges LLM calibrés, atteignant une forte concordance avec les réviseurs humains.",
+                    "lien": "https://medium.com/airbnb-engineering/eval-driven-development-lessons-from-evaluating-genai-at-scale-e817e5ae5788?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Indexation du Data Lake pour les requêtes ponctuelles en ligne",
+                    "resume": "Spotify a créé un index externe pour les fichiers Parquet, permettant des requêtes rapides sur des lacs de données à l'échelle du pétaoctet. Des optimisations d'écriture réduisent les I/O, rendant les mêmes fichiers utiles pour l'analyse par lots et les requêtes interactives.",
+                    "lien": "https://engineering.atspotify.com/2026/7/indexing-the-data-lake-for-online-point-queries?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Progression des utilisateurs : meilleure représentation des cas d'utilisation stimulant la croissance chez Pinterest",
+                    "resume": "Pinterest a amélioré la représentation des utilisateurs avec des clusters d'engagements dynamiques, alimentant la récupération et le classement. Cette approche non linéaire stimule la rétention à mesure que les utilisateurs adoptent plus de cas d'utilisation distincts.",
+                    "lien": "https://medium.com/pinterest-engineering/pinner-progression-better-use-case-representation-driving-weekly-active-user-growth-at-pinterest-bd2131ab238a?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Mise à l'échelle de StreamHub : Transition de Kinesis à Kafka pour 145 milliards d'événements quotidiens",
+                    "resume": "Atlassian a migré de Kinesis à Kafka sur AWS MSK pour gérer une augmentation massive du trafic. Des défis ont émergé avec les limites des infrastructures, soulignant l'importance des quotas, du sharding et de la capacité de secours.",
+                    "lien": "https://www.atlassian.com/blog/how-we-build/scaling-streamhub-transitioning-from-kinesis-to-kafka-for-145-billion-daily-events?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Votre agent IA ne connaît pas votre entreprise | Les couches de contexte expliquées",
+                    "resume": "Les agents IA nécessitent une couche de contexte pour interpréter correctement les données métier. La future fonctionnalité \"Guides\" de MotherDuck stockera ce contexte avec les données, le rendant accessible aux agents avec support SQL et contrôle de version.",
+                    "lien": "https://www.youtube.com/watch?v=hmjRc6KJ-hw&utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "La nouvelle vague des technologies de journalisation en streaming",
+                    "resume": "De nouvelles plateformes de streaming émergent, s'éloignant de la compatibilité Kafka pour des approches variées : Iggy utilise Rust, S2 l'HTTP/stockage objet, et OpenData Log le routage par clé. Leur impact sur Kafka est encore incertain.",
+                    "lien": "https://www.streamingdata.tech/p/the-new-wave-of-the-streaming-log-tech?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Comment LangChain a construit une pile de données \"Agent-First\"",
+                    "resume": "LangChain a réorganisé sa pile de données pour l'analyse agent-native, remplaçant son outil BI existant. Hex intègre des définitions dbt, des modèles sémantiques et des traces LangSmith pour permettre aux agents de générer du SQL fiable sous le contrôle de l'équipe de données.",
+                    "lien": "https://www.langchain.com/blog/agent-data-stack?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Comment le MVCC et les transactions fonctionnent dans RocksDB",
+                    "resume": "RocksDB utilise des numéros de séquence pour le MVCC, permettant aux lecteurs d'obtenir des vues cohérentes et aux rédacteurs d'ajouter sans blocage. Les transactions pessimistes verrouillent à l'écriture, les optimistes vérifient les conflits à la validation.",
+                    "lien": "https://artem.krylysov.com/blog/2026/07/23/how-mvcc-and-transactions-work-in-rocksdb/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "De l'enfer des scripts Python à un framework d'intégration de données moderne",
+                    "resume": "Apache SeaTunnel est présenté comme une alternative aux scripts d'ingestion manuels. Son modèle Source-Transform-Sink centralise la gestion des connecteurs et sépare les définitions de pipeline de l'exécution, simplifiant l'intégration.",
+                    "lien": "https://hackernoon.com/from-python-script-hell-to-a-modern-data-integration-framework?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Canoniques composables : du savoir de données tribal à l'artefact versionné",
+                    "resume": "Les canoniques composables codent le savoir métier en modèles versionnés. Des couches sources définissent les transformations et l'ontologie, tandis que les couches métier fusionnent les identités entre systèmes, offrant des concepts stables aux agents IA.",
+                    "lien": "https://dlthub.com/blog/composable-canonicals?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "TLDR recrute un curateur pour TLDR Data !",
+                    "resume": "TLDR Data, lu par plus de 500 000 abonnés, recherche un curateur pour sa newsletter sur la science et l'ingénierie des données. Si vous travaillez dans le domaine et êtes intéressé, envoyez votre candidature.",
+                    "lien": "mailto:data@tldr.tech",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Le guide 2026 des outils d'observabilité des agents IA",
+                    "resume": "L'observabilité des agents IA est devenue essentielle en production. Ce guide explore diverses approches (tracing, évaluation, passerelle, plateforme) tout en soulignant un manque fréquent : la surveillance de la fraîcheur et de la qualité des données en amont.",
+                    "lien": "https://montecarlo.ai/blog-agent-observability-tool?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                }
+            ]
+        },
+        {
             "date": "2026-07-27",
             "articles": [
                 {
@@ -689,83 +766,6 @@
                     "titre": "Comment Dropbox a utilisé DSPy pour améliorer les réponses IA de Dash Chat",
                     "resume": "Dropbox a utilisé DSPy pour transformer les évaluations IA en améliorations concrètes pour Dash Chat. En combinant évaluations LLM-as-judge, exemples labellisés et validation statistique, ils ont réduit les réponses incomplètes, amélioré la couverture d'intention utilisateur et diminué l'utilisation de tokens sans sacrifier la qualité.",
                     "lien": "https://dropbox.tech/machine-learning/how-we-turned-ai-evaluations-into-better-responses-in-dash-chat?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                }
-            ]
-        },
-        {
-            "date": "2026-06-25",
-            "articles": [
-                {
-                    "titre": "Comment Netflix a simplifié le calcul par lots avec Kueue",
-                    "resume": "Netflix a simplifié sa plateforme de calcul par lots en remplaçant son système existant par Kueue, un système de file d'attente et d'ordonnancement de tâches natif Kubernetes, tout en conservant la compatibilité API et en ajoutant le partage équitable préemptif.",
-                    "lien": "https://netflixtechblog.com/how-netflix-simplified-batch-compute-with-kueue-87860682629c?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Le parcours d'un ingénieur pour maîtriser les agents d'IA de longue durée",
-                    "resume": "Les agents de codage de longue durée sont plus efficaces avec un contexte structuré et des artefacts persistants. Un orchestrateur agentique transforme ces transferts en un workflow d'état, permettant aux agents de traiter des tâches complexes sans perdre de cohérence.",
-                    "lien": "https://careersatdoordash.com/blog/engineers-journey-long-running-ai-agents/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Équilibrage de charge côté client à un million de requêtes par seconde",
-                    "resume": "Zalando a développé un équilibreur de charge côté client haute performance pour son API de lecture de produits, gérant plus d'un million de requêtes/seconde grâce à un hachage consistant, une découverte Kubernetes, un \"fade-in\" N-ring et un routage conscient des zones de disponibilité.",
-                    "lien": "https://engineering.zalando.com/posts/2026/06/client-side-load-balancing.html?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Personnalisation en temps réel à l'échelle : Comment Zepto comprend vos désirs immédiats",
-                    "resume": "Zepto a créé un ReRanker à double séquence pour la personnalisation en temps réel, combinant l'historique utilisateur et le comportement de session via des encodeurs transformer, un pooling conscient de la cible, une porte de fusion apprise et des signaux en temps réel.",
-                    "lien": "https://blog.zepto.com/real-time-personalisation-at-scale-how-zepto-undrstands-what-you-want-right-now-d743b13367c8?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Peut-on s'accorder sur une taxonomie des architectures de stockage/charge de travail ?",
-                    "resume": "Les architectures de stockage de données peuvent être classifiées en une taxonomie basée sur le nombre de systèmes, les charges de travail, la visibilité des données et les copies durables, organisant les systèmes modernes en divers modèles comme le Single Tier ou le Shared Tiering.",
-                    "lien": "https://jack-vanlightly.com/blog/2026/6/21/can-we-agree-on-a-storage/workload-architecture-taxonomy?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Le syndrome des fenêtres cassées pour les données",
-                    "resume": "La qualité des entrepôts de données doit être intégrée au cycle de vie complet du développement. Les équipes peuvent prévenir la propagation des incohérences en déplaçant les vérifications plus tôt via des revues de modélisation, la validation locale, le CI/CD et la surveillance.",
-                    "lien": "https://medium.com/booking-com-development/broken-windows-of-data-7f7d12ce2cd0?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Pourquoi les équipes data techniquement excellentes échouent encore",
-                    "resume": "De nombreuses équipes data excellentes restent peu pertinentes car la seule exécution ne suffit plus. La vraie valeur réside dans la capacité à influencer activement les décisions grâce à une analyse opinionnée et à l'impact sur les résultats commerciaux.",
-                    "lien": "https://practicaldatacommunity.substack.com/p/why-technically-excellent-data-teams?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "SQL Concepts Lab",
-                    "resume": "SQL Concepts Lab est un tutoriel interactif et basé sur navigateur utilisant DuckDB-WASM pour apprendre et expérimenter les concepts SQL fondamentaux directement, sans installation, avec des exercices pratiques et un feedback immédiat.",
-                    "lien": "https://oluies.github.io/sql-concepts-lab/?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
-                },
-                {
-                    "titre": "dbtrail",
-                    "resume": "dbtrail offre la récupération MySQL ponctuelle en streamant les binlogs et en indexant les changements de lignes. Il permet d'inspecter les modifications, de générer du SQL de réversion, de parcourir l'historique et d'exécuter des requêtes de \"time-travel\".",
-                    "lien": "https://github.com/dbtrail/dbtrail?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "SQLBuild",
-                    "resume": "SQLBuild étend dbt avec une exécution sensible aux changements en \"fingerprintant\" les modèles et réutilisant les tables de production. Il supporte les audits, les jobs incrémentaux, les nœuds Python, la lignée, les contrats et DuckDB CI.",
-                    "lien": "https://github.com/chio-labs/sqlbuild?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "Clustering de texte non structuré avec les embeddings LLM et HDBSCAN",
-                    "resume": "Le clustering de texte non structuré permet de découvrir automatiquement des sujets en combinant les embeddings de sentence-transformers avec UMAP pour la réduction de dimensionnalité et HDBSCAN pour le clustering basé sur la densité.",
-                    "lien": "https://machinelearningmastery.com/clustering-unstructured-text-with-llm-embeddings-and-hdbscan/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Unir l'analyse et les agents d'IA à l'ère de la GenAI",
-                    "resume": "PJ One Piece réduit le délai d'analyse de deux semaines à 10 minutes grâce à un agent d'IA générative, utilisant des métadonnées, des garde-fous SQL et des agents superviseurs pour libérer les data scientists.",
-                    "lien": "https://techblog.lycorp.co.jp/en/techverse2026-105?utm_source=tldrdata",
                     "categorie": "Deep Dive"
                 }
             ]
