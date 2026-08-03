@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-08-03",
+            "articles": [
+                {
+                    "titre": "Comment DoorDash a construit une passerelle centralisée pour l'accès des agents IA aux outils",
+                    "resume": "DoorDash a développé une passerelle centralisée pour offrir aux agents IA un accès gouverné aux outils MCP, gérant identité, autorisation, identifiants, filtrage, observabilité et limites de taux. Elle supporte plus de 200 serveurs MCP et des millions d'appels hebdomadaires, améliorant sécurité, fiabilité et contrôle.",
+                    "lien": "https://careersatdoordash.com/blog/how-doordash-built-a-centralized-gateway-for-ai-agent-tool-access/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Dissiper les nuages : L'essor des systèmes désagrégés",
+                    "resume": "Les bases de données cloud séparent de plus en plus le calcul sans état du stockage partagé pour améliorer l'élasticité et le paiement à l'usage. Malgré la latence I/O distante, des systèmes comme Aurora et AlloyDB utilisent le buffering, la prélecture et d'autres techniques pour compenser.",
+                    "lien": "https://www.infoq.com/presentations/disaggregation-industrial-systems/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Optimisation des ressources de plus de 30% avec les fonctionnalités Data Assets d'Airflow 3.0",
+                    "resume": "Halodoc a migré des workloads Airflow vers Airflow 3.x Assets et des opérateurs différables, réduisant l'utilisation CPU des workers de 26,1% à 7,71% et la mémoire de 49,2% à 30,8% sur 160 DAGs, tout en diminuant la charge du scheduler et les erreurs Redshift.",
+                    "lien": "https://blogs.halodoc.io/leveraging-data-assets-features-in-airflow-3-0-to-optimise-resource-utilization-by-more-than-30/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "OpenAI a rendu l'analyse 10 fois moins chère",
+                    "resume": "Le nouveau GPT 5.6 Luna d'OpenAI rend l'analyse par agents 10 fois moins chère, fournissant des réponses SQL très précises pour moins d'un demi-cent. L'avantage réside désormais dans le contexte métier, les évaluations rigoureuses et une plateforme de données réactive, plutôt que dans le modèle le plus intelligent.",
+                    "lien": "https://motherduck.com/blog/openai-just-made-analytics-10x-cheaper/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Au-delà de l'ingénierie 'Happy Path' : Les bases de données",
+                    "resume": "Les bases de données de production échouent souvent sur les cas limites (lectures de répliques obsolètes, deadlocks, migrations). L'article recommande d'appliquer des invariants aux limites de la base de données via des écritures gardées, des contraintes, des transactions courtes et des procédures de récupération explicites.",
+                    "lien": "https://blog.gaborkoos.com/posts/2026-08-01-Beyond-Happy-Path-Engineering-Databases/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "La promesse non tenue de Kafka : Il n'y a pas de log 'Boucles d'or'",
+                    "resume": "Le modèle de flux partitionné de Kafka est inadapté aux workloads de type routeur avec des millions de logs ordonnés indépendamment. OpenData Log, basé sur Rust et le stockage objet, utilise le stockage LSM segmenté et les répliques de lecture pour gérer ces logs à haute cardinalité plus efficacement et à moindre coût.",
+                    "lien": "https://www.opendata.dev/blog/announcing-opendata-log?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Xberg (Dépôt GitHub)",
+                    "resume": "Xberg est un moteur open-source extrayant texte, tables, métadonnées et données structurées de 101 formats (PDF, images, audio, vidéo, URL, etc.). Son noyau Rust supporte 15 langues, l'OCR, la transcription, les embeddings et l'extraction structurée.",
+                    "lien": "https://github.com/xberg-io/xberg?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "La vidéo a besoin d'une base de connaissances",
+                    "resume": "La vidéo est difficile à utiliser car elle ne peut pas être interrogée directement. La plateforme de CreativAI structure les séquences vidéo en une base de connaissances consultable, permettant des requêtes rapides pour la robotique, la logistique, la sécurité et d'autres cas d'usage d'IA physique.",
+                    "lien": "https://creativ-ai.com/blogs/video-needs-a-knowledge-base?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "I/O asynchrone dans DuckDB : Travail, Thread, Travail",
+                    "resume": "DuckDB intègre l'I/O asynchrone pour éviter le blocage des threads sur les lectures S3-backed Parquet et CSV. Cette conception avec pools asynchrones et de workers, prélecture et gouvernance mémoire, réduit considérablement les temps d'exécution (TPC-H Q6 de 8,23s à 2,84s, scan CSV près de 20x plus rapide).",
+                    "lien": "https://duckdb.org/2026/07/31/asynchronous-io.html?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Leçons de données internes à Meta (Shridhar Iyer)",
+                    "resume": "La plateforme de données de Meta a évolué vers un stack unifié fortement typé avec catalogue, taxonomie, lignage et politiques centralisés. Parmi les leçons : une colonne de débogage tronquée a économisé des millions, le versionnement était nécessaire pour les tables clés et la préparation à l'IA commence par des primitives de workflow réutilisables.",
+                    "lien": "https://roundup.getdbt.com/p/data-lessons-from-inside-meta-shridhar?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Vérification de taxonomie participative : Un cadre basé sur le feedback pour affiner les relations de graphes de connaissances",
+                    "resume": "Grab valide les relations de graphes de connaissances via le comportement de recherche en direct. Les relations candidates (parent, enfant, frère/sœur) sont injectées dans les suggestions, puis les clics, le temps de consultation et les conversions sont agrégés en scores de confiance pour promouvoir ou élaguer les liens de la taxonomie.",
+                    "lien": "https://engineering.grab.com/crowdsourced-taxonomy-verification?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "PGSimCity (Outil)",
+                    "resume": "PGSimCity est un simulateur éducatif interactif représentant une base de données PostgreSQL comme une ville 3D. Il permet d'ajuster les charges de travail et de déclencher des scénarios (ex: tempêtes de checkpoints, thrashing de cache) pour visualiser l'impact sur les performances internes de PostgreSQL.",
+                    "lien": "https://nikolays.github.io/PGSimCity/?utm_source=tldrdata",
+                    "categorie": "Tool"
+                }
+            ]
+        },
+        {
             "date": "2026-07-30",
             "articles": [
                 {
@@ -689,83 +766,6 @@
                     "titre": "La Résidence des Données : Un Problème d'Infrastructure, Pas Juridique",
                     "resume": "La résidence des données est un défi d'infrastructure, pas seulement légal, exigeant que les charges de travail réglementées prennent en compte le stockage, le traitement, la journalisation et l'accès aux données. Les plateformes doivent être conçues pour être 'region-aware'.",
                     "lien": "https://hackernoon.com/data-residency-is-not-a-legal-problem-it-is-an-infrastructure-design-problem?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                }
-            ]
-        },
-        {
-            "date": "2026-06-29",
-            "articles": [
-                {
-                    "titre": "Journaux d'agents de code IA (12 To)",
-                    "resume": "Le codage IA passe de la maximisation des tokens à l'efficacité. Des workflows optimisés nécessitent une planification rigoureuse, des sessions d'agents adaptées, un contexte propre, des outils API-first, une CI robuste et une revue humaine ciblée pour maîtriser les coûts.",
-                    "lien": "https://www.youtube.com/watch?v=3abXSMZUbbM&utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Comment SmithDB a construit son index inversé pour la recherche plein texte",
-                    "resume": "SmithDB crée des index inversés efficaces grâce au parsing JSON, à la tokenisation et au tri radix, améliorant la vitesse de construction. La compaction en streaming gère la mémoire, et les requêtes fusionnent des index SSD locaux avec des segments de stockage objet pour une fraîcheur sub-seconde.",
-                    "lien": "https://www.langchain.com/blog/full-text-search-in-smithdb-constructing-and-querying-our-inverted-index-pt-2?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Évolution automatique du schéma dans le framework d'ingestion DB de Pinterest",
-                    "resume": "Pinterest a développé une évolution automatique du schéma pour le CDC sur Kafka, Flink, Spark et Iceberg, traitant le schéma comme un contrat. Des contrôles détectent les dérives, et les changements sont déployés avec auditabilité, récupération basée sur les SLA et options de rattrapage.",
-                    "lien": "https://medium.com/pinterest-engineering/automated-schema-evolution-in-pinterests-next-generation-db-ingestion-framework-36c5c07070de?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Comment Razorpay a construit sa plateforme de données clients",
-                    "resume": "Razorpay a créé une CDP interne pour transformer des données transactionnelles dispersées de plus de 500M profils en segments d'audience interrogeables en temps réel. Ils utilisent Airflow et Spark pour les calculs quotidiens, et Temporal pour une ingestion fiable dans DynamoDB avec versioning et lookups hachés préservant la confidentialité.",
-                    "lien": "https://engineering.razorpay.com/turning-scattered-data-into-queryable-segments-at-scale-how-razorpay-built-its-customer-data-3937c4b012de?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Pourquoi la performance en charge réelle est la métrique clé",
-                    "resume": "La performance en charge réelle est cruciale car les benchmarks ne reflètent pas les conditions de production (données, concurrence, latence, échelle, coût). Il faut évaluer si la charge de travail correspond à la vôtre, si la configuration est prête pour la production, si les résultats sont stables avec la croissance des données et si le produit est disponible.",
-                    "lien": "https://www.snowflake.com/en/blog/engineering/measuring-real-workload-performance/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Construire sa propre version auto-hébergée de dbt Cloud",
-                    "resume": "Une application dbt Cloud auto-hébergée peut être construite avec dbt Core, une interface React/FastAPI et Prefect pour l'orchestration. La leçon clé est d'utiliser les API plutôt que le scraping CLI pour une gestion fiable des jobs, des logs et des déploiements.",
-                    "lien": "https://medium.com/@diedericks.dan/building-my-own-self-hosted-dbt-cloud-d3b737ae885c?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
-                },
-                {
-                    "titre": "Annonce de la version Apache Flink 2.3.0",
-                    "resume": "Flink 2.3 progresse vers une plateforme de streaming déclarative. Les tables matérialisées peuvent évoluer via DDL/requêtes sans re-traitement historique inutile. Le SQL ajoute la conversion de changelog, la gestion des conflits upsert et le support S3 natif sans dépendances Hadoop.",
-                    "lien": "https://flink.apache.org/2026/06/25/apache-flink-2.3.0-release-announcement/?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Groupes de partage Kafka : Attentes de récupération pathologiques avec record_limit",
-                    "resume": "Un piège de performance dans les groupes de partage Kafka survient avec `record_limit` et moins de consommateurs que de partitions, surtout en cas de déséquilibre. Cela provoque des attentes de récupération pathologiques, ralentissant la consommation. La solution simple est d'avoir au moins autant de consommateurs que de partitions avec `record_limit`.",
-                    "lien": "https://jack-vanlightly.com/blog/2026/6/24/kafka-share-groups-pathological-fetch-waits-with-recordlimit?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "Hardwood 1.0 : Un lecteur Apache Parquet rapide et léger pour la JVM",
-                    "resume": "Hardwood 1.0 est un lecteur Parquet natif JVM (Java 21+) prêt pour la production, sans dépendances obligatoires et avec décodage parallèle. Il supporte les types Parquet, les projections, le push-down de prédicats et les fichiers locaux/object-store, offrant des performances élevées (16,5M lignes/sec).",
-                    "lien": "https://www.morling.dev/blog/hardwood-1-0-fast-lightweight-apache-parquet-reader-for-the-jvm/?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "Embeddings 14x plus rapides : la refonte du chemin ONNX dans Manticore",
-                    "resume": "Manticore a réécrit son pipeline d'embeddings sur ONNX Runtime, réduisant le gaspillage CPU et multipliant le débit par 14 pour la recherche vectorielle à faible latence. La conception utilise une session ONNX thread-safe, désactive le spinning intra-op et traite les documents individuellement pour éviter les contentions et le surcoût de padding.",
-                    "lien": "https://manticoresearch.com/blog/onnx-embeddings-speedup/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Évaluation d'agents IA : Les documents l'emportent-ils sur les compétences ?",
-                    "resume": "Une évaluation de 250 runs par Wix montre que les documents optimisés pour agents IA ont amélioré la complétion de tâches CLI de 67% à 87% et réduit l'utilisation de tokens de 35%, surpassant les compétences seules si désalignées. Pour les tâches API, les deux atteignent 80%, mais les documents sont plus rapides.",
-                    "lien": "https://www.wix.engineering/post/we-ran-250-ai-agent-evals-to-find-out-if-skills-beat-docs-the-answer-is-more-complicated-than-we-ex?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Comment Dropbox a utilisé DSPy pour améliorer les réponses IA de Dash Chat",
-                    "resume": "Dropbox a utilisé DSPy pour transformer les évaluations IA en améliorations concrètes pour Dash Chat. En combinant évaluations LLM-as-judge, exemples labellisés et validation statistique, ils ont réduit les réponses incomplètes, amélioré la couverture d'intention utilisateur et diminué l'utilisation de tokens sans sacrifier la qualité.",
-                    "lien": "https://dropbox.tech/machine-learning/how-we-turned-ai-evaluations-into-better-responses-in-dash-chat?utm_source=tldrdata",
                     "categorie": "Deep Dive"
                 }
             ]
