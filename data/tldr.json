@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-08-10",
+            "articles": [
+                {
+                    "titre": "L'infrastructure d'entraînement derrière la recherche d'emploi par IA : Distillation multi-enseignants 8x plus rapide",
+                    "resume": "LinkedIn a réduit le temps d'entraînement de son modèle de recherche d'emploi (0,6 milliard de paramètres) de 45 à moins de 5 heures grâce à la mise en cache des sorties des 'enseignants' au niveau des shards, sans perte de précision.",
+                    "lien": "https://www.linkedin.com/blog/engineering/infrastructure/the-training-infrastructure-behind-ai-powered-job-search-eight-x-faster-multi-teacher-distillation?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Comment et pourquoi Netflix a construit un graphe distribué en temps réel : Partie 3 — Interroger le graphe avec l'API d'exécution gRPC",
+                    "resume": "La couche de requête du graphe distribué temps réel de Netflix gère 8 milliards de nœuds et 150 milliards d'arêtes, permettant des requêtes complexes en moins de 150 ms au P99 grâce à la traversée parallèle et des caches optimisés.",
+                    "lien": "https://netflixtechblog.com/how-and-why-netflix-built-a-real-time-distributed-graph-part-3-querying-the-graph-with-grpc-0f3468349607?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Comment Physical Intelligence a unifié sa pile de données robotiques avec Postgres géré par ClickHouse",
+                    "resume": "Physical Intelligence a séparé sa pile de données robotiques entre Postgres (transactionnel) et ClickHouse (analytique) pour gérer des dizaines de milliards de lignes, permettant recherches et explorations rapides qui prenaient auparavant des jours.",
+                    "lien": "https://clickhouse.com/blog/physical-intelligence-rds-to-clickhouse-managed-postgres?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Oubliez la donnée propre, annotez-la dès la collecte.",
+                    "resume": "Pour éviter les hallucinations des IA, il est crucial d'annoter la provenance, le schéma et le contexte des données dès l'ingestion, car 60% des projets IA échouent sans métadonnées et observabilité.",
+                    "lien": "https://www.cio.com/article/4204899/never-mind-clean-data-annotate-as-you-collect-it.html?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "La propriété des données en pratique : Définir les droits de décision dans la gouvernance des données d'entreprise",
+                    "resume": "La gouvernance des données échoue si les propriétaires n'ont pas de droits de décision. Une gouvernance efficace exige que les propriétaires aient l'autorité d'approuver les seuils de qualité, d'accepter les risques et d'autoriser l'utilisation.",
+                    "lien": "https://medium.com/@community_md101/data-ownership-in-practice-defining-decision-rights-in-enterprise-data-governance-c125e0635873?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Votre prochain \"problème de base de données Access\" est un agent IA",
+                    "resume": "La facilité de création d'agents IA risque de créer un chaos d'outils non documentés. Il faut intégrer la gouvernance (identité, permissions, journalisation, propriété) dans la plateforme pour gérer automatiquement les risques.",
+                    "lien": "https://sjg.io/writing/your-next-access-database-problem-is-an-ai-agent/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Valider les données avec Pointblank en Python",
+                    "resume": "Pointblank est une bibliothèque Python pour valider les données (pandas, Polars, DuckDB, PostgreSQL) via des règles déclaratives, en se concentrant sur les portes de qualité, la quarantaine au niveau des lignes et des rapports pour les parties prenantes.",
+                    "lien": "https://realpython.com/python-pointblank/?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                },
+                {
+                    "titre": "Kestra 2.0 : les versions candidates arrivent avec un nouveau moteur d'exécution et une refonte de l'interface",
+                    "resume": "Les versions candidates de Kestra 2.0 sont disponibles, présentant un nouveau moteur d'exécution et une refonte de l'interface utilisateur, marquant la plus grande mise à jour de l'orchestrateur.",
+                    "lien": "https://kestra.io/blogs/kestra-2-0-almost-here/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Couches sémantiques dans Apache Superset : SIP-182 et Apache Ossie",
+                    "resume": "Apache Superset 7.0 intégrera un support natif des couches sémantiques via une nouvelle interface, remplaçant les pseudo-bases de données pour métriques et dimensions. Apache Ossie est également en développement comme couche d'échange JSON/YAML neutre.",
+                    "lien": "https://preset.io/blog/semantic-layers-in-supersett/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "TLDR recrute un curateur pour TLDR Data !",
+                    "resume": "TLDR Data, lu par plus de 500 000 abonnés, recherche un curateur (~3h/semaine) pour la science et l'ingénierie des données. Postulez si vous êtes intéressé !",
+                    "lien": "mailto:data@tldr.tech",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Tytan : Construction neurosymbolique interactive de schémas sémantiques analytiques à partir de données relationnelles",
+                    "resume": "TYTAN génère automatiquement des schémas sémantiques analytiques à partir de données relationnelles en combinant inférence LLM et vérifications déterministes, avec un succès élevé (100% sur 3758 tests de récupération) sur huit bases de données.",
+                    "lien": "https://arxiv.org/abs/2608.06331?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "La base de données à 550 kilomètres : ce que l'informatique orbitale signifie pour les bases de données distribuées",
+                    "resume": "L'infrastructure IA spatiale déplace le goulot d'étranglement vers l'état. Si l'orbite convient au calcul GPU, le stockage y est coûteux. Les bases de données SQL distribuées nécessitent une gestion spécifique (placement des baux, réplication) pour fonctionner en orbite.",
+                    "lien": "https://cockroachlabs.com/blog/orbital-computing-distributed-databases?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                }
+            ]
+        },
+        {
             "date": "2026-08-06",
             "articles": [
                 {
@@ -689,83 +766,6 @@
                     "titre": "Pourquoi Votre Couche Sémantique est Plus Importante que Votre Agent IA",
                     "resume": "Une couche sémantique robuste est essentielle pour guider l'IA, transformant l'intention utilisateur en requêtes fiables plutôt que de générer du SQL potentiellement erroné ; le modèle sémantique est le produit clé, pas l'agent.",
                     "lien": "https://narendradevarasetty.com/articles/why-your-semantic-layer-matters?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                }
-            ]
-        },
-        {
-            "date": "2026-07-06",
-            "articles": [
-                {
-                    "titre": "Le Plan de Stockage IA de Meta à l'Échelle",
-                    "resume": "Meta partage son architecture de stockage IA à grande échelle, incluant hiérarchie multi-niveaux, placement intelligent, réplication, caching, encodage d'effacement et optimisation réseau.",
-                    "lien": "https://engineering.fb.com/2026/07/01/data-infrastructure/metas-ai-storage-blueprint-at-scale/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Migration du service de comptage de Grab : choix de conception et apprentissages",
-                    "resume": "Grab a migré son service de comptage antifraude vers Aerospike sans interruption, améliorant la latence de lecture p99 et les coûts de 50% grâce à des façades de stockage et un déploiement progressif.",
-                    "lien": "https://engineering.grab.com/counter-service-storage-migration?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Les LLM de séries temporelles expliqués avec t0-alpha",
-                    "resume": "t0-alpha, un prévisionniste de séries temporelles probabiliste open-source de 102M paramètres, surpasse les méthodes classiques et offre une prévision zéro-shot prometteuse pour la production.",
-                    "lien": "https://towardsdatascience.com/time-series-llms-explained-with-t0-alpha/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Meilleurs modèles, pires outils",
-                    "resume": "Les modèles Anthropic récents réussissent les tâches mais échouent aux schémas d'outils stricts en ajoutant des champs invalides, suggérant un surapprentissage. Les systèmes d'agents nécessitent une validation de schéma plus rigoureuse.",
-                    "lien": "https://lucumr.pocoo.org/2026/7/4/better-models-worse-tools/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Vercel a réduit son équipe SDR de 10 à 1 personne pour 5 000 $ par an",
-                    "resume": "Vercel a automatisé la qualification des leads, réduisant son équipe SDR à 1,25 personne avec un ROI de 32x, grâce à une ingénierie GTM robuste et une infrastructure évolutive.",
-                    "lien": "https://www.saastr.com/vercel-took-a-10-person-sdr-team-down-to-1-the-whole-thing-costs-5000-a-year-with-vercels-coo-jeanne-dewitt-grosser/?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Le guide pratique de l'ingénierie de contexte",
-                    "resume": "L'ingénierie de contexte structure les connaissances d'entreprise pour les agents IA. Les modèles de données clairs et la documentation sont essentiels. Gérer le contexte comme un dépôt Git avec CI/CD et gouvernance est recommandé.",
-                    "lien": "https://roundup.getdbt.com/p/the-context-engineering-playbook?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
-                },
-                {
-                    "titre": "Comparaison des meilleures bases de données vectorielles open source",
-                    "resume": "Redis a comparé les principales bases de données vectorielles open source. Redis excelle en faible latence/QPS élevé, Qdrant/Weaviate en filtrage de métadonnées, et Milvus en passage à l'échelle massive.",
-                    "lien": "https://redis.io/blog/best-open-source-vector-databases-comparison/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "StreamFusion (Dépôt GitHub)",
-                    "resume": "StreamFusion est un accélérateur Flink SQL open source qui remplace les opérateurs de streaming par une exécution native Rust/Apache Arrow/DataFusion, améliorant les performances des opérations SQL.",
-                    "lien": "https://github.com/datafusion-contrib/StreamFusion?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "Claude Science, un atelier IA pour scientifiques, est maintenant disponible",
-                    "resume": "Claude Science AI Workbench est un nouvel outil pour scientifiques, accélérant la découverte en assistant la revue de littérature, l'élaboration d'hypothèses, l'analyse de données et la rédaction de code.",
-                    "lien": "https://www.anthropic.com/news/claude-science-ai-workbench?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Le parcours d'un token IA à travers un centre de données",
-                    "resume": "L'inférence est le coût dominant de l'IA. Son économie dépend du coût par token et de la latence, avec des défis liés à la bande passante mémoire. Les optimisations clés incluent la gestion du cache KV et la quantification.",
-                    "lien": "https://www.datagravity.dev/p/how-an-ai-token-travels-through-a?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Réduction de variance sous le grain de randomisation",
-                    "resume": "Instacart explore des techniques avancées de réduction de variance pour les tests A/B (CUPED, stratification) au niveau utilisateur/session, permettant de détecter des effets plus subtils avec une précision accrue.",
-                    "lien": "https://tech.instacart.com/variance-reduction-below-the-randomization-grain-31719f87a7d2?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Combler le fossé : Audit de données structurées et intelligence des politiques non structurées",
-                    "resume": "Automatisez les audits de conformité en combinant documents politiques non structurés et données structurées via un workflow agentique, utilisant LLM-Wiki et Text2SQL pour analyser et auto-corriger.",
-                    "lien": "https://blog.gopenai.com/bridging-the-gap-blending-structured-data-auditing-with-unstructured-policy-intelligence-17710e04c8de?utm_source=tldrdata",
                     "categorie": "Deep Dive"
                 }
             ]
