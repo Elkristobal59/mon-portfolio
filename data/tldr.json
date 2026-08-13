@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-08-13",
+            "articles": [
+                {
+                    "titre": "Stripe automatise la remédiation de bases de données avec recherche par graphe et machines d'état",
+                    "resume": "Stripe a automatisé la récupération d'incidents MongoDB en modélisant son parc comme un graphe pour générer des plans de remédiation. Le système réduit les alertes de 30% et évite 12 jours d'états de shards anormaux par an, remplaçant les flux de travail fragiles par une planification basée sur Dijkstra.",
+                    "lien": "https://stripe.dev/blog/how-stripe-uses-graph-search-and-state-machines-to-auto-remediate-a-global-database-fleet?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Recherche vectorielle filtrée : ce qu'ACORN résout, et ce qui résout ACORN",
+                    "resume": "Les filtres de métadonnées peuvent perturber la recherche vectorielle en fragmentant le graphe HNSW. Qdrant analyse différentes approches (HNSW filtrable, ACORN) sur un million de vecteurs, montrant l'efficacité des arêtes d'indexation par rapport à la réparation en temps de requête.",
+                    "lien": "https://qdrant.tech/articles/filtered-vector-search-acorn/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Comment Vercel a migré la base de données de ses builds",
+                    "resume": "Vercel a migré la base de données de ses pools de builds de Redis vers DynamoDB pour un stockage durable. Cette migration a révélé une dépendance à la faible latence de Redis, obligeant Vercel à repenser son architecture pour gérer la concurrence au lieu de lectures sérialisées.",
+                    "lien": "https://vercel.com/blog/how-we-migrated-the-database-behind-every-vercel-build?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Les agents IA arrivent pour la donnée (lentement mais sûrement)",
+                    "resume": "Les agents IA excellent dans les tâches répétitives (tests d'hypothèses, diagnostic de schémas, maintenance de pipelines), mais les insights automatisés proactifs sont plus complexes à cause de la pertinence et des faux positifs. Les équipes data doivent se préparer avec des évaluations robustes et une infrastructure à faible latence.",
+                    "lien": "https://www.infoworld.com/article/4203157/agents-are-coming-for-data-just-slowly.html?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "La \"fausse prophétie de la mort de X\"",
+                    "resume": "L'entreposage de données, SQL, la modélisation et la BI ne sont pas en train de disparaître. Les implémentations évoluent, mais les fonctions centrales perdurent. L'IA automatise certaines tâches, mais ne remplace pas la sémantique métier ou le jugement architectural. Le vrai changement est l'évolution des responsabilités automatisées.",
+                    "lien": "https://joereis.substack.com/p/the-x-is-dead-fallacy?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Pourquoi les projets de graphes de connaissances échouent — et comment les faire réussir",
+                    "resume": "Les graphes de connaissances échouent souvent lorsqu'ils sont traités comme des bases relationnelles. Les bonnes pratiques incluent des cas d'utilisation spécifiques, des graphes fédérés, des API contrôlées, une structure SHACL et une provenance explicite pour éviter des systèmes lents et fragmentés.",
+                    "lien": "https://ontologist.substack.com/p/why-knowledge-graph-projects-fail?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                },
+                {
+                    "titre": "Electric rejoint Databricks pour intégrer Postgres WASM aux sandboxes d'agents IA",
+                    "resume": "Databricks acquiert Electric pour intégrer PGlite (Postgres WASM léger) aux sandboxes d'agents IA. Cela permettra aux agents de disposer de bases de données locales rapides, tout en synchronisant l'état partagé avec Lakebase pour une source de vérité centralisée.",
+                    "lien": "https://www.databricks.com/blog/electric-joins-databricks-bring-wasm-postgres-ai-agent-sandboxes?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Présentation de sqlfmt : un formateur SQL inspiré de gofmt",
+                    "resume": "sqlfmt est un nouveau formateur SQL s'inspirant de gofmt, appliquant le style \"river alignment\" (mots-clés minuscules, indentation, virgules, commentaires cohérents). Il utilise la tokenisation pour la robustesse, fonctionne en CLI ou via WASM et assure que le formatage ne modifie pas la sémantique des requêtes.",
+                    "lien": "https://tapoueh.org/blog/2026/08/introducing-sqlfmt-an-sql-gofmt-style-formatter/?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Publication par lots atomiques dans NATS 2.12 : garanties tout-ou-rien",
+                    "resume": "NATS 2.12 introduit la publication par lots atomiques pour les flux JetStream, permettant de committer des messages associés comme une unité tout-ou-rien. Cela aide les systèmes événementiels à éviter les écritures partielles, simplifiant la logique de récupération et assurant la sécurité des concurrences.",
+                    "lien": "https://www.synadia.com/blog/atomic-batch-publishing-nats-2-12/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Maestro : l'orchestrateur de workflow open source de Netflix continue d'évoluer",
+                    "resume": "Maestro, l'orchestrateur de workflow open source de Netflix (Apache-2.0), gère les pipelines de données, ML et batch à grande échelle. C'est une alternative intéressante à Airflow pour l'orchestration, les MLOps et la planification.",
+                    "lien": "https://github.com/Netflix/maestro?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Comment la standardisation de la télémétrie produit a réduit le temps d'insight de 97%",
+                    "resume": "Salesforce a standardisé la télémétrie produit via une plateforme de données, remplaçant les pipelines fragmentés par un schéma commun générant automatiquement des métriques d'adoption fiables. La plateforme traite 45 milliards de lignes par jour, réduisant le temps d'insight et le travail manuel.",
+                    "lien": "https://engineering.salesforce.com/how-standardizing-product-telemetry-reduced-time-to-insight-by-97?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Dérive des modèles d'IA : comment maintenir leur fiabilité",
+                    "resume": "La dérive des modèles d'IA est une baisse de qualité due à l'évolution des données de production ou des comportements. Il faut surveiller la dérive des données, des concepts et des pipelines, en utilisant des vérifications de distribution, de la télémétrie et du feedback utilisateur.",
+                    "lien": "https://www.honeycomb.io/blog/ai-model-drift?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                }
+            ]
+        },
+        {
             "date": "2026-08-10",
             "articles": [
                 {
@@ -690,83 +767,6 @@
                     "resume": "ClickHouse propose des images Docker durcies, basées sur un système minimal sans shell ni outils réseau, réduisant les CVE de sévérité moyenne de 8 à zéro, sans affecter le comportement de la base de données.",
                     "lien": "https://clickhouse.com/blog/docker-hardened-images?utm_source=tldrdata",
                     "categorie": "News"
-                }
-            ]
-        },
-        {
-            "date": "2026-07-09",
-            "articles": [
-                {
-                    "titre": "Le Type Variant d'Apache Iceberg : Transformer le JSON en Analyse Rapide",
-                    "resume": "Le type Variant d'Iceberg v3 résout le problème du JSON semi-structuré en le stockant dans un format binaire compact et en \"déchiquetant\" les champs communs en colonnes Parquet, optimisant les performances d'analyse tout en conservant la flexibilité du schéma.",
-                    "lien": "https://iceberglakehouse.com/posts/iceberg-v3-variant-type-ai-json-payloads/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Algorithmes sur graphes à l'échelle du milliard avec 10 Go de RAM grâce à DataFusion",
-                    "resume": "Apache DataFusion exécute efficacement des algorithmes de graphes massifs (milliards d'arêtes) sur des machines à faible RAM, en exploitant des scans sur disque et des opérations optimisées.",
-                    "lien": "https://semyonsinchenko.github.io/ssinchenko/post/datafusion-graphs-cc-2/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Construire l'Infrastructure de Récupération IA pour plus de 20 Milliards de Vecteurs chez HubSpot",
-                    "resume": "HubSpot a mis à l'échelle sa plateforme Vector-as-a-Service, gérant plus de 20 milliards de vecteurs pour la recherche sémantique en production, en automatisant les opérations via des opérateurs Kubernetes.",
-                    "lien": "https://product.hubspot.com/blog/building-the-ai-retrieval-infrastructure-behind-20-billion-vectors-at-hubspot?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "La Place des Agents IA en Ingénierie des Données : La Couche de Correction",
-                    "resume": "Les agents IA peuvent aider en ingénierie des données, mais un travail de production fiable exige une couche de correction déterministe pour valider SQL, schémas et lignage, plutôt que de se fier uniquement à la confiance du modèle.",
-                    "lien": "https://www.ssp.sh/blog/where-agents-belong-in-de/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Les 3 Couches de Construction d'Agents",
-                    "resume": "Cadre pour construire des agents IA fiables en trois couches : le modèle, le moteur d'agent (boucles d'outils, contexte, mémoire, observabilité) et la configuration du moteur (contexte d'usage, outils, permissions).",
-                    "lien": "https://medium.com/data-from-the-trenches/the-3-layers-of-agent-building-db45b52178ec?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Comment Construire des Pipelines de Données Robustes avec l'IA",
-                    "resume": "Pour des pipelines générés par IA fiables, il faut adhérer aux fondamentaux (paramétrisation, idempotence), laisser l'agent inspecter les schémas réels, valider la sortie (Write-Audit-Publish) et utiliser des compétences réutilisables.",
-                    "lien": "https://motherduck.com/blog/robust-data-pipelines-with-ai/?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
-                },
-                {
-                    "titre": "Apache Ossie (Incubating) : Le Standard Universel pour les Données Sémantiques",
-                    "resume": "Apache Ossie est un nouveau projet d'incubation Apache qui vise à établir un standard universel pour modéliser les données sémantiques (datasets, métriques, relations), assurant la cohérence des définitions et un contexte métier gouverné pour les agents IA.",
-                    "lien": "https://ossie.apache.org/?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Intégrer la Recherche Vectorielle au Lakehouse avec Apache Hudi",
-                    "resume": "Apache Hudi intègre des capacités de recherche vectorielle natives au lakehouse, permettant la recherche sémantique et les applications RAG directement sur les tables Hudi sans base de données vectorielle séparée.",
-                    "lien": "https://hudi.apache.org/blog/2026/07/06/bringing-vector-search-to-the-lakehouse-with-apache-hudi/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Malloyyo (Référentiel GitHub)",
-                    "resume": "Malloyyo est un serveur MCP léger et une application web permettant aux outils IA d'interroger des modèles de données publiés, d'exécuter des analyses et de partager les résultats, avec une CLI et une interface utilisateur.",
-                    "lien": "https://github.com/malloydata/malloyyo?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "Performance Apache Kafka #1 - linger.ms",
-                    "resume": "Le paramètre `linger.ms` de Kafka est crucial pour la performance du producteur, influençant le débit et la latence en contrôlant la durée d'attente avant l'envoi des lots de messages.",
-                    "lien": "https://jack-vanlightly.com/blog/2026/7/7/apache-kafka-performance-1-lingerms?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "La Grammaire des Données : Définir une Fois, Exécuter Partout",
-                    "resume": "La \"Grammaire pour l'Ingénierie des Données\" propose de traiter les pipelines de données comme un langage formel, améliorant la déclarativité, la réutilisabilité et la maintenabilité des workflows.",
-                    "lien": "https://xorq.dev/blog/grammar-for-data-engineering/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Pourquoi Votre Couche Sémantique est Plus Importante que Votre Agent IA",
-                    "resume": "Une couche sémantique robuste est essentielle pour guider l'IA, transformant l'intention utilisateur en requêtes fiables plutôt que de générer du SQL potentiellement erroné ; le modèle sémantique est le produit clé, pas l'agent.",
-                    "lien": "https://narendradevarasetty.com/articles/why-your-semantic-layer-matters?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
                 }
             ]
         }
