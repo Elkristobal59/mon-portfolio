@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-08-17",
+            "articles": [
+                {
+                    "titre": "Modéliser des données simples mène à des complications",
+                    "resume": "Un modèle de données bibliques simple révèle rapidement sa complexité face aux cas réels (plages de versets, etc.). Il faut modéliser uniquement la complexité nécessaire au produit.",
+                    "lien": "https://codeblog.jonskeet.uk/2026/08/14/scratch-a-simple-data-model-find-a-complex-one/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Accélération des requêtes sur Lakehouse: comment les index Hudi optimisent les charges de travail intensives en lecture",
+                    "resume": "Les index de métadonnées d'Apache Hudi transforment les lectures sélectives de lakehouse en recherches de base de données, réduisant les scans complets grâce à divers types d'index.",
+                    "lien": "https://hudi.apache.org/blog/2026/08/14/hudi-for-read-heavy-workloads-point-lookups-with-indexes?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Pourquoi l'IA est une charge de travail de stockage",
+                    "resume": "L'inférence IA devient une infrastructure à état (sessions longues, agents, RAG), créant des caches, mémoires et embeddings durables plus économiques à stocker qu'à recalculer, intégrant le stockage dans le chemin critique.",
+                    "lien": "https://www.datagravity.dev/p/why-ai-is-a-storage-workload?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Le Change-Data-Capture (CDC) ne résout pas les écritures doubles",
+                    "resume": "Le CDC rend les écritures en aval réessayables et ordonnées, mais ne garantit pas l'idempotence des systèmes de destination, qui doivent toujours gérer les duplicatas post-récupération.",
+                    "lien": "https://aandreakis.com/posts/change-data-capture-doesnt-solve-dual-writes?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "À propos des benchmarks",
+                    "resume": "Un chiffre de débit seul n'est pas une décision architecturale. Les bons benchmarks expliquent la charge de travail, l'état du cache, le comportement client et les limites pour éviter d'optimiser des scores synthétiques.",
+                    "lien": "https://www.dataengineeringweekly.com/p/on-benchmarking?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Comment Kenn pratique l'ingénierie agentique",
+                    "resume": "Kenn utilise des agents de codage pour générer de gros volumes de PRs, mais maintient les humains en contrôle des spécifications, revues et décisions, permettant à trois ingénieurs de livrer des centaines de PRs par semaine.",
+                    "lien": "https://wesmckinney.com/blog/agentic-engineering-aug-2026/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Comment nous avons traqué un bug SQLite vieux de 16 ans",
+                    "resume": "Tailscale a passé six mois à corriger une corruption SQLite due à une rare condition de course entre le checkpointing WAL et les transactions, menant à un correctif SQLite et la leçon que même les technologies établies sont risquées hors des chemins communs.",
+                    "lien": "https://tailscale.com/blog/sqlite-wal-reset-bug?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Sortie d'Apache DataFusion Comet 1.0.0",
+                    "resume": "Comet, l'accélérateur Spark basé sur Apache DataFusion, atteint la version 1.0 avec gestion sémantique, support Spark 4, couverture d'opérateurs élargie et tests rigoureux, offrant une exécution Spark plus rapide sans réécriture.",
+                    "lien": "https://datafusion.apache.org/blog/2026/08/07/datafusion-comet-1.0.0?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Introduction de DataBench",
+                    "resume": "DataBench de Hex évalue les agents IA sur des tâches analytiques complexes, montrant leur force à collecter des preuves mais leur faiblesse en jugement, soulignant le besoin de révision humaine pour les travaux complexes.",
+                    "lien": "https://hex.tech/blog/databench-agentic-analytics-benchmark/?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Nouveautés d'OpenSearch 3.8",
+                    "resume": "OpenSearch 3.8 améliore l'ingestion vectorielle, le débit et la latence des requêtes, étend le support des agents IA et offre de nouveaux outils PPL/SQL, débogage Grok, alertes Prometheus en un clic et améliorations de la pertinence de recherche.",
+                    "lien": "https://opensearch.org/blog/whats-new-in-opensearch-3-8/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Snowflake: une requête de 149 Go a scanné -1.5 Go",
+                    "resume": "L'exportation de données QUERY_HISTORY de Snowflake vers Parquet peut corrompre les valeurs si de grands nombres sont écrits en INT32. Le transtypage des colonnes affectées avant l'exportation prévient les débordements et analyses incorrectes.",
+                    "lien": "https://espresso.ai/post/snowflake-bytes-scanned-considered-harmful?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Classer équitablement les oiseaux les plus brillants",
+                    "resume": "Un système de classement transparent pour les oiseaux les plus brillants combine chroma, variété de couleurs et fiabilité des données. L'idée principale est que les classements sont plus justes quand chaque facteur est compréhensible et justifiable.",
+                    "lien": "https://moultano.wordpress.com/2026/08/14/fairly-ranking-the-most-brilliant-birds/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                }
+            ]
+        },
+        {
             "date": "2026-08-13",
             "articles": [
                 {
@@ -690,83 +767,6 @@
                     "resume": "Le cadre IA d'Expedia Group exige que chaque modèle soit lié à un objectif commercial mesurable, construit sur des fondations de plateforme partagées, et ait des propriétaires définis dans les domaines commercial, produit, IA et opérations.",
                     "lien": "https://medium.com/expedia-group-tech/how-expedia-group-builds-ai-that-lasts-at-scale-434677770fe9?utm_source=tldrdata",
                     "categorie": "Deep Dive"
-                }
-            ]
-        },
-        {
-            "date": "2026-07-13",
-            "articles": [
-                {
-                    "titre": "Les benchmarks text-to-SQL contiennent des réponses incorrectes",
-                    "resume": "SQLSure a découvert que les benchmarks text-to-SQL comme BIRD et Spider incluent des requêtes \"or\" erronées, ce qui peut fausser l'évaluation des modèles. Une évaluation devrait aussi vérifier la sémantique des données.",
-                    "lien": "https://sqlsure.ai/blog/bird-benchmark-wrong-gold/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Affirm réduit le cycle d'expérimentation de mois à jours",
-                    "resume": "Affirm a refactorisé sa plateforme de messagerie pre-checkout d'un monolithe Python à un microservice Kotlin, réduisant la latence P99 de 50% et le temps de mise en place d'expériences de 2 mois à 4 jours.",
-                    "lien": "https://medium.com/affirmengineering/re-architecting-affirms-upfunnel-platform-how-we-cut-experiment-cycle-time-from-months-to-days-20a047eb6599?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Arcesium migre vers un entrepôt de données moderne avec DuckDB et Iceberg",
-                    "resume": "Arcesium a migré un entrepôt de 170 To vers Apache Iceberg sur S3 avec DuckDB, réduisant le temps d'ingestion de 80% et les coûts d'infrastructure de 40% grâce à Swiftlake et KEDA.",
-                    "lien": "https://medium.com/arcesium-engineering-blog/modern-data-warehousing-at-scale-arcesiums-migration-to-duckdb-and-iceberg-d316af0def46?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "La taxe de l'anarchie des données : 45% du temps en mode pompier",
-                    "resume": "Les équipes sans propriétaires de produits de données dédiés passent 45% de leur temps en travail réactif (contre 27% pour les autres), un écart aggravé par les outils d'IA qui bénéficient aux équipes structurées et pénalisent les autres.",
-                    "lien": "https://joereis.substack.com/p/the-data-anarchy-tax-why-your-team?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Le Manifeste Shift Left - v2",
-                    "resume": "Le Manifeste Shift Left mis à jour insiste sur la provenance des données dès le code producteur. Une lignée au niveau du code facilite la gouvernance, la traçabilité et l'analyse d'impact, surtout avec les agents de codage.",
-                    "lien": "https://dataproducts.substack.com/p/the-shift-left-manifesto-v2?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Optimiser l'élagage de partitions PostgreSQL avec des colonnes non-partitionnées",
-                    "resume": "PostgreSQL peut élaguer des partitions même avec des filtres sur des colonnes non-clés si elles ont des plages corrélées à la clé de partition. Ajouter des contraintes CHECK permet d'éviter la lecture d'index inutiles.",
-                    "lien": "https://hakibenita.com/postgresql-partition-pruning?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
-                },
-                {
-                    "titre": "Au-delà de la rédaction : Anatomie d'une plateforme de données respectueuse de la vie privée",
-                    "resume": "L'ingénierie de la confidentialité dépasse la simple rédaction, nécessitant classification continue, accès basé sur l'usage et traçabilité. La tokenisation déterministe est utile mais ne garantit pas l'anonymat total.",
-                    "lien": "https://www.dataengineeringweekly.com/p/beyond-redaction-anatomy-of-a-privacy?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Ship That Code (Outil)",
-                    "resume": "Ship That Code est une plateforme d'apprentissage gratuite permettant de construire des systèmes réels depuis zéro, incluant bases de données, Redis, outils SQL et stockages de données distribués.",
-                    "lien": "https://shipthatcode.com/?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "Comment Airflow utilise l'IA pour renforcer la résilience de l'ingénierie de données",
-                    "resume": "Apache Airflow intègre trois contrôles basés sur l'IA (validation sémantique des schémas, état persistant, décisions de réessai par LLM) pour améliorer la résilience des pipelines et gérer intelligemment les échecs.",
-                    "lien": "https://blog.dataengineerthings.org/how-airflow-is-using-ai-to-make-data-engineering-more-resilient-not-more-complex-36ff44fd8df7?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Conception de l'API de table générique de Lakekeeper",
-                    "resume": "L'API de table générique de Lakekeeper permet de gérer des actifs non-Iceberg (comme les datasets Lance) comme des objets de catalogue gouvernables sans conversion, en utilisant les contrôles du catalogue Iceberg.",
-                    "lien": "https://medium.com/fresha-data-engineering/lakekeeper-generic-table-api-design-1aaaeca3749c?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Comment optimiser les révisions de code de Copilot",
-                    "resume": "L'amélioration des outils de Copilot a paradoxalement dégradé ses performances en revue de code. En affinant les instructions pour qu'il se concentre d'abord sur le diff, GitHub a réduit le coût moyen de 20% sans perte de qualité.",
-                    "lien": "https://github.blog/ai-and-ml/github-copilot/better-tools-made-copilot-code-review-worse-heres-how-we-actually-improved-it/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Images Docker durcies pour ClickHouse",
-                    "resume": "ClickHouse propose des images Docker durcies, basées sur un système minimal sans shell ni outils réseau, réduisant les CVE de sévérité moyenne de 8 à zéro, sans affecter le comportement de la base de données.",
-                    "lien": "https://clickhouse.com/blog/docker-hardened-images?utm_source=tldrdata",
-                    "categorie": "News"
                 }
             ]
         }
