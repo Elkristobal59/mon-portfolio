@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-08-20",
+            "articles": [
+                {
+                    "titre": "Netflix : Évolution du pipeline d'événements publicitaires en direct",
+                    "resume": "Netflix a refait son pipeline publicitaire en direct avec Apache Flink, déplaçant l'enrichissement des métadonnées hors du chemin critique et utilisant des jointures de streaming à état. Le système gère le routage régional, les événements tardifs, la déduplication et la validation rigoureuse.",
+                    "lien": "https://netflixtechblog.medium.com/behind-the-scenes-evolving-netflixs-ads-event-pipeline-for-live-part-ii-826ebf9ad9fb?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Transaction Agente : Vers des systèmes d'agents conformes à ACID",
+                    "resume": "Des chercheurs appliquent les garanties ACID des bases de données aux agents IA, traitant les workflows comme des transactions. Leur implémentation 'ACID-Agent' a surpassé Claude Code, soulignant l'importance de l'architecture pour la fiabilité des agents.",
+                    "lien": "https://arxiv.org/html/2608.13900v1?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Simplifier les intégrations avec une couche d'abstraction de données chez Uber",
+                    "resume": "Uber a mis en place une couche d'abstraction de données pour découpler les intégrations produit des changements de schémas physiques et de backends. Cela a réduit le temps de livraison des rapports publicitaires de plusieurs semaines à moins de deux jours.",
+                    "lien": "https://www.uber.com/us/en/blog/data-abstraction-layer/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "L'ingénierie logicielle chez Optiver : une société de trading",
+                    "resume": "Optiver, une société de trading, gère plus de 10 millions de transactions quotidiennes avec 950 ingénieurs. Leur stack inclut C++, Python, Rust, Kafka, Postgres, Databricks, et des kernels Linux personnalisés, mettant l'accent sur la faible latence et la fiabilité.",
+                    "lien": "https://newsletter.pragmaticengineer.com/p/optiver?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Postgres 19 : Évolution des meilleures pratiques",
+                    "resume": "Postgres 19 renforce les pratiques existantes avec des améliorations comme l'E/S asynchrone, la compression LZ4, l'indexation et la gestion des partitions. Les conseils fondamentaux pour l'utilisation restent inchangés.",
+                    "lien": "https://www.crunchydata.com/blog/postgres-19-how-our-advice-has-changed-since-we-wrote-it?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Astuces Spark : Optimisation des partitions",
+                    "resume": "Le dimensionnement des partitions Spark est crucial pour le débit et la stabilité. L'article offre des conseils pratiques sur le filtrage précoce, l'évitement des shuffles inutiles, le repartitionnement et la gestion des petits fichiers.",
+                    "lien": "https://luminousmen.substack.com/p/spark-tips-partition-tuning?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                },
+                {
+                    "titre": "Un outil pour visualiser les internes des fichiers Parquet",
+                    "resume": "Un petit outil web, codé en Rust, permet de visualiser les détails cachés des fichiers Parquet comme les groupes de lignes, les chunks de colonnes, les schémas et les statistiques. Utile pour l'apprentissage et le débogage.",
+                    "lien": "https://vutr.substack.com/p/i-spent-10-hours-vibe-coding-a-tool?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Aperçu de DuckDB v2.0",
+                    "resume": "La version 2.0 de DuckDB, à venir, transformera la base de données en une plateforme plus complète avec des opérations client/serveur, des triggers, des données semi-structurées VARIANT, et des améliorations majeures des performances de stockage et de requête.",
+                    "lien": "https://duckdb.org/2026/08/17/duckdb-20-highlights?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Données semi-structurées dans Apache Iceberg : le type Variant",
+                    "resume": "Apache Iceberg v3 introduit le type Variant pour gérer les données semi-structurées (type JSON) dans une seule colonne, tout en conservant les types natifs et en s'intégrant avec des moteurs comme Spark et Flink.",
+                    "lien": "https://iceberg.apache.org/blog/variant-in-apache-iceberg/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "(Re)Construire un système FAQ pour DataTalks.Club",
+                    "resume": "DataTalks.Club a reconstruit son bot FAQ en utilisant des issues GitHub, des fils Slack et des transcriptions YouTube. La conception sans serveur avec AWS Lambda met l'accent sur la qualité des données source et les processus de révision.",
+                    "lien": "https://alexeyondata.substack.com/p/rebuilding-a-faq-system-for-datatalksclub?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Incident.io a désactivé Pub/Sub sans impact",
+                    "resume": "Incident.io a remplacé Google Pub/Sub par NATS et un équilibreur de charge actif-actif pour éliminer un point de défaillance unique. Les tests en production ont prouvé l'absence de perte de messages ou d'impact client.",
+                    "lien": "https://incident.io/blog/we-turned-off-pub-sub-and-nobody-noticed?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Polars 2.0 : le premier Release Candidate arrive",
+                    "resume": "La première version candidate de Polars 2.0 est prévue pour la semaine prochaine, marquant l'approche de la sortie officielle.",
+                    "lien": "https://threadreaderapp.com/thread/2089338347286093851.html?utm_source=tldrdata",
+                    "categorie": "News"
+                }
+            ]
+        },
+        {
             "date": "2026-08-17",
             "articles": [
                 {
@@ -689,83 +766,6 @@
                     "titre": "De semaines à un jour : Comment nous avons accéléré l'évaluation des LLM chez Airbnb",
                     "resume": "Airbnb a réduit les cycles d'évaluation LLM de semaines à moins d'une journée en cachant les références et les scores des juges. Les adaptateurs LoRA sont entraînés rapidement, et une validation finale utilise le trafic échantillonné.",
                     "lien": "https://medium.com/airbnb-engineering/from-weeks-to-a-day-how-we-made-llm-evaluation-fast-enough-to-iterate-on-14e2d35198b4?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                }
-            ]
-        },
-        {
-            "date": "2026-07-16",
-            "articles": [
-                {
-                    "titre": "Personne n'a craqué la mémoire des agents IA",
-                    "resume": "Construire la mémoire d'un agent comme un pipeline d'ontologie : stocker les données, extraire des objets graphiques avec un LLM, valider, dédupliquer, puis interroger via MongoDB qui gère texte, vecteur et graphe.",
-                    "lien": "https://www.decodingai.com/p/how-to-implement-a-unified-memory-from-scratch?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Construire une topologie de service à l'échelle : Architecture, défis et leçons de Netflix",
-                    "resume": "Netflix a développé un système de topologie de service à trois couches, utilisant eBPF, des métriques et des traces distribuées. Le défi principal, une variance de charge de 100x, a été résolu par une redistribution multi-étapes.",
-                    "lien": "https://netflixtechblog.com/building-service-topology-at-scale-architecture-challenges-and-lessons-learned-f4b792f3f0d8?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Mise à l'échelle du Data Lake de Grab : Notre parcours vers Apache Iceberg",
-                    "resume": "Grab a migré ses tables Hive Parquet vers Apache Iceberg, accélérant les requêtes par 10, réduisant les coûts S3 de 95% et les coûts de calcul ML de 50%. Ils ont aussi créé un UnifiedSparkCatalog personnalisé.",
-                    "lien": "https://engineering.grab.com/our-journey-to-apache-iceberg-adoption?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Comment Razorpay rafraîchit son entrepôt de données 10x plus vite avec des graphes et des index",
-                    "resume": "Razorpay a réduit de 90% le temps de rafraîchissement de son entrepôt de données en remplaçant les scans complets par une traversée de graphe incrémentale, des index secondaires et un traitement des lignes modifiées avec leurs dépendances.",
-                    "lien": "https://engineering.razorpay.com/how-we-refresh-razorpays-data-warehouse-10x-faster-with-graphs-and-indexes-538abc244703?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Qu'est-ce que l'ACID sur un Data Lake ?",
-                    "resume": "Hudi, Iceberg et Delta Lake ajoutent l'ACID au stockage d'objets via un log de métadonnées et une publication atomique. Les écritures multi-fichiers ne sont visibles qu'après publication du commit, garantissant une vue cohérente.",
-                    "lien": "https://hudi.apache.org/blog/2026/07/17/what-is-acid-on-a-data-lake/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Architecture des couches de cache : Guide pratique pour vitesse et échelle",
-                    "resume": "Les couches de cache peuvent échouer à l'échelle par \"stampedes\", clés chaudes, données périmées ou avalanches. Les défenses incluent le jitter TTL, la fusion de requêtes, le découpage de clés et le hachage cohérent.",
-                    "lien": "https://redis.io/blog/cache-layer-architecture-guide/?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
-                },
-                {
-                    "titre": "La règle des 90/90 pour les tableaux de bord obsolètes",
-                    "resume": "La prolifération des tableaux de bord coûte en confiance, calcul et artefacts inutiles. La règle des 90/90 propose d'archiver les tableaux sans vues après 90 jours, puis de les supprimer après 90 jours supplémentaires si aucune réponse.",
-                    "lien": "https://betterthanrandom.substack.com/p/the-9090-rule-for-the-dashboard-dumpster?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
-                },
-                {
-                    "titre": "Arroyo rejoint Cloudflare",
-                    "resume": "Cloudflare a acquis Arroyo, un processeur de flux SQL basé sur Rust, pour sa plateforme développeur. Il restera open source et intégrera d'abord le traitement SQL aux Cloudflare Pipelines.",
-                    "lien": "https://www.arroyo.dev/blog/arroyo-is-joining-cloudflare/?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Prefect acquiert Dagster, un autre grand rival d'Airflow",
-                    "resume": "Prefect acquiert Dagster tout en conservant noms, prix et feuilles de route. L'acquisition vise à renforcer l'orchestration open source en combinant le suivi des résultats de Dagster avec l'exécution de Prefect.",
-                    "lien": "https://thenewstack.io/prefect-acquires-dagster-orchestrator/?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Benchmark : Nœud unique vs distribué",
-                    "resume": "Un benchmark TPC-H de 1 To a montré que Polars distribué sur 32 nœuds surpassait légèrement un nœud unique pour les requêtes gourmandes en I/O grâce à la bande passante réseau, tandis que les jointures complexes étaient plus rapides sur un nœud unique à cause du surcoût réseau.",
-                    "lien": "https://pola.rs/posts/single-node-vs-distributed/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "G-Eval, expliqué",
-                    "resume": "G-Eval évalue le texte ouvert en faisant générer par un LLM ses propres étapes de notation via un raisonnement, puis en calculant une attente pondérée des probabilités au niveau du token, rendant le score plus stable. Utiliser un modèle de juge différent et calibrer les grilles améliore la fiabilité.",
-                    "lien": "https://arpitbhayani.me/blogs/g-eval/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Comment Expedia Group construit une IA durable à l'échelle",
-                    "resume": "Le cadre IA d'Expedia Group exige que chaque modèle soit lié à un objectif commercial mesurable, construit sur des fondations de plateforme partagées, et ait des propriétaires définis dans les domaines commercial, produit, IA et opérations.",
-                    "lien": "https://medium.com/expedia-group-tech/how-expedia-group-builds-ai-that-lasts-at-scale-434677770fe9?utm_source=tldrdata",
                     "categorie": "Deep Dive"
                 }
             ]
