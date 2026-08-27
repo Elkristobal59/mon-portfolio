@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-08-27",
+            "articles": [
+                {
+                    "titre": "SafeChat : Construire des systèmes de sécurité IA à l'échelle pour un marché en temps réel",
+                    "resume": "SafeChat de DoorDash gère des millions de chats, appels et images par jour avec un pipeline de modération hybride. Il utilise des classificateurs rapides et des LLM pour les cas difficiles, réduisant les incidents d'abus verbaux de moitié.",
+                    "lien": "https://www.infoq.com/presentations/doordash-llm-ai-moderation-platform/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "The LogDrive : Composition flexible par abstraction dans les logs partagés",
+                    "resume": "LogDrive, pour les systèmes de streaming type Kafka, sépare le log partagé en une couche de séquençage AtomicLog et une couche de durabilité, permettant une réplication flexible sur divers backends.",
+                    "lien": "https://jack-vanlightly.com/blog/2026/8/25/the-logdrive-flexible-composition-through-abstraction-in-shared-logs?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Benchmarking des trois facteurs d'amplification de RocksDB",
+                    "resume": "L'amplification de RocksDB varie fortement selon la charge de travail. Les insertions aléatoires augmentent l'amplification d'écriture (4.56x) et les suppressions celle d'espace (1.58x). Les filtres de Bloom maintiennent la latence de lecture L0 stable.",
+                    "lien": "https://hackernoon.com/benchmarking-rocksdbs-three-amplification-factors?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Au cœur de l'agent de mémoire cognitive de LinkedIn pour la personnalisation agentique",
+                    "resume": "LinkedIn a développé un agent de mémoire cognitive pour personnaliser son assistant d'embauche, utilisant quatre couches de mémoire. Il remplace GraphRAG par un arbre hiérarchique pour des mises à jour incrémentielles et des préférences fraîches et traçables.",
+                    "lien": "https://stackoverflow.blog/2026/08/25/inside-linkedin-s-cognitive-memory-agent/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Ingénierie des graphes à l'ère des agents LLM : de l'intelligence individuelle à l'intelligence système",
+                    "resume": "Face aux tâches complexes dépassant la capacité d'un seul agent IA, l'ingénierie des graphes permet de coordonner le travail parallèle, la vérification et l'exécution persistante en mappant tâches, agents et états du système.",
+                    "lien": "https://arxiv.org/abs/2608.21156v2?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "L'emprise de l'IA | Comment créer une équipe data sans épuisement professionnel lié à l'IA",
+                    "resume": "L'IA génère plus de pipelines et de dépendances, surchargeant les équipes data. Pour éviter l'épuisement, les entreprises doivent investir dans des infrastructures évolutives, la gouvernance et l'automatisation.",
+                    "lien": "https://medium.com/@hugolu87/ais-chokehold-how-to-build-a-data-team-without-ai-burnout-f267f82b0241?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Comment évaluer les LLM avant la production",
+                    "resume": "L'évaluation des LLM doit viser l'optimisation pour la production plutôt que les benchmarks génériques. GitHub a versionné prompts et modèles, testé contre des ambiguïtés réelles, réduisant les faux positifs de 95% tout en maintenant le rappel.",
+                    "lien": "https://github.blog/ai-and-ml/llms/how-to-evaluate-llms-before-production/?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                },
+                {
+                    "titre": "Khaos : Test de charge et ingénierie du chaos pour Kafka",
+                    "resume": "Khaos est un outil open source de test de charge et de simulation de chaos pour Kafka, réécrit en Go. Il simule des producteurs/consommateurs réalistes et des pannes de broker pour aider à tester le comportement de Kafka.",
+                    "lien": "https://github.com/aleksandarskrbic/khaos?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "DuckLabs rejoint AWS, les projets restent open source",
+                    "resume": "DuckLabs intègre AWS pour faire évoluer DuckDB et le Duck Stack. Les projets resteront open source sous licence MIT, la fondation DuckDB indépendante assurant leur gestion.",
+                    "lien": "https://ducklabs.com/news/2026/08/26/ducklabs-to-join-aws?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Nouveautés pour les expressions régulières dans PostgreSQL : pg_tre et pg_re2",
+                    "resume": "La recherche regex dans PostgreSQL peut varier. pg_trgm a accéléré une requête LIKE de 40s à 1.6s. pg_tre offre la correspondance floue mais avec un index long. pg_re2 est plus rapide pour les regex mais avec moins de fonctionnalités.",
+                    "lien": "https://www.depesz.com/2026/08/25/new-things-for-regular-expressions-in-postgresql-pg_tre-and-pg_re2?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "PagedAttention : Mémoire virtuelle pour le cache KV",
+                    "resume": "PagedAttention applique le concept de mémoire virtuelle aux caches KV des LLM, remplaçant l'allocation contiguë par des blocs de taille fixe. Cela réduit la fragmentation, augmente l'utilisation à 96% et permet de servir 2 à 4 fois plus d'utilisateurs par GPU.",
+                    "lien": "https://thegustafson.com/blog/paged-attention?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Le chiffre global vous ment",
+                    "resume": "La croissance des logiciels d'entreprise cache une divergence due à l'IA : les catégories axées sur les flux de travail et l'automatisation progressent, tandis que le service client et le HCM sont en retrait. La tarification de l'IA révèle mieux la valeur que les chiffres de croissance du marché.",
+                    "lien": "https://www.idc.com/resource-center/blog/the-aggregate-number-is-lying-to-you/?utm_source=tldrdata",
+                    "categorie": "News"
+                }
+            ]
+        },
+        {
             "date": "2026-08-24",
             "articles": [
                 {
@@ -690,83 +767,6 @@
                     "resume": "L'infrastructure de recherche vectorielle coûte cher à grande échelle. Les index HNSW en RAM deviennent onéreux. Les options ANN sur disque (SPANN, DiskANN) réduisent les coûts en stockant les données sur SSD/objets, au prix d'une latence plus élevée mais d'un coût d'infrastructure bien moindre.",
                     "lien": "https://towardsdatascience.com/optimizing-vector-search-on-disk-vs-in-memory-ann-indexes-when-ram-gets-too-expensive/?utm_source=tldrdata",
                     "categorie": "Deep Dive"
-                }
-            ]
-        },
-        {
-            "date": "2026-07-23",
-            "articles": [
-                {
-                    "titre": "Comment notre plateforme de traitement de contenu universel Riviera a évolué pour l'IA",
-                    "resume": "Riviera, la plateforme de traitement de contenu interne de Dropbox, exécute des centaines de milliers de transformations par seconde. Son modèle de plugins permet aux améliorations (extraction de texte, IA) de se propager simultanément à travers les prévisualisations, la recherche et la préparation de documents.",
-                    "lien": "https://dropbox.tech/infrastructure/how-our-universal-content-processing-platform-riviera-evolved-for-ai-and-beyond?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Internes de DuckDB : Pourquoi est-il rapide ? (Partie 2 : Exécution vectorisée)",
-                    "resume": "DuckDB est rapide car il traite les données par lots de 2 048 lignes, optimisés pour le cache. Ses formats vectoriels, opérations précompilées et pipelines réduisent les copies, les appels de fonction et les coûts d'exécution parallèle.",
-                    "lien": "https://www.greybeam.ai/blog/duckdb-internals-part-2?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Le guide de survie Postgres pour les startups",
-                    "resume": "Postgres échoue souvent à l'échelle à cause d'erreurs évitables : mauvaise indexation, transactions longues, migrations bloquantes. La clé est de concevoir les schémas autour des requêtes, de rendre les écritures non bloquantes et de surveiller les plans et le 'bloat'.",
-                    "lien": "https://hatchet.run/blog/postgres-survival-guide?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
-                },
-                {
-                    "titre": "Le backfilling : la fonctionnalité la plus sous-estimée d'un pipeline de données",
-                    "resume": "Les backfills devraient utiliser le même pipeline de production que les chargements incrémentaux, avec une configuration dédiée. Cela évite les scripts fragiles et rend le retraitement sûr et reproductible avec des écritures bi-temporelles.",
-                    "lien": "https://thesis.optoinvest.com/posts/backfilling-most-underated-feature/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "À chaque agent sa propre base de données",
-                    "resume": "Chaque agent reçoit une instance DuckDB locale et échange des objets SliceRef immuables pour éviter les problèmes de cohérence de cache. Des contrats sémantiques Malloy définissent les requêtes gouvernées, et une couche de comparaison classifie les changements avant tout calcul en aval.",
-                    "lien": "https://joereis.substack.com/p/to-every-agent-its-own-database?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "latlng (Outil)",
-                    "resume": "latlng est un moteur open-source Rust pour indexer des objets en mouvement, exécuter des géobarrières et diffuser des événements de localisation nativement ou dans le navigateur.",
-                    "lien": "https://latlng.cloud/?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "Aurora DSQL : OLTP multi-régions scalable",
-                    "resume": "Aurora DSQL offre un OLTP multi-régions actif-actif compatible PostgreSQL, fortement cohérent, sans gestion de serveurs. La latence inter-régions est principalement à la validation. Des contraintes subsistent (transactions courtes, 3000 lignes/10 Mo max, pas de clés étrangères forcées).",
-                    "lien": "https://arxiv.org/pdf/2607.13276?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Optimisation pour les données presque triées : Sort Pushdown dans Apache DataFusion",
-                    "resume": "Apache DataFusion exploite désormais le tri exact et partiel pour ORDER BY et ORDER BY ... LIMIT N. Il utilise les statistiques Parquet, le réordonnancement de fichiers et les filtres dynamiques pour éviter les scans complets et les tris bloquants.",
-                    "lien": "https://datafusion.apache.org/blog/2026/07/20/sort-pushdown?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Analyseur de schéma IA : Propulsé par Iceberg et Lakekeeper",
-                    "resume": "Iceberg et Lakekeeper sont utilisés pour créer un analyseur d'impact des dérives de schéma par IA. Il transforme les changements de schéma en alertes et recommandations en quasi temps réel, analysant l'impact via Kafka/Redpanda et un service FastAPI+Anthropic.",
-                    "lien": "https://blog.dataengineerthings.org/ai-schema-analyzer-powered-by-iceberg-and-lakekeeper-94adc7a7c65f?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
-                },
-                {
-                    "titre": "L'état actuel de l'IA Agentique",
-                    "resume": "Les systèmes de production déploient des équipes d'agents spécialisés. Des graphes de mémoire persistante leur permettent d'accumuler des connaissances. Les transferts multi-agents introduisent des risques d'injection de prompt latérale, gérés par la provenance cryptographique des outils et les sandboxes éphémères.",
-                    "lien": "https://machinelearningmastery.com/the-current-state-of-agentic-ai/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "LakeKeeper + MinIO",
-                    "resume": "L'extension Iceberg de DuckDB supporte les opérations CRUD complètes, permettant l'ETL Iceberg local sans Spark. Combiné à MinIO (stockage S3) et LakeKeeper (catalogue Rust Iceberg), les équipes peuvent tester des scripts dans Docker avant de passer à AWS S3.",
-                    "lien": "https://performancede.substack.com/p/lakekeeperminio?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
-                },
-                {
-                    "titre": "Cache intelligent avec les CTE sur Spark",
-                    "resume": "Spark recalcule les CTE réutilisées par défaut. Il faut mettre en cache sélectivement les résultats intermédiaires complexes et réutilisés. Évitez les caches massifs ou triviaux, utilisez le caching 'eager' et matérialisez les chaînes de transformation profondes.",
-                    "lien": "https://medium.com/@vincent_daniel/optimizing-cte-on-apache-spark-when-to-cache-and-when-not-to-0fe764766a63?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
                 }
             ]
         }
