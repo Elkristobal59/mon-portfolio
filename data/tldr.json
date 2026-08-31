@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-08-31",
+            "articles": [
+                {
+                    "titre": "Au-delà du décalage d'offset : Calculer le temps d'attente dans les pipelines Apache Hudi",
+                    "resume": "Les pipelines Hudi de Twilio stockent des checkpoints en S3, masquant la fraîcheur des données. Une nouvelle approche lit les checkpoints Hudi et calcule la fraîcheur depuis le plus ancien enregistrement non committé, transformant le décalage SLA en un ratio d'incidents. ",
+                    "lien": "https://www.infoq.com/articles/beyond-offset-lag-kafka-apache-hudi/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Mettre à l'échelle la récupération conditionnelle apprise pour le fil d'actualité Pinterest",
+                    "resume": "Pinterest a optimisé la génération de candidats pour son fil d'actualité en conditionnant les embeddings de récupération sur des contextes explicites. Le système combine modélisation séquentielle, IDs sémantiques et GPU pour gérer plusieurs intentions utilisateur sans augmenter les coûts de service.",
+                    "lien": "https://medium.com/pinterest-engineering/scaling-conditional-learned-retrieval-for-pinterest-home-feed-ecfba7e5a426?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Log-first ou Table-first ? Apache Kafka, Fluss et les tables de streaming",
+                    "resume": "Cet article compare les pipelines 'log-first' et 'table-first' (comme Fluss) dans le streaming de données. Il examine où les mises à jour, la compaction et les snapshots devraient être gérés, plus près du stockage chaud que d'un lac de données.",
+                    "lien": "https://softwaremill.com/log-first-or-table-first-apache-kafka-fluss-and-streaming-tables/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Risques d'indisponibilité omniprésents dans les logiciels cloud",
+                    "resume": "Les incidents majeurs dans le cloud proviennent de risques inévitables (saturation, pannes réseau). La fiabilité ajoute sa propre complexité, donc les pannes ne peuvent être éliminées et une forte réponse aux incidents est cruciale.",
+                    "lien": "https://surfingcomplexity.blog/2026/08/29/omnipresent-availability-risks-in-cloud-software/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Data Mesh chez Grab : Opérationnaliser la fiabilité des données avec des DPI automatisés",
+                    "resume": "Grab gère la fiabilité des données via des 'Data Production Issues' (DPIs) et une API de santé des données. Ce système découple l'orchestration des incidents de la plateforme, classifie les échecs et automatise l'attribution des causes, transformant la qualité des données en un modèle de gouvernance opérationnel.",
+                    "lien": "https://engineering.grab.com/data-mesh-at-grab-part-three?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "La feature 100% corrélée avec la réponse – car c'était la réponse",
+                    "resume": "Les techniques comme l'encodage cible ou les moyennes glissantes peuvent provoquer une fuite de données si mal appliquées. L'article détaille un workflow sûr : séparer les données d'abord, calculer les encodages hors-fold sur le set d'entraînement et utiliser des transformations respectueuses des groupes.",
+                    "lien": "https://levelup.gitconnected.com/the-feature-that-was-100-correlated-with-the-answer-because-it-was-the-answer-7c86eeb7adb8?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                },
+                {
+                    "titre": "Quitter Fivetran pour le coût : Alternatives pour l'ingestion massive de Salesforce vers Snowflake",
+                    "resume": "Une entreprise cherche des alternatives rentables à Fivetran pour migrer massivement des données Salesforce vers Snowflake. Les solutions suggérées incluent l'intégration native Salesforce Data Cloud ou un pipeline dlt personnalisé avec l'API Bulk de Salesforce.",
+                    "lien": "https://www.reddit.com/r/dataengineering/comments/1w0khin/moving_away_from_fivetran_due_to_cost_massive/?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Sortie de Spark 4.1.0",
+                    "resume": "Spark 4.1.0 introduit des pipelines déclaratifs, un mode de streaming structuré en temps réel, le support des UDF/UDTF natifs Arrow, SQL scripting et VARIANT en GA, ainsi que Spark ML sur Connect pour Python. L'accent est mis sur la réduction de latence, une meilleure expérience PySpark/SQL et une stabilité accrue.",
+                    "lien": "https://spark.apache.org/releases/spark-release-4.1.0.html?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Apache DataFusion 55.0.0 est disponible",
+                    "resume": "DataFusion 55.0.0 apporte le support de MERGE INTO, le partitionnement par plage, l'élagage de groupes de lignes à l'exécution, et des gains de performance. Les améliorations incluent TopK pruning, une évaluation plus rapide des listes IN, moins de requêtes S3 pour CSV, et une réduction d'utilisation mémoire.",
+                    "lien": "https://datafusion.apache.org/blog/2026/08/25/datafusion-55.0.0?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Les modèles de fondation tabulaires se réparent-ils d'eux-mêmes ?",
+                    "resume": "Les résultats d'ablation dans les modèles de fondation tabulaires peuvent être trompeurs. Des études ont montré peu de preuves d'auto-réparation en aval, suggérant qu'une sortie stable après ablation devrait inciter à examiner plus attentivement la causalité, plutôt que de conclure à l'inutilité d'une couche.",
+                    "lien": "https://www.lesswrong.com/posts/NpBufh2z2w4mgHKvm/do-tabular-foundation-models-repair-themselves?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "SELECT * FROM internet.blogposts (Liberté d'accès aux données)",
+                    "resume": "L'action d'X contre Nitter illustre comment les plateformes fermées limitent l'innovation. Le protocole AT propose une alternative avec des identités portables et la libre réplication de données partagées, favorisant la compétition et l'innovation.",
+                    "lien": "https://pfrazee.leaflet.pub/3mu3p2smmis22?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Critique de livre : Machine Learning centré sur les données avec Python",
+                    "resume": "La qualité des données, l'expertise et l'étiquetage itératif sont souvent plus efficaces pour améliorer les systèmes ML que l'optimisation des modèles.",
+                    "lien": "https://sujitpal.blogspot.com/2026/08/book-review-data-centric-machine.html?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                }
+            ]
+        },
+        {
             "date": "2026-08-27",
             "articles": [
                 {
@@ -690,83 +767,6 @@
                     "resume": "L'observabilité des agents IA est devenue essentielle en production. Ce guide explore diverses approches (tracing, évaluation, passerelle, plateforme) tout en soulignant un manque fréquent : la surveillance de la fraîcheur et de la qualité des données en amont.",
                     "lien": "https://montecarlo.ai/blog-agent-observability-tool?utm_source=tldrdata",
                     "categorie": "Tutoriel"
-                }
-            ]
-        },
-        {
-            "date": "2026-07-27",
-            "articles": [
-                {
-                    "titre": "Essaims d'agents et nouvelle économie des modèles",
-                    "resume": "Le nouvel essaim d'agents de Cursor divise le travail entre des modèles de planification avancés et des modèles d'exécution moins chers, réduisant les coûts et améliorant la qualité avec moins de code lors de la reconstruction de SQLite, prouvant l'importance de la spécification et de l'orchestration.",
-                    "lien": "https://cursor.com/blog/agent-swarm-model-economics?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "LISTEN/NOTIFY de Postgres S'adapte Vraiment",
-                    "resume": "LISTEN/NOTIFY de Postgres peut s'adapter en traitant les notifications comme de simples signaux d'éveil. DBOS a augmenté le débit de 2,9K à 60K écritures/seconde en les mettant en tampon et en utilisant un polling occasionnel.",
-                    "lien": "https://www.dbos.dev/blog/postgres-listen-notify-scalability?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Migration d'une jointure d'événements publicitaires de système maison vers Flink à l'échelle",
-                    "resume": "Zalando a migré son système de jointure d'événements publicitaires vers Apache Flink, traitant 200 Mo/s. La migration a réduit les coûts EC2 de plus de moitié et amélioré le matching des événements de 0,5%.",
-                    "lien": "https://engineering.zalando.com/posts/2026/07/migrating-ad-event-processing-to-flink.html?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Le Coût Réel du \"Zéro-Copie\"",
-                    "resume": "Le \"zéro-copie\" est un terme complexe couvrant six motifs distincts, dont trois impliquent encore des copies. Les vrais compromis sont les coûts de sortie, les scans répétés, la charge système, la fraîcheur des données et la gouvernance.",
-                    "lien": "https://iceberglakehouse.com/posts/zero-copy-actually-costs/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "L'IA réapprend tout ce que les bases de données savaient déjà (avec Stephanie Wang)",
-                    "resume": "L'IA s'intègre à l'infrastructure avec SQL natif-IA, routage dynamique de modèles et agents isolés, contrôlant mieux les coûts. La discussion souligne le développement axé sur la conception et les paiements M2M pour des systèmes autonomes fiables.",
-                    "lien": "https://www.youtube.com/watch?v=bbr4seVc7Ns&utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Cohérence du cache : Stratégies pour maintenir des données fraîches",
-                    "resume": "Les caches se désynchronisent à cause des TTL, des courses en écriture et des courses multi-instances. Les stratégies incluent Cache-aside (lecture paresseuse), Write-through (cohérence améliorée) et l'invalidation événementielle via CDC, avec TTL comme filet de sécurité.",
-                    "lien": "https://redis.io/blog/cache-consistency-strategies/?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
-                },
-                {
-                    "titre": "Neo4j Virtual Graph est maintenant en avant-première publique",
-                    "resume": "Neo4j Virtual Graph est en avant-première pour les clients Aura, supportant Snowflake, Databricks et BigQuery avec accès zéro-copie. Il permet d'interroger des données entrepôt/lakehouse comme un graphe de connaissances, idéal pour GraphRAG et l'exploration.",
-                    "lien": "https://neo4j.com/blog/auradb/neo4j-virtual-graph-is-now-in-public-preview/?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "QueryTuner (Outil)",
-                    "resume": "QueryTuner analyse et réécrit les requêtes SQL, offrant des corrections de performance prioritaires, des risques de sécurité et des rapports partageables, sans connexion à la base de données.",
-                    "lien": "https://www.querytuner.com/?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "Aiven acquiert Flow AI pour rapprocher l'infrastructure d'agents des données de production",
-                    "resume": "Aiven acquiert Flow AI pour renforcer son infrastructure IA de production, intégrant l'exécution d'agents, des outils de couche de données et des capacités d'évaluation, permettant d'exécuter des charges de travail IA près des données de production fraîches et gouvernées.",
-                    "lien": "https://aiven.io/blog/aiven-acquires-flow-ai?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "TLDR recrute un curateur pour TLDR Data !",
-                    "resume": "Plus de 500 000 abonnés lisent TLDR Data. Si vous travaillez dans la donnée et souhaitez contribuer à la curation, envoyez votre CV ou LinkedIn à data@tldr.tech !",
-                    "lien": "mailto:data@tldr.tech",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Pas de questions bêtes : Quel est le goulot d'étranglement de l'IA ? Comment l'ingénierie contextuelle le résout-elle ?",
-                    "resume": "Le goulot d'étranglement de l'IA est l'ingénierie contextuelle : les LLM nécessitent une intervention humaine pour le contexte, la configuration et la validation, rendant les coûts de mise en œuvre supérieurs aux gains pour les tâches peu fréquentes, surtout pour les travaux propriétaires.",
-                    "lien": "https://stackoverflow.blog/2026/07/24/no-dumb-questions-ai-bottleneck/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Comment optimiser la recherche vectorielle quand la RAM devient trop chère : Index ANN sur disque vs. en mémoire",
-                    "resume": "L'infrastructure de recherche vectorielle coûte cher à grande échelle. Les index HNSW en RAM deviennent onéreux. Les options ANN sur disque (SPANN, DiskANN) réduisent les coûts en stockant les données sur SSD/objets, au prix d'une latence plus élevée mais d'un coût d'infrastructure bien moindre.",
-                    "lien": "https://towardsdatascience.com/optimizing-vector-search-on-disk-vs-in-memory-ann-indexes-when-ram-gets-too-expensive/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
                 }
             ]
         }
