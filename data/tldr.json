@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-09-03",
+            "articles": [
+                {
+                    "titre": "Exécuter des expériences Apache Spark en dormant (et en avion)",
+                    "resume": "Netflix a créé une boucle d'expérimentation parallèle pour optimiser plus rapidement ses pipelines Spark massifs en lançant, surveillant et comparant plusieurs tests à l'échelle de la production.",
+                    "lien": "https://netflixtechblog.medium.com/running-apache-spark-experiments-in-my-sleep-and-on-a-plane-588816b6b5f8?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Comment nous avons éliminé 1 million de dollars/an de dépenses inutiles en agents IA en une heure",
+                    "resume": "Databricks a découvert et corrigé rapidement des bugs mineurs dans des outils d'agents IA, économisant 1,2 million de dollars par an en résolvant les problèmes de retries et de productivité perdue.",
+                    "lien": "https://www.databricks.com/blog/how-we-eliminated-1-million-year-wasted-ai-agent-spend-one-hour?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Rediriger le Flux : Comment Lyft a migré vers l'Opérateur Apache Flink",
+                    "resume": "Lyft a migré sa flotte de streaming vers l'Opérateur Apache Flink Kubernetes open-source, en partageant les leçons d'une migration progressive et parallèle.",
+                    "lien": "https://eng.lyft.com/rerouting-the-stream-how-lyft-moved-to-the-apache-flink-operator-36f20246d250?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Lire ses propres écritures, sans le primaire",
+                    "resume": "PostgreSQL 19 introduit 'WAIT FOR LSN' pour permettre aux applications de lire leurs propres écritures depuis des réplicas, résolvant la cohérence \"read-your-writes\" sans forcer la lecture sur le primaire.",
+                    "lien": "https://boringsql.com/posts/read-your-own-writes/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Pourquoi AWS a acheté DuckLabs",
+                    "resume": "AWS a acquis DuckLabs pour son équipe et influencer la feuille de route de DuckDB, positionnant ce dernier comme fondation pour l'analytique et les agents IA basés sur S3.",
+                    "lien": "https://www.linkedin.com/pulse/why-aws-bought-ducklabs-michael-driscoll-1gm7c/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Construire et utiliser des requêtes nommées",
+                    "resume": "Les requêtes nommées transforment SPARQL en une API gouvernée, exposant les données de graphes aux applications et agents de manière contrôlée, sans accès direct aux requêtes brutes.",
+                    "lien": "https://ontologist.substack.com/p/building-and-using-named-queries?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "La boîte à outils CUDA moderne en pratique : optimisation pas à pas",
+                    "resume": "NVIDIA montre comment les outils CUDA modernes, avec des optimisations incrémentales, peuvent accélérer le code GPU de 300x, rendant le traitement d'image beaucoup plus rapide.",
+                    "lien": "https://developer.nvidia.com/blog/the-modern-cuda-toolbox-in-practice-a-step-by-step-optimization-walkthrough/?utm_source=tldrdata",
+                    "categorie": "Tutorial"
+                },
+                {
+                    "titre": "MLCommons publie les résultats du benchmark MLPerf Storage v3.0",
+                    "resume": "MLPerf Storage v3.0 ajoute des tests pour les caches KV et les bases de données vectorielles, ainsi que l'accès S3, rendant le benchmark plus pertinent pour les systèmes IA modernes.",
+                    "lien": "https://mlcommons.org/2026/09/mlperf-storage-v3-0-results/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "dbt doctor (Dépôt GitHub)",
+                    "resume": "dbt doctor est un outil d'analyse statique open-source qui évalue la santé des projets dbt (documentation, tests, schémas, etc.) et peut bloquer les changements de mauvaise qualité.",
+                    "lien": "https://github.com/northgraindata/dbt-doctor?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Présentation de FrontierHarness Eval",
+                    "resume": "FrontierHarness a comparé les harnais d'agents de codage, révélant des performances similaires mais des coûts variant jusqu'à 17x, soulignant l'impact des outils et de la compatibilité des modèles sur l'efficacité.",
+                    "lien": "https://runta.com/blog/introducing-frontierharness-eval/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Comment économiser des pétaoctets de stockage cache avec Zstandard et Pingora",
+                    "resume": "Cloudflare prototype une solution de transcodage de cache qui utilise Zstandard pour compresser les actifs textuels, réduisant leur taille d'un tiers et augmentant la capacité du cache de plusieurs pétaoctets.",
+                    "lien": "https://blog.cloudflare.com/cache-transcoding/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Au-delà des graphiques linéaires : une diversité overdue dans la visualisation télémétrique",
+                    "resume": "Les opérateurs ont besoin d'une boîte à outils de visualisation télémétrique plus variée que les seuls graphiques linéaires pour répondre efficacement à différentes questions opérationnelles.",
+                    "lien": "https://www.infoq.com/presentations/telemetry-data/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                }
+            ]
+        },
+        {
             "date": "2026-08-31",
             "articles": [
                 {
@@ -690,83 +767,6 @@
                     "resume": "PGSimCity est un simulateur éducatif interactif représentant une base de données PostgreSQL comme une ville 3D. Il permet d'ajuster les charges de travail et de déclencher des scénarios (ex: tempêtes de checkpoints, thrashing de cache) pour visualiser l'impact sur les performances internes de PostgreSQL.",
                     "lien": "https://nikolays.github.io/PGSimCity/?utm_source=tldrdata",
                     "categorie": "Tool"
-                }
-            ]
-        },
-        {
-            "date": "2026-07-30",
-            "articles": [
-                {
-                    "titre": "Développement axé sur l'évaluation : leçons de l'évaluation de la GenAI à grande échelle",
-                    "resume": "Airbnb évalue la GenAI en examinant les prototypes pour identifier les modes de défaillance réels avant les évaluations automatisées. Leur système utilise des vérifications programmatiques et des juges LLM calibrés, atteignant une forte concordance avec les réviseurs humains.",
-                    "lien": "https://medium.com/airbnb-engineering/eval-driven-development-lessons-from-evaluating-genai-at-scale-e817e5ae5788?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Indexation du Data Lake pour les requêtes ponctuelles en ligne",
-                    "resume": "Spotify a créé un index externe pour les fichiers Parquet, permettant des requêtes rapides sur des lacs de données à l'échelle du pétaoctet. Des optimisations d'écriture réduisent les I/O, rendant les mêmes fichiers utiles pour l'analyse par lots et les requêtes interactives.",
-                    "lien": "https://engineering.atspotify.com/2026/7/indexing-the-data-lake-for-online-point-queries?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Progression des utilisateurs : meilleure représentation des cas d'utilisation stimulant la croissance chez Pinterest",
-                    "resume": "Pinterest a amélioré la représentation des utilisateurs avec des clusters d'engagements dynamiques, alimentant la récupération et le classement. Cette approche non linéaire stimule la rétention à mesure que les utilisateurs adoptent plus de cas d'utilisation distincts.",
-                    "lien": "https://medium.com/pinterest-engineering/pinner-progression-better-use-case-representation-driving-weekly-active-user-growth-at-pinterest-bd2131ab238a?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Mise à l'échelle de StreamHub : Transition de Kinesis à Kafka pour 145 milliards d'événements quotidiens",
-                    "resume": "Atlassian a migré de Kinesis à Kafka sur AWS MSK pour gérer une augmentation massive du trafic. Des défis ont émergé avec les limites des infrastructures, soulignant l'importance des quotas, du sharding et de la capacité de secours.",
-                    "lien": "https://www.atlassian.com/blog/how-we-build/scaling-streamhub-transitioning-from-kinesis-to-kafka-for-145-billion-daily-events?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Votre agent IA ne connaît pas votre entreprise | Les couches de contexte expliquées",
-                    "resume": "Les agents IA nécessitent une couche de contexte pour interpréter correctement les données métier. La future fonctionnalité \"Guides\" de MotherDuck stockera ce contexte avec les données, le rendant accessible aux agents avec support SQL et contrôle de version.",
-                    "lien": "https://www.youtube.com/watch?v=hmjRc6KJ-hw&utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "La nouvelle vague des technologies de journalisation en streaming",
-                    "resume": "De nouvelles plateformes de streaming émergent, s'éloignant de la compatibilité Kafka pour des approches variées : Iggy utilise Rust, S2 l'HTTP/stockage objet, et OpenData Log le routage par clé. Leur impact sur Kafka est encore incertain.",
-                    "lien": "https://www.streamingdata.tech/p/the-new-wave-of-the-streaming-log-tech?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Comment LangChain a construit une pile de données \"Agent-First\"",
-                    "resume": "LangChain a réorganisé sa pile de données pour l'analyse agent-native, remplaçant son outil BI existant. Hex intègre des définitions dbt, des modèles sémantiques et des traces LangSmith pour permettre aux agents de générer du SQL fiable sous le contrôle de l'équipe de données.",
-                    "lien": "https://www.langchain.com/blog/agent-data-stack?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Comment le MVCC et les transactions fonctionnent dans RocksDB",
-                    "resume": "RocksDB utilise des numéros de séquence pour le MVCC, permettant aux lecteurs d'obtenir des vues cohérentes et aux rédacteurs d'ajouter sans blocage. Les transactions pessimistes verrouillent à l'écriture, les optimistes vérifient les conflits à la validation.",
-                    "lien": "https://artem.krylysov.com/blog/2026/07/23/how-mvcc-and-transactions-work-in-rocksdb/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "De l'enfer des scripts Python à un framework d'intégration de données moderne",
-                    "resume": "Apache SeaTunnel est présenté comme une alternative aux scripts d'ingestion manuels. Son modèle Source-Transform-Sink centralise la gestion des connecteurs et sépare les définitions de pipeline de l'exécution, simplifiant l'intégration.",
-                    "lien": "https://hackernoon.com/from-python-script-hell-to-a-modern-data-integration-framework?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "Canoniques composables : du savoir de données tribal à l'artefact versionné",
-                    "resume": "Les canoniques composables codent le savoir métier en modèles versionnés. Des couches sources définissent les transformations et l'ontologie, tandis que les couches métier fusionnent les identités entre systèmes, offrant des concepts stables aux agents IA.",
-                    "lien": "https://dlthub.com/blog/composable-canonicals?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "TLDR recrute un curateur pour TLDR Data !",
-                    "resume": "TLDR Data, lu par plus de 500 000 abonnés, recherche un curateur pour sa newsletter sur la science et l'ingénierie des données. Si vous travaillez dans le domaine et êtes intéressé, envoyez votre candidature.",
-                    "lien": "mailto:data@tldr.tech",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Le guide 2026 des outils d'observabilité des agents IA",
-                    "resume": "L'observabilité des agents IA est devenue essentielle en production. Ce guide explore diverses approches (tracing, évaluation, passerelle, plateforme) tout en soulignant un manque fréquent : la surveillance de la fraîcheur et de la qualité des données en amont.",
-                    "lien": "https://montecarlo.ai/blog-agent-observability-tool?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
                 }
             ]
         }
