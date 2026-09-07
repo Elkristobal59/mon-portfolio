@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-09-07",
+            "articles": [
+                {
+                    "titre": "Contexte, Sémantique et Ontologie : Introduction à l'Ère des Agents",
+                    "resume": "Les couches sémantiques définissent les métriques métier, les couches contextuelles fournissent les connaissances de support, et les ontologies décrivent les entités. Elles aident les agents IA à interpréter les données, mais nécessitent une maintenance humaine pour rester précises.",
+                    "lien": "https://motherduck.com/blog/context-layer-vs-semantic-layer-ontology/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Portal de Spotify a réduit ma consommation de tokens Claude Code de 90%",
+                    "resume": "Spotify a réduit de 90% l'usage des tokens de son agent de codage en dédiant les tâches d'E/S à des modes 'Portal' déclaratifs basés sur Gemini 2.5 Flash, réservant les modèles plus coûteux aux problèmes complexes.",
+                    "lien": "https://engineering.atspotify.com/2026/9/portal-by-spotify-cut-my-claude-code-token-usage-by-90?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "ZGateway : Leçons tirées de l'ajout d'un proxy devant ZippyDB",
+                    "resume": "Meta a placé un proxy (ZGateway) devant ZippyDB pour centraliser la gestion du trafic et des politiques, réduisant massivement les connexions et améliorant la résilience et le contrôle de l'infrastructure.",
+                    "lien": "https://engineering.fb.com/2026/09/03/core-infra/zgateway-proxy-zippydb-meta/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "De S3 au GPU en une seule copie : Repenser le chargement de données pour l'entraînement ML",
+                    "resume": "Vortex est un format open-source en colonnes pour le streaming de données de S3 aux GPU avec un minimum de copies. Il optimise les goulots d'étranglement CPU/NVMe pour alimenter efficacement les accélérateurs ML.",
+                    "lien": "https://www.infoq.com/presentations/vortex-columnar-file-format-gpu-streaming/?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Une requête unique vaut mieux que mille : votre API de batching ne fait probablement pas de batching",
+                    "resume": "Le vrai batching dans les bases de données (ex: `COPY` pour Postgres) réduit considérablement les temps de chargement en éliminant les allers-retours réseau et frais généraux, contrairement aux API qui traitent souvent les lignes individuellement.",
+                    "lien": "https://ankit-rana.com/logs/47-batching-one-round-trip-beats-a-thousand/?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                },
+                {
+                    "titre": "Configurer l'analyse IA agentique : Du texte libre au SQL au protocole de contexte de modèle",
+                    "resume": "L'analyse IA échoue souvent avec du SQL généré librement. Les systèmes devraient utiliser des outils de couche sémantique vérifiés pour les requêtes répétées et réserver le SQL ouvert aux cas inspectables par l'humain. La maintenance des définitions est cruciale.",
+                    "lien": "https://www.eckerson.com/articles/configuring-agentic-ai-analytics-from-free-text-to-sql-to-model-context-protocol?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Révolutionner l'Analyse avec les Agents",
+                    "resume": "Les fondateurs de Nao estiment que l'IA pousse les équipes de données vers la maintenance du contexte métier et l'analytique en libre-service. Ils conseillent de commencer par un cas d'usage ciblé et d'améliorer les modèles de données avant un déploiement sémantique complet.",
+                    "lien": "https://www.youtube.com/watch?v=BbWfELhzQRU&utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Sail 0.7 : Calcul sans état, état de tâche durable",
+                    "resume": "Sail 0.7 déplace l'état intermédiaire de type Spark vers le stockage objet, supportant le shuffle bloquant et les checkpoints. Cela améliore la résilience en permettant aux tâches de reprendre sans reconstruire les plans de requête, ciblant des clusters plus petits et des workers sans état.",
+                    "lien": "https://lakesail.com/blog/sail-0-7-blocking-shuffle-checkpoint/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Pré-version de Polars 2.0",
+                    "resume": "Polars 2.0 fait du moteur de streaming le défaut pour les requêtes 'lazy', visant une consommation mémoire réduite et une exécution plus rapide (sans garantie d'ordre des lignes). Il améliore aussi la coercition de type et supprime des API obsolètes.",
+                    "lien": "https://pola.rs/posts/announcing-polars-2/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Apache Kafka vs Apache Iggy : Même log, moteur différent",
+                    "resume": "Apache Iggy est un moteur de streaming Rust optimisé pour faible latence et déploiements simples. Bien que prometteur, Kafka conserve l'avantage pour les opérations complexes en production (réplication, sémantique 'exactement une fois', etc.).",
+                    "lien": "https://softwaremill.com/apache-kafka-vs-apache-iggy-same-log-different-engine/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Quand la source de vérité est une Google Sheet",
+                    "resume": "Warner Music Group a transformé une Google Sheet manuellement éditée en tables Databricks gouvernées, en gérant les modifications complexes pour assurer la fiabilité des rapports exécutifs malgré une interface métier désordonnée.",
+                    "lien": "https://tech.wmg.com/handling-the-messy-reality-of-google-sheets-building-a-resilient-counterfeit-takedown-pipeline-d4c3502664bd?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                },
+                {
+                    "titre": "De l'interrogation de données à l'investigation de données : Repenser les interfaces de langage naturel pour les bases de données",
+                    "resume": "Cet article propose le paradigme d'investigation de données, avec le prototype D2, pour remplacer le 'texte vers SQL' en permettant aux IA de mener des séquences de requêtes et de raisonner sur les résultats intermédiaires afin de résoudre des problèmes complexes.",
+                    "lien": "https://arxiv.org/abs/2609.03898?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                }
+            ]
+        },
+        {
             "date": "2026-09-03",
             "articles": [
                 {
@@ -689,83 +766,6 @@
                     "titre": "Tout le monde enregistre le journal d'audit MySQL. Personne ne le lit.",
                     "resume": "DB Trail rend les journaux d'audit MySQL interrogeables en liant les changements de lignes à l'identité de session, aux requêtes SQL et aux images 'avant'. Il fournit des réponses attribuées au niveau des lignes pour les actions destructrices et génère des SQL de restauration.",
                     "lien": "https://blog.dbtrail.com/everyone-records-the-mysql-audit-log/?utm_source=tldrdata",
-                    "categorie": "Tool"
-                }
-            ]
-        },
-        {
-            "date": "2026-08-03",
-            "articles": [
-                {
-                    "titre": "Comment DoorDash a construit une passerelle centralisée pour l'accès des agents IA aux outils",
-                    "resume": "DoorDash a développé une passerelle centralisée pour offrir aux agents IA un accès gouverné aux outils MCP, gérant identité, autorisation, identifiants, filtrage, observabilité et limites de taux. Elle supporte plus de 200 serveurs MCP et des millions d'appels hebdomadaires, améliorant sécurité, fiabilité et contrôle.",
-                    "lien": "https://careersatdoordash.com/blog/how-doordash-built-a-centralized-gateway-for-ai-agent-tool-access/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Dissiper les nuages : L'essor des systèmes désagrégés",
-                    "resume": "Les bases de données cloud séparent de plus en plus le calcul sans état du stockage partagé pour améliorer l'élasticité et le paiement à l'usage. Malgré la latence I/O distante, des systèmes comme Aurora et AlloyDB utilisent le buffering, la prélecture et d'autres techniques pour compenser.",
-                    "lien": "https://www.infoq.com/presentations/disaggregation-industrial-systems/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Optimisation des ressources de plus de 30% avec les fonctionnalités Data Assets d'Airflow 3.0",
-                    "resume": "Halodoc a migré des workloads Airflow vers Airflow 3.x Assets et des opérateurs différables, réduisant l'utilisation CPU des workers de 26,1% à 7,71% et la mémoire de 49,2% à 30,8% sur 160 DAGs, tout en diminuant la charge du scheduler et les erreurs Redshift.",
-                    "lien": "https://blogs.halodoc.io/leveraging-data-assets-features-in-airflow-3-0-to-optimise-resource-utilization-by-more-than-30/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "OpenAI a rendu l'analyse 10 fois moins chère",
-                    "resume": "Le nouveau GPT 5.6 Luna d'OpenAI rend l'analyse par agents 10 fois moins chère, fournissant des réponses SQL très précises pour moins d'un demi-cent. L'avantage réside désormais dans le contexte métier, les évaluations rigoureuses et une plateforme de données réactive, plutôt que dans le modèle le plus intelligent.",
-                    "lien": "https://motherduck.com/blog/openai-just-made-analytics-10x-cheaper/?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Au-delà de l'ingénierie 'Happy Path' : Les bases de données",
-                    "resume": "Les bases de données de production échouent souvent sur les cas limites (lectures de répliques obsolètes, deadlocks, migrations). L'article recommande d'appliquer des invariants aux limites de la base de données via des écritures gardées, des contraintes, des transactions courtes et des procédures de récupération explicites.",
-                    "lien": "https://blog.gaborkoos.com/posts/2026-08-01-Beyond-Happy-Path-Engineering-Databases/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "La promesse non tenue de Kafka : Il n'y a pas de log 'Boucles d'or'",
-                    "resume": "Le modèle de flux partitionné de Kafka est inadapté aux workloads de type routeur avec des millions de logs ordonnés indépendamment. OpenData Log, basé sur Rust et le stockage objet, utilise le stockage LSM segmenté et les répliques de lecture pour gérer ces logs à haute cardinalité plus efficacement et à moindre coût.",
-                    "lien": "https://www.opendata.dev/blog/announcing-opendata-log?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Xberg (Dépôt GitHub)",
-                    "resume": "Xberg est un moteur open-source extrayant texte, tables, métadonnées et données structurées de 101 formats (PDF, images, audio, vidéo, URL, etc.). Son noyau Rust supporte 15 langues, l'OCR, la transcription, les embeddings et l'extraction structurée.",
-                    "lien": "https://github.com/xberg-io/xberg?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "La vidéo a besoin d'une base de connaissances",
-                    "resume": "La vidéo est difficile à utiliser car elle ne peut pas être interrogée directement. La plateforme de CreativAI structure les séquences vidéo en une base de connaissances consultable, permettant des requêtes rapides pour la robotique, la logistique, la sécurité et d'autres cas d'usage d'IA physique.",
-                    "lien": "https://creativ-ai.com/blogs/video-needs-a-knowledge-base?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "I/O asynchrone dans DuckDB : Travail, Thread, Travail",
-                    "resume": "DuckDB intègre l'I/O asynchrone pour éviter le blocage des threads sur les lectures S3-backed Parquet et CSV. Cette conception avec pools asynchrones et de workers, prélecture et gouvernance mémoire, réduit considérablement les temps d'exécution (TPC-H Q6 de 8,23s à 2,84s, scan CSV près de 20x plus rapide).",
-                    "lien": "https://duckdb.org/2026/07/31/asynchronous-io.html?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Leçons de données internes à Meta (Shridhar Iyer)",
-                    "resume": "La plateforme de données de Meta a évolué vers un stack unifié fortement typé avec catalogue, taxonomie, lignage et politiques centralisés. Parmi les leçons : une colonne de débogage tronquée a économisé des millions, le versionnement était nécessaire pour les tables clés et la préparation à l'IA commence par des primitives de workflow réutilisables.",
-                    "lien": "https://roundup.getdbt.com/p/data-lessons-from-inside-meta-shridhar?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Vérification de taxonomie participative : Un cadre basé sur le feedback pour affiner les relations de graphes de connaissances",
-                    "resume": "Grab valide les relations de graphes de connaissances via le comportement de recherche en direct. Les relations candidates (parent, enfant, frère/sœur) sont injectées dans les suggestions, puis les clics, le temps de consultation et les conversions sont agrégés en scores de confiance pour promouvoir ou élaguer les liens de la taxonomie.",
-                    "lien": "https://engineering.grab.com/crowdsourced-taxonomy-verification?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "PGSimCity (Outil)",
-                    "resume": "PGSimCity est un simulateur éducatif interactif représentant une base de données PostgreSQL comme une ville 3D. Il permet d'ajuster les charges de travail et de déclencher des scénarios (ex: tempêtes de checkpoints, thrashing de cache) pour visualiser l'impact sur les performances internes de PostgreSQL.",
-                    "lien": "https://nikolays.github.io/PGSimCity/?utm_source=tldrdata",
                     "categorie": "Tool"
                 }
             ]
