@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-09-14",
+            "articles": [
+                {
+                    "titre": "Rafraîchir la carte des temps de trajet pour le marché de Lyft : Reconstruire les signaux d'accessibilité des quartiers",
+                    "resume": "Lyft a refait sa base de données des temps de trajet des quartiers avec des ETA plus précises, une meilleure couverture et des filtres. Cela améliore la tarification et les cartes de chaleur des conducteurs, et sera mis à jour tous les six mois, avec des ETA tenant compte du trafic.",
+                    "lien": "https://eng.lyft.com/refreshing-the-travel-time-map-behind-lyfts-marketplace-rebuilding-neighborhood-reachability-5be3efbc82ea?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Kafka sans disque : Que se passe-t-il lorsque les brokers ne possèdent plus les données ?",
+                    "resume": "Kafka sans disque maintient l'API Kafka mais déplace le stockage durable des données vers un stockage objet. Cela modifie le traitement par lots, la latence et d'autres aspects, faisant de cette approche un choix spécifique à chaque charge de travail plutôt qu'un remplacement universel.",
+                    "lien": "https://softwaremill.com/diskless-kafka-object-storage-kip-1150-and-kafkas-future/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Évolution de la plateforme de récupération d'embeddings de Pinterest",
+                    "resume": "La plateforme Manas de Pinterest gère des milliards d'embeddings. La quantification réduit les coûts de 20-30%, les tests ANN sur SSD diminuent les besoins en mémoire/CPU, et la récupération multi-embeddings améliore le score des candidats.",
+                    "lien": "https://medium.com/pinterest-engineering/evolving-pinterests-embedding-retrieval-platform-aede4e831e01?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "L'insoutenable légèreté d'un index de plus",
+                    "resume": "Les agents de code créent de bons schémas PostgreSQL, mais ajoutent souvent trop d'index. Des index supplémentaires peuvent doubler le temps de mise à jour et le WAL. L'examen des index doit considérer les chemins d'écriture et l'activité VACUUM.",
+                    "lien": "https://boringsql.com/posts/unbearable-lightness-of-one-more-index/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Le CI est passé. Vos évaluations sont passées. Le client a quand même eu la mauvaise réponse.",
+                    "resume": "Les agents IA peuvent donner des réponses erronées malgré des tests réussis, à cause d'un contexte invalide ou d'un chemin d'exécution défectueux. Le débogage nécessite des traces complètes des appels de modèles, d'outils et de la récupération, ainsi que des tests distincts pour le comportement système et la qualité des réponses.",
+                    "lien": "https://thenewstack.io/ai-agent-trace-debugging/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "118 millions de requêtes par seconde sur Neki",
+                    "resume": "PlanetScale a atteint 118 millions de requêtes par seconde sur Neki, son nouveau PostgreSQL sharding, en utilisant 512 shards pour 1,22 PiB de données. La charge de travail était spécifique : sélection d'une ligne par clé primaire sans écritures ni jointures.",
+                    "lien": "https://planetscale.com/blog/118-million-queries-per-second-on-neki?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Désormais, chacun peut exploiter les données",
+                    "resume": "L'agent de données de ChatGPT Work se connecte aux données d'entreprise, permettant aux employés d'analyser et de créer des tableaux de bord en langage naturel. Il respecte les permissions, fonctionne avec les plateformes BI, et peut recommander des actions.",
+                    "lien": "https://openai.com/index/put-data-to-work/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Pourquoi DuckDB 2.0 est plus rapide",
+                    "resume": "DuckDB 2.0 accélère les requêtes S3 (2-3x) grâce à l'E/S asynchrone, améliore les requêtes récursives et rend les données VARIANT plus petites et rapides que JSON. Il ajoute aussi des fonctions SQL pratiques comme les triggers et les CTEs modifiant les données.",
+                    "lien": "https://motherduck.com/blog/why-duckdb-20-is-faster/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "L'effet d'adoption de l'IA est un effet de sélection",
+                    "resume": "Comparer les adoptants d'IA aux non-adoptants surestime souvent l'impact en raison d'un effet de sélection. Il est préférable d'estimer la causalité en utilisant des variations non choisies par les clients, comme un seuil d'éligibilité, en limitant les conclusions.",
+                    "lien": "https://towardsdatascience.com/your-ai-adoption-lift-is-a-selection-effect/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Remplissages CDC PostgreSQL à l'échelle : Exécuter un remplissage de plusieurs jours en production",
+                    "resume": "Les gros remplissages CDC PostgreSQL échouent plus souvent à cause de la rétention WAL et des transactions longues que des lectures historiques. Des conceptions plus sûres continuent de consommer le WAL pendant les lectures par blocs et réconcilient les chevauchements.",
+                    "lien": "https://estuary.dev/blog/postgres-cdc-backfill?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Enquêter sur le gaspillage de Spark à travers la pile technologique",
+                    "resume": "Quatre études de cas Spark en production ont permis de réduire le temps d'exécution, le calcul, les opérations S3 et les coûts en traquant les gaspillages cachés au-delà des métriques CPU et mémoire de base.",
+                    "lien": "https://blog.dataengineerthings.org/investigating-spark-waste-across-the-stack-188aa622e12a?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "La demi-vie d'une requête",
+                    "resume": "Des outils comme dbt transforment les analyses fragiles et non documentées en systèmes reproductibles. L'IA, elle, ignore souvent les contraintes des environnements de travail réels.",
+                    "lien": "https://covertaltruism.substack.com/p/the-half-life-of-a-query?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                }
+            ]
+        },
+        {
             "date": "2026-09-10",
             "articles": [
                 {
@@ -690,83 +767,6 @@
                     "resume": "La dérive des modèles d'IA est une baisse de qualité due à l'évolution des données de production ou des comportements. Il faut surveiller la dérive des données, des concepts et des pipelines, en utilisant des vérifications de distribution, de la télémétrie et du feedback utilisateur.",
                     "lien": "https://www.honeycomb.io/blog/ai-model-drift?utm_source=tldrdata",
                     "categorie": "Tutoriel"
-                }
-            ]
-        },
-        {
-            "date": "2026-08-10",
-            "articles": [
-                {
-                    "titre": "L'infrastructure d'entraînement derrière la recherche d'emploi par IA : Distillation multi-enseignants 8x plus rapide",
-                    "resume": "LinkedIn a réduit le temps d'entraînement de son modèle de recherche d'emploi (0,6 milliard de paramètres) de 45 à moins de 5 heures grâce à la mise en cache des sorties des 'enseignants' au niveau des shards, sans perte de précision.",
-                    "lien": "https://www.linkedin.com/blog/engineering/infrastructure/the-training-infrastructure-behind-ai-powered-job-search-eight-x-faster-multi-teacher-distillation?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Comment et pourquoi Netflix a construit un graphe distribué en temps réel : Partie 3 — Interroger le graphe avec l'API d'exécution gRPC",
-                    "resume": "La couche de requête du graphe distribué temps réel de Netflix gère 8 milliards de nœuds et 150 milliards d'arêtes, permettant des requêtes complexes en moins de 150 ms au P99 grâce à la traversée parallèle et des caches optimisés.",
-                    "lien": "https://netflixtechblog.com/how-and-why-netflix-built-a-real-time-distributed-graph-part-3-querying-the-graph-with-grpc-0f3468349607?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Comment Physical Intelligence a unifié sa pile de données robotiques avec Postgres géré par ClickHouse",
-                    "resume": "Physical Intelligence a séparé sa pile de données robotiques entre Postgres (transactionnel) et ClickHouse (analytique) pour gérer des dizaines de milliards de lignes, permettant recherches et explorations rapides qui prenaient auparavant des jours.",
-                    "lien": "https://clickhouse.com/blog/physical-intelligence-rds-to-clickhouse-managed-postgres?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Oubliez la donnée propre, annotez-la dès la collecte.",
-                    "resume": "Pour éviter les hallucinations des IA, il est crucial d'annoter la provenance, le schéma et le contexte des données dès l'ingestion, car 60% des projets IA échouent sans métadonnées et observabilité.",
-                    "lien": "https://www.cio.com/article/4204899/never-mind-clean-data-annotate-as-you-collect-it.html?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "La propriété des données en pratique : Définir les droits de décision dans la gouvernance des données d'entreprise",
-                    "resume": "La gouvernance des données échoue si les propriétaires n'ont pas de droits de décision. Une gouvernance efficace exige que les propriétaires aient l'autorité d'approuver les seuils de qualité, d'accepter les risques et d'autoriser l'utilisation.",
-                    "lien": "https://medium.com/@community_md101/data-ownership-in-practice-defining-decision-rights-in-enterprise-data-governance-c125e0635873?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Votre prochain \"problème de base de données Access\" est un agent IA",
-                    "resume": "La facilité de création d'agents IA risque de créer un chaos d'outils non documentés. Il faut intégrer la gouvernance (identité, permissions, journalisation, propriété) dans la plateforme pour gérer automatiquement les risques.",
-                    "lien": "https://sjg.io/writing/your-next-access-database-problem-is-an-ai-agent/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Valider les données avec Pointblank en Python",
-                    "resume": "Pointblank est une bibliothèque Python pour valider les données (pandas, Polars, DuckDB, PostgreSQL) via des règles déclaratives, en se concentrant sur les portes de qualité, la quarantaine au niveau des lignes et des rapports pour les parties prenantes.",
-                    "lien": "https://realpython.com/python-pointblank/?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
-                },
-                {
-                    "titre": "Kestra 2.0 : les versions candidates arrivent avec un nouveau moteur d'exécution et une refonte de l'interface",
-                    "resume": "Les versions candidates de Kestra 2.0 sont disponibles, présentant un nouveau moteur d'exécution et une refonte de l'interface utilisateur, marquant la plus grande mise à jour de l'orchestrateur.",
-                    "lien": "https://kestra.io/blogs/kestra-2-0-almost-here/?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Couches sémantiques dans Apache Superset : SIP-182 et Apache Ossie",
-                    "resume": "Apache Superset 7.0 intégrera un support natif des couches sémantiques via une nouvelle interface, remplaçant les pseudo-bases de données pour métriques et dimensions. Apache Ossie est également en développement comme couche d'échange JSON/YAML neutre.",
-                    "lien": "https://preset.io/blog/semantic-layers-in-supersett/?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "TLDR recrute un curateur pour TLDR Data !",
-                    "resume": "TLDR Data, lu par plus de 500 000 abonnés, recherche un curateur (~3h/semaine) pour la science et l'ingénierie des données. Postulez si vous êtes intéressé !",
-                    "lien": "mailto:data@tldr.tech",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Tytan : Construction neurosymbolique interactive de schémas sémantiques analytiques à partir de données relationnelles",
-                    "resume": "TYTAN génère automatiquement des schémas sémantiques analytiques à partir de données relationnelles en combinant inférence LLM et vérifications déterministes, avec un succès élevé (100% sur 3758 tests de récupération) sur huit bases de données.",
-                    "lien": "https://arxiv.org/abs/2608.06331?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "La base de données à 550 kilomètres : ce que l'informatique orbitale signifie pour les bases de données distribuées",
-                    "resume": "L'infrastructure IA spatiale déplace le goulot d'étranglement vers l'état. Si l'orbite convient au calcul GPU, le stockage y est coûteux. Les bases de données SQL distribuées nécessitent une gestion spécifique (placement des baux, réplication) pour fonctionner en orbite.",
-                    "lien": "https://cockroachlabs.com/blog/orbital-computing-distributed-databases?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
                 }
             ]
         }
