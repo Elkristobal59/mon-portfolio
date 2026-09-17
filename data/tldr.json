@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-09-17",
+            "articles": [
+                {
+                    "titre": "Comment nous avons conçu l'agent de publicité payante de LangChain",
+                    "resume": "LangChain a créé un agent d'IA pour la publicité payante qui analyse les données de campagne, recommande des changements et applique des actions approuvées, réduisant les coûts d'acquisition de leads. Le design utilise des modèles pour le jugement, du code pour la fiabilité et des validations humaines.",
+                    "lien": "https://www.langchain.com/blog/paid-media-agent?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Comment fonctionner sur trois clouds simultanément, et quand l'éviter",
+                    "resume": "Form3 opère sa plateforme de paiement en mode actif-actif-actif sur AWS, Google Cloud et Azure, utilisant Kubernetes, NATS JetStream et CockroachDB. L'article détaille cette architecture multicloud et les raisons de choisir une approche active-standby dans certains cas.",
+                    "lien": "https://www.infoq.com/presentations/form3-multicloud-architecture/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Embeddings de graphes FastRP avec Apache DataFusion",
+                    "resume": "FastRP propose une nouvelle approche pour les embeddings de graphes via l'agrégation itérative des voisins, remplaçant les marches aléatoires coûteuses de Node2Vec. Une implémentation Rust/DataFusion a traité un graphe de 8 millions de nœuds en 15 minutes avec une qualité prédictive comparable.",
+                    "lien": "https://semyonsinchenko.github.io/ssinchenko/post/fastrp-datafusion/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "De combien d'exemples étiquetés un classifieur de texte a-t-il réellement besoin ? Une mesure.",
+                    "resume": "Avant d'opter pour un LLM, évaluez un modèle classique pour la classification de texte. Une expérience montre que la précision TF-IDF augmente avec plus d'exemples, suggérant une approche hybride où les LLM gèrent les cas complexes ou l'amorçage des étiquettes.",
+                    "lien": "https://towardsdatascience.com/how-many-labeled-examples-does-a-text-classifier-actually-need-i-measured-it/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Pourquoi votre Redis est lent : il est mono-thread et vous avez utilisé KEYS",
+                    "resume": "Redis étant mono-thread, des opérations coûteuses (KEYS, FLUSHALL, gros DEL) peuvent bloquer les clients et provoquer des pics de latence. Utilisez SLOWLOG et SCAN pour diagnostiquer, optez pour UNLINK pour les suppressions importantes et désactivez les commandes dangereuses.",
+                    "lien": "https://ankit-rana.com/logs/53-redis-single-threaded-keys-command/?utm_source=tldrdata",
+                    "categorie": "Tutorial"
+                },
+                {
+                    "titre": "Conseils de plan dans PostgreSQL 19",
+                    "resume": "PostgreSQL 19 introduit `pg_plan_advice` et `pg_stash_advice` pour sérialiser et appliquer des guides de plan d'exécution. Cela permet de stabiliser les diffs de plans pour le CI et les mises à jour, mais un épinglage sélectif des décisions est recommandé face aux changements de données.",
+                    "lien": "https://tapoueh.org/blog/2026/09/plan-advice-in-postgresql-19/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Vous n'avez pas besoin de migrer ces 300 tableaux de bord",
+                    "resume": "Au lieu de migrer tous les tableaux de bord existants, concentrez-vous sur les métriques, définitions et logiques métier sous-jacentes. Ne conservez que les tableaux de bord fréquemment utilisés et laissez l'IA gérer les requêtes ponctuelles avec le même contexte.",
+                    "lien": "https://hex.tech/blog/dont-migrate-300-dashboards/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Sortie d'Apache Iceberg Python 0.12.0",
+                    "resume": "PyIceberg 0.12.0 apporte des vues de catalogue REST, des retries de commit gérant les conflits, des scans incrémentaux, les types géométriques Iceberg v3 et un support renforcé pour Python 3.14, améliorant la préparation à la production.",
+                    "lien": "https://iceberg.apache.org/blog/apache-iceberg-python-0.12.0-release/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Compétences DuckDB pour Claude Code",
+                    "resume": "Un plugin permet à l'agent Claude Code d'interagir directement avec DuckDB CLI. Tout fichier local, distant ou table Iceberg devient une source de données interrogeable, avec des compétences pour la conversion de format, le stockage objet et les données spatiales.",
+                    "lien": "https://duckdb.org/2026/09/16/duckdb-skills?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Contourner les goulots d'étranglement d'inférence avec Retrieve-for-Train",
+                    "resume": "Retrieve-for-Train est une technique qui permet aux systèmes de recherche IA de générer des requêtes complémentaires en une seule fois, plutôt que séquentiellement. Google rapporte une réduction de 12 à 20 fois de la latence de génération de requêtes et une meilleure couverture des résultats.",
+                    "lien": "https://research.google/blog/bypassing-inference-bottlenecks-accelerating-complex-ai-search-with-retrieve-for-train/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Au-delà du modèle : Ingénierie de l'infrastructure IA avec jugement scientifique",
+                    "resume": "Airbnb a transformé son processus d'analyse de support en Insight Miner, un outil basé sur des agents intégrant des workflows d'extraction, d'intégration et de clustering. Cela a réduit les enquêtes de mois en jours, permettant une auditabilité et une amélioration continue.",
+                    "lien": "https://airbnb.tech/ai-ml/beyond-the-model-engineering-ai-infra-with-scientific-judgement/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Mon flux de travail DuckDB + IA",
+                    "resume": "Un workflow simple combinant des agents IA et DuckDB via le terminal permet une analyse rapide et fiable, le nettoyage des données et un accès sécurisé, sans outils complexes ou couches sémantiques lourdes.",
+                    "lien": "https://thefulldatastack.substack.com/p/my-duckdb-ai-workflow?utm_source=tldrdata",
+                    "categorie": "Tutorial"
+                }
+            ]
+        },
+        {
             "date": "2026-09-14",
             "articles": [
                 {
@@ -690,83 +767,6 @@
                     "resume": "Un système de classement transparent pour les oiseaux les plus brillants combine chroma, variété de couleurs et fiabilité des données. L'idée principale est que les classements sont plus justes quand chaque facteur est compréhensible et justifiable.",
                     "lien": "https://moultano.wordpress.com/2026/08/14/fairly-ranking-the-most-brilliant-birds/?utm_source=tldrdata",
                     "categorie": "Deep Dive"
-                }
-            ]
-        },
-        {
-            "date": "2026-08-13",
-            "articles": [
-                {
-                    "titre": "Stripe automatise la remédiation de bases de données avec recherche par graphe et machines d'état",
-                    "resume": "Stripe a automatisé la récupération d'incidents MongoDB en modélisant son parc comme un graphe pour générer des plans de remédiation. Le système réduit les alertes de 30% et évite 12 jours d'états de shards anormaux par an, remplaçant les flux de travail fragiles par une planification basée sur Dijkstra.",
-                    "lien": "https://stripe.dev/blog/how-stripe-uses-graph-search-and-state-machines-to-auto-remediate-a-global-database-fleet?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Recherche vectorielle filtrée : ce qu'ACORN résout, et ce qui résout ACORN",
-                    "resume": "Les filtres de métadonnées peuvent perturber la recherche vectorielle en fragmentant le graphe HNSW. Qdrant analyse différentes approches (HNSW filtrable, ACORN) sur un million de vecteurs, montrant l'efficacité des arêtes d'indexation par rapport à la réparation en temps de requête.",
-                    "lien": "https://qdrant.tech/articles/filtered-vector-search-acorn/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Comment Vercel a migré la base de données de ses builds",
-                    "resume": "Vercel a migré la base de données de ses pools de builds de Redis vers DynamoDB pour un stockage durable. Cette migration a révélé une dépendance à la faible latence de Redis, obligeant Vercel à repenser son architecture pour gérer la concurrence au lieu de lectures sérialisées.",
-                    "lien": "https://vercel.com/blog/how-we-migrated-the-database-behind-every-vercel-build?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Les agents IA arrivent pour la donnée (lentement mais sûrement)",
-                    "resume": "Les agents IA excellent dans les tâches répétitives (tests d'hypothèses, diagnostic de schémas, maintenance de pipelines), mais les insights automatisés proactifs sont plus complexes à cause de la pertinence et des faux positifs. Les équipes data doivent se préparer avec des évaluations robustes et une infrastructure à faible latence.",
-                    "lien": "https://www.infoworld.com/article/4203157/agents-are-coming-for-data-just-slowly.html?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "La \"fausse prophétie de la mort de X\"",
-                    "resume": "L'entreposage de données, SQL, la modélisation et la BI ne sont pas en train de disparaître. Les implémentations évoluent, mais les fonctions centrales perdurent. L'IA automatise certaines tâches, mais ne remplace pas la sémantique métier ou le jugement architectural. Le vrai changement est l'évolution des responsabilités automatisées.",
-                    "lien": "https://joereis.substack.com/p/the-x-is-dead-fallacy?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Pourquoi les projets de graphes de connaissances échouent — et comment les faire réussir",
-                    "resume": "Les graphes de connaissances échouent souvent lorsqu'ils sont traités comme des bases relationnelles. Les bonnes pratiques incluent des cas d'utilisation spécifiques, des graphes fédérés, des API contrôlées, une structure SHACL et une provenance explicite pour éviter des systèmes lents et fragmentés.",
-                    "lien": "https://ontologist.substack.com/p/why-knowledge-graph-projects-fail?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
-                },
-                {
-                    "titre": "Electric rejoint Databricks pour intégrer Postgres WASM aux sandboxes d'agents IA",
-                    "resume": "Databricks acquiert Electric pour intégrer PGlite (Postgres WASM léger) aux sandboxes d'agents IA. Cela permettra aux agents de disposer de bases de données locales rapides, tout en synchronisant l'état partagé avec Lakebase pour une source de vérité centralisée.",
-                    "lien": "https://www.databricks.com/blog/electric-joins-databricks-bring-wasm-postgres-ai-agent-sandboxes?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Présentation de sqlfmt : un formateur SQL inspiré de gofmt",
-                    "resume": "sqlfmt est un nouveau formateur SQL s'inspirant de gofmt, appliquant le style \"river alignment\" (mots-clés minuscules, indentation, virgules, commentaires cohérents). Il utilise la tokenisation pour la robustesse, fonctionne en CLI ou via WASM et assure que le formatage ne modifie pas la sémantique des requêtes.",
-                    "lien": "https://tapoueh.org/blog/2026/08/introducing-sqlfmt-an-sql-gofmt-style-formatter/?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "Publication par lots atomiques dans NATS 2.12 : garanties tout-ou-rien",
-                    "resume": "NATS 2.12 introduit la publication par lots atomiques pour les flux JetStream, permettant de committer des messages associés comme une unité tout-ou-rien. Cela aide les systèmes événementiels à éviter les écritures partielles, simplifiant la logique de récupération et assurant la sécurité des concurrences.",
-                    "lien": "https://www.synadia.com/blog/atomic-batch-publishing-nats-2-12/?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Maestro : l'orchestrateur de workflow open source de Netflix continue d'évoluer",
-                    "resume": "Maestro, l'orchestrateur de workflow open source de Netflix (Apache-2.0), gère les pipelines de données, ML et batch à grande échelle. C'est une alternative intéressante à Airflow pour l'orchestration, les MLOps et la planification.",
-                    "lien": "https://github.com/Netflix/maestro?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "Comment la standardisation de la télémétrie produit a réduit le temps d'insight de 97%",
-                    "resume": "Salesforce a standardisé la télémétrie produit via une plateforme de données, remplaçant les pipelines fragmentés par un schéma commun générant automatiquement des métriques d'adoption fiables. La plateforme traite 45 milliards de lignes par jour, réduisant le temps d'insight et le travail manuel.",
-                    "lien": "https://engineering.salesforce.com/how-standardizing-product-telemetry-reduced-time-to-insight-by-97?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Dérive des modèles d'IA : comment maintenir leur fiabilité",
-                    "resume": "La dérive des modèles d'IA est une baisse de qualité due à l'évolution des données de production ou des comportements. Il faut surveiller la dérive des données, des concepts et des pipelines, en utilisant des vérifications de distribution, de la télémétrie et du feedback utilisateur.",
-                    "lien": "https://www.honeycomb.io/blog/ai-model-drift?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
                 }
             ]
         }
