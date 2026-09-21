@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-09-21",
+            "articles": [
+                {
+                    "titre": "Débugger la latence incohérente des requêtes sur une Hypertable PostgreSQL : ce que nous avons appris",
+                    "resume": "Une requête sur une hypertable PostgreSQL était lente par intermittence car les requêtes préparées JDBC passaient à des plans génériques. Désactiver les requêtes préparées côté serveur et réduire le nombre de chunks a restauré une latence prévisible.",
+                    "lien": "https://medium.com/arcesium-engineering-blog/debugging-inconsistent-query-latency-on-a-postgresql-hypertable-what-we-learned-03253157fbdd?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Entraîner un modèle 4B à produire des plans de requête 81% plus rapides que Postgres",
+                    "resume": "Un modèle Qwen 4B, entraîné avec SFT et RL, a généré des plans de requête PostgreSQL 1,81 fois plus rapides et réduit la latence totale de la charge de travail de 44,7%. Cela démontre la capacité des petits modèles à optimiser les bases de données.",
+                    "lien": "https://rohanbansal.com/qorl?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "L'architecture de Neki",
+                    "resume": "Neki de PlanetScale fragmente horizontalement PostgreSQL, offrant une connexion unique aux applications. Il gère les requêtes distribuées, la disponibilité, le repartitionnement et les changements de schéma en ligne.",
+                    "lien": "https://planetscale.com/blog/the-architecture-of-neki?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Économiser 100 To de RAM supplémentaires avec les mathématiques (et Rust)",
+                    "resume": "Cloudflare a optimisé la représentation et le déploiement de l'anneau de hachage cohérent de Pingora, économisant ainsi plus de 100 To de RAM.",
+                    "lien": "https://blog.cloudflare.com/saving-100-tb-of-ram-with-math/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Saturation chez GitHub : la saga continue",
+                    "resume": "Une panne chez GitHub a été déclenchée par la saturation d'une base de données primaire par une tâche de nettoyage, non détectée par un monitoring basé uniquement sur le lag des répliques. Les délais d'expiration et les tentatives ont amplifié l'incident.",
+                    "lien": "https://surfingcomplexity.blog/2026/09/19/saturation-at-github-the-saga-continues/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "L'attribut de span qui a fait exploser votre facture d'observabilité",
+                    "resume": "Un attribut de span à forte cardinalité peut multiplier discrètement les séries de métriques et augmenter les coûts d'observabilité. Il faut agréger les identifiants et définir des limites pour éviter cela.",
+                    "lien": "https://thinhdanggroup.github.io/otel-span-cardinality/?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                },
+                {
+                    "titre": "Deux techniques pour travailler avec les modèles System One",
+                    "resume": "Les modèles System One sont des classificateurs rapides pour des décisions simples. Deux techniques utiles sont les objectifs superposés pour les tâches en temps réel et les comparaisons de type tournoi pour choisir la meilleure option.",
+                    "lien": "https://www.seangoedecke.com/two-techniques-for-working-with-system-one-models/?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                },
+                {
+                    "titre": "Des tableaux de bord conçus pour le Chat",
+                    "resume": "dbt Charts est un langage open-source basé sur YAML pour créer des tableaux de bord auditables et versionnés avec l'IA ou des humains. Il permet de détecter les erreurs avant le déploiement.",
+                    "lien": "https://dbtcharts.com/blog/charts-built-for-chat/?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "pg-jev (Dépôt GitHub)",
+                    "resume": "pg-jev intègre la classification en langage naturel directement dans PostgreSQL, permettant de filtrer, classer et ordonner les lignes avec des fonctions SQL basées sur Jev, retournant des probabilités calibrées.",
+                    "lien": "https://github.com/realZachi/pg-jev?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Analyse JSON plus rapide avec SVE2 sur les processeurs ARM",
+                    "resume": "Une nouvelle implémentation de simdjson utilise l'instruction match de l'ARM SVE2 pour accélérer l'analyse JSON, améliorant le débit d'indexation de 3 à 9% sur Graviton 4 et 5.",
+                    "lien": "https://lemire.me/blog/2026/09/18/faster-json-parsing-with-sve2-on-arm-processors/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Jev pour l'extraction de données 10-K : rapide et calibré",
+                    "resume": "Jev peut servir de couche de vérification rapide et économique pour l'extraction de données structurées des documents 10-K, sélectionnant les bonnes valeurs avec une confiance calibrée et gérant les cas ambigus.",
+                    "lien": "https://mohammadsoleimanian.com/jev-for-10-k-data-extraction-fast-calibrated/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "L'ajout d'un index a ralenti cette requête",
+                    "resume": "Un index correspondant à ORDER BY dans Postgres peut ralentir une requête si les lignes filtrées sont loin dans l'index. Vérifiez 'Rows Removed by Filter', testez les paramètres et utilisez un index composé.",
+                    "lien": "https://milanjovanovic.tech/blog/when-postgres-picks-the-wrong-index?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                }
+            ]
+        },
+        {
             "date": "2026-09-17",
             "articles": [
                 {
@@ -690,83 +767,6 @@
                     "resume": "La première version candidate de Polars 2.0 est prévue pour la semaine prochaine, marquant l'approche de la sortie officielle.",
                     "lien": "https://threadreaderapp.com/thread/2089338347286093851.html?utm_source=tldrdata",
                     "categorie": "News"
-                }
-            ]
-        },
-        {
-            "date": "2026-08-17",
-            "articles": [
-                {
-                    "titre": "Modéliser des données simples mène à des complications",
-                    "resume": "Un modèle de données bibliques simple révèle rapidement sa complexité face aux cas réels (plages de versets, etc.). Il faut modéliser uniquement la complexité nécessaire au produit.",
-                    "lien": "https://codeblog.jonskeet.uk/2026/08/14/scratch-a-simple-data-model-find-a-complex-one/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Accélération des requêtes sur Lakehouse: comment les index Hudi optimisent les charges de travail intensives en lecture",
-                    "resume": "Les index de métadonnées d'Apache Hudi transforment les lectures sélectives de lakehouse en recherches de base de données, réduisant les scans complets grâce à divers types d'index.",
-                    "lien": "https://hudi.apache.org/blog/2026/08/14/hudi-for-read-heavy-workloads-point-lookups-with-indexes?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "Pourquoi l'IA est une charge de travail de stockage",
-                    "resume": "L'inférence IA devient une infrastructure à état (sessions longues, agents, RAG), créant des caches, mémoires et embeddings durables plus économiques à stocker qu'à recalculer, intégrant le stockage dans le chemin critique.",
-                    "lien": "https://www.datagravity.dev/p/why-ai-is-a-storage-workload?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Le Change-Data-Capture (CDC) ne résout pas les écritures doubles",
-                    "resume": "Le CDC rend les écritures en aval réessayables et ordonnées, mais ne garantit pas l'idempotence des systèmes de destination, qui doivent toujours gérer les duplicatas post-récupération.",
-                    "lien": "https://aandreakis.com/posts/change-data-capture-doesnt-solve-dual-writes?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "À propos des benchmarks",
-                    "resume": "Un chiffre de débit seul n'est pas une décision architecturale. Les bons benchmarks expliquent la charge de travail, l'état du cache, le comportement client et les limites pour éviter d'optimiser des scores synthétiques.",
-                    "lien": "https://www.dataengineeringweekly.com/p/on-benchmarking?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Comment Kenn pratique l'ingénierie agentique",
-                    "resume": "Kenn utilise des agents de codage pour générer de gros volumes de PRs, mais maintient les humains en contrôle des spécifications, revues et décisions, permettant à trois ingénieurs de livrer des centaines de PRs par semaine.",
-                    "lien": "https://wesmckinney.com/blog/agentic-engineering-aug-2026/?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Comment nous avons traqué un bug SQLite vieux de 16 ans",
-                    "resume": "Tailscale a passé six mois à corriger une corruption SQLite due à une rare condition de course entre le checkpointing WAL et les transactions, menant à un correctif SQLite et la leçon que même les technologies établies sont risquées hors des chemins communs.",
-                    "lien": "https://tailscale.com/blog/sqlite-wal-reset-bug?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Sortie d'Apache DataFusion Comet 1.0.0",
-                    "resume": "Comet, l'accélérateur Spark basé sur Apache DataFusion, atteint la version 1.0 avec gestion sémantique, support Spark 4, couverture d'opérateurs élargie et tests rigoureux, offrant une exécution Spark plus rapide sans réécriture.",
-                    "lien": "https://datafusion.apache.org/blog/2026/08/07/datafusion-comet-1.0.0?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Introduction de DataBench",
-                    "resume": "DataBench de Hex évalue les agents IA sur des tâches analytiques complexes, montrant leur force à collecter des preuves mais leur faiblesse en jugement, soulignant le besoin de révision humaine pour les travaux complexes.",
-                    "lien": "https://hex.tech/blog/databench-agentic-analytics-benchmark/?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "Nouveautés d'OpenSearch 3.8",
-                    "resume": "OpenSearch 3.8 améliore l'ingestion vectorielle, le débit et la latence des requêtes, étend le support des agents IA et offre de nouveaux outils PPL/SQL, débogage Grok, alertes Prometheus en un clic et améliorations de la pertinence de recherche.",
-                    "lien": "https://opensearch.org/blog/whats-new-in-opensearch-3-8/?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Snowflake: une requête de 149 Go a scanné -1.5 Go",
-                    "resume": "L'exportation de données QUERY_HISTORY de Snowflake vers Parquet peut corrompre les valeurs si de grands nombres sont écrits en INT32. Le transtypage des colonnes affectées avant l'exportation prévient les débordements et analyses incorrectes.",
-                    "lien": "https://espresso.ai/post/snowflake-bytes-scanned-considered-harmful?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Classer équitablement les oiseaux les plus brillants",
-                    "resume": "Un système de classement transparent pour les oiseaux les plus brillants combine chroma, variété de couleurs et fiabilité des données. L'idée principale est que les classements sont plus justes quand chaque facteur est compréhensible et justifiable.",
-                    "lien": "https://moultano.wordpress.com/2026/08/14/fairly-ranking-the-most-brilliant-birds/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
                 }
             ]
         }
