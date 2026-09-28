@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-09-28",
+            "articles": [
+                {
+                    "titre": "Optimisation de la Configuration Robotique sur Graphe-comme-Politique",
+                    "resume": "Une méthode a utilisé des agents de codage pour faire évoluer un contrôleur robotique Graph-as-Policy, augmentant le débit simulé de 5,27x et le taux de succès de 67% à 96% sans intervention humaine sur les compétences existantes.",
+                    "lien": "https://kael.tech.blog/2026/09/26/robotics-harness-optimization-on-graph-as-policy/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Finalisation des Partitions dans le Framework d'Ingestion DB de Nouvelle Génération de Pinterest",
+                    "resume": "Pinterest a ajouté une couche de finalisation à son pipeline CDC Kafka, Flink, Spark et Iceberg, permettant aux jobs en aval de savoir quand une partition horaire est prête à être lue via des statistiques de temps d'événement et des métadonnées de snapshot Iceberg.",
+                    "lien": "https://medium.com/pinterest-engineering/partition-finalization-in-pinterests-next-generation-db-ngestion-framework-4c7da6e4cc8f?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Mise à l'Échelle d'un Pipeline d'Inférence ML pour les Charges par Lots",
+                    "resume": "WHOOP a réduit le temps d'une simulation ML interne de plus de deux mois à six jours en éliminant les appels HTTP par tâche, en chargeant le modèle dans les workers et en ajustant le CPU des pods, tout en documentant les défis liés aux bibliothèques natives et aux retries idempotents.",
+                    "lien": "https://engineering.whoop.com/scaling-ml-inference-pipeline?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Le parcours client mis à jour en temps réel : extension du recommandeur de séquences d'Airbnb avec Chronon",
+                    "resume": "Airbnb a étendu Chronon pour actualiser les caractéristiques du parcours client en temps quasi réel, réduisant la latence des données de deux jours à moins d'une minute via un traitement événementiel et alimentant les modèles de classement en ligne.",
+                    "lien": "https://airbnb.tech/ai-ml/the-guest-journey-updated-in-real-time-extending-airbnbs-sequence-recommender-with-chronon/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Dix ans de réplication logique Postgres",
+                    "resume": "Une rétrospective sur dix ans de réplication logique Postgres, qui a progressivement remplacé les solutions personnalisées par des fonctionnalités SQL natives pour la migration, la mise à l'échelle et l'évolution des schémas.",
+                    "lien": "https://tapoueh.org/blog/2026/09/ten-years-of-postgres-logical-replication/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Le coût de REPACK (CONCURRENTLY) lors de son exécution",
+                    "resume": "PostgreSQL 19 introduit REPACK (CONCURRENTLY) pour la réécriture de tables en ligne. L'article détaille ses avantages (plus rapide, moins de WAL) mais aussi ses compromis (peut retarder VACUUM, bloque brièvement les écritures et a des limites sur le nombre d'opérations).",
+                    "lien": "https://boringsql.com/posts/repack-concurrently-costs/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Construction d'un Moteur AI-SQL à Très Haut Débit",
+                    "resume": "Quail est un moteur AI-SQL open-source qui optimise conjointement la planification des requêtes et l'inférence LLM, fonctionnant 1,84x plus vite que vLLM en moyenne et jusqu'à 14x plus rapidement sur certaines charges en réduisant les surcoûts GPU.",
+                    "lien": "https://fsdatalab.github.io/blog/introducing-quail/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Safe Not Safe (Outil)",
+                    "resume": "Safe Not Safe est un vérificateur de migration PostgreSQL basé sur navigateur qui identifie les modèles DDL risqués (verrous bloquants, réécritures, contraintes dangereuses), fonctionnant entièrement localement sans API ni compte.",
+                    "lien": "https://safenotsafe.dev/?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Vues Apache Iceberg : Métadonnées de Vues Portables entre Moteurs SQL",
+                    "resume": "La spécification des vues d'Iceberg rend les métadonnées portables en versionnant les schémas, dépendances et SQL, mais la portabilité en production dépend du support du catalogue REST et de dialectes SQL compatibles, nécessitant des tests rigoureux.",
+                    "lien": "https://www.dremio.com/blog/apache-iceberg-views-portable-view-metadata-across-sql-engines/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "ALP : Encodage Flottant sans Perte Adaptatif dans Apache Parquet",
+                    "resume": "Apache Parquet a ajouté ALP, un nouvel encodage sans perte pour les données flottantes, offrant une compression similaire à ZSTD et un décodage environ 10x plus rapide, avec un accès aléatoire et un décodage parallèle améliorés.",
+                    "lien": "https://parquet.apache.org/blog/2026/09/22/alp-adaptive-lossless-floating-point-encoding-in-apache-parquet/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Échanger une Identité Cloud contre la Sienne : Attestation de Charge de Travail sur Compute Managé",
+                    "resume": "Netflix explique comment les jobs Spark sur compute managé échangent un rôle d'exécution cloud contre une identité de charge de travail interne fiable, en vérifiant une charge utile de métadonnées signée et une preuve d'identité AWS pour émettre des certificats TLS mutuels.",
+                    "lien": "https://netflixtechblog.com/trading-a-cloud-identity-for-your-own-workload-attestation-on-managed-compute-516d5a29b252?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Le Fossé Contextuel | Comment construire une architecture de données comme OpenAI",
+                    "resume": "La stack de données IA d'OpenAI centralise des métadonnées riches pour combler le fossé contextuel. Une réécriture en Rust aurait réduit la latence de planification d'Airflow de 35x pour plus de 70 000 tâches concurrentes.",
+                    "lien": "https://dataopsleadership.substack.com/p/the-context-gap-how-to-build-data?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                }
+            ]
+        },
+        {
             "date": "2026-09-24",
             "articles": [
                 {
@@ -690,83 +767,6 @@
                     "resume": "La croissance des logiciels d'entreprise cache une divergence due à l'IA : les catégories axées sur les flux de travail et l'automatisation progressent, tandis que le service client et le HCM sont en retrait. La tarification de l'IA révèle mieux la valeur que les chiffres de croissance du marché.",
                     "lien": "https://www.idc.com/resource-center/blog/the-aggregate-number-is-lying-to-you/?utm_source=tldrdata",
                     "categorie": "News"
-                }
-            ]
-        },
-        {
-            "date": "2026-08-24",
-            "articles": [
-                {
-                    "titre": "Deux auto-scalers Flink chez Netflix",
-                    "resume": "Netflix migre 30 000+ jobs Flink vers l'auto-scaler Apache Flink, remplaçant un système maison. Le nouvel auto-scaler interne à chaque job a généré 58% d'économies annuelles, surpassant l'ancien qui manquait de granularité.",
-                    "lien": "https://netflixtechblog.com/a-tale-of-two-flink-autoscalers-e9f6a1b1492b?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Quand le COVID s'est terminé : ce que nos modèles ont dû 'désapprendre'",
-                    "resume": "Airbnb a repensé la maintenance de ses modèles de prévision post-COVID. L'équipe a distingué la dérive des paramètres du changement structurel, adoptant des stratégies ciblées plutôt que des mises à jour aveugles, pour des prévisions efficaces sous des changements majeurs.",
-                    "lien": "https://airbnb.tech/ai-ml/how-we-knew-covid-was-over-and-what-our-models-had-to-unlearn/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "De 17ms à 0.04ms : Concevoir le bon index SQL",
-                    "resume": "Des index SQL efficaces découlent des requêtes réelles. Les index composites nécessitent un ordre de colonnes précis (filtres d'égalité d'abord, puis tri/plage), vérifié avec EXPLAIN ANALYZE, réduisant drastiquement les temps de requête.",
-                    "lien": "https://milanjovanovic.tech/blog/how-to-design-the-right-sql-index?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
-                },
-                {
-                    "titre": "Dix ans de la plateforme de paiement Uber : design à somme nulle",
-                    "resume": "La plateforme de paiement Gulfstream d'Uber gère 217 milliards de dollars par an. Sa conception s'appuie sur des ordres de paiement immuables à somme nulle, la comptabilité en partie double, DynamoDB, Kafka, Cadence, et des interfaces de paiement génériques.",
-                    "lien": "https://www.uber.com/us/en/blog/ubers-payments-platform/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Tout problème ne nécessite pas d'agent IA",
-                    "resume": "Les systèmes IA en production sont efficaces quand chaque composant est justifié. Les meilleurs modèles sont souvent hybrides, utilisant des agents pour le raisonnement, mais gardant la logique métier, les métriques et les garde-fous déterministes.",
-                    "lien": "https://www.cio.com/article/4210687/not-every-problem-needs-an-ai-agent.html?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "La politique silencieuse des tableaux de bord : pouvoir, gouvernance et angles morts",
-                    "resume": "Les tableaux de bord ne sont pas neutres ; ils influencent les décisions en priorisant certaines métriques. En Afrique, les dashboards orientés donateurs peuvent masquer les besoins réels du terrain et doivent être complétés par le savoir local.",
-                    "lien": "https://blog.dataversegh.com/updates/2026/08/22/quiet-dashboard-politics/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "L'API la plus précieuse du data stack moderne ne renvoie aucune donnée",
-                    "resume": "Les APIs d'exportation de masse sont remplacées par le partage de références de tables. Des technologies comme Iceberg ou Parquet permettent aux producteurs de publier des métadonnées et aux consommateurs d'utiliser leur propre calcul, déplaçant les défis vers les contrats, la sémantique et la maintenance des tables.",
-                    "lien": "https://blog.dataengineerthings.org/the-most-valuable-api-in-the-modern-data-stack-returns-no-data-88978bd2ad4c?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "DataFusion Community Showcase Vol. 4: RDF Fusion & Cloudflare R2 SQL (vidéo)",
-                    "resume": "Cette vidéo présente deux projets DataFusion avancés : l'un combine des graphes RDF avec des séries temporelles, l'autre est AutoSQL de Cloudflare pour SQL serverless distribué sur Iceberg et R2. Les deux exploitent des optimisations personnalisées.",
-                    "lien": "https://www.youtube.com/watch?v=oKEtmUzdPoM&utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "TrueFoundry open-source TrueForge, un harnais d'agents IA d'entreprise",
-                    "resume": "TrueForge est un harnais d'agents auto-hébergeable qui vise à réduire les coûts des tâches via la compaction de contexte et l'exécution en sandbox. Cette solution open-source est pertinente pour les équipes data expérimentant des agents gouvernés.",
-                    "lien": "https://venturebeat.com/orchestration/truefoundrys-open-source-ai-agent-harness-trueforge-boasts-30-75-cheaper-task-completion-than-claude-managed-agents?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "DuckDB v2.0 : un meilleur parseur pour votre base de données",
-                    "resume": "DuckDB v2.0 intègre un nouveau parseur SQL basé sur PEG, remplaçant l'ancien dérivé de PostgreSQL. Ce changement élimine les conflits Bison, gère mieux les erreurs et permet des extensions de grammaire dynamiques.",
-                    "lien": "https://duckdb.org/2026/08/20/duckdb-20-peg-parser.html?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "L'échafaudage compte plus que l'interface pour les agents IA",
-                    "resume": "L'architecture sous-jacente (\"scaffolding\") des agents IA impacte bien plus le coût que le type d'interface (MCP ou CLI). Les échafaudages CLI-only étaient 5 à 28 fois moins chers, rendant le choix d'interface un faible indicateur d'efficacité.",
-                    "lien": "https://arxiv.org/abs/2608.08654?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Utiliser des modèles pour créer des modèles 3D de New York",
-                    "resume": "Peter Sobot a modélisé la skyline de New York en 3D à partir de 1000+ photos, Claude et Gaussian Splatting. Le projet a démontré la capacité de l'IA à gérer le flux technique, mais aussi ses limites pour le jugement visuel et les données imparfaites.",
-                    "lien": "https://petersobot.com/blog/using-models-to-create-models-of-new-york-city/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
                 }
             ]
         }
