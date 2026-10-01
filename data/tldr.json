@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-10-01",
+            "articles": [
+                {
+                    "titre": "Performance de la sécurité au niveau des lignes dans PostgreSQL, mesurée",
+                    "resume": "La sécurité au niveau des lignes (RLS) dans PostgreSQL peut être quasi gratuite avec des politiques simples et indexées, mais des politiques mal structurées peuvent dégrader significativement les performances des requêtes.",
+                    "lien": "https://now-next.nl/en/insights/row-level-security-performance-postgresql/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Réinventer l'ingénierie des données avec l'ingénierie d'attelage : un nouveau paradigme pour l'ère des agents",
+                    "resume": "Les plateformes de données évoluent vers des infrastructures prêtes pour les agents, où le défi est de déployer en toute sécurité le travail généré par l'IA. Les équipes de données devront concevoir des compétences et politiques réutilisables pour une automatisation fiable.",
+                    "lien": "https://hackernoon.com/rebuilding-data-engineering-with-harness-engineering-a-new-paradigm-for-the-agent-era?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Améliorer l'efficacité des coûts des pipelines de streaming de données",
+                    "resume": "Les coûts des plateformes de streaming sont souvent dus à des facteurs structurels (requêtes, copies, sérialisation). Des optimisations incluent le traitement par lots, la suppression des topics intermédiaires, l'utilisation de charges utiles colonnaires et une gestion attentive de la latence.",
+                    "lien": "https://www.streamingdata.tech/p/improving-cost-efficiency-of-data-streaming-pipelines?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                },
+                {
+                    "titre": "Un LLM peut-il 'coder' votre couche sémantique ?",
+                    "resume": "Une couche sémantique robuste améliore grandement la précision des analyses LLM. Les LLM échouent sur les conventions métiers implicites, soulignant la nécessité de règles humaines explicites et de validation pour ces couches.",
+                    "lien": "https://www.lkranz.com/blog/semantics-of-semantic-layers?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "RIP, base de données vectorielle",
+                    "resume": "turbopuffer v3 abandonne l'index vectoriel ANN comme stockage primaire, visant à réduire la duplication des données et les réécritures, et à optimiser le stockage pour divers types de requêtes (texte, filtres, agrégations, recherche vectorielle).",
+                    "lien": "https://turbopuffer.com/blog/rip-vector-database?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Gérer les 'hot shards'",
+                    "resume": "Le sharding par ID de tenant peut créer des 'hot shards' surchargés. Les solutions incluent le scaling vertical, l'isolation des gros tenants sur des shards dédiés et le re-sharding par colonnes pertinentes pour les requêtes, en choisissant des clés par table.",
+                    "lien": "https://planetscale.com/blog/hot-shards-hotter-tenants?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                },
+                {
+                    "titre": "Les cinq camps de la modélisation des données",
+                    "resume": "La modélisation des données s'est divisée en cinq approches distinctes (relationnelle, analytique, application, ML/IA, ontologique). Les stacks modernes doivent les intégrer, exigeant une compréhension partagée pour éviter des pipelines fragiles.",
+                    "lien": "https://practicaldatamodeling.substack.com/p/the-five-camps-of-data-modeling-and?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Parquet X-ray (Repo GitHub)",
+                    "resume": "Parquet X-ray est un inspecteur visuel basé sur navigateur pour les fichiers Parquet. Il permet d'explorer leur structure interne (groupes de lignes, chunks de colonnes, pages, index, schéma, stats, compression) sans télécharger le fichier complet.",
+                    "lien": "https://github.com/cfahlgren1/parquet-xray?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Annonce de DuckDB 1.5.6",
+                    "resume": "DuckDB 1.5.6 est une version de maintenance corrigeant des bugs. DuckDB 2.0 est en développement et montre des améliorations de performance significatives dans certains tests, bien que non universelles.",
+                    "lien": "https://duckdb.org/2026/09/28/announcing-duckdb-156?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Splink 5 : Appariement probabiliste de données à l'échelle du milliard de lignes",
+                    "resume": "Splink 5, une bibliothèque open-source, permet l'appariement probabiliste de données à l'échelle du milliard de lignes (10 milliards de comparaisons en 8,5 min avec DuckDB 2.0). Elle propose l'échantillonnage par chunks et des API de prédiction incrémentales.",
+                    "lien": "https://moj-analytical-services.github.io/splink/blog/2026/09/28/splink-500-released.html?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Un soupçon de dépendance",
+                    "resume": "Les 'query hints' lient le plan d'exécution à la requête, la rendant fragile. Il est préférable de gérer le contrôle du plan en dehors de la requête et d'améliorer les informations du planificateur (ex: `CREATE STATISTICS`) pour une meilleure adaptation aux changements de données.",
+                    "lien": "https://thegresqlpost.org/articles/a-hint-of-dependence/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Anthropic a corrigé l'écriture de Claude : j'ai vérifié les évaluations",
+                    "resume": "Les corrections d'écriture d'Anthropic pour Claude Opus 5.5 ont partiellement fonctionné, réduisant drastiquement les tirets cadratins et autres 'Claudismes'. L'évaluation stylistique est plus efficace en annotant les passages problématiques plutôt que par des phrases interdites ou des scores vagues.",
+                    "lien": "https://arize.com/blog/anthropic-says-it-fixed-claudes-writing/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                }
+            ]
+        },
+        {
             "date": "2026-09-28",
             "articles": [
                 {
@@ -690,83 +767,6 @@
                     "resume": "La qualité des données, l'expertise et l'étiquetage itératif sont souvent plus efficaces pour améliorer les systèmes ML que l'optimisation des modèles.",
                     "lien": "https://sujitpal.blogspot.com/2026/08/book-review-data-centric-machine.html?utm_source=tldrdata",
                     "categorie": "Deep Dive"
-                }
-            ]
-        },
-        {
-            "date": "2026-08-27",
-            "articles": [
-                {
-                    "titre": "SafeChat : Construire des systèmes de sécurité IA à l'échelle pour un marché en temps réel",
-                    "resume": "SafeChat de DoorDash gère des millions de chats, appels et images par jour avec un pipeline de modération hybride. Il utilise des classificateurs rapides et des LLM pour les cas difficiles, réduisant les incidents d'abus verbaux de moitié.",
-                    "lien": "https://www.infoq.com/presentations/doordash-llm-ai-moderation-platform/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "The LogDrive : Composition flexible par abstraction dans les logs partagés",
-                    "resume": "LogDrive, pour les systèmes de streaming type Kafka, sépare le log partagé en une couche de séquençage AtomicLog et une couche de durabilité, permettant une réplication flexible sur divers backends.",
-                    "lien": "https://jack-vanlightly.com/blog/2026/8/25/the-logdrive-flexible-composition-through-abstraction-in-shared-logs?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Benchmarking des trois facteurs d'amplification de RocksDB",
-                    "resume": "L'amplification de RocksDB varie fortement selon la charge de travail. Les insertions aléatoires augmentent l'amplification d'écriture (4.56x) et les suppressions celle d'espace (1.58x). Les filtres de Bloom maintiennent la latence de lecture L0 stable.",
-                    "lien": "https://hackernoon.com/benchmarking-rocksdbs-three-amplification-factors?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Au cœur de l'agent de mémoire cognitive de LinkedIn pour la personnalisation agentique",
-                    "resume": "LinkedIn a développé un agent de mémoire cognitive pour personnaliser son assistant d'embauche, utilisant quatre couches de mémoire. Il remplace GraphRAG par un arbre hiérarchique pour des mises à jour incrémentielles et des préférences fraîches et traçables.",
-                    "lien": "https://stackoverflow.blog/2026/08/25/inside-linkedin-s-cognitive-memory-agent/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Ingénierie des graphes à l'ère des agents LLM : de l'intelligence individuelle à l'intelligence système",
-                    "resume": "Face aux tâches complexes dépassant la capacité d'un seul agent IA, l'ingénierie des graphes permet de coordonner le travail parallèle, la vérification et l'exécution persistante en mappant tâches, agents et états du système.",
-                    "lien": "https://arxiv.org/abs/2608.21156v2?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "L'emprise de l'IA | Comment créer une équipe data sans épuisement professionnel lié à l'IA",
-                    "resume": "L'IA génère plus de pipelines et de dépendances, surchargeant les équipes data. Pour éviter l'épuisement, les entreprises doivent investir dans des infrastructures évolutives, la gouvernance et l'automatisation.",
-                    "lien": "https://medium.com/@hugolu87/ais-chokehold-how-to-build-a-data-team-without-ai-burnout-f267f82b0241?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Comment évaluer les LLM avant la production",
-                    "resume": "L'évaluation des LLM doit viser l'optimisation pour la production plutôt que les benchmarks génériques. GitHub a versionné prompts et modèles, testé contre des ambiguïtés réelles, réduisant les faux positifs de 95% tout en maintenant le rappel.",
-                    "lien": "https://github.blog/ai-and-ml/llms/how-to-evaluate-llms-before-production/?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
-                },
-                {
-                    "titre": "Khaos : Test de charge et ingénierie du chaos pour Kafka",
-                    "resume": "Khaos est un outil open source de test de charge et de simulation de chaos pour Kafka, réécrit en Go. Il simule des producteurs/consommateurs réalistes et des pannes de broker pour aider à tester le comportement de Kafka.",
-                    "lien": "https://github.com/aleksandarskrbic/khaos?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "DuckLabs rejoint AWS, les projets restent open source",
-                    "resume": "DuckLabs intègre AWS pour faire évoluer DuckDB et le Duck Stack. Les projets resteront open source sous licence MIT, la fondation DuckDB indépendante assurant leur gestion.",
-                    "lien": "https://ducklabs.com/news/2026/08/26/ducklabs-to-join-aws?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Nouveautés pour les expressions régulières dans PostgreSQL : pg_tre et pg_re2",
-                    "resume": "La recherche regex dans PostgreSQL peut varier. pg_trgm a accéléré une requête LIKE de 40s à 1.6s. pg_tre offre la correspondance floue mais avec un index long. pg_re2 est plus rapide pour les regex mais avec moins de fonctionnalités.",
-                    "lien": "https://www.depesz.com/2026/08/25/new-things-for-regular-expressions-in-postgresql-pg_tre-and-pg_re2?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "PagedAttention : Mémoire virtuelle pour le cache KV",
-                    "resume": "PagedAttention applique le concept de mémoire virtuelle aux caches KV des LLM, remplaçant l'allocation contiguë par des blocs de taille fixe. Cela réduit la fragmentation, augmente l'utilisation à 96% et permet de servir 2 à 4 fois plus d'utilisateurs par GPU.",
-                    "lien": "https://thegustafson.com/blog/paged-attention?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Le chiffre global vous ment",
-                    "resume": "La croissance des logiciels d'entreprise cache une divergence due à l'IA : les catégories axées sur les flux de travail et l'automatisation progressent, tandis que le service client et le HCM sont en retrait. La tarification de l'IA révèle mieux la valeur que les chiffres de croissance du marché.",
-                    "lien": "https://www.idc.com/resource-center/blog/the-aggregate-number-is-lying-to-you/?utm_source=tldrdata",
-                    "categorie": "News"
                 }
             ]
         }
