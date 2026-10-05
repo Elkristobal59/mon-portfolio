@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-10-05",
+            "articles": [
+                {
+                    "titre": "Plongée dans les données chez OpenAI : Comment un agent IA navigue 70 000 jeux de données",
+                    "resume": "OpenAI a créé un agent de données IA interne pour répondre à des questions complexes en combinant requêtes d'entrepôt et contexte riche. L'efficacité repose plus sur le contexte fourni et l'apprentissage continu que sur l'intelligence brute du modèle.",
+                    "lien": "https://www.youtube.com/watch?v=82zo4WMcjfU&utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Comment Datadog a étendu Apache DataFusion pour exécuter une requête sur plusieurs machines",
+                    "resume": "Datadog a développé Distributed DataFusion pour permettre aux requêtes lourdes d'Apache DataFusion de s'exécuter sur plusieurs machines, accélérant certaines d'entre elles jusqu'à 10 fois. Le système est désormais open source.",
+                    "lien": "https://www.datadoghq.com/blog/engineering/distributed-datafusion?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Comment LinkedIn a étendu ClickHouse pour la découverte et l'analyse de métriques",
+                    "resume": "LinkedIn a consolidé trois systèmes de métriques en un seul index ClickHouse, gérant plus de 150 000 requêtes par minute sur 13 milliards de métriques avec une latence moyenne de 68 ms, tout en réduisant l'utilisation de la mémoire.",
+                    "lien": "https://clickhouse.com/blog/linkedin-observability-at-scale?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Le Contexte est le Nouveau Code",
+                    "resume": "Le contexte devient un artefact logiciel clé pour les agents de codage IA. Sa gestion, son versionnement et ses tests sont essentiels en ingénierie des données pour prévenir les hallucinations des agents et la dégradation architecturale.",
+                    "lien": "https://www.infoq.com/presentations/context-as-code-devops-agents/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "LinkedIn a créé Kafka. Qu'a-t-il changé lorsque Kafka n'a plus suffi ?",
+                    "resume": "Confronté aux limites de Kafka, LinkedIn a développé Northguard pour dissocier l'ordonnancement, la réplication et le placement des données, facilitant leur mouvement et récupération. Xinfra a masqué la migration via une couche de compatibilité.",
+                    "lien": "https://softwaremill.com/linkedin-northguard-xinfra-kafka?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Amazon Aurora PostgreSQL prend désormais en charge les requêtes directes sur les données Apache Iceberg et Parquet",
+                    "resume": "Amazon Aurora PostgreSQL peut désormais interroger directement les tables Apache Iceberg et Parquet dans les lacs de données S3, éliminant le besoin de pipelines ETL distincts. Cette fonctionnalité, alimentée par DuckDB, est sans frais de licence supplémentaires.",
+                    "lien": "https://aws.amazon.com/blogs/aws/amazon-aurora-postgresql-now-supports-direct-querying-of-apache-iceberg-and-parquet-data-in-your-data-lake/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Présentation de Clef : nos modèles de décision open source et nouvelle plateforme de fine-tuning RL",
+                    "resume": "Cloudflare lance Clef et Clef-flash, des modèles open source qui transforment texte ou images en choix et probabilités pour router des tickets, classer des sites, etc. Ils sont exécutables localement ou via Workers AI.",
+                    "lien": "https://blog.cloudflare.com/clef-decision-models/?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Apache Iceberg 1.12.0 : Nouveautés, changements majeurs et guide de mise à niveau",
+                    "resume": "Apache Iceberg 1.12.0 étend le support des fonctionnalités v3 comme les types Variant, géospatiaux et les vecteurs de suppression. Il inclut aussi des suppressions d'API et plateformes, nécessitant une attention particulière pour la mise à jour.",
+                    "lien": "https://www.dremio.com/blog/apache-iceberg-1-12-0-whats-new-breaking-changes-and-upgrade-guide?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Le fossé d'inférence",
+                    "resume": "Une analyse de 43 261 appels Fable 5 révèle que le budget de raisonnement des modèles varie fortement, entraînant un 'fossé d'inférence' où les performances réelles peuvent être inférieures à celles des benchmarks.",
+                    "lien": "https://x.com/Lon/status/2101034933284417614?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Microsoft et Google soutiennent Apache Ossie pour l'interopérabilité des plateformes de données et d'IA",
+                    "resume": "Microsoft et Google appuient Apache Ossie, une spécification ouverte d'échange de modèles sémantiques. Elle vise à standardiser les définitions de jeux de données et métriques via des schémas JSON/YAML, favorisant l'interopérabilité entre plateformes BI.",
+                    "lien": "https://www.infoworld.com/article/4229785/microsoft-google-back-apache-ossie-to-make-enterprise-data-and-ai-platforms-more-interoperable-2.html?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Pourquoi votre pipeline d'agent IA est lent (et comment le corriger sans changer de modèle)",
+                    "resume": "Une optimisation d'un pipeline AWS Bedrock a réduit la latence des agents IA de 13 874 ms à 1 824 ms sans modifier les modèles. La solution a consisté à paralléliser les contrôles de sécurité indépendants et à court-circuiter les règles de rejet.",
+                    "lien": "https://techstrong.ai/contributed-content/why-your-ai-agent-pipeline-is-slow-and-how-to-fix-it-without-changing-models/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Agrégations de chaînes plus rapides avec les tables de dimensions",
+                    "resume": "Les agrégations sur des chaînes de caractères sont coûteuses. DuckDB démontre que l'utilisation de clés de substitution entières via des tables de dimensions peut améliorer les performances, réduire la mémoire et le risque de débordement.",
+                    "lien": "https://duckdb.org/2026/10/02/dimension-tables.html?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                }
+            ]
+        },
+        {
             "date": "2026-10-01",
             "articles": [
                 {
@@ -689,83 +766,6 @@
                     "titre": "Au-delà des graphiques linéaires : une diversité overdue dans la visualisation télémétrique",
                     "resume": "Les opérateurs ont besoin d'une boîte à outils de visualisation télémétrique plus variée que les seuls graphiques linéaires pour répondre efficacement à différentes questions opérationnelles.",
                     "lien": "https://www.infoq.com/presentations/telemetry-data/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                }
-            ]
-        },
-        {
-            "date": "2026-08-31",
-            "articles": [
-                {
-                    "titre": "Au-delà du décalage d'offset : Calculer le temps d'attente dans les pipelines Apache Hudi",
-                    "resume": "Les pipelines Hudi de Twilio stockent des checkpoints en S3, masquant la fraîcheur des données. Une nouvelle approche lit les checkpoints Hudi et calcule la fraîcheur depuis le plus ancien enregistrement non committé, transformant le décalage SLA en un ratio d'incidents. ",
-                    "lien": "https://www.infoq.com/articles/beyond-offset-lag-kafka-apache-hudi/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Mettre à l'échelle la récupération conditionnelle apprise pour le fil d'actualité Pinterest",
-                    "resume": "Pinterest a optimisé la génération de candidats pour son fil d'actualité en conditionnant les embeddings de récupération sur des contextes explicites. Le système combine modélisation séquentielle, IDs sémantiques et GPU pour gérer plusieurs intentions utilisateur sans augmenter les coûts de service.",
-                    "lien": "https://medium.com/pinterest-engineering/scaling-conditional-learned-retrieval-for-pinterest-home-feed-ecfba7e5a426?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Log-first ou Table-first ? Apache Kafka, Fluss et les tables de streaming",
-                    "resume": "Cet article compare les pipelines 'log-first' et 'table-first' (comme Fluss) dans le streaming de données. Il examine où les mises à jour, la compaction et les snapshots devraient être gérés, plus près du stockage chaud que d'un lac de données.",
-                    "lien": "https://softwaremill.com/log-first-or-table-first-apache-kafka-fluss-and-streaming-tables/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Risques d'indisponibilité omniprésents dans les logiciels cloud",
-                    "resume": "Les incidents majeurs dans le cloud proviennent de risques inévitables (saturation, pannes réseau). La fiabilité ajoute sa propre complexité, donc les pannes ne peuvent être éliminées et une forte réponse aux incidents est cruciale.",
-                    "lien": "https://surfingcomplexity.blog/2026/08/29/omnipresent-availability-risks-in-cloud-software/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Data Mesh chez Grab : Opérationnaliser la fiabilité des données avec des DPI automatisés",
-                    "resume": "Grab gère la fiabilité des données via des 'Data Production Issues' (DPIs) et une API de santé des données. Ce système découple l'orchestration des incidents de la plateforme, classifie les échecs et automatise l'attribution des causes, transformant la qualité des données en un modèle de gouvernance opérationnel.",
-                    "lien": "https://engineering.grab.com/data-mesh-at-grab-part-three?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "La feature 100% corrélée avec la réponse – car c'était la réponse",
-                    "resume": "Les techniques comme l'encodage cible ou les moyennes glissantes peuvent provoquer une fuite de données si mal appliquées. L'article détaille un workflow sûr : séparer les données d'abord, calculer les encodages hors-fold sur le set d'entraînement et utiliser des transformations respectueuses des groupes.",
-                    "lien": "https://levelup.gitconnected.com/the-feature-that-was-100-correlated-with-the-answer-because-it-was-the-answer-7c86eeb7adb8?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
-                },
-                {
-                    "titre": "Quitter Fivetran pour le coût : Alternatives pour l'ingestion massive de Salesforce vers Snowflake",
-                    "resume": "Une entreprise cherche des alternatives rentables à Fivetran pour migrer massivement des données Salesforce vers Snowflake. Les solutions suggérées incluent l'intégration native Salesforce Data Cloud ou un pipeline dlt personnalisé avec l'API Bulk de Salesforce.",
-                    "lien": "https://www.reddit.com/r/dataengineering/comments/1w0khin/moving_away_from_fivetran_due_to_cost_massive/?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "Sortie de Spark 4.1.0",
-                    "resume": "Spark 4.1.0 introduit des pipelines déclaratifs, un mode de streaming structuré en temps réel, le support des UDF/UDTF natifs Arrow, SQL scripting et VARIANT en GA, ainsi que Spark ML sur Connect pour Python. L'accent est mis sur la réduction de latence, une meilleure expérience PySpark/SQL et une stabilité accrue.",
-                    "lien": "https://spark.apache.org/releases/spark-release-4.1.0.html?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Apache DataFusion 55.0.0 est disponible",
-                    "resume": "DataFusion 55.0.0 apporte le support de MERGE INTO, le partitionnement par plage, l'élagage de groupes de lignes à l'exécution, et des gains de performance. Les améliorations incluent TopK pruning, une évaluation plus rapide des listes IN, moins de requêtes S3 pour CSV, et une réduction d'utilisation mémoire.",
-                    "lien": "https://datafusion.apache.org/blog/2026/08/25/datafusion-55.0.0?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Les modèles de fondation tabulaires se réparent-ils d'eux-mêmes ?",
-                    "resume": "Les résultats d'ablation dans les modèles de fondation tabulaires peuvent être trompeurs. Des études ont montré peu de preuves d'auto-réparation en aval, suggérant qu'une sortie stable après ablation devrait inciter à examiner plus attentivement la causalité, plutôt que de conclure à l'inutilité d'une couche.",
-                    "lien": "https://www.lesswrong.com/posts/NpBufh2z2w4mgHKvm/do-tabular-foundation-models-repair-themselves?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "SELECT * FROM internet.blogposts (Liberté d'accès aux données)",
-                    "resume": "L'action d'X contre Nitter illustre comment les plateformes fermées limitent l'innovation. Le protocole AT propose une alternative avec des identités portables et la libre réplication de données partagées, favorisant la compétition et l'innovation.",
-                    "lien": "https://pfrazee.leaflet.pub/3mu3p2smmis22?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Critique de livre : Machine Learning centré sur les données avec Python",
-                    "resume": "La qualité des données, l'expertise et l'étiquetage itératif sont souvent plus efficaces pour améliorer les systèmes ML que l'optimisation des modèles.",
-                    "lien": "https://sujitpal.blogspot.com/2026/08/book-review-data-centric-machine.html?utm_source=tldrdata",
                     "categorie": "Deep Dive"
                 }
             ]
