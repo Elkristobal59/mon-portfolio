@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-10-08",
+            "articles": [
+                {
+                    "titre": "Metrics Board : Créer une couche de métriques prête pour les agents",
+                    "resume": "Pinterest a créé \"Metrics Board\", une plateforme centralisée qui automatise la création, le contrôle qualité, la documentation et la publication des métriques, facilitant leur gestion et leur fiabilité. Elle gère plus de 98% des métriques d'expérimentation et réduit le temps de développement, tout en offrant aux agents IA un accès à des métriques fiables.",
+                    "lien": "https://medium.com/pinterest-engineering/metrics-board-building-an-agent-ready-metrics-layer-2c8fefe68756?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Au-delà des tests synthétiques : Capturer et rejouer des charges de travail réelles de bases de données chez Airbnb",
+                    "resume": "Airbnb a développé un système pour rejouer des charges de travail MySQL réelles en production, plutôt que des benchmarks synthétiques. En capturant et rejouant les requêtes tout en préservant l'ordre et le timing, ce système permet de valider des mises à jour et migrations, révélant des régressions importantes qui auraient pu être manquées.",
+                    "lien": "https://airbnb.tech/infrastructure/beyond-synthetic-testing-capturing-and-replaying-real-database-workloads-at-airbnb?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "CDC chez WHOOP : Réplication en libre-service pour des centaines de tables Postgres",
+                    "resume": "WHOOP a mis en place un pipeline CDC en libre-service permettant aux équipes de répliquer des tables Postgres vers leur entrepôt de données. La conception sépare l'accès rapide aux changements bruts de la matérialisation plus lente, tout en automatisant l'évolution des schémas et la gestion de la propriété. Le CDC est plus efficace quand l'intégration est pilotée par la publication et que la responsabilité reste alignée avec le service source.",
+                    "lien": "https://engineering.whoop.com/cdc-at-whoop?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "J'ai comparé Databricks à mon iPhone",
+                    "resume": "Le PDG de Fivetran a comparé DuckDB sur un iPhone 17 Pro à des clusters Databricks, constatant que l'iPhone était plus rapide sur la plupart des charges de travail TPC-H malgré des ressources inférieures. Cela suggère que de nombreuses tâches d'analyse n'ont pas besoin de systèmes distribués coûteux et pourraient s'exécuter plus économiquement sur des machines uniques avec des moteurs comme DuckDB ou Polars.",
+                    "lien": "https://www.fivetran.com/blog/i-benchmarked-databricks-against-my-iphone?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Comment construire un benchmark de \"questions d'or\" pour vos agents de données",
+                    "resume": "Les agents de données nécessitent des tests de régression, pas seulement des démonstrations, en raison de l'évolution constante des modèles, des prompts, des schémas et des définitions de métriques. Une suite de \"questions d'or\" liée à des snapshots de données figés, évaluée sur les résultats d'exécution et appliquée en CI, est la meilleure approche. Traitez les changements des agents comme des versions logicielles.",
+                    "lien": "https://iceberglakehouse.com/posts/data-agent-golden-question-benchmark?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                },
+                {
+                    "titre": "5 cas d'utilisation de Jev pour l'analyse, avec des requêtes et des jeux de données réels",
+                    "resume": "MotherDuck présente cinq façons pratiques d'utiliser son modèle IA Jev pour classer du texte directement en SQL (évaluant des agents IA, analysant le sentiment, notant des appels de vente, catégorisant des offres d'emploi). Jev renvoie des réponses prédéfinies avec des scores de confiance et est environ 20 fois plus rapide que les appels LLM standards, rendant l'analyse de texte à grande échelle plus économique.",
+                    "lien": "https://motherduck.com/blog/jev-analytics-use-cases/?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                },
+                {
+                    "titre": "Stately Graph (Dépôt GitHub)",
+                    "resume": "Stately a publié une bibliothèque TypeScript open-source pour construire, analyser et visualiser des graphes à partir de données JSON simples, avec support d'algorithmes courants et 14 formats. Elle surpasse les alternatives populaires dans la plupart des benchmarks, notamment en construisant des graphes de 100 000 nœuds 9 à 15 fois plus vite que Graphology.",
+                    "lien": "https://github.com/statelyai/graph?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Sortie de Polars 2.0",
+                    "resume": "Polars 2.0 apporte des requêtes plus rapides, un support SQL de première classe, un nouveau type de données Map et le streaming avec débordement sur disque activé par défaut pour gérer de grands jeux de données sans manquer de mémoire. Polars déclare également surpasser DuckDB et DataFusion dans la plupart de ses benchmarks SQL, tandis qu'une vérification de type plus stricte aide les développeurs et les agents IA à détecter les erreurs plus tôt.",
+                    "lien": "https://pola.rs/posts/release-polars-2/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Sortie d'Apache DataFusion Comet 1.1.0",
+                    "resume": "Comet 1.1.0 optimise l'exécution de Spark en code natif, notamment avec des écritures Iceberg expérimentales et un \"shuffle\" natif via Celeborn. Cette version s'attaque également à une cause d'échec opérationnel courante : la pression opaque de la mémoire hors-heap, en ajoutant une meilleure comptabilité et journalisation de la mémoire pour réduire les arrêts de conteneurs.",
+                    "lien": "https://datafusion.apache.org/blog/2026/10/01/datafusion-comet-1.1.0?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Conception d'enzymes pour une chimie nouvelle et des substrats non naturels avec AlphaProtein Novo",
+                    "resume": "AlphaProtein Novo de Google DeepMind utilise l'IA pour concevoir de nouvelles enzymes à partir de zéro, y compris celles qui produisent des ingrédients pharmaceutiques et décomposent les polluants plastiques. Certaines surpassent les enzymes naturelles pour des tâches spécifiques, ouvrant de nouvelles voies en médecine, chimie et dépollution environnementale.",
+                    "lien": "https://www.biorxiv.org/content/10.64898/2026.10.01.756017v1?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "OpenAI Math (Dépôt GitHub)",
+                    "resume": "OpenAI a publié 722 manuscrits mathématiques générés par IA, couvrant 372 familles de recherche, produits par un modèle interne non publié et testé sur environ 4 000 problèmes. De nombreux résultats incluent des preuves formellement vérifiées à l'aide de Lean, mais OpenAI avertit que certaines découvertes non vérifiées peuvent contenir des erreurs.",
+                    "lien": "https://github.com/openai/math?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Turtle n'est pas JSON",
+                    "resume": "Les données de séries temporelles nécessitent plus que de simples valeurs et horodatages : les unités, la provenance, les dérivations et les exceptions sont importantes. JSON-LD et RDF rendent ce contexte explicite et interrogeable, améliorant la validation et l'interopérabilité. Il est conseillé de conserver les mesures en vrac dans un stockage efficace et d'utiliser une couche de graphe pour les métadonnées, la sémantique et la gestion des anomalies.",
+                    "lien": "https://ontologist.substack.com/p/turtle-is-not-json?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                }
+            ]
+        },
+        {
             "date": "2026-10-05",
             "articles": [
                 {
@@ -689,83 +766,6 @@
                     "titre": "De l'interrogation de données à l'investigation de données : Repenser les interfaces de langage naturel pour les bases de données",
                     "resume": "Cet article propose le paradigme d'investigation de données, avec le prototype D2, pour remplacer le 'texte vers SQL' en permettant aux IA de mener des séquences de requêtes et de raisonner sur les résultats intermédiaires afin de résoudre des problèmes complexes.",
                     "lien": "https://arxiv.org/abs/2609.03898?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                }
-            ]
-        },
-        {
-            "date": "2026-09-03",
-            "articles": [
-                {
-                    "titre": "Exécuter des expériences Apache Spark en dormant (et en avion)",
-                    "resume": "Netflix a créé une boucle d'expérimentation parallèle pour optimiser plus rapidement ses pipelines Spark massifs en lançant, surveillant et comparant plusieurs tests à l'échelle de la production.",
-                    "lien": "https://netflixtechblog.medium.com/running-apache-spark-experiments-in-my-sleep-and-on-a-plane-588816b6b5f8?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Comment nous avons éliminé 1 million de dollars/an de dépenses inutiles en agents IA en une heure",
-                    "resume": "Databricks a découvert et corrigé rapidement des bugs mineurs dans des outils d'agents IA, économisant 1,2 million de dollars par an en résolvant les problèmes de retries et de productivité perdue.",
-                    "lien": "https://www.databricks.com/blog/how-we-eliminated-1-million-year-wasted-ai-agent-spend-one-hour?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Rediriger le Flux : Comment Lyft a migré vers l'Opérateur Apache Flink",
-                    "resume": "Lyft a migré sa flotte de streaming vers l'Opérateur Apache Flink Kubernetes open-source, en partageant les leçons d'une migration progressive et parallèle.",
-                    "lien": "https://eng.lyft.com/rerouting-the-stream-how-lyft-moved-to-the-apache-flink-operator-36f20246d250?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Lire ses propres écritures, sans le primaire",
-                    "resume": "PostgreSQL 19 introduit 'WAIT FOR LSN' pour permettre aux applications de lire leurs propres écritures depuis des réplicas, résolvant la cohérence \"read-your-writes\" sans forcer la lecture sur le primaire.",
-                    "lien": "https://boringsql.com/posts/read-your-own-writes/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Pourquoi AWS a acheté DuckLabs",
-                    "resume": "AWS a acquis DuckLabs pour son équipe et influencer la feuille de route de DuckDB, positionnant ce dernier comme fondation pour l'analytique et les agents IA basés sur S3.",
-                    "lien": "https://www.linkedin.com/pulse/why-aws-bought-ducklabs-michael-driscoll-1gm7c/?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Construire et utiliser des requêtes nommées",
-                    "resume": "Les requêtes nommées transforment SPARQL en une API gouvernée, exposant les données de graphes aux applications et agents de manière contrôlée, sans accès direct aux requêtes brutes.",
-                    "lien": "https://ontologist.substack.com/p/building-and-using-named-queries?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "La boîte à outils CUDA moderne en pratique : optimisation pas à pas",
-                    "resume": "NVIDIA montre comment les outils CUDA modernes, avec des optimisations incrémentales, peuvent accélérer le code GPU de 300x, rendant le traitement d'image beaucoup plus rapide.",
-                    "lien": "https://developer.nvidia.com/blog/the-modern-cuda-toolbox-in-practice-a-step-by-step-optimization-walkthrough/?utm_source=tldrdata",
-                    "categorie": "Tutorial"
-                },
-                {
-                    "titre": "MLCommons publie les résultats du benchmark MLPerf Storage v3.0",
-                    "resume": "MLPerf Storage v3.0 ajoute des tests pour les caches KV et les bases de données vectorielles, ainsi que l'accès S3, rendant le benchmark plus pertinent pour les systèmes IA modernes.",
-                    "lien": "https://mlcommons.org/2026/09/mlperf-storage-v3-0-results/?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "dbt doctor (Dépôt GitHub)",
-                    "resume": "dbt doctor est un outil d'analyse statique open-source qui évalue la santé des projets dbt (documentation, tests, schémas, etc.) et peut bloquer les changements de mauvaise qualité.",
-                    "lien": "https://github.com/northgraindata/dbt-doctor?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "Présentation de FrontierHarness Eval",
-                    "resume": "FrontierHarness a comparé les harnais d'agents de codage, révélant des performances similaires mais des coûts variant jusqu'à 17x, soulignant l'impact des outils et de la compatibilité des modèles sur l'efficacité.",
-                    "lien": "https://runta.com/blog/introducing-frontierharness-eval/?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Comment économiser des pétaoctets de stockage cache avec Zstandard et Pingora",
-                    "resume": "Cloudflare prototype une solution de transcodage de cache qui utilise Zstandard pour compresser les actifs textuels, réduisant leur taille d'un tiers et augmentant la capacité du cache de plusieurs pétaoctets.",
-                    "lien": "https://blog.cloudflare.com/cache-transcoding/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Au-delà des graphiques linéaires : une diversité overdue dans la visualisation télémétrique",
-                    "resume": "Les opérateurs ont besoin d'une boîte à outils de visualisation télémétrique plus variée que les seuls graphiques linéaires pour répondre efficacement à différentes questions opérationnelles.",
-                    "lien": "https://www.infoq.com/presentations/telemetry-data/?utm_source=tldrdata",
                     "categorie": "Deep Dive"
                 }
             ]
