@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-10-12",
+            "articles": [
+                {
+                    "titre": "Qu'est-ce qui définit l'architecture Streamhouse ?",
+                    "resume": "Le concept \"Streamhouse\" d'Apache Fluss unifie les données de streaming et du lakehouse en une seule table logique pour le streaming, le service et l'analyse, réduisant ainsi la duplication et simplifiant les systèmes.",
+                    "lien": "https://ipolyzos.substack.com/p/what-defines-the-streamhouse-architecture?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "La couche de contexte des données de LinkedIn : unifier les données fiables pour les humains et les agents IA",
+                    "resume": "LinkedIn a créé une couche partagée pour guider humains et agents IA vers des datasets fiables, améliorant la qualité et la rapidité des réponses d'un agent analytique de 25,9% à 79,5% et réduisant le temps de réponse.",
+                    "lien": "https://www.linkedin.com/blog/engineering/infrastructure/inside-linkedins-data-context-layer-curating-trustworthy-context-for-humans-and-agents?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Optimisation des ressources Apache Spark : leçons de 8 millions de jobs par jour",
+                    "resume": "Salesforce a réduit ses coûts de calcul Spark de 31% en adaptant les ressources aux usages réels, après avoir constaté que de nombreux executors restaient inactifs plus de 90% du temps.",
+                    "lien": "https://engineering.salesforce.com/apache-spark-resource-optimization-lessons-from-eight-million-jobs-a-day/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "De l'activité à l'intention : générer des parcours utilisateurs avec des LLM",
+                    "resume": "Pinterest utilise un LLM de 4B finement réglé pour transformer l'historique d'activité des utilisateurs en \"parcours\" (objectifs actifs) classés et localisés, améliorant l'engagement des notifications à moindre coût.",
+                    "lien": "https://medium.com/pinterest-engineering/from-activity-to-intent-generating-user-journeys-with-llms-9652b9417626?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Claude Dashboards et le passage du constructeur de graphiques au spécificateur",
+                    "resume": "La bêta de Claude Dashboards d'Anthropic permet de créer des tableaux de bord sans manipulation manuelle, traçant les chiffres à la source. L'article conseille aux développeurs BI de se concentrer sur la modélisation des données, le SQL et le design.",
+                    "lien": "https://thedatavist.substack.com/p/claude-dashboards-and-the-shift-from?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Cinq requêtes PostgreSQL qui en faisaient trop",
+                    "resume": "L'article démontre comment des pratiques comme la déduplication inutile, la matérialisation de CTEs, le tri aléatoire ou les expressions non indexées ralentissent les requêtes PostgreSQL, et comment de simples ajustements SQL ou des index peuvent améliorer les performances.",
+                    "lien": "https://explainmeasured.com/posts/queries-doing-extra-work/?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                },
+                {
+                    "titre": "Votre ontologie enregistre les permissions, pas l'autorité",
+                    "resume": "L'article souligne que les ontologies d'entreprise enregistrent les permissions mais pas l'autorité décisionnelle. Il propose un cadre pour distinguer droits documentés et influence informelle, afin d'éviter que l'automatisation ne transforme les lacunes organisationnelles en actions erronées.",
+                    "lien": "https://contextandchaos.substack.com/p/your-ontology-records-permission?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Leviathan : Mémoire profonde pour agents sur de grands datasets",
+                    "resume": "Leviathan est un outil Rust qui fournit aux agents IA des résultats de recherche compacts et cités à partir de grands datasets, en utilisant l'indexation de texte intégral SQLite et une mémoire persistante optionnelle.",
+                    "lien": "https://github.com/elstongun/leviathan?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Je suis maintenant convaincu que DuckDB mono-nœud est le meilleur moteur à toute échelle réaliste",
+                    "resume": "Un utilisateur de Databricks a constaté que DuckDB mono-nœud, optimisé pour les lectures S3, surpassait Trino sur le même hardware pour des requêtes de 10 To, offrant des performances comparables ou meilleures à moitié prix qu'un cluster Trino.",
+                    "lien": "https://www.reddit.com/r/DuckDB/comments/1x1h4f4/im_now_convinced_singlenode_duckdb_is_the_best/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Mode Agent dans l'interface CLI de DuckDB",
+                    "resume": "La CLI de DuckDB 2.0 intègre un \"mode agent\" qui détecte l'utilisation par une IA, optimise la sortie, gère les requêtes et erreurs, permettant aux agents de lire 60% moins de tokens tout en obtenant des réponses correctes.",
+                    "lien": "https://duckdb.org/2026/10/09/agent-mode?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Observabilité basée sur l'ontologie : Construire le graphe de connaissances E2E à l'échelle de Netflix",
+                    "resume": "Netflix utilise un graphe de connaissances basé sur l'ontologie pour unifier les données d'observabilité, les discussions d'incidents et la topologie des services, permettant un triage et une analyse des causes racines plus rapides et automatisés à grande échelle, grâce à l'IA.",
+                    "lien": "https://www.infoq.com/presentations/netflix-observability-aiops-ontology-scale?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Les fichiers de relations Postgres, sous base/",
+                    "resume": "L'article décrit comment PostgreSQL stocke les relations sous forme de fichiers physiques identifiés par tablespace, base de données et relfilenode. Il explique la faible couplage entre objets logiques et physiques, et la gestion des fichiers segmentés pour les grandes relations.",
+                    "lien": "https://boringsql.com/posts/files-forks-and-relfilenodes?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                }
+            ]
+        },
+        {
             "date": "2026-10-08",
             "articles": [
                 {
@@ -690,83 +767,6 @@
                     "resume": "xlDuckDb est un add-in Excel qui ajoute la fonction DuckDbQuery(). Elle permet d'exécuter du SQL DuckDB et d'afficher les résultats dans des cellules, interrogeant des plages, des tableaux, ou des fichiers JSON, CSV et Parquet locaux/distants.",
                     "lien": "https://github.com/RusselWebber/xlDuckDb?utm_source=tldrdata",
                     "categorie": "Tool"
-                }
-            ]
-        },
-        {
-            "date": "2026-09-07",
-            "articles": [
-                {
-                    "titre": "Contexte, Sémantique et Ontologie : Introduction à l'Ère des Agents",
-                    "resume": "Les couches sémantiques définissent les métriques métier, les couches contextuelles fournissent les connaissances de support, et les ontologies décrivent les entités. Elles aident les agents IA à interpréter les données, mais nécessitent une maintenance humaine pour rester précises.",
-                    "lien": "https://motherduck.com/blog/context-layer-vs-semantic-layer-ontology/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Portal de Spotify a réduit ma consommation de tokens Claude Code de 90%",
-                    "resume": "Spotify a réduit de 90% l'usage des tokens de son agent de codage en dédiant les tâches d'E/S à des modes 'Portal' déclaratifs basés sur Gemini 2.5 Flash, réservant les modèles plus coûteux aux problèmes complexes.",
-                    "lien": "https://engineering.atspotify.com/2026/9/portal-by-spotify-cut-my-claude-code-token-usage-by-90?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "ZGateway : Leçons tirées de l'ajout d'un proxy devant ZippyDB",
-                    "resume": "Meta a placé un proxy (ZGateway) devant ZippyDB pour centraliser la gestion du trafic et des politiques, réduisant massivement les connexions et améliorant la résilience et le contrôle de l'infrastructure.",
-                    "lien": "https://engineering.fb.com/2026/09/03/core-infra/zgateway-proxy-zippydb-meta/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "De S3 au GPU en une seule copie : Repenser le chargement de données pour l'entraînement ML",
-                    "resume": "Vortex est un format open-source en colonnes pour le streaming de données de S3 aux GPU avec un minimum de copies. Il optimise les goulots d'étranglement CPU/NVMe pour alimenter efficacement les accélérateurs ML.",
-                    "lien": "https://www.infoq.com/presentations/vortex-columnar-file-format-gpu-streaming/?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "Une requête unique vaut mieux que mille : votre API de batching ne fait probablement pas de batching",
-                    "resume": "Le vrai batching dans les bases de données (ex: `COPY` pour Postgres) réduit considérablement les temps de chargement en éliminant les allers-retours réseau et frais généraux, contrairement aux API qui traitent souvent les lignes individuellement.",
-                    "lien": "https://ankit-rana.com/logs/47-batching-one-round-trip-beats-a-thousand/?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
-                },
-                {
-                    "titre": "Configurer l'analyse IA agentique : Du texte libre au SQL au protocole de contexte de modèle",
-                    "resume": "L'analyse IA échoue souvent avec du SQL généré librement. Les systèmes devraient utiliser des outils de couche sémantique vérifiés pour les requêtes répétées et réserver le SQL ouvert aux cas inspectables par l'humain. La maintenance des définitions est cruciale.",
-                    "lien": "https://www.eckerson.com/articles/configuring-agentic-ai-analytics-from-free-text-to-sql-to-model-context-protocol?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Révolutionner l'Analyse avec les Agents",
-                    "resume": "Les fondateurs de Nao estiment que l'IA pousse les équipes de données vers la maintenance du contexte métier et l'analytique en libre-service. Ils conseillent de commencer par un cas d'usage ciblé et d'améliorer les modèles de données avant un déploiement sémantique complet.",
-                    "lien": "https://www.youtube.com/watch?v=BbWfELhzQRU&utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Sail 0.7 : Calcul sans état, état de tâche durable",
-                    "resume": "Sail 0.7 déplace l'état intermédiaire de type Spark vers le stockage objet, supportant le shuffle bloquant et les checkpoints. Cela améliore la résilience en permettant aux tâches de reprendre sans reconstruire les plans de requête, ciblant des clusters plus petits et des workers sans état.",
-                    "lien": "https://lakesail.com/blog/sail-0-7-blocking-shuffle-checkpoint/?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Pré-version de Polars 2.0",
-                    "resume": "Polars 2.0 fait du moteur de streaming le défaut pour les requêtes 'lazy', visant une consommation mémoire réduite et une exécution plus rapide (sans garantie d'ordre des lignes). Il améliore aussi la coercition de type et supprime des API obsolètes.",
-                    "lien": "https://pola.rs/posts/announcing-polars-2/?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Apache Kafka vs Apache Iggy : Même log, moteur différent",
-                    "resume": "Apache Iggy est un moteur de streaming Rust optimisé pour faible latence et déploiements simples. Bien que prometteur, Kafka conserve l'avantage pour les opérations complexes en production (réplication, sémantique 'exactement une fois', etc.).",
-                    "lien": "https://softwaremill.com/apache-kafka-vs-apache-iggy-same-log-different-engine/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Quand la source de vérité est une Google Sheet",
-                    "resume": "Warner Music Group a transformé une Google Sheet manuellement éditée en tables Databricks gouvernées, en gérant les modifications complexes pour assurer la fiabilité des rapports exécutifs malgré une interface métier désordonnée.",
-                    "lien": "https://tech.wmg.com/handling-the-messy-reality-of-google-sheets-building-a-resilient-counterfeit-takedown-pipeline-d4c3502664bd?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
-                },
-                {
-                    "titre": "De l'interrogation de données à l'investigation de données : Repenser les interfaces de langage naturel pour les bases de données",
-                    "resume": "Cet article propose le paradigme d'investigation de données, avec le prototype D2, pour remplacer le 'texte vers SQL' en permettant aux IA de mener des séquences de requêtes et de raisonner sur les résultats intermédiaires afin de résoudre des problèmes complexes.",
-                    "lien": "https://arxiv.org/abs/2609.03898?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
                 }
             ]
         }
