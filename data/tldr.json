@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-10-15",
+            "articles": [
+                {
+                    "titre": "CASTLE : Entraîner la recherche en langage naturel avant la première requête réelle",
+                    "resume": "La méthode CASTLE d'Airbnb génère des requêtes et des étiquettes synthétiques à partir de sessions de réservation pour pré-entraîner la recherche en langage naturel avant l'afflux d'utilisateurs, avec une grande précision.",
+                    "lien": "https://medium.com/airbnb-engineering/castle-training-natural-language-search-before-the-first-real-query-3818ef8b4828?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Utiliser la capacité d'inférence d'IA opportuniste pour de meilleures recommandations publicitaires",
+                    "resume": "Meta utilise la capacité de calcul inactive pour améliorer les recommandations publicitaires en classant plus d'annonces ou en redirigeant vers des modèles plus puissants, en se redimensionnant sans affecter le service lors des pics de charge.",
+                    "lien": "https://engineering.fb.com/2026/10/12/ml-applications/turning-opportunistic-ai-inference-capacity-into-better-ads-recommendations/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "De 2 500 à 24 requêtes : Reconstruire l'historique des étoiles sans les utilisateurs",
+                    "resume": "GitHub a refait son API d'historique des étoiles pour des comptes quotidiens efficaces (réduisant de 2500 à 24 requêtes) en filtrant les étoiles par date avant le comptage, sans exposer les identités des utilisateurs.",
+                    "lien": "https://github.blog/engineering/architecture-optimization/from-2500-requests-to-24-rebuilding-star-history-without-the-stargazers/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Mises à niveau Postgres sans temps d'arrêt avec la réplication logique",
+                    "resume": "Démonstration d'une méthode de mise à niveau majeure de PostgreSQL avec un temps d'arrêt quasi nul via la réplication logique, permettant un rollback en direct et une interruption d'écriture minimale (environ 180 ms) dans un environnement Docker.",
+                    "lien": "https://tapoueh.org/blog/2026/10/zero-downtime-postgres-upgrades-with-logical-replication?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                },
+                {
+                    "titre": "Mettre en œuvre la sécurité au niveau des lignes pour les tableaux de bord Claude via le protocole MCP",
+                    "resume": "Cette preuve de concept montre comment ajouter une sécurité au niveau des lignes aux tableaux de bord Claude en utilisant un serveur MCP et DuckDB, garantissant que les utilisateurs n'accèdent qu'aux données autorisées, adaptant ainsi le contenu par utilisateur.",
+                    "lien": "https://thedatavist.substack.com/p/need-to-know-implementing-row-level?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                },
+                {
+                    "titre": "Inverser l'exponentielle : Comment Cloudflare réduit l'utilisation du matériel",
+                    "resume": "Cloudflare a optimisé l'utilisation du matériel en réduisant les données plus tôt, en retardant la duplication et en utilisant des stratégies comme la compression ZSTD, l'échantillonnage en périphérie et la pré-agrégation, en se concentrant sur l'optimisation des octets.",
+                    "lien": "https://blog.cloudflare.com/rewinding-the-exponential?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Quatre arguments PostgreSQL qui se sont révélés égaux",
+                    "resume": "Compare des alternatives de micro-optimisation PostgreSQL, montrant que pour 1 000 IDs, les jointures IN, ANY et VALUES fonctionnent de manière similaire. Souligne l'importance d'utiliser 'EXPLAIN' et d'éviter les réécritures aveugles.",
+                    "lien": "https://explainmeasured.com/posts/arguments-that-came-out-even?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                },
+                {
+                    "titre": "Phoenix (Dépôt GitHub)",
+                    "resume": "Phoenix est une plateforme d'observabilité d'IA open-source auto-hébergée pour le traçage, l'évaluation et le débogage des applications LLM, incluant le test et la relecture des prompts.",
+                    "lien": "https://github.com/Arize-ai/phoenix?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "XERJ (Dépôt GitHub)",
+                    "resume": "XERJ est un moteur de recherche local compatible Elasticsearch (Apache-2.0) qui indexe automatiquement code, logs, PDF, SQLite et CSV pour la récupération par agent, l'analyse d'incidents et le RAG, sans configuration de schéma.",
+                    "lien": "https://github.com/xerj-org/xerj?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "SQLBuild : Refactoring sécurisé pour le SQL d'entrepôt (Dépôt GitHub)",
+                    "resume": "SQLBuild est un framework open-source de transformation SQL et Python pour le refactoring sécurisé des entrepôts de données, vérifiant les contrats et la lignée, exécutant des tests et gérant les changements de schéma tout en préservant l'historique.",
+                    "lien": "https://github.com/chio-labs/sqlbuild?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Repenser le contrôle de version chez Anthropic",
+                    "resume": "Anthropic a remplacé Git par Scion, un système de contrôle de version maison, en raison de problèmes de mise à l'échelle. Scion offre des 'checkouts' 100 fois plus rapides et réduit considérablement l'utilisation des ressources en déplaçant les opérations vers les serveurs.",
+                    "lien": "https://www.anthropic.com/engineering/redesigning-source-control?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Analyse de JSON à des dizaines de gigaoctets par seconde… en Python",
+                    "resume": "Un benchmark a traité 7,6 Go de JSON à environ 66 Go/s avec fastsimdjson sur Python 'free-threaded' et 64 cœurs, grâce au parallélisme des threads et à la création d'objets Python uniquement pour les champs nécessaires.",
+                    "lien": "https://lemire.me/blog/2026/10/12/parsing-json-at-tens-of-gigabytes-per-second-in-python/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                }
+            ]
+        },
+        {
             "date": "2026-10-12",
             "articles": [
                 {
@@ -690,83 +767,6 @@
                     "resume": "Des outils comme dbt transforment les analyses fragiles et non documentées en systèmes reproductibles. L'IA, elle, ignore souvent les contraintes des environnements de travail réels.",
                     "lien": "https://covertaltruism.substack.com/p/the-half-life-of-a-query?utm_source=tldrdata",
                     "categorie": "Deep Dive"
-                }
-            ]
-        },
-        {
-            "date": "2026-09-10",
-            "articles": [
-                {
-                    "titre": "Tom Lane sur les décisions architecturales qui ont façonné 30 ans de Postgres",
-                    "resume": "Tom Lane, contributeur Postgres depuis 25 ans, revient sur les paris architecturaux gagnants : processus par connexion, journalisation WAL (version 8.0) et MVCC. Il souligne le rôle de la licence Berkeley dans sa survie et considère la version 13 comme la plus buguée.",
-                    "lien": "https://www.snowflake.com/en/blog/engineering/30-years-of-postgres-architecture-tom-lane/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Conçu pour la fiabilité : comment American Express traite les paiements à l'échelle",
-                    "resume": "American Express utilise des 'cellules' comme domaines de défaillance complets pour le traitement des paiements. Chaque cellule contient microservices, bases de données et DNS locaux. Les transactions sont acheminées vers la cellule propriétaire de leur état, privilégiant un périmètre de défaillance contrôlé à une coordination globale.",
-                    "lien": "https://blog.bytebytego.com/p/built-for-reliability-how-american?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Le moteur de requête de Cloudfloe dans une cellule celld",
-                    "resume": "Une expérience montre que Cloudfloe (interface DuckDB pour Iceberg sur S3) peut utiliser des cellules 'serverless' pour les requêtes. Bien que les démarrages à froid soient plus lents, maintenir la connexion active réduit les requêtes répétées à environ 3 ms, faisant de la politique de cycle de vie le compromis clé.",
-                    "lien": "https://gordonmurray.ie/data/2026/09/05/cloudfloes-query-engine-in-a-celld-cell.html?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "La prolifération des données IA",
-                    "resume": "Le personnel non technique génère désormais des milliards de lignes de code analytique, dont la gestion est problématique : contextes aléatoires, permissions poreuses et sorties dispersées. Sans traçabilité, les désaccords deviennent la seule boucle de rétroaction.",
-                    "lien": "https://www.linkedin.com/pulse/ai-data-sprawl-barry-mccardel-mpfpc/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "5 outils CDC et les compromis à connaître",
-                    "resume": "L'évaluation des outils de Capture de Changements de Données (CDC) doit se concentrer sur le comportement en cas de défaillance, la méthode de capture, les instantanés initiaux, l'évolution du schéma et la sémantique de livraison, plutôt que sur le nombre de connecteurs. Un PoC doit inclure des données représentatives et des tests de destination défectueuse.",
-                    "lien": "https://www.theseattledataguy.com/5-cdc-tools-and-the-tradeoffs-you-should-know/?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
-                },
-                {
-                    "titre": "La gigue (jitter) est la solution de fiabilité la moins chère que vous n'utilisez pas",
-                    "resume": "Les systèmes distribués se synchronisent sans instruction, créant des pics de charge. Ajouter de la gigue aux réessais, rafraîchissements TTL ou renouvellements de jetons permet de préserver la charge moyenne et d'éviter les tempêtes de réessais qui frappent une dépendance en cours de rétablissement.",
-                    "lien": "https://ankit-rana.com/logs/49-jitter-synchronised-clients/?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
-                },
-                {
-                    "titre": "JupyterGIS 0.16 : Cartes narratives collaboratives et workflows géospatiaux distants",
-                    "resume": "JupyterGIS 0.16 introduit des cartes narratives collaboratives en temps réel, un rendu de tuiles paresseux pour les workflows openEO distants, et la prise en charge native de GeoZarr et GeoPackage. Cela permet des visualisations reproductibles et la manipulation de grands jeux de données géospatiales à distance.",
-                    "lien": "https://blog.jupyter.org/jupytergis-0-16-new-visualization-capabilities-collaborative-story-maps-and-more-03e6b78bacc0?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Filament (Dépôt GitHub)",
-                    "resume": "Filament est un outil de réplication de données des sources vers les cibles, avec des modes complet, incrémental ou CDC. Il vérifie chaque lot des deux côtés et n'avance les checkpoints qu'après succès. Les sources, cibles, stockage d'état et transport d'événements sont interchangeables.",
-                    "lien": "https://github.com/galaxy-io/filament?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "Kestra 2.0 : Un nouveau moteur, des workers partout et des flux comme outils d'agent",
-                    "resume": "Kestra 2.0, plateforme d'orchestration open-source, sépare les plans de contrôle et de données, permettant aux workers de s'exécuter dans diverses régions. Cette version expose aussi les flux comme outils MCP pour les agents et inclut des outils de migration.",
-                    "lien": "https://kestra.io/blogs/release-2-0/?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Pourquoi Spotify n'utilise pas les tests A/B bayésiens",
-                    "resume": "Spotify explique que l'expérimentation bayésienne, bien que puissante, nécessite une attention particulière aux priors, vraisemblances et règles d'arrêt pour éviter les biais. Ils soulignent l'importance de choisir d'abord des garanties pour le programme d'expérience.",
-                    "lien": "https://engineering.atspotify.com/2026/9/why-spotify-is-not-using-bayesian-a-b-testing?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Les progrès de la pré-formation proviennent principalement des données",
-                    "resume": "Une comparaison entre 2019 et 2025 révèle que les améliorations des données contribuent 12 fois plus à l'efficacité de calcul (pour les modèles IA) que les recettes de modèles (3.7x). Cela met en lumière l'importance de l'extraction, de la curation et du filtrage des ensembles de données.",
-                    "lien": "https://www.dwarkesh.com/p/pretraining-progress-is-mostly-data?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "xlDuckDb (Dépôt GitHub)",
-                    "resume": "xlDuckDb est un add-in Excel qui ajoute la fonction DuckDbQuery(). Elle permet d'exécuter du SQL DuckDB et d'afficher les résultats dans des cellules, interrogeant des plages, des tableaux, ou des fichiers JSON, CSV et Parquet locaux/distants.",
-                    "lien": "https://github.com/RusselWebber/xlDuckDb?utm_source=tldrdata",
-                    "categorie": "Tool"
                 }
             ]
         }
