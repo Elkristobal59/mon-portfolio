@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-10-19",
+            "articles": [
+                {
+                    "titre": "Sous le capot, hors du chemin critique : Comment D1 scale à des millions de bases de données",
+                    "resume": "Cloudflare D1, une plateforme SQLite serverless, gère le trafic de requêtes en périphérie tandis que son plan de contrôle gère des millions de bases. Sa conception isole la coordination centrale du chemin de données pour une haute disponibilité.",
+                    "lien": "https://blog.cloudflare.com/d1-control-plane/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Un graphe n'a pas de centre",
+                    "resume": "Les outils de graphe devraient fournir des vues ciblées plutôt que de vastes sous-graphes. La clé est de rendre la portée explicite via des vues nommées et des points de navigation contrôlés, améliorant ainsi l'auditabilité et la cohérence.",
+                    "lien": "https://inferenceengineer.substack.com/p/on-holons-and-focus?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "La pile de données auto-organisatrice",
+                    "resume": "Une architecture proposée pour des plateformes de données autonomes, basée sur des actifs logiques stables et des définitions sémantiques persistantes. Un runtime synthétise et gère les pipelines physiques, avec une vérification indépendante des invariants métier.",
+                    "lien": "https://www.dataengineeringweekly.com/p/the-self-organizing-data-stack?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Quel LLM pour vos analyses agentiques ? Précision vs. coût de Claude, Gemini et GPT",
+                    "resume": "Opus offre les meilleurs rapports analytiques mais est plus cher. Le routage par tâche optimise qualité et coût : Sonnet pour métriques, Gemini Flash pour analyses guidées et Opus pour investigations profondes.",
+                    "lien": "https://trangntr.substack.com/p/which-llm-should-run-your-agentic?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                },
+                {
+                    "titre": "L'ingénierie des données est le problème d'invalidation de cache",
+                    "resume": "Les gros jobs Spark et Ray ont un feedback lent pour le codage autonome. Les ingénieurs restent responsables. La solution : tests représentatifs, garde-fous de coûts et revue humaine là où les pipelines manquent de feedback rapide.",
+                    "lien": "https://www.ssp.sh/blog/cache-invalidation-problem-data-engineering/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "prompt_jev() fonctionne désormais sur les images",
+                    "resume": "La fonction prompt_jev() de MotherDuck analyse maintenant les images directement en SQL, fournissant des réponses structurées et des scores de confiance. Elle a traité 1010 photos pour 0,06 $ avec 90,2 % de précision.",
+                    "lien": "https://motherduck.com/blog/motherduck-announce-jev-image/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Stockage différentiel pour DuckDB",
+                    "resume": "duckdb-differential introduit des workflows de contrôle de version dans DuckDB : snapshots, voyage dans le temps, branches et clonage via SQL. Il permet de préserver des états de base de données fiables pour les tests et la reproduction.",
+                    "lien": "https://tobilg.com/posts/differential-storage-for-duckdb?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Présentation de Timestral",
+                    "resume": "Les modèles Timestral de Mistral prévoient des séries temporelles multiples, estiment l'incertitude et intègrent des intrants futurs. Ils fonctionnent sur CPU sans entraînement spécifique et surpassent leurs concurrents sur plusieurs benchmarks.",
+                    "lien": "https://mistral.ai/news/timestral/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Version 3.1 de Tempo : Kafka, rédaction de traces et métriques TraceQL",
+                    "resume": "Grafana Tempo 3.1 facilite le traçage basé sur Kafka avec de nouvelles options de sécurité et compression. La rédaction par requête supprime les données sensibles et les métriques TraceQL améliorent l'analyse de télémétrie.",
+                    "lien": "https://grafana.com/blog/tempo-3-1-release-all-the-latest-features/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "L'IA en production : défaillances silencieuses, ingénierie et gouvernance des agents",
+                    "resume": "Les systèmes agentiques peuvent échouer silencieusement. Les contrôles de production nécessitent des évaluations continues, des identités d'agents distinctes avec des permissions et une approbation humaine des risques.",
+                    "lien": "https://www.infoq.com/news/2026/10/ai-systems-production/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Calcul GPU fiable pour les grands jobs d'entraînement et d'inférence",
+                    "resume": "Netflix a conçu un système robuste pour assurer la fiabilité des jobs GPU massifs. Il valide les nœuds, surveille le matériel et gère automatiquement les machines défectueuses, réduisant ainsi les échecs et augmentant la capacité utilisable.",
+                    "lien": "https://netflixtechblog.com/reliable-gpu-compute-for-large-training-inference-jobs-d62b03a96d7a?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Neon intègre désormais le temps réel",
+                    "resume": "La bêta publique Realtime de Neon transforme les requêtes SQL en abonnements dynamiques qui mettent à jour automatiquement les applications lorsque les données Postgres changent, sans polling ni service temps réel dédié.",
+                    "lien": "https://neon.com/blog/neon-now-has-realtime?utm_source=tldrdata",
+                    "categorie": "News"
+                }
+            ]
+        },
+        {
             "date": "2026-10-15",
             "articles": [
                 {
@@ -690,83 +767,6 @@
                     "resume": "Un workflow simple combinant des agents IA et DuckDB via le terminal permet une analyse rapide et fiable, le nettoyage des données et un accès sécurisé, sans outils complexes ou couches sémantiques lourdes.",
                     "lien": "https://thefulldatastack.substack.com/p/my-duckdb-ai-workflow?utm_source=tldrdata",
                     "categorie": "Tutorial"
-                }
-            ]
-        },
-        {
-            "date": "2026-09-14",
-            "articles": [
-                {
-                    "titre": "Rafraîchir la carte des temps de trajet pour le marché de Lyft : Reconstruire les signaux d'accessibilité des quartiers",
-                    "resume": "Lyft a refait sa base de données des temps de trajet des quartiers avec des ETA plus précises, une meilleure couverture et des filtres. Cela améliore la tarification et les cartes de chaleur des conducteurs, et sera mis à jour tous les six mois, avec des ETA tenant compte du trafic.",
-                    "lien": "https://eng.lyft.com/refreshing-the-travel-time-map-behind-lyfts-marketplace-rebuilding-neighborhood-reachability-5be3efbc82ea?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Kafka sans disque : Que se passe-t-il lorsque les brokers ne possèdent plus les données ?",
-                    "resume": "Kafka sans disque maintient l'API Kafka mais déplace le stockage durable des données vers un stockage objet. Cela modifie le traitement par lots, la latence et d'autres aspects, faisant de cette approche un choix spécifique à chaque charge de travail plutôt qu'un remplacement universel.",
-                    "lien": "https://softwaremill.com/diskless-kafka-object-storage-kip-1150-and-kafkas-future/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Évolution de la plateforme de récupération d'embeddings de Pinterest",
-                    "resume": "La plateforme Manas de Pinterest gère des milliards d'embeddings. La quantification réduit les coûts de 20-30%, les tests ANN sur SSD diminuent les besoins en mémoire/CPU, et la récupération multi-embeddings améliore le score des candidats.",
-                    "lien": "https://medium.com/pinterest-engineering/evolving-pinterests-embedding-retrieval-platform-aede4e831e01?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "L'insoutenable légèreté d'un index de plus",
-                    "resume": "Les agents de code créent de bons schémas PostgreSQL, mais ajoutent souvent trop d'index. Des index supplémentaires peuvent doubler le temps de mise à jour et le WAL. L'examen des index doit considérer les chemins d'écriture et l'activité VACUUM.",
-                    "lien": "https://boringsql.com/posts/unbearable-lightness-of-one-more-index/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Le CI est passé. Vos évaluations sont passées. Le client a quand même eu la mauvaise réponse.",
-                    "resume": "Les agents IA peuvent donner des réponses erronées malgré des tests réussis, à cause d'un contexte invalide ou d'un chemin d'exécution défectueux. Le débogage nécessite des traces complètes des appels de modèles, d'outils et de la récupération, ainsi que des tests distincts pour le comportement système et la qualité des réponses.",
-                    "lien": "https://thenewstack.io/ai-agent-trace-debugging/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "118 millions de requêtes par seconde sur Neki",
-                    "resume": "PlanetScale a atteint 118 millions de requêtes par seconde sur Neki, son nouveau PostgreSQL sharding, en utilisant 512 shards pour 1,22 PiB de données. La charge de travail était spécifique : sélection d'une ligne par clé primaire sans écritures ni jointures.",
-                    "lien": "https://planetscale.com/blog/118-million-queries-per-second-on-neki?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Désormais, chacun peut exploiter les données",
-                    "resume": "L'agent de données de ChatGPT Work se connecte aux données d'entreprise, permettant aux employés d'analyser et de créer des tableaux de bord en langage naturel. Il respecte les permissions, fonctionne avec les plateformes BI, et peut recommander des actions.",
-                    "lien": "https://openai.com/index/put-data-to-work/?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Pourquoi DuckDB 2.0 est plus rapide",
-                    "resume": "DuckDB 2.0 accélère les requêtes S3 (2-3x) grâce à l'E/S asynchrone, améliore les requêtes récursives et rend les données VARIANT plus petites et rapides que JSON. Il ajoute aussi des fonctions SQL pratiques comme les triggers et les CTEs modifiant les données.",
-                    "lien": "https://motherduck.com/blog/why-duckdb-20-is-faster/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "L'effet d'adoption de l'IA est un effet de sélection",
-                    "resume": "Comparer les adoptants d'IA aux non-adoptants surestime souvent l'impact en raison d'un effet de sélection. Il est préférable d'estimer la causalité en utilisant des variations non choisies par les clients, comme un seuil d'éligibilité, en limitant les conclusions.",
-                    "lien": "https://towardsdatascience.com/your-ai-adoption-lift-is-a-selection-effect/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Remplissages CDC PostgreSQL à l'échelle : Exécuter un remplissage de plusieurs jours en production",
-                    "resume": "Les gros remplissages CDC PostgreSQL échouent plus souvent à cause de la rétention WAL et des transactions longues que des lectures historiques. Des conceptions plus sûres continuent de consommer le WAL pendant les lectures par blocs et réconcilient les chevauchements.",
-                    "lien": "https://estuary.dev/blog/postgres-cdc-backfill?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Enquêter sur le gaspillage de Spark à travers la pile technologique",
-                    "resume": "Quatre études de cas Spark en production ont permis de réduire le temps d'exécution, le calcul, les opérations S3 et les coûts en traquant les gaspillages cachés au-delà des métriques CPU et mémoire de base.",
-                    "lien": "https://blog.dataengineerthings.org/investigating-spark-waste-across-the-stack-188aa622e12a?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "La demi-vie d'une requête",
-                    "resume": "Des outils comme dbt transforment les analyses fragiles et non documentées en systèmes reproductibles. L'IA, elle, ignore souvent les contraintes des environnements de travail réels.",
-                    "lien": "https://covertaltruism.substack.com/p/the-half-life-of-a-query?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
                 }
             ]
         }
