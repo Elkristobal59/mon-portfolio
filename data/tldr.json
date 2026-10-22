@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-10-22",
+            "articles": [
+                {
+                    "titre": "Gouvernance des données et agents IA dans Snowflake : Notes d'un ingénieur data",
+                    "resume": "La gouvernance des agents IA dans Snowflake repose sur des contrôles de données robustes : identification des informations sensibles, politiques d'accès et de masquage, et surveillance de l'utilisation. Des permissions spécifiques aux agents renforcent la protection.",
+                    "lien": "https://medium.com/snowflake/governing-data-and-ai-agents-in-snowflake-a-data-engineers-field-notes-0662c602b404?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Comment Shopify transforme les modèles ouverts en experts de tâches",
+                    "resume": "Shopify entraîne et héberge des modèles ouverts spécialisés pour des tâches ciblées, les améliorant grâce aux échecs de production et au feedback humain. Leur modèle GraphQL surpasse légèrement un modèle de pointe, tout en étant 7 fois plus rapide et 90% moins coûteux.",
+                    "lien": "https://shopify.engineering/open-model-task-experts?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Des pages disque à la mémoire colonnaire : Pourquoi Apache Arrow ?",
+                    "resume": "Apache Arrow est conçu pour l'analyse rapide en mémoire, contrairement à Parquet. Il stocke les données dans des tampons contigus typés pour optimiser le cache et les exécutions SIMD, réduisant les sérialisations entre moteurs comme Spark, pandas et DuckDB.",
+                    "lien": "https://medium.com/@rongalinaidu/from-disk-pages-to-columnar-memory-why-apache-arrow-77d9147244cb?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "L'application comme échafaudage",
+                    "resume": "Avec l'assemblage logiciel simplifié, l'actif durable devient un historique gouverné des entités et changements d'état. Il faut laisser l'IA générer requêtes et transformations, tandis que l'historique append-only et la validation déterministe assurent la signification et l'auditabilité.",
+                    "lien": "https://inferenceengineer.substack.com/p/the-application-is-scaffolding?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Mise à l'échelle des modèles d'analyse IA-native chez Meta",
+                    "resume": "Meta a systématisé l'analyse de produits en sept modèles paramétrés, exposant leurs résultats via des modèles lisibles par des agents et un générateur de requêtes. Cette bibliothèque alimente plus de 9000 pipelines de production, dont 3250 de matérialisation de métriques.",
+                    "lien": "https://medium.com/@AnalyticsAtMeta/scaling-ai-native-analytics-patterns-at-meta-b29162cb46bf?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Pourquoi la plupart des équipes d'analyse ne survivront pas les 5 prochaines années",
+                    "resume": "L'IA menace les équipes d'analyse qui ne font que répondre aux requêtes. Pour rester pertinentes, les professionnels de la donnée doivent comprendre le métier, remettre en question les hypothèses et transformer les analyses fiables en décisions claires.",
+                    "lien": "https://www.youtube.com/watch?v=Qz5M6G-Ywkc&utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "PyDebeziumAI (Dépôt GitHub)",
+                    "resume": "PyDebeziumAI convertit les changements de base de données en opérations déterministes (upsert/delete) pour des bases de données vectorielles, en intégrant le moteur CDC de Debezium dans un processus Python. Il simplifie les déploiements RAG légers, supprime Kafka et supporte Chroma, PGVector et Milvus.",
+                    "lien": "https://github.com/debezium/debezium-ai-python?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Annonce de DuckDB 2.0.0 LTS \"Cinnamon Teal\"",
+                    "resume": "DuckDB 2.0 LTS apporte des améliorations au support client-serveur, aux lectures de fichiers, à la gestion des données semi-structurées, un mode agent IA et des triggers SQL. Cette version est supportée jusqu'en octobre 2027, mais les fichiers 2.0 sont incompatibles avec les versions antérieures.",
+                    "lien": "https://duckdb.org/2026/10/21/announcing-duckdb-200?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Un ingénieur a entraîné un LLM de 3,8 milliards de paramètres pour 998 $",
+                    "resume": "Un ingénieur a entraîné un LLM de 3,848 milliards de paramètres pour seulement 998 $ en utilisant une pile légère et des choix d'efficacité stratégiques. L'opération a duré 43 heures sur huit B200 loués, atteignant 0,384 CORE sur DCLM, 50% au-dessus de GPT-2.",
+                    "lien": "https://blog.gopenai.com/one-engineer-trained-a-3-8b-parameter-llm-from-scratch-for-998-7ef5cd7809b7?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Dans les coulisses de Prometheus : Le supercluster gigawatt de Meta",
+                    "resume": "Prometheus de Meta est conçu pour les entraînements distribués massifs, avec près d'un million de GPU. Son architecture réseau, sa résilience et sa conception énergétique ont permis de dépasser 85% de bon débit d'entraînement et de réduire les interruptions de 99% depuis mi-2025.",
+                    "lien": "https://engineering.fb.com/2026/10/19/data-center-engineering/inside-prometheus-meta-gigawatt-scale-supercluster?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Réflexions sur les limites de cohérence dynamique",
+                    "resume": "Les limites de cohérence dynamique permettent aux commandes event-sourced de protéger uniquement les événements lus, évitant les faux conflits. Cependant, les implémentations basées sur des tags peuvent complexifier les changements de schéma et l'évolution des requêtes. Il est souvent préférable d'utiliser des transactions multi-flux.",
+                    "lien": "https://www.architecture-weekly.com/p/thoughts-on-dynamic-consistency-boundary?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "dbt Snapshots ne gère pas les données tardives. Nous en avons construit un qui le fait.",
+                    "resume": "Le package open source `dbt_iterative_snapshot` de Mercedes-Benz pour Databricks traite les lots chronologiquement et répare automatiquement les enregistrements historiques en cas d'arrivée de données tardives.",
+                    "lien": "https://blog.dataengineerthings.org/dbt-snapshots-cant-handle-late-data-so-we-built-one-that-can-ef107cc9e02e?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                }
+            ]
+        },
+        {
             "date": "2026-10-19",
             "articles": [
                 {
@@ -690,83 +767,6 @@
                     "resume": "Un index correspondant à ORDER BY dans Postgres peut ralentir une requête si les lignes filtrées sont loin dans l'index. Vérifiez 'Rows Removed by Filter', testez les paramètres et utilisez un index composé.",
                     "lien": "https://milanjovanovic.tech/blog/when-postgres-picks-the-wrong-index?utm_source=tldrdata",
                     "categorie": "Tutoriel"
-                }
-            ]
-        },
-        {
-            "date": "2026-09-17",
-            "articles": [
-                {
-                    "titre": "Comment nous avons conçu l'agent de publicité payante de LangChain",
-                    "resume": "LangChain a créé un agent d'IA pour la publicité payante qui analyse les données de campagne, recommande des changements et applique des actions approuvées, réduisant les coûts d'acquisition de leads. Le design utilise des modèles pour le jugement, du code pour la fiabilité et des validations humaines.",
-                    "lien": "https://www.langchain.com/blog/paid-media-agent?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Comment fonctionner sur trois clouds simultanément, et quand l'éviter",
-                    "resume": "Form3 opère sa plateforme de paiement en mode actif-actif-actif sur AWS, Google Cloud et Azure, utilisant Kubernetes, NATS JetStream et CockroachDB. L'article détaille cette architecture multicloud et les raisons de choisir une approche active-standby dans certains cas.",
-                    "lien": "https://www.infoq.com/presentations/form3-multicloud-architecture/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Embeddings de graphes FastRP avec Apache DataFusion",
-                    "resume": "FastRP propose une nouvelle approche pour les embeddings de graphes via l'agrégation itérative des voisins, remplaçant les marches aléatoires coûteuses de Node2Vec. Une implémentation Rust/DataFusion a traité un graphe de 8 millions de nœuds en 15 minutes avec une qualité prédictive comparable.",
-                    "lien": "https://semyonsinchenko.github.io/ssinchenko/post/fastrp-datafusion/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "De combien d'exemples étiquetés un classifieur de texte a-t-il réellement besoin ? Une mesure.",
-                    "resume": "Avant d'opter pour un LLM, évaluez un modèle classique pour la classification de texte. Une expérience montre que la précision TF-IDF augmente avec plus d'exemples, suggérant une approche hybride où les LLM gèrent les cas complexes ou l'amorçage des étiquettes.",
-                    "lien": "https://towardsdatascience.com/how-many-labeled-examples-does-a-text-classifier-actually-need-i-measured-it/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Pourquoi votre Redis est lent : il est mono-thread et vous avez utilisé KEYS",
-                    "resume": "Redis étant mono-thread, des opérations coûteuses (KEYS, FLUSHALL, gros DEL) peuvent bloquer les clients et provoquer des pics de latence. Utilisez SLOWLOG et SCAN pour diagnostiquer, optez pour UNLINK pour les suppressions importantes et désactivez les commandes dangereuses.",
-                    "lien": "https://ankit-rana.com/logs/53-redis-single-threaded-keys-command/?utm_source=tldrdata",
-                    "categorie": "Tutorial"
-                },
-                {
-                    "titre": "Conseils de plan dans PostgreSQL 19",
-                    "resume": "PostgreSQL 19 introduit `pg_plan_advice` et `pg_stash_advice` pour sérialiser et appliquer des guides de plan d'exécution. Cela permet de stabiliser les diffs de plans pour le CI et les mises à jour, mais un épinglage sélectif des décisions est recommandé face aux changements de données.",
-                    "lien": "https://tapoueh.org/blog/2026/09/plan-advice-in-postgresql-19/?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Vous n'avez pas besoin de migrer ces 300 tableaux de bord",
-                    "resume": "Au lieu de migrer tous les tableaux de bord existants, concentrez-vous sur les métriques, définitions et logiques métier sous-jacentes. Ne conservez que les tableaux de bord fréquemment utilisés et laissez l'IA gérer les requêtes ponctuelles avec le même contexte.",
-                    "lien": "https://hex.tech/blog/dont-migrate-300-dashboards/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Sortie d'Apache Iceberg Python 0.12.0",
-                    "resume": "PyIceberg 0.12.0 apporte des vues de catalogue REST, des retries de commit gérant les conflits, des scans incrémentaux, les types géométriques Iceberg v3 et un support renforcé pour Python 3.14, améliorant la préparation à la production.",
-                    "lien": "https://iceberg.apache.org/blog/apache-iceberg-python-0.12.0-release/?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Compétences DuckDB pour Claude Code",
-                    "resume": "Un plugin permet à l'agent Claude Code d'interagir directement avec DuckDB CLI. Tout fichier local, distant ou table Iceberg devient une source de données interrogeable, avec des compétences pour la conversion de format, le stockage objet et les données spatiales.",
-                    "lien": "https://duckdb.org/2026/09/16/duckdb-skills?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "Contourner les goulots d'étranglement d'inférence avec Retrieve-for-Train",
-                    "resume": "Retrieve-for-Train est une technique qui permet aux systèmes de recherche IA de générer des requêtes complémentaires en une seule fois, plutôt que séquentiellement. Google rapporte une réduction de 12 à 20 fois de la latence de génération de requêtes et une meilleure couverture des résultats.",
-                    "lien": "https://research.google/blog/bypassing-inference-bottlenecks-accelerating-complex-ai-search-with-retrieve-for-train/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Au-delà du modèle : Ingénierie de l'infrastructure IA avec jugement scientifique",
-                    "resume": "Airbnb a transformé son processus d'analyse de support en Insight Miner, un outil basé sur des agents intégrant des workflows d'extraction, d'intégration et de clustering. Cela a réduit les enquêtes de mois en jours, permettant une auditabilité et une amélioration continue.",
-                    "lien": "https://airbnb.tech/ai-ml/beyond-the-model-engineering-ai-infra-with-scientific-judgement/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Mon flux de travail DuckDB + IA",
-                    "resume": "Un workflow simple combinant des agents IA et DuckDB via le terminal permet une analyse rapide et fiable, le nettoyage des données et un accès sécurisé, sans outils complexes ou couches sémantiques lourdes.",
-                    "lien": "https://thefulldatastack.substack.com/p/my-duckdb-ai-workflow?utm_source=tldrdata",
-                    "categorie": "Tutorial"
                 }
             ]
         }
