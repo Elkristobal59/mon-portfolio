@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-10-26",
+            "articles": [
+                {
+                    "titre": "Titus mono-locataire : Isolation de VM sur une plateforme de conteneurs multi-locataires",
+                    "resume": "Netflix ajoute un mode mono-locataire à Titus pour offrir aux charges de travail sensibles des VM dédiées sur sa plateforme de conteneurs, évitant les interférences matérielles et améliorant la stabilité.",
+                    "lien": "https://netflixtechblog.com/single-tenant-titus-vm-level-isolation-on-a-multi-tenant-container-platform-6d8b1909d163?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Un format de fichier prétend être 100 fois plus rapide que Parquet",
+                    "resume": "Le format Lance est conçu pour l'accès aléatoire rapide aux données d'IA, surpassant Parquet pour les embeddings et données multimodales en optimisant l'accès aux pages et réduisant la surcharge de métadonnées.",
+                    "lien": "https://vutr.substack.com/p/free-a-file-format-claims-to-be-100x?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Reconstruction de l'infrastructure de suivi de LinkedIn",
+                    "resume": "LinkedIn a modernisé son pipeline de suivi d'événements, passant de Java 8/Play Framework à gRPC et un runtime Java moderne, réduisant l'utilisation du réseau entrant de 89%.",
+                    "lien": "https://www.linkedin.com/blog/engineering/infrastructure/rebuilding-linkedins-tracking-infrastructure-scaling-migrating-and-hardening-a-high-volume-event-pipeline?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Mise à l'échelle rapide du stockage pour plus d'un milliard d'utilisateurs de ChatGPT",
+                    "resume": "La plateforme de stockage Habitat d'OpenAI (basée sur Azure Cosmos DB) a évolué pour servir plus d'un milliard d'utilisateurs, résolvant les problèmes de voisins bruyants via la gestion des clés chaudes et la priorisation des requêtes.",
+                    "lien": "https://openai.com/index/scaling-storage-one-billion-users-part-two/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Les agents de données peuvent-ils effectuer de réelles analyses ?",
+                    "resume": "Les agents de données peinent encore sur les tâches analytiques complexes nécessitant des jointures et un contexte métier. Une couche sémantique améliore leur précision, mais le prompt engineering seul ne suffit pas.",
+                    "lien": "https://roundup.getdbt.com/p/can-data-agents-do-real-analysis?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Nous avons construit trois systèmes de mémoire : le plus expressif n'était pas le plus utile",
+                    "resume": "Tiger Data a expérimenté trois systèmes de mémoire pour son agent Slack. Une structure arborescente basée sur l'extension ltree de Postgres s'est avérée la plus efficace pour la synthèse de fils de discussion, surpassant les listes et les graphes de connaissances.",
+                    "lien": "https://www.tigerdata.com/blog/we-built-three-memory-systems-most-expressive-wasnt-most-useful?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "bbtree : la carte ordonnée la plus rapide",
+                    "resume": "bbtree est une implémentation de carte ordonnée en Rust, annonçant des performances jusqu'à 5 fois plus rapides que BTreeMap de Rust et 30% d'utilisation mémoire en moins, grâce à la recherche en bases de données et au développement assisté par LLM.",
+                    "lien": "https://bbtree.xiangpeng.systems/post/?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Sutura (dépôt GitHub)",
+                    "resume": "Sutura est un runtime Rust Apache-2.0 permettant aux agents IA d'accéder à des métriques et définitions sémantiques certifiées via HTTP/MCP, fédérant les requêtes et garantissant la gouvernance des données.",
+                    "lien": "https://github.com/telekom/sutura?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Extension DuckDB hf — lire et écrire les ressources Hugging Face",
+                    "resume": "L'extension DuckDB hf permet de lire, interroger et écrire des fichiers sur Hugging Face directement via SQL et des URL hf://, avec support des datasets, modèles et buckets, et des fonctions de cache/déduplication.",
+                    "lien": "https://github.com/lhoestq/duckdb-hf-extension?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Chasse au décalage de réplication : une méthode queue-par-queue pour diagnostiquer Oracle GoldenGate",
+                    "resume": "Le décalage de réplication GoldenGate doit être analysé comme un problème de file d'attente globale. La méthode propose de mesurer chaque étape avec des horodatages pour identifier l'origine du backlog, crucial pour la fraîcheur et la correction des données.",
+                    "lien": "https://hackernoon.com/hunting-replication-lag-a-queue-by-queue-method-for-diagnosing-oracle-goldengate?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Dépendance fantôme : une faille inter-locataire dans GCP Dataflow",
+                    "resume": "Une vulnérabilité a été découverte dans GCP Dataflow, où des noms de buckets de staging prévisibles permettaient le détournement d'artefacts et l'exécution de code à distance. Google a corrigé la faille, soulignant l'importance de la vérification de l'intégrité des artefacts.",
+                    "lien": "https://www.varonis.com/blog/shadow-dependency-in-gcp-dataflow-cross-tenant?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Le RAG agentique récupère-t-il réellement de meilleures preuves ? Testé sur 298 questions",
+                    "resume": "Une étude sur 298 questions et 2000 articles arXiv montre qu'une recherche supplémentaire par un agent RAG n'améliore la récupération des preuves que de 1,2 point, une amélioration marginale.",
+                    "lien": "https://towardsdatascience.com/does-agentic-rag-actually-retrieve-better-evidence-i-tested-it-on-298-questions/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                }
+            ]
+        },
+        {
             "date": "2026-10-22",
             "articles": [
                 {
@@ -690,83 +767,6 @@
                     "resume": "Polars offre désormais un profileur de requêtes pour les charges de travail open source locales.",
                     "lien": "https://pola.rs/posts/profile-local-queries/?utm_source=tldrdata",
                     "categorie": "News"
-                }
-            ]
-        },
-        {
-            "date": "2026-09-21",
-            "articles": [
-                {
-                    "titre": "Débugger la latence incohérente des requêtes sur une Hypertable PostgreSQL : ce que nous avons appris",
-                    "resume": "Une requête sur une hypertable PostgreSQL était lente par intermittence car les requêtes préparées JDBC passaient à des plans génériques. Désactiver les requêtes préparées côté serveur et réduire le nombre de chunks a restauré une latence prévisible.",
-                    "lien": "https://medium.com/arcesium-engineering-blog/debugging-inconsistent-query-latency-on-a-postgresql-hypertable-what-we-learned-03253157fbdd?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Entraîner un modèle 4B à produire des plans de requête 81% plus rapides que Postgres",
-                    "resume": "Un modèle Qwen 4B, entraîné avec SFT et RL, a généré des plans de requête PostgreSQL 1,81 fois plus rapides et réduit la latence totale de la charge de travail de 44,7%. Cela démontre la capacité des petits modèles à optimiser les bases de données.",
-                    "lien": "https://rohanbansal.com/qorl?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "L'architecture de Neki",
-                    "resume": "Neki de PlanetScale fragmente horizontalement PostgreSQL, offrant une connexion unique aux applications. Il gère les requêtes distribuées, la disponibilité, le repartitionnement et les changements de schéma en ligne.",
-                    "lien": "https://planetscale.com/blog/the-architecture-of-neki?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Économiser 100 To de RAM supplémentaires avec les mathématiques (et Rust)",
-                    "resume": "Cloudflare a optimisé la représentation et le déploiement de l'anneau de hachage cohérent de Pingora, économisant ainsi plus de 100 To de RAM.",
-                    "lien": "https://blog.cloudflare.com/saving-100-tb-of-ram-with-math/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Saturation chez GitHub : la saga continue",
-                    "resume": "Une panne chez GitHub a été déclenchée par la saturation d'une base de données primaire par une tâche de nettoyage, non détectée par un monitoring basé uniquement sur le lag des répliques. Les délais d'expiration et les tentatives ont amplifié l'incident.",
-                    "lien": "https://surfingcomplexity.blog/2026/09/19/saturation-at-github-the-saga-continues/?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "L'attribut de span qui a fait exploser votre facture d'observabilité",
-                    "resume": "Un attribut de span à forte cardinalité peut multiplier discrètement les séries de métriques et augmenter les coûts d'observabilité. Il faut agréger les identifiants et définir des limites pour éviter cela.",
-                    "lien": "https://thinhdanggroup.github.io/otel-span-cardinality/?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
-                },
-                {
-                    "titre": "Deux techniques pour travailler avec les modèles System One",
-                    "resume": "Les modèles System One sont des classificateurs rapides pour des décisions simples. Deux techniques utiles sont les objectifs superposés pour les tâches en temps réel et les comparaisons de type tournoi pour choisir la meilleure option.",
-                    "lien": "https://www.seangoedecke.com/two-techniques-for-working-with-system-one-models/?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
-                },
-                {
-                    "titre": "Des tableaux de bord conçus pour le Chat",
-                    "resume": "dbt Charts est un langage open-source basé sur YAML pour créer des tableaux de bord auditables et versionnés avec l'IA ou des humains. Il permet de détecter les erreurs avant le déploiement.",
-                    "lien": "https://dbtcharts.com/blog/charts-built-for-chat/?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "pg-jev (Dépôt GitHub)",
-                    "resume": "pg-jev intègre la classification en langage naturel directement dans PostgreSQL, permettant de filtrer, classer et ordonner les lignes avec des fonctions SQL basées sur Jev, retournant des probabilités calibrées.",
-                    "lien": "https://github.com/realZachi/pg-jev?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "Analyse JSON plus rapide avec SVE2 sur les processeurs ARM",
-                    "resume": "Une nouvelle implémentation de simdjson utilise l'instruction match de l'ARM SVE2 pour accélérer l'analyse JSON, améliorant le débit d'indexation de 3 à 9% sur Graviton 4 et 5.",
-                    "lien": "https://lemire.me/blog/2026/09/18/faster-json-parsing-with-sve2-on-arm-processors/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Jev pour l'extraction de données 10-K : rapide et calibré",
-                    "resume": "Jev peut servir de couche de vérification rapide et économique pour l'extraction de données structurées des documents 10-K, sélectionnant les bonnes valeurs avec une confiance calibrée et gérant les cas ambigus.",
-                    "lien": "https://mohammadsoleimanian.com/jev-for-10-k-data-extraction-fast-calibrated/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "L'ajout d'un index a ralenti cette requête",
-                    "resume": "Un index correspondant à ORDER BY dans Postgres peut ralentir une requête si les lignes filtrées sont loin dans l'index. Vérifiez 'Rows Removed by Filter', testez les paramètres et utilisez un index composé.",
-                    "lien": "https://milanjovanovic.tech/blog/when-postgres-picks-the-wrong-index?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
                 }
             ]
         }
