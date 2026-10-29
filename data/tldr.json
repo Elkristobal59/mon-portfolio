@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-10-29",
+            "articles": [
+                {
+                    "titre": "Benchmark 2026 des entrepôts de données cloud",
+                    "resume": "Un benchmark de 100 Go montre MotherDuck leader en vitesse/coût mono-utilisateur, Fabric gérant 100 utilisateurs concurrents en moins de 5 secondes, et Databricks ayant la plus faible augmentation de latence de 1 Go à 1 To.",
+                    "lien": "https://warehouse-benchmark.estuary.dev/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Le papier qui a divisé la base de données en quatre : Azure SQL Database Hyperscale (Socrates)",
+                    "resume": "Une nouvelle approche architecturale (Socrates) pour Azure SQL Hyperscale a permis de séparer les journaux du stockage, augmentant la taille maximale à 100 To et réduisant le temps de restauration.",
+                    "lien": "https://devblogs.microsoft.com/azure-sql/the-paper-that-split-the-database-in-four-inside-azure-sql-database-hyperscale-aka-socrates/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Comment JD.com a construit un 'Lakestream' avec Apache Fluss et Hudi",
+                    "resume": "JD.com a unifié ses pipelines de données en streaming et par lots via une migration étagée utilisant Apache Fluss et Hudi, en se concentrant sur la gestion de la cohérence des commits.",
+                    "lien": "https://fluss.apache.org/blog/how-jd-built-a-lakestream-with-fluss-and-hudi?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Bonnes pratiques pour les recherches de lignes uniques (requêtes ponctuelles)",
+                    "resume": "DataFusion excelle dans les requêtes ponctuelles grâce à des optimisations comme les fichiers Parquet triés et le cache de métadonnées, montrant que les moteurs analytiques peuvent gérer des lectures à faible latence.",
+                    "lien": "https://datafusion.apache.org/blog/2026/10/24/point-queries?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                },
+                {
+                    "titre": "Améliorer la précision d'un agent analytique de 50% à 96%",
+                    "resume": "Benchouse a amélioré la précision de son agent d'analyse, nao, de 49,6% à 96,5% en passant à Opus et en affinant le contexte avec des métriques claires et des terminologies précises.",
+                    "lien": "https://benchouse.ai/blog/getting-an-analytics-agent-from-50-to-96?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "La crise du benchmarking",
+                    "resume": "La génération de code par IA permet aux moteurs de base de données de \"tromper\" les benchmarks comme ClickBench, rendant ces derniers inefficaces et soulevant des questions sur la fiabilité des performances.",
+                    "lien": "http://databasearchitects.blogspot.com/2026/10/the-benchmarking-crisis.html?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "SLayer (Dépôt GitHub)",
+                    "resume": "SLayer est une couche sémantique open-source intégrable pour l'accès sécurisé aux données d'entrepôt, offrant traduction SQL, transformations, sécurité au niveau des lignes et prise en charge de dbt/Cube/Ossie.",
+                    "lien": "https://github.com/MotleyAI/slayer?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "PrivacyLib : Contrôles de confidentialité à la limite d'accès aux données",
+                    "resume": "Meta a développé PrivacyLib pour appliquer les règles de confidentialité au point d'accès aux données, uniformisant les contrôles pour diverses plateformes et agents IA afin de garantir une conformité évolutive.",
+                    "lien": "https://engineering.fb.com/2026/10/27/security/privacylib?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Egres : Une base de données compatible Postgres pour charges de travail multi-locataires intensives",
+                    "resume": "Egres est une nouvelle base de données open-source compatible Postgres, conçue pour les charges multi-locataires intensives, utilisant moins de ressources disque et gérant des milliers de locataires dans un seul processus.",
+                    "lien": "https://manishrjain.com/egres/?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Les nouveautés de DuckDB 2.0.0",
+                    "resume": "DuckDB 2.0.0 introduit des nouveautés telles qu'un appender Python, des manuels de fonctions CLI, des vues sécurisées, des chemins de partition personnalisés et des exports GeoJSON.",
+                    "lien": "https://duckdb.org/2026/10/26/gems-of-duckdb-200.html?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "DuckDB Universe (Outil)",
+                    "resume": "DuckDB Universe est une carte interactive répertoriant 516 projets open-source et 59 entreprises/produits utilisant DuckDB, incluant extensions, tableaux de bord et intégrations.",
+                    "lien": "https://duckdb-universe.vercel.app/?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Rendre le diagnostic de panne fiable avec Pensive AI",
+                    "resume": "Netflix a amélioré le diagnostic de panne en utilisant des LLM pour identifier des segments de logs précis et effectuer des analyses de cause racine, réduisant les hallucinations et accélérant le débugging.",
+                    "lien": "https://netflixtechblog.com/making-failure-diagnosis-reliable-with-pensive-ai-6b0811a1c015?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                }
+            ]
+        },
+        {
             "date": "2026-10-26",
             "articles": [
                 {
@@ -690,83 +767,6 @@
                     "resume": "La stack de données IA d'OpenAI centralise des métadonnées riches pour combler le fossé contextuel. Une réécriture en Rust aurait réduit la latence de planification d'Airflow de 35x pour plus de 70 000 tâches concurrentes.",
                     "lien": "https://dataopsleadership.substack.com/p/the-context-gap-how-to-build-data?utm_source=tldrdata",
                     "categorie": "Deep Dive"
-                }
-            ]
-        },
-        {
-            "date": "2026-09-24",
-            "articles": [
-                {
-                    "titre": "Comment Concurrence gouverne l'IA clinique à l'échelle du trilliard de tokens avec Unity Gateway",
-                    "resume": "Concurrence utilise Databricks et Unity Gateway pour gérer et réguler l'IA clinique à l'échelle du trilliard de tokens, centralisant l'accès aux modèles et assurant le suivi, la conformité et la scalabilité des agents.",
-                    "lien": "https://www.databricks.com/blog/how-concurrence-governs-clinical-ai-trillion-token-scale-unity-gateway?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Si vous avez utilisé Cassandra 3.11, vous ne la reconnaîtrez peut-être plus aujourd'hui",
-                    "resume": "Apache Cassandra 5 et 6 introduisent des améliorations majeures depuis la version 3.11, incluant l'indexation attachée au stockage, la recherche vectorielle native et les transactions inter-partitions, assouplissant de nombreuses contraintes.",
-                    "lien": "https://softwaremill.com/apache-cassandra-5-6-what-changed-since-3-11/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Nous avons porté le Doom original en SQL",
-                    "resume": "CedarDB a porté la logique et le moteur de rendu de Doom presque entièrement en SQL, prouvant que des logiques temps réel complexes peuvent fonctionner avec le modèle basé sur les ensembles de SQL, avec des avantages pour le multijoueur.",
-                    "lien": "https://cedardb.com/blog/sqldoom/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Garde-fous LLM en temps réel avec Jev : comparaison latence et coût",
-                    "resume": "Jev de TypeSafe propose un modèle de décision dédié aux garde-fous IA en temps réel. Les tests d'Arize montrent qu'il est 15-18x plus rapide et 12-14x moins cher que GPT-5.4 nano pour des décisions équivalentes.",
-                    "lien": "https://arize.com/blog/llm-guardrails-jev/?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "Les benchmarks sont plus défaillants qu'on ne l'imaginait",
-                    "resume": "Une audit de Horizon a révélé que de nombreux benchmarks IA sont défectueux (réponses divulguées, tests incomplets), gonflant les scores des modèles et surestimant leurs capacités.",
-                    "lien": "https://www.horizonanalyticslabs.com/research/public-benchmark-dataset-audit?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Jevflake (Dépôt GitHub)",
-                    "resume": "Jevflake intègre le modèle de décision Jev de TypeSafe à Snowflake via SQL et dbt, permettant de classer et de poser des questions structurées sur les données avec des réponses probabilistes.",
-                    "lien": "https://github.com/KranzL/Jevflake?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "DuckDB est désormais intégré à dbt v2",
-                    "resume": "dbt v2 intègre un adaptateur DuckDB via son moteur Fusion basé sur Rust, simplifiant l'installation et ajoutant le support DuckLake/Iceberg, la métadonnée Parquet et l'analyse SQL pré-exécution.",
-                    "lien": "https://duckdb.org/2026/09/22/dbt-fusion.html?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Annonce d'Apache Fluss 1.0 : Fondation de données temps réel pour l'IA",
-                    "resume": "Apache Fluss 1.0 est lancé avec une passerelle HTTP Rust sans état, un accès Python natif et des intégrations améliorées, ajoutant des fonctionnalités essentielles pour les charges de travail lakehouse temps réel en production.",
-                    "lien": "https://fluss.apache.org/blog/releases/1.0/?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Introduction de prompt_jev() : Jev arrive dans MotherDuck SQL",
-                    "resume": "La fonction `prompt_jev` de MotherDuck intègre Jev directement dans SQL, permettant de classer du texte à l'échelle analytique. Un benchmark montre sa supériorité en rapidité, coût et précision par rapport aux LLM.",
-                    "lien": "https://motherduck.com/blog/motherduck-supports-jev/?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Comment le sampling de queue adaptatif fonctionne dans OpenTelemetry Collector",
-                    "resume": "Le sampling de queue adaptatif pour OpenTelemetry Collector permet de mieux conserver les traces critiques en cas d'incident en tamponnant les traces et en appliquant des règles ordonnées, s'adaptant par route et service.",
-                    "lien": "https://www.honeycomb.io/blog/how-adaptive-tail-sampling-works?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "OLTP à haut débit en trois étapes simples",
-                    "resume": "Les systèmes de transactions à haut débit bénéficient d'une conception spécifique, comme TigerBeetle qui utilise des transferts atomiques, l'agrégation sans scan, le traitement par lots et des identifiants ordonnés pour l'idempotence.",
-                    "lien": "https://tigerbeetle.com/blog/2026-09-17-performant-use-of-tigerbeetle?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Profilez vos requêtes Polars",
-                    "resume": "Polars offre désormais un profileur de requêtes pour les charges de travail open source locales.",
-                    "lien": "https://pola.rs/posts/profile-local-queries/?utm_source=tldrdata",
-                    "categorie": "News"
                 }
             ]
         }
