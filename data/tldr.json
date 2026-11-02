@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-11-02",
+            "articles": [
+                {
+                    "titre": "J'ai Testé Polars 2.1 Contre DuckDB 2.0",
+                    "resume": "Polars 2.1 a traité un jeu de données de 23 Go avec 2 Go de RAM en 438 secondes, soit près de deux fois plus vite que DuckDB 2.0 (837 secondes), qui offre pourtant de nouvelles fonctionnalités client-serveur et IA.",
+                    "lien": "https://www.youtube.com/watch?v=2dbFPJnbVYo&utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Évaluer les Agents IA à Grande Échelle : Notre Méthode de Benchmark",
+                    "resume": "PostHog teste des agents IA sur des tâches réelles (ex: trouver des bugs) en isolant chaque test et en utilisant des environnements réinitialisables avec des données fixes pour des comparaisons équitables.",
+                    "lien": "https://posthog.com/blog/how-to-benchmark-ai-agents?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Recherche Vectorielle sur Apache Iceberg sans Déplacer les Données Source",
+                    "resume": "StarTree utilise un index vectoriel HNSW pour les tables Iceberg, stocké à côté des données Parquet. Cela permet des requêtes hybrides (similarité + SQL) sans dupliquer les enregistrements, mais l'index est volumineux et la fraîcheur est liée aux snapshots Iceberg.",
+                    "lien": "https://startree.ai/resources/vector-search-on-apache-iceberg-without-moving-your-data/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Migrer PostgreSQL avec une Réplication Logique et un Temps d'Arrêt Minimal",
+                    "resume": "La réplication logique permet d'upgrader ou migrer PostgreSQL avec des temps d'arrêt de quelques secondes, offrant sécurité de restauration et portabilité, mais nécessite de gérer manuellement les changements de schéma et les séquences.",
+                    "lien": "https://aiven.io/blog/move-the-elephant-keep-the-lights-on?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                },
+                {
+                    "titre": "Qu'est Devenu le Concept de Produits de Données ?",
+                    "resume": "Les produits de données ont évolué vers une discipline de livraison axée sur la valeur et la gouvernance, essentielle pour les agents IA qui dépendent de contextes clairs et lisibles par machine.",
+                    "lien": "https://jarkkomoilanen.com/articles/what-happened-to-data-products/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Analyse Jepsen : ParticleDB 1.1.4",
+                    "resume": "L'analyse Jepsen a révélé 96 problèmes dans ParticleDB 1.1.4, dont des pertes de données et des erreurs SQL, même sans pannes serveur. Bien que la plupart aient été corrigés, des bugs transactionnels critiques subsistaient.",
+                    "lien": "https://jepsen.io/analyses/particledb-1.1.4?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Kafgres 0.2.0 : Streaming Compatible Kafka à 700 Mo/s dans Postgres",
+                    "resume": "L'extension Postgres Kafgres 0.2.0 atteint 700 Mo/s pour le streaming compatible Kafka grâce à des optimisations. Bien qu'adaptée à de nombreuses charges de travail, sa configuration à courtier unique manque de la résilience d'un cluster Kafka.",
+                    "lien": "https://rynr.dev/blog/700mbskafgres/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Nodal Analytics (Dépôt GitHub)",
+                    "resume": "Nodal est un toolkit open-source qui convertit les définitions métier des analystes en contexte réutilisable pour les agents d'analyse IA, planifiant les requêtes et validant les résultats par rapport à des métriques approuvées.",
+                    "lien": "https://github.com/nodal-data/nodal-context?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Les Clés Primaires Arrivent dans Apache Iceberg V4 (Initialement Non Appliquées)",
+                    "resume": "Apache Iceberg V4 introduit les clés primaires, les règles d'unicité et les contraintes, bien que la plupart ne soient pas appliquées initialement. Chaque snapshot enregistre la conformité des données à ces règles.",
+                    "lien": "https://iceberglakehouse.com/posts/iceberg-v4-table-constraints/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "J'ai Dit à un Agent IA Que Ses Mauvaises Réponses Étaient Bonnes. Un Modèle M'a Cru.",
+                    "resume": "Une expérience a montré qu'en inversant les labels de récompense, certains modèles IA, comme GPT-6 Sol, peuvent être fortement influencés, tandis que d'autres, comme Qwen3 4B, le sont beaucoup moins.",
+                    "lien": "https://towardsdatascience.com/i-told-an-ai-agent-that-its-wrong-answers-were-right-one-model-believed-me/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Les Compromis des Bases de Données : Leçons de Cinq Conférences P99 CONF",
+                    "resume": "Un résumé des conférences P99 CONF met en lumière les compromis inhérents aux conceptions de bases de données (ex: stockage objet, moteurs optimisés en lecture, recherche vectorielle). La leçon clé : éliminer un goulot d'étranglement en crée un autre ailleurs.",
+                    "lien": "https://thenewstack.io/p99-conf-database-tradeoffs/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Oracle GoldenGate Actif-Actif : Définir la Propriété des Données Avant la Résolution de Conflits",
+                    "resume": "L'implémentation d'Oracle GoldenGate actif-actif exige une définition préalable de la propriété des données et des politiques de conflit. Les stratégies convergentes peuvent entraîner des pertes silencieuses ; si la réconciliation est intolérable, la réplication multi-maître ne suffira pas.",
+                    "lien": "https://hackernoon.com/active-active-oracle-goldengate-across-regions-decide-who-owns-the-data-before-you-resolve-conflict?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                }
+            ]
+        },
+        {
             "date": "2026-10-29",
             "articles": [
                 {
@@ -689,83 +766,6 @@
                     "titre": "Anthropic a corrigé l'écriture de Claude : j'ai vérifié les évaluations",
                     "resume": "Les corrections d'écriture d'Anthropic pour Claude Opus 5.5 ont partiellement fonctionné, réduisant drastiquement les tirets cadratins et autres 'Claudismes'. L'évaluation stylistique est plus efficace en annotant les passages problématiques plutôt que par des phrases interdites ou des scores vagues.",
                     "lien": "https://arize.com/blog/anthropic-says-it-fixed-claudes-writing/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                }
-            ]
-        },
-        {
-            "date": "2026-09-28",
-            "articles": [
-                {
-                    "titre": "Optimisation de la Configuration Robotique sur Graphe-comme-Politique",
-                    "resume": "Une méthode a utilisé des agents de codage pour faire évoluer un contrôleur robotique Graph-as-Policy, augmentant le débit simulé de 5,27x et le taux de succès de 67% à 96% sans intervention humaine sur les compétences existantes.",
-                    "lien": "https://kael.tech.blog/2026/09/26/robotics-harness-optimization-on-graph-as-policy/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Finalisation des Partitions dans le Framework d'Ingestion DB de Nouvelle Génération de Pinterest",
-                    "resume": "Pinterest a ajouté une couche de finalisation à son pipeline CDC Kafka, Flink, Spark et Iceberg, permettant aux jobs en aval de savoir quand une partition horaire est prête à être lue via des statistiques de temps d'événement et des métadonnées de snapshot Iceberg.",
-                    "lien": "https://medium.com/pinterest-engineering/partition-finalization-in-pinterests-next-generation-db-ngestion-framework-4c7da6e4cc8f?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Mise à l'Échelle d'un Pipeline d'Inférence ML pour les Charges par Lots",
-                    "resume": "WHOOP a réduit le temps d'une simulation ML interne de plus de deux mois à six jours en éliminant les appels HTTP par tâche, en chargeant le modèle dans les workers et en ajustant le CPU des pods, tout en documentant les défis liés aux bibliothèques natives et aux retries idempotents.",
-                    "lien": "https://engineering.whoop.com/scaling-ml-inference-pipeline?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Le parcours client mis à jour en temps réel : extension du recommandeur de séquences d'Airbnb avec Chronon",
-                    "resume": "Airbnb a étendu Chronon pour actualiser les caractéristiques du parcours client en temps quasi réel, réduisant la latence des données de deux jours à moins d'une minute via un traitement événementiel et alimentant les modèles de classement en ligne.",
-                    "lien": "https://airbnb.tech/ai-ml/the-guest-journey-updated-in-real-time-extending-airbnbs-sequence-recommender-with-chronon/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Dix ans de réplication logique Postgres",
-                    "resume": "Une rétrospective sur dix ans de réplication logique Postgres, qui a progressivement remplacé les solutions personnalisées par des fonctionnalités SQL natives pour la migration, la mise à l'échelle et l'évolution des schémas.",
-                    "lien": "https://tapoueh.org/blog/2026/09/ten-years-of-postgres-logical-replication/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Le coût de REPACK (CONCURRENTLY) lors de son exécution",
-                    "resume": "PostgreSQL 19 introduit REPACK (CONCURRENTLY) pour la réécriture de tables en ligne. L'article détaille ses avantages (plus rapide, moins de WAL) mais aussi ses compromis (peut retarder VACUUM, bloque brièvement les écritures et a des limites sur le nombre d'opérations).",
-                    "lien": "https://boringsql.com/posts/repack-concurrently-costs/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Construction d'un Moteur AI-SQL à Très Haut Débit",
-                    "resume": "Quail est un moteur AI-SQL open-source qui optimise conjointement la planification des requêtes et l'inférence LLM, fonctionnant 1,84x plus vite que vLLM en moyenne et jusqu'à 14x plus rapidement sur certaines charges en réduisant les surcoûts GPU.",
-                    "lien": "https://fsdatalab.github.io/blog/introducing-quail/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Safe Not Safe (Outil)",
-                    "resume": "Safe Not Safe est un vérificateur de migration PostgreSQL basé sur navigateur qui identifie les modèles DDL risqués (verrous bloquants, réécritures, contraintes dangereuses), fonctionnant entièrement localement sans API ni compte.",
-                    "lien": "https://safenotsafe.dev/?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "Vues Apache Iceberg : Métadonnées de Vues Portables entre Moteurs SQL",
-                    "resume": "La spécification des vues d'Iceberg rend les métadonnées portables en versionnant les schémas, dépendances et SQL, mais la portabilité en production dépend du support du catalogue REST et de dialectes SQL compatibles, nécessitant des tests rigoureux.",
-                    "lien": "https://www.dremio.com/blog/apache-iceberg-views-portable-view-metadata-across-sql-engines/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "ALP : Encodage Flottant sans Perte Adaptatif dans Apache Parquet",
-                    "resume": "Apache Parquet a ajouté ALP, un nouvel encodage sans perte pour les données flottantes, offrant une compression similaire à ZSTD et un décodage environ 10x plus rapide, avec un accès aléatoire et un décodage parallèle améliorés.",
-                    "lien": "https://parquet.apache.org/blog/2026/09/22/alp-adaptive-lossless-floating-point-encoding-in-apache-parquet/?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Échanger une Identité Cloud contre la Sienne : Attestation de Charge de Travail sur Compute Managé",
-                    "resume": "Netflix explique comment les jobs Spark sur compute managé échangent un rôle d'exécution cloud contre une identité de charge de travail interne fiable, en vérifiant une charge utile de métadonnées signée et une preuve d'identité AWS pour émettre des certificats TLS mutuels.",
-                    "lien": "https://netflixtechblog.com/trading-a-cloud-identity-for-your-own-workload-attestation-on-managed-compute-516d5a29b252?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Le Fossé Contextuel | Comment construire une architecture de données comme OpenAI",
-                    "resume": "La stack de données IA d'OpenAI centralise des métadonnées riches pour combler le fossé contextuel. Une réécriture en Rust aurait réduit la latence de planification d'Airflow de 35x pour plus de 70 000 tâches concurrentes.",
-                    "lien": "https://dataopsleadership.substack.com/p/the-context-gap-how-to-build-data?utm_source=tldrdata",
                     "categorie": "Deep Dive"
                 }
             ]
