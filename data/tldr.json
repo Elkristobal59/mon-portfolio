@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-11-05",
+            "articles": [
+                {
+                    "titre": "Qualité de pointe à 1% du coût : benchmark de production pour classifieurs LLM",
+                    "resume": "Airbnb a optimisé un LLM pour classer du contenu, atteignant une performance de pointe (F1: 0.902) avec une latence de 35ms et un coût 100 fois inférieur aux API du marché grâce à l'auto-hébergement.",
+                    "lien": "https://airbnb.tech/ai-ml/frontier-quality-at-1-of-the-cost-a-production-benchmark-of-llm-classifiers/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Pourquoi nous abandonnons DuckDB pour notre produit d'entrepôt de données",
+                    "resume": "Après 5 mois, PostHog délaisse DuckDB pour son produit d'entrepôt, citant des problèmes de dimensionnement et de lenteur d'écriture pour de grands volumes. Ils se tournent vers Trino et leur format HogLake.",
+                    "lien": "https://posthog.com/blog/moving-off-duckdb?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Mise à niveau de Redshift de RA3 vers RG : requêtes plus rapides et 32% de coûts en moins",
+                    "resume": "Halodoc a migré son entrepôt Redshift vers des instances RG (Graviton). Les opérations COPY sont 6x plus rapides, les requêtes lourdes 2.1x-5.2x plus rapides et les temps d'attente réduits de 70%, pour une baisse de coût de 32%.",
+                    "lien": "https://blogs.halodoc.io/upgrading-redshift-from-ra3-to-rg-and-achieving-faster-queries-at-32-lower-cost/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "F3 Lightning : comment Meta accélère la mise en production des fonctionnalités ML publicitaires à grande échelle",
+                    "resume": "Meta a refondé son infrastructure ML publicitaire avec F3 Lightning pour déployer des fonctionnalités indépendamment tout en partageant les calculs. Cela accélère la mise en production par 3.6x sans augmenter les coûts d'infrastructure.",
+                    "lien": "https://engineering.fb.com/2026/11/03/ml-applications/f3-lightning-how-meta-accelerates-ads-ml-features-to-production/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Le Grand Interrègne des Données : Symptômes d'une industrie entre deux ères",
+                    "resume": "L'industrie des données est en transition, confrontée à la consolidation et à l'automatisation par l'IA. Les problèmes de qualité des données, de définitions incohérentes et de responsabilité persistent, soulignant la valeur des équipes dans la sémantique et la gouvernance.",
+                    "lien": "https://joereis.substack.com/p/the-great-data-interregnum-morbid?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Moins de code humain : la charge de travail passe à la vérification par agent avec des suites de tests itératives",
+                    "resume": "Alors que les agents IA génèrent plus de code, la vérification des sorties devient clé. Les équipes ont besoin de validation type compilateur et de suites de tests pour auditer l'analytique générée par l'IA et prévenir la dérive sémantique.",
+                    "lien": "https://www.ssp.sh/blog/humans-write-less-code/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "L'analyse exploratoire des données ne peut pas être entièrement automatisée",
+                    "resume": "L'analyse exploratoire des données (EDA) exige toujours une intervention humaine. La pertinence d'une anomalie dépend du contexte et de l'objectif, ce qu'aucun modèle ne peut saisir. Les LLM n'accélèrent que rarement ce processus.",
+                    "lien": "https://www.counting-stuff.com/exploratory-data-analysis-cant-be-automated-away/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Helix Foundry : transformer les données d'entreprise en un graphe de connaissances généré par l'IA",
+                    "resume": "Helix Foundry est un projet open source qui connecte diverses sources de données. Un agent IA y propose une ontologie et charge entités/relations dans HelixDB pour créer un graphe de connaissances. Supporte le déploiement local.",
+                    "lien": "https://github.com/HelixDB/helix-foundry?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Apache Hudi-rs 0.6.0 : Écritures natives depuis Rust et Python",
+                    "resume": "Apache Hudi-rs 0.6.0 permet des écritures natives (création, ajout, mise à jour, upsert, suppression) depuis Rust et Python sans Spark ni JVM. Les performances de lecture Python sont améliorées jusqu'à 6x.",
+                    "lien": "https://hudi.apache.org/blog/2026/11/03/apache-hudi-rs-0-6-0-release-announcement?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "SurrealDB 4",
+                    "resume": "SurrealDB 4 refond son moteur de requêtes (240+ correctifs), offrant des opérations CRUD 42% plus rapides et des requêtes indexées 22x plus rapides. Ajoute la compatibilité PostgreSQL, MySQL et MongoDB.",
+                    "lien": "https://surrealdb.com/4?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Mettre à l'échelle l'évaluation des modèles chez Pinterest avec Ray (Partie 4)",
+                    "resume": "Pinterest a optimisé l'évaluation de ses modèles en calculant des métriques partielles par lots dans le job d'inférence Ray, réduisant le temps d'évaluation de bout en bout jusqu'à 32% pour l'importance des fonctionnalités.",
+                    "lien": "https://medium.com/pinterest-engineering/scaling-model-evaluation-at-pinterest-with-ray-part-4-4a96cd12cc11?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "RocketRide : un moteur de pipeline C++ pour les workflows d'IA",
+                    "resume": "RocketRide est un moteur de pipeline IA open source en C++ avec plus de 50 nœuds de traitement extensibles en Python. Il supporte divers fournisseurs LLM, bases de données vectorielles et frameworks d'agents, avec des outils VS Code intégrés.",
+                    "lien": "https://github.com/rocketride-org/rocketride-server?utm_source=tldrdata",
+                    "categorie": "Tool"
+                }
+            ]
+        },
+        {
             "date": "2026-11-02",
             "articles": [
                 {
@@ -690,83 +767,6 @@
                     "resume": "Les agrégations sur des chaînes de caractères sont coûteuses. DuckDB démontre que l'utilisation de clés de substitution entières via des tables de dimensions peut améliorer les performances, réduire la mémoire et le risque de débordement.",
                     "lien": "https://duckdb.org/2026/10/02/dimension-tables.html?utm_source=tldrdata",
                     "categorie": "Tutoriel"
-                }
-            ]
-        },
-        {
-            "date": "2026-10-01",
-            "articles": [
-                {
-                    "titre": "Performance de la sécurité au niveau des lignes dans PostgreSQL, mesurée",
-                    "resume": "La sécurité au niveau des lignes (RLS) dans PostgreSQL peut être quasi gratuite avec des politiques simples et indexées, mais des politiques mal structurées peuvent dégrader significativement les performances des requêtes.",
-                    "lien": "https://now-next.nl/en/insights/row-level-security-performance-postgresql/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Réinventer l'ingénierie des données avec l'ingénierie d'attelage : un nouveau paradigme pour l'ère des agents",
-                    "resume": "Les plateformes de données évoluent vers des infrastructures prêtes pour les agents, où le défi est de déployer en toute sécurité le travail généré par l'IA. Les équipes de données devront concevoir des compétences et politiques réutilisables pour une automatisation fiable.",
-                    "lien": "https://hackernoon.com/rebuilding-data-engineering-with-harness-engineering-a-new-paradigm-for-the-agent-era?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Améliorer l'efficacité des coûts des pipelines de streaming de données",
-                    "resume": "Les coûts des plateformes de streaming sont souvent dus à des facteurs structurels (requêtes, copies, sérialisation). Des optimisations incluent le traitement par lots, la suppression des topics intermédiaires, l'utilisation de charges utiles colonnaires et une gestion attentive de la latence.",
-                    "lien": "https://www.streamingdata.tech/p/improving-cost-efficiency-of-data-streaming-pipelines?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
-                },
-                {
-                    "titre": "Un LLM peut-il 'coder' votre couche sémantique ?",
-                    "resume": "Une couche sémantique robuste améliore grandement la précision des analyses LLM. Les LLM échouent sur les conventions métiers implicites, soulignant la nécessité de règles humaines explicites et de validation pour ces couches.",
-                    "lien": "https://www.lkranz.com/blog/semantics-of-semantic-layers?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "RIP, base de données vectorielle",
-                    "resume": "turbopuffer v3 abandonne l'index vectoriel ANN comme stockage primaire, visant à réduire la duplication des données et les réécritures, et à optimiser le stockage pour divers types de requêtes (texte, filtres, agrégations, recherche vectorielle).",
-                    "lien": "https://turbopuffer.com/blog/rip-vector-database?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Gérer les 'hot shards'",
-                    "resume": "Le sharding par ID de tenant peut créer des 'hot shards' surchargés. Les solutions incluent le scaling vertical, l'isolation des gros tenants sur des shards dédiés et le re-sharding par colonnes pertinentes pour les requêtes, en choisissant des clés par table.",
-                    "lien": "https://planetscale.com/blog/hot-shards-hotter-tenants?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
-                },
-                {
-                    "titre": "Les cinq camps de la modélisation des données",
-                    "resume": "La modélisation des données s'est divisée en cinq approches distinctes (relationnelle, analytique, application, ML/IA, ontologique). Les stacks modernes doivent les intégrer, exigeant une compréhension partagée pour éviter des pipelines fragiles.",
-                    "lien": "https://practicaldatamodeling.substack.com/p/the-five-camps-of-data-modeling-and?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Parquet X-ray (Repo GitHub)",
-                    "resume": "Parquet X-ray est un inspecteur visuel basé sur navigateur pour les fichiers Parquet. Il permet d'explorer leur structure interne (groupes de lignes, chunks de colonnes, pages, index, schéma, stats, compression) sans télécharger le fichier complet.",
-                    "lien": "https://github.com/cfahlgren1/parquet-xray?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "Annonce de DuckDB 1.5.6",
-                    "resume": "DuckDB 1.5.6 est une version de maintenance corrigeant des bugs. DuckDB 2.0 est en développement et montre des améliorations de performance significatives dans certains tests, bien que non universelles.",
-                    "lien": "https://duckdb.org/2026/09/28/announcing-duckdb-156?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Splink 5 : Appariement probabiliste de données à l'échelle du milliard de lignes",
-                    "resume": "Splink 5, une bibliothèque open-source, permet l'appariement probabiliste de données à l'échelle du milliard de lignes (10 milliards de comparaisons en 8,5 min avec DuckDB 2.0). Elle propose l'échantillonnage par chunks et des API de prédiction incrémentales.",
-                    "lien": "https://moj-analytical-services.github.io/splink/blog/2026/09/28/splink-500-released.html?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Un soupçon de dépendance",
-                    "resume": "Les 'query hints' lient le plan d'exécution à la requête, la rendant fragile. Il est préférable de gérer le contrôle du plan en dehors de la requête et d'améliorer les informations du planificateur (ex: `CREATE STATISTICS`) pour une meilleure adaptation aux changements de données.",
-                    "lien": "https://thegresqlpost.org/articles/a-hint-of-dependence/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Anthropic a corrigé l'écriture de Claude : j'ai vérifié les évaluations",
-                    "resume": "Les corrections d'écriture d'Anthropic pour Claude Opus 5.5 ont partiellement fonctionné, réduisant drastiquement les tirets cadratins et autres 'Claudismes'. L'évaluation stylistique est plus efficace en annotant les passages problématiques plutôt que par des phrases interdites ou des scores vagues.",
-                    "lien": "https://arize.com/blog/anthropic-says-it-fixed-claudes-writing/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
                 }
             ]
         }
