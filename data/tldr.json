@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-11-12",
+            "articles": [
+                {
+                    "titre": "Vérification des Faits à Grande Échelle chez Netflix",
+                    "resume": "Netflix a mis en place un nouveau système de vérification de l'exactitude des synopsis qui réduit les coûts de 52,4%, améliore le rappel des synopsis non factuels de 0,77 à 0,86 et aligne les explications machine à 82% avec le raisonnement humain.",
+                    "lien": "https://netflixtechblog.com/fact-checking-at-scale-building-a-more-accurate-and-efficient-synopsis-factuality-system-d7d85859d808?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Proposition de Pied de Page Modulaire Révisée pour Parquet",
+                    "resume": "Une nouvelle proposition Apache Parquet vise à remplacer les pieds de page Thrift monolithiques par des modules de métadonnées lisibles indépendamment. Cela rendrait les métadonnées de groupes de lignes optionnelles et permettrait de récupérer les métadonnées uniquement pour les colonnes pertinentes, réduisant ainsi les frais généraux.",
+                    "lien": "https://www.mail-archive.com/dev%40parquet.apache.org/msg28218.html?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Iceberg v4 : Champs de Statistiques Seules pour les Expressions de Partition",
+                    "resume": "Apache Iceberg v4 introduit des champs de statistiques seules pour stocker les métadonnées d'expressions dérivées sans matérialiser de colonnes supplémentaires. Cela permet une élagage de fichiers sensible aux expressions et des calculs basés uniquement sur les métadonnées grâce à un nouveau drapeau 'tight_stats'.",
+                    "lien": "https://github.com/apache/iceberg/pull/18405?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Comparaison des Modèles Fondateurs de Séries Temporelles (Timestral, t0, Tabby, Morpheus-2.0)",
+                    "resume": "Une comparaison des récents modèles fondateurs de séries temporelles sur GIFT-Eval montre que les trois meilleurs sont très proches, avec Timestral en tête sur CRPS et Morpheus sur MASE. L'amélioration serait largement due à l'entraînement.",
+                    "lien": "https://towardsdatascience.com/timestral-t0-tabby-and-morpheus-20-compared-on-gift-eval/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Le BI est-il mort ? La refonte de Hex pour l'ère des agents IA",
+                    "resume": "Le BI traditionnel perd de sa valeur face aux agents IA. L'avenir du BI réside dans la fourniture de données fiables, de contexte métier et de gouvernance pour permettre une analyse fiable avec n'importe quel agent IA.",
+                    "lien": "https://www.youtube.com/watch?v=qs2RvjjqMbo&utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Pourquoi les vendeurs Lakehouse et les clouds misent sur Postgres pour l'IA",
+                    "resume": "Des acquisitions majeures et des extensions de services par Databricks, Snowflake, Google, Amazon et Microsoft montrent un engagement fort envers PostgreSQL pour les applications d'IA. L'article analyse les raisons de ce choix stratégique et les implications.",
+                    "lien": "https://www.kai-waehner.de/blog/2026/11/10/why-lakehouse-vendors-and-clouds-bet-on-postgres-for-ai-applications/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Le MCP sur données brutes est un retour à l'enfer d'Excel",
+                    "resume": "Connecter des agents IA directement aux systèmes opérationnels via MCP risque de recréer des analyses fragmentées. Une architecture fiable doit séparer l'ontologie métier d'une couche de précision pour maintenir l'entrepôt de données comme source unique de vérité.",
+                    "lien": "https://dlthub.com/blog/mcp-on-raw-data-is-excel-hell-again?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Skipper, le moteur de workflow d'Airbnb, passe en open source",
+                    "resume": "Airbnb a mis en open source Skipper, son moteur de workflow embarqué utilisé en production. Développé en Java/Kotlin, il gère la persistance de processus dans la base de données du service, sans cluster d'orchestration centralisé, et utilise des baux pour la haute disponibilité.",
+                    "lien": "https://medium.com/airbnb-engineering/skipper-airbnbs-embedded-workflow-engine-is-now-open-source-78dd354f472b?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "DBDelve : Un client de base de données léger en Rust et GPUI",
+                    "resume": "DBDelve est un client de base de données open source, développé en Rust et GPUI, offrant une alternative native et légère. Il supporte plusieurs bases de données SQL, l'autocomplétion, les plans de requête, l'édition de données et peut ouvrir des fichiers via DuckDB intégré.",
+                    "lien": "https://github.com/ShayanAbbas1/dbdelve?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Claude Data d'Anthropic pour les entrepôts de données",
+                    "resume": "Anthropic a lancé Claude Data (anciennement Claude Dashboards), permettant de poser des questions sur des entrepôts comme Redshift, BigQuery ou ClickHouse. En bêta, les équipes peuvent certifier des requêtes et partager des données en direct.",
+                    "lien": "https://claude.com/resources/articles/sheets-whiteboards-data?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "e-means : Surpassant k-means en dix fois moins d'époques",
+                    "resume": "Les chercheurs de Meta FAIR ont développé e-means, un algorithme de clustering par mini-lots utilisant des moyennes mobiles exponentielles. Il atteint une perte de clustering inférieure en 1,4-2,6 époques comparé aux 25 époques de k-means traditionnel, avec des accélérations GPU de 10 à 45x.",
+                    "lien": "https://arxiv.org/abs/2611.09501?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Qui utilise réellement votre serveur MCP Snowflake ?",
+                    "resume": "L'historique des requêtes Snowflake ne distingue pas les requêtes Snowsight de celles envoyées par des agents via un serveur MCP. L'article propose une solution consistant à attribuer une intégration de sécurité OAuth distincte à chaque serveur MCP pour un suivi précis de l'utilisation.",
+                    "lien": "https://medium.com/snowflake/who-is-actually-using-your-snowflake-mcp-server-683a6cb543d7?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                }
+            ]
+        },
+        {
             "date": "2026-11-09",
             "articles": [
                 {
@@ -689,83 +766,6 @@
                     "titre": "Les fichiers de relations Postgres, sous base/",
                     "resume": "L'article décrit comment PostgreSQL stocke les relations sous forme de fichiers physiques identifiés par tablespace, base de données et relfilenode. Il explique la faible couplage entre objets logiques et physiques, et la gestion des fichiers segmentés pour les grandes relations.",
                     "lien": "https://boringsql.com/posts/files-forks-and-relfilenodes?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                }
-            ]
-        },
-        {
-            "date": "2026-10-08",
-            "articles": [
-                {
-                    "titre": "Metrics Board : Créer une couche de métriques prête pour les agents",
-                    "resume": "Pinterest a créé \"Metrics Board\", une plateforme centralisée qui automatise la création, le contrôle qualité, la documentation et la publication des métriques, facilitant leur gestion et leur fiabilité. Elle gère plus de 98% des métriques d'expérimentation et réduit le temps de développement, tout en offrant aux agents IA un accès à des métriques fiables.",
-                    "lien": "https://medium.com/pinterest-engineering/metrics-board-building-an-agent-ready-metrics-layer-2c8fefe68756?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Au-delà des tests synthétiques : Capturer et rejouer des charges de travail réelles de bases de données chez Airbnb",
-                    "resume": "Airbnb a développé un système pour rejouer des charges de travail MySQL réelles en production, plutôt que des benchmarks synthétiques. En capturant et rejouant les requêtes tout en préservant l'ordre et le timing, ce système permet de valider des mises à jour et migrations, révélant des régressions importantes qui auraient pu être manquées.",
-                    "lien": "https://airbnb.tech/infrastructure/beyond-synthetic-testing-capturing-and-replaying-real-database-workloads-at-airbnb?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "CDC chez WHOOP : Réplication en libre-service pour des centaines de tables Postgres",
-                    "resume": "WHOOP a mis en place un pipeline CDC en libre-service permettant aux équipes de répliquer des tables Postgres vers leur entrepôt de données. La conception sépare l'accès rapide aux changements bruts de la matérialisation plus lente, tout en automatisant l'évolution des schémas et la gestion de la propriété. Le CDC est plus efficace quand l'intégration est pilotée par la publication et que la responsabilité reste alignée avec le service source.",
-                    "lien": "https://engineering.whoop.com/cdc-at-whoop?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "J'ai comparé Databricks à mon iPhone",
-                    "resume": "Le PDG de Fivetran a comparé DuckDB sur un iPhone 17 Pro à des clusters Databricks, constatant que l'iPhone était plus rapide sur la plupart des charges de travail TPC-H malgré des ressources inférieures. Cela suggère que de nombreuses tâches d'analyse n'ont pas besoin de systèmes distribués coûteux et pourraient s'exécuter plus économiquement sur des machines uniques avec des moteurs comme DuckDB ou Polars.",
-                    "lien": "https://www.fivetran.com/blog/i-benchmarked-databricks-against-my-iphone?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Comment construire un benchmark de \"questions d'or\" pour vos agents de données",
-                    "resume": "Les agents de données nécessitent des tests de régression, pas seulement des démonstrations, en raison de l'évolution constante des modèles, des prompts, des schémas et des définitions de métriques. Une suite de \"questions d'or\" liée à des snapshots de données figés, évaluée sur les résultats d'exécution et appliquée en CI, est la meilleure approche. Traitez les changements des agents comme des versions logicielles.",
-                    "lien": "https://iceberglakehouse.com/posts/data-agent-golden-question-benchmark?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
-                },
-                {
-                    "titre": "5 cas d'utilisation de Jev pour l'analyse, avec des requêtes et des jeux de données réels",
-                    "resume": "MotherDuck présente cinq façons pratiques d'utiliser son modèle IA Jev pour classer du texte directement en SQL (évaluant des agents IA, analysant le sentiment, notant des appels de vente, catégorisant des offres d'emploi). Jev renvoie des réponses prédéfinies avec des scores de confiance et est environ 20 fois plus rapide que les appels LLM standards, rendant l'analyse de texte à grande échelle plus économique.",
-                    "lien": "https://motherduck.com/blog/jev-analytics-use-cases/?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
-                },
-                {
-                    "titre": "Stately Graph (Dépôt GitHub)",
-                    "resume": "Stately a publié une bibliothèque TypeScript open-source pour construire, analyser et visualiser des graphes à partir de données JSON simples, avec support d'algorithmes courants et 14 formats. Elle surpasse les alternatives populaires dans la plupart des benchmarks, notamment en construisant des graphes de 100 000 nœuds 9 à 15 fois plus vite que Graphology.",
-                    "lien": "https://github.com/statelyai/graph?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "Sortie de Polars 2.0",
-                    "resume": "Polars 2.0 apporte des requêtes plus rapides, un support SQL de première classe, un nouveau type de données Map et le streaming avec débordement sur disque activé par défaut pour gérer de grands jeux de données sans manquer de mémoire. Polars déclare également surpasser DuckDB et DataFusion dans la plupart de ses benchmarks SQL, tandis qu'une vérification de type plus stricte aide les développeurs et les agents IA à détecter les erreurs plus tôt.",
-                    "lien": "https://pola.rs/posts/release-polars-2/?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Sortie d'Apache DataFusion Comet 1.1.0",
-                    "resume": "Comet 1.1.0 optimise l'exécution de Spark en code natif, notamment avec des écritures Iceberg expérimentales et un \"shuffle\" natif via Celeborn. Cette version s'attaque également à une cause d'échec opérationnel courante : la pression opaque de la mémoire hors-heap, en ajoutant une meilleure comptabilité et journalisation de la mémoire pour réduire les arrêts de conteneurs.",
-                    "lien": "https://datafusion.apache.org/blog/2026/10/01/datafusion-comet-1.1.0?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Conception d'enzymes pour une chimie nouvelle et des substrats non naturels avec AlphaProtein Novo",
-                    "resume": "AlphaProtein Novo de Google DeepMind utilise l'IA pour concevoir de nouvelles enzymes à partir de zéro, y compris celles qui produisent des ingrédients pharmaceutiques et décomposent les polluants plastiques. Certaines surpassent les enzymes naturelles pour des tâches spécifiques, ouvrant de nouvelles voies en médecine, chimie et dépollution environnementale.",
-                    "lien": "https://www.biorxiv.org/content/10.64898/2026.10.01.756017v1?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "OpenAI Math (Dépôt GitHub)",
-                    "resume": "OpenAI a publié 722 manuscrits mathématiques générés par IA, couvrant 372 familles de recherche, produits par un modèle interne non publié et testé sur environ 4 000 problèmes. De nombreux résultats incluent des preuves formellement vérifiées à l'aide de Lean, mais OpenAI avertit que certaines découvertes non vérifiées peuvent contenir des erreurs.",
-                    "lien": "https://github.com/openai/math?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Turtle n'est pas JSON",
-                    "resume": "Les données de séries temporelles nécessitent plus que de simples valeurs et horodatages : les unités, la provenance, les dérivations et les exceptions sont importantes. JSON-LD et RDF rendent ce contexte explicite et interrogeable, améliorant la validation et l'interopérabilité. Il est conseillé de conserver les mesures en vrac dans un stockage efficace et d'utiliser une couche de graphe pour les métadonnées, la sémantique et la gestion des anomalies.",
-                    "lien": "https://ontologist.substack.com/p/turtle-is-not-json?utm_source=tldrdata",
                     "categorie": "Deep Dive"
                 }
             ]
