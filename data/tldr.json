@@ -1,6 +1,83 @@
 {
     "editions": [
         {
+            "date": "2026-11-16",
+            "articles": [
+                {
+                    "titre": "Comment Pinterest a Amélioré la Conformité de son Agent d'Analyse avec l'Ingénierie en Boucle",
+                    "resume": "Pinterest a développé une approche d'ingénierie en boucle pour améliorer la conformité de son agent d'analyse, qui ignorait parfois des étapes cruciales. Cette méthode, basée sur la proposition et le test de changements, a porté la conformité de 64% à 89,3%.",
+                    "lien": "https://medium.com/pinterest-engineering/how-pinterest-improved-analytics-agent-compliance-with-loop-engineering-d3c52d0abaa2?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "L'Avenir de la Science des Données et de l'Ingénierie Analytique chez Klaviyo",
+                    "resume": "Chez Klaviyo, l'IA génère analyses et code plus vite que l'humain ne peut les réviser. Les rôles de data science et d'ingénierie analytique fusionnent pour se concentrer sur la supervision de l'IA, la vérification de son travail et la mise en œuvre des résultats.",
+                    "lien": "https://klaviyo.tech/the-future-of-data-science-and-analytics-engineering-at-klaviyo-fa2c3af63e1b?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "Lire Moins, Résoudre Plus : Lecture Sparsée Efficace en Jetons pour Agents IA",
+                    "resume": "SparseRead est une couche de contrôle sans entraînement qui gère la quantité de données lues par les agents IA, réduisant la consommation de jetons et la latence sur divers modèles et charges de travail, sans modifier le modèle lui-même.",
+                    "lien": "https://arxiv.org/abs/2608.22237?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Une Gouvernance des Données Réellement Opérationnelle",
+                    "resume": "Cet article présente une approche de gouvernance des données \"as-code\" utilisant une pile open-source (MinIO, Postgres, Airflow 3, dbt, DataHub, etc.) pour automatiser et faire respecter les politiques de données, de la conformité au contrôle d'accès.",
+                    "lien": "https://blog.dataengineerthings.org/data-governance-that-actually-runs-103e4e916dd1?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Les Rôles de la Donnée ont-ils un Avenir ?",
+                    "resume": "L'article explore l'avenir des rôles data, suggérant que l'IA rend la production de données moins chère, tandis que l'interprétation et la responsabilité restent humaines. Un sondage montre une adoption quotidienne de l'IA par 80% des professionnels, mais des difficultés persistantes en modélisation.",
+                    "lien": "https://joereis.substack.com/p/do-data-roles-have-a-future?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "À Quel Point est-ce Ouvert ? Iceberg, Catalogues et Choix Utilisateur",
+                    "resume": "Les formats de table ouverts ne garantissent pas à eux seuls la portabilité d'un lakehouse Iceberg, car les catalogues peuvent créer des dépendances cachées. L'article propose une base communautaire autour du protocole de catalogue REST et d'Apache Polaris pour assurer une véritable interopérabilité.",
+                    "lien": "https://www.dataengineeringweekly.com/p/how-open-is-open-iceberg-catalogs?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Auto Ontology : Ancrer les Agents dans les Données d'Entreprise",
+                    "resume": "Auto Ontology de NVIDIA est un outil open-source qui convertit les métadonnées de base de données en un graphe sémantique. Il permet aux agents IA de générer des requêtes traçables et auditable en langage naturel, offrant une alternative plus fiable au text-to-SQL direct.",
+                    "lien": "https://github.com/NVIDIA/auto-ontology?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "db-branch (Dépôt GitHub)",
+                    "resume": "db-branch est un outil open-source auto-hébergé permettant de créer instantanément des copies isolées de bases de données MySQL et PostgreSQL. Il facilite les tests de requêtes, migrations et mises à jour sans affecter la production, avec des options de réinitialisation ou de suppression automatique.",
+                    "lien": "https://github.com/db-branch/db-branch?utm_source=tldrdata",
+                    "categorie": "Tool"
+                },
+                {
+                    "titre": "Les Pages Projet Redessinées de PyPI avec des Signaux de Sécurité plus Clairs sont en Ligne",
+                    "resume": "PyPI a mis à jour ses pages de paquets avec un onglet de sécurité affichant la provenance des fichiers et des alertes en cas d'informations manquantes ou incohérentes, facilitant l'évaluation des paquets malgré que l'origine vérifiée n'assure pas un code totalement sûr.",
+                    "lien": "https://blog.pypi.org/posts/2026-11-06-ui-updates-complete/?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "PostgreSQL 18.7, 17.12, 16.16, 15.20, 14.25 et 19 RC 2 sont Sortis !",
+                    "resume": "PostgreSQL a publié des correctifs pour toutes les branches supportées, résolvant 52 vulnérabilités de sécurité et plus de 140 bugs. PostgreSQL 14 est en fin de vie, un upgrade est recommandé. Les mises à jour sont généralement simples mais peuvent nécessiter des reconstructions d'index ou une nouvelle sauvegarde complète.",
+                    "lien": "https://www.postgresql.org/about/news/postgresql-187-1712-1616-1520-1425-and-19-rc-2-released-3442?utm_source=tldrdata",
+                    "categorie": "News"
+                },
+                {
+                    "titre": "À Quoi Ressemblent des Milliers de Conversations au Sein d'un Modèle de Langage",
+                    "resume": "Une étude a visualisé les représentations internes de milliers de conversations dans le modèle de langage Qwen, révélant des régions superposées influencées par la langue, le chinois étant distinct. Les visualisations montrent des motifs tout en masquant une grande partie de la complexité sous-jacente.",
+                    "lien": "https://operator0x.com/field-notes/qwen-conversation-state-space/?utm_source=tldrdata",
+                    "categorie": "Deep Dive"
+                },
+                {
+                    "titre": "Alertes en Temps Réel dans Spark",
+                    "resume": "UiPath a développé un système d'alertes en temps réel avec Spark Structured Streaming, capable d'évaluer 20 000 définitions d'alertes par minute sans rescanner les données source. La conception a permis de réduire la mémoire et les appels réseau grâce à une gestion optimisée de l'état.",
+                    "lien": "https://engineering.uipath.com/real-time-alert-in-spark-64da2bd8dbed?utm_source=tldrdata",
+                    "categorie": "Tutoriel"
+                }
+            ]
+        },
+        {
             "date": "2026-11-12",
             "articles": [
                 {
@@ -689,83 +766,6 @@
                     "titre": "Analyse de JSON à des dizaines de gigaoctets par seconde… en Python",
                     "resume": "Un benchmark a traité 7,6 Go de JSON à environ 66 Go/s avec fastsimdjson sur Python 'free-threaded' et 64 cœurs, grâce au parallélisme des threads et à la création d'objets Python uniquement pour les champs nécessaires.",
                     "lien": "https://lemire.me/blog/2026/10/12/parsing-json-at-tens-of-gigabytes-per-second-in-python/?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                }
-            ]
-        },
-        {
-            "date": "2026-10-12",
-            "articles": [
-                {
-                    "titre": "Qu'est-ce qui définit l'architecture Streamhouse ?",
-                    "resume": "Le concept \"Streamhouse\" d'Apache Fluss unifie les données de streaming et du lakehouse en une seule table logique pour le streaming, le service et l'analyse, réduisant ainsi la duplication et simplifiant les systèmes.",
-                    "lien": "https://ipolyzos.substack.com/p/what-defines-the-streamhouse-architecture?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "La couche de contexte des données de LinkedIn : unifier les données fiables pour les humains et les agents IA",
-                    "resume": "LinkedIn a créé une couche partagée pour guider humains et agents IA vers des datasets fiables, améliorant la qualité et la rapidité des réponses d'un agent analytique de 25,9% à 79,5% et réduisant le temps de réponse.",
-                    "lien": "https://www.linkedin.com/blog/engineering/infrastructure/inside-linkedins-data-context-layer-curating-trustworthy-context-for-humans-and-agents?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Optimisation des ressources Apache Spark : leçons de 8 millions de jobs par jour",
-                    "resume": "Salesforce a réduit ses coûts de calcul Spark de 31% en adaptant les ressources aux usages réels, après avoir constaté que de nombreux executors restaient inactifs plus de 90% du temps.",
-                    "lien": "https://engineering.salesforce.com/apache-spark-resource-optimization-lessons-from-eight-million-jobs-a-day/?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "De l'activité à l'intention : générer des parcours utilisateurs avec des LLM",
-                    "resume": "Pinterest utilise un LLM de 4B finement réglé pour transformer l'historique d'activité des utilisateurs en \"parcours\" (objectifs actifs) classés et localisés, améliorant l'engagement des notifications à moindre coût.",
-                    "lien": "https://medium.com/pinterest-engineering/from-activity-to-intent-generating-user-journeys-with-llms-9652b9417626?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Claude Dashboards et le passage du constructeur de graphiques au spécificateur",
-                    "resume": "La bêta de Claude Dashboards d'Anthropic permet de créer des tableaux de bord sans manipulation manuelle, traçant les chiffres à la source. L'article conseille aux développeurs BI de se concentrer sur la modélisation des données, le SQL et le design.",
-                    "lien": "https://thedatavist.substack.com/p/claude-dashboards-and-the-shift-from?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Cinq requêtes PostgreSQL qui en faisaient trop",
-                    "resume": "L'article démontre comment des pratiques comme la déduplication inutile, la matérialisation de CTEs, le tri aléatoire ou les expressions non indexées ralentissent les requêtes PostgreSQL, et comment de simples ajustements SQL ou des index peuvent améliorer les performances.",
-                    "lien": "https://explainmeasured.com/posts/queries-doing-extra-work/?utm_source=tldrdata",
-                    "categorie": "Tutoriel"
-                },
-                {
-                    "titre": "Votre ontologie enregistre les permissions, pas l'autorité",
-                    "resume": "L'article souligne que les ontologies d'entreprise enregistrent les permissions mais pas l'autorité décisionnelle. Il propose un cadre pour distinguer droits documentés et influence informelle, afin d'éviter que l'automatisation ne transforme les lacunes organisationnelles en actions erronées.",
-                    "lien": "https://contextandchaos.substack.com/p/your-ontology-records-permission?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Leviathan : Mémoire profonde pour agents sur de grands datasets",
-                    "resume": "Leviathan est un outil Rust qui fournit aux agents IA des résultats de recherche compacts et cités à partir de grands datasets, en utilisant l'indexation de texte intégral SQLite et une mémoire persistante optionnelle.",
-                    "lien": "https://github.com/elstongun/leviathan?utm_source=tldrdata",
-                    "categorie": "Tool"
-                },
-                {
-                    "titre": "Je suis maintenant convaincu que DuckDB mono-nœud est le meilleur moteur à toute échelle réaliste",
-                    "resume": "Un utilisateur de Databricks a constaté que DuckDB mono-nœud, optimisé pour les lectures S3, surpassait Trino sur le même hardware pour des requêtes de 10 To, offrant des performances comparables ou meilleures à moitié prix qu'un cluster Trino.",
-                    "lien": "https://www.reddit.com/r/DuckDB/comments/1x1h4f4/im_now_convinced_singlenode_duckdb_is_the_best/?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Mode Agent dans l'interface CLI de DuckDB",
-                    "resume": "La CLI de DuckDB 2.0 intègre un \"mode agent\" qui détecte l'utilisation par une IA, optimise la sortie, gère les requêtes et erreurs, permettant aux agents de lire 60% moins de tokens tout en obtenant des réponses correctes.",
-                    "lien": "https://duckdb.org/2026/10/09/agent-mode?utm_source=tldrdata",
-                    "categorie": "News"
-                },
-                {
-                    "titre": "Observabilité basée sur l'ontologie : Construire le graphe de connaissances E2E à l'échelle de Netflix",
-                    "resume": "Netflix utilise un graphe de connaissances basé sur l'ontologie pour unifier les données d'observabilité, les discussions d'incidents et la topologie des services, permettant un triage et une analyse des causes racines plus rapides et automatisés à grande échelle, grâce à l'IA.",
-                    "lien": "https://www.infoq.com/presentations/netflix-observability-aiops-ontology-scale?utm_source=tldrdata",
-                    "categorie": "Deep Dive"
-                },
-                {
-                    "titre": "Les fichiers de relations Postgres, sous base/",
-                    "resume": "L'article décrit comment PostgreSQL stocke les relations sous forme de fichiers physiques identifiés par tablespace, base de données et relfilenode. Il explique la faible couplage entre objets logiques et physiques, et la gestion des fichiers segmentés pour les grandes relations.",
-                    "lien": "https://boringsql.com/posts/files-forks-and-relfilenodes?utm_source=tldrdata",
                     "categorie": "Deep Dive"
                 }
             ]
